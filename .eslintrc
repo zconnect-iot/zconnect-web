@@ -1,0 +1,40 @@
+{
+  "extends": "airbnb",
+
+  "ecmaFeatures": {
+    "globalReturn": true,
+    "jsx": true,
+    "modules": true
+  },
+
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+
+  "globals": {
+    "document": false,
+    "escape": false,
+    "navigator": false,
+    "unescape": false,
+    "window": false,
+    "describe": true,
+    "before": true,
+    "it": true,
+    "expect": true,
+    "sinon": true
+  },
+
+  "rules": {
+    "semi": ["error", "never"],
+    "brace-style": ["warn", "stroustrup"],
+    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/jsx-filename-extension": 0,
+    "no-underscore-dangle": 0,
+    "camelcase": 0,
+    "react/jsx-no-bind": [ 1,
+      "allowArrowFunctions": false
+    ]
+  }
+}
