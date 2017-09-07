@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import Root from './containers/Root'
 
 import './initialiseCore'
+import './style/app.scss'
 import store, { history } from './store'
 
 

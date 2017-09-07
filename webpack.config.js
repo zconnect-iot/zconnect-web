@@ -16,22 +16,7 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            ['env', {
-              targets: {
-                browsers: 'last 2 versions'
-              },
-              modules: false,
-              useBuiltIns: true,
-            }],
-            'react'
-          ],
-          plugins: [
-            ["transform-object-rest-spread", { useBuiltIns: true }],
-          ],
-        }
+        loader: 'babel-loader'
       }
     ]
   },
@@ -85,7 +70,12 @@ if (isProd) {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader?modules=true&localIdentName=[hash:base64:6]!postcss-loader!sass-loader',
+        use: [
+          'style-loader?sourceMap',
+          'css-loader?modules=true&localIdentName=[hash:base64:6]&sourceMap',
+          'postcss-loader?sourceMap',
+          'sass-loader?sourceMap',
+        ],
       }),
     }
 
@@ -97,9 +87,9 @@ else {
       test: /\.scss$/,
       exclude: /node_modules/,
       use: [
-        'style-loader',
-        'css-loader?modules=true&localIdentName=[local]_[hash:base64:6]',
-        'postcss-loader',
+        'style-loader?sourceMap',
+        'css-loader?modules=true&localIdentName=[local]_[hash:base64:6]&sourceMap',
+        'postcss-loader?sourceMap',
         'sass-loader?sourceMap',
       ],
     }

@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": "airbnb",
 
   "ecmaFeatures": {
@@ -14,11 +15,6 @@
   },
 
   "globals": {
-    "document": false,
-    "escape": false,
-    "navigator": false,
-    "unescape": false,
-    "window": false,
     "describe": true,
     "before": true,
     "it": true,
@@ -36,6 +32,7 @@
     "curly": ["warn", "multi"],
     "react/jsx-no-bind": [ 1,
       "allowArrowFunctions": false
-    ]
+    ],
+    "no-console": 0
   }
 }
