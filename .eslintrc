@@ -33,6 +33,7 @@
     "react/jsx-filename-extension": 0,
     "no-underscore-dangle": 0,
     "camelcase": 0,
+    "curly": ["warn", "multi"],
     "react/jsx-no-bind": [ 1,
       "allowArrowFunctions": false
     ]
