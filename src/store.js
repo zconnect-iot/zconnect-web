@@ -1,4 +1,5 @@
-import { createStore, combineReducers, applyMiddleware, compose as reduxCompose } from 'redux'
+import { createStore, applyMiddleware, compose as reduxCompose } from 'redux'
+import { combineReducers } from 'redux-immutable'
 import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware, routerReducer } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
