@@ -1,8 +1,8 @@
 {
-  "name": "zconnect-web-starter",
+  "name": "zconnect-web",
   "version": "1.0.0",
-  "description": "ZConnect Web App starter kit",
-  "main": "index.js",
+  "description": "ZConnect Web App components",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "start": "node_modules/.bin/webpack-dev-server --hot --inline",
