@@ -34,5 +34,9 @@
       "allowArrowFunctions": false
     ],
     "no-console": 0
+  },
+
+  "settings": {
+    "import/resolver": "webpack"
   }
 }

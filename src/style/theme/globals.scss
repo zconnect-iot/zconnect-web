@@ -1,4 +1,5 @@
-@import 'constants';
+@import './constants';
+@import './mixins';
 
 html, body {
   font-family: $DEFAULT_FONT;

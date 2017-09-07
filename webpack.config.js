@@ -20,6 +20,11 @@ const config = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      theme: path.resolve(__dirname, 'src/style/theme'),
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'ZConnect App',
