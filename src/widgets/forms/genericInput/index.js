@@ -22,7 +22,7 @@ const genericWarning = message => <span className={styles.warning}>
  * @example
  * import BEMHelper from 'react-bem-helper'
  * const classes = new BEMHelper
- * const renderInner = props => genericInput(classes, props)
+ * const renderInner = props => genericInner(classes, props)
  * <Field type='text' component={renderInner} {...props} />
  *
  * @param {BEMHelper} classes a {@link react-bem-helper} object.
@@ -30,7 +30,7 @@ const genericWarning = message => <span className={styles.warning}>
  * @param {?function} [renderError] an error-rendering function.
  * @param {?function} [renderWarning] a warning-rendering function.
  */
-const genericInput = (
+const genericInner = (
   classes,
   props,
   renderError = genericError,
@@ -85,7 +85,7 @@ const createFieldComponent = (
   renderWarning = genericWarning
 ) => {
   const classes = new BEMHelper(blockname)
-  const renderInput = props => genericInput(
+  const renderInput = props => genericInner(
     classes, props, renderError, renderWarning)
   const component = props =>
     <Field type={type} component={renderInput} {...props} />
@@ -99,7 +99,7 @@ const createFieldComponent = (
 export {
   genericWarning,
   genericError,
-  genericInput as default,
+  genericInner,
   propTypes,
   createFieldComponent,
 }

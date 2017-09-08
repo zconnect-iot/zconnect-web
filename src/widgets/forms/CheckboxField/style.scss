@@ -1,0 +1,9 @@
+@import '~theme/variables';
+
+
+.input {
+  border: 1px solid $border-faint;
+  border-radius: 3px;
+  padding: 5px;
+  display: inline-block;
+}
