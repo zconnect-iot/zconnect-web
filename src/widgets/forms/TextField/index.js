@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field } from 'redux-form'
+import { Field } from 'redux-form/immutable'
 import BEMHelper from 'react-bem-helper'
 
 import genericInput from '../genericInput/index'

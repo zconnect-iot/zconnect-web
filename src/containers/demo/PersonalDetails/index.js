@@ -1,16 +1,13 @@
-import React from 'react'
-import { reduxForm } from 'redux-form'
+import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form/immutable'
 
 import { TextField } from '../../../widgets/forms/index'
 
-/**
- * The PersonalDetails form.
- */
-const PersonalDetails = reduxForm({
+let PersonalDetails = reduxForm({
   form: 'personalDetails',
 })(({handleSubmit}) => {
   return <form onSubmit={handleSubmit} className='personal-details'>
-    <TextField name='first-name' label='First name' />
+    <TextField name='firstName' label='First name' value='Name' />
   </form>
 })
 
