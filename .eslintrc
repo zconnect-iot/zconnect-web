@@ -19,6 +19,14 @@
   "rules": {
     "semi": ["error", "never"],
     "brace-style": ["warn", "stroustrup"],
+    "no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }],
+    "prefer-const": ["warn", {
+      "destructuring": "any"
+    }],
     "react/jsx-first-prop-new-line": ["warn", "multiline"],
     "react/jsx-filename-extension": 0,
     "no-underscore-dangle": 0,
