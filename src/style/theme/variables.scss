@@ -7,7 +7,7 @@ $brand-danger: #d9534f;
 $brand-info: #5bc0de;
 $brand-grey: #829EAF;
 
-$text-color: #333;
+$text-color: #767676;
 $text-color-minor: #888888;
 
 $border-radius: 5px;
@@ -45,3 +45,10 @@ $content-header-bg: #F5F8F8;
 $content-header-color: $text-color;
 
 $logo-small: url('assets/leocycle-small.png');
+
+$font-size-sm: 1rem;
+$font-size-md: 1.3rem;
+$font-size-lg: 1.6rem;
+$font-size-xl: 1.8rem;
+$font-family-sans-serif: 'SofiaPro', 'Helvetica Neue', Helvetica, sans-serif;
+$font-family-default: $font-family-sans-serif;
