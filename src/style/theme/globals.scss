@@ -5,10 +5,10 @@ html, body {
   font-family: $font-family;
   color: $text-color;
   height: 100%;
-  // @include linear-gradient(45deg, $brand-primary, $brand-success)
-  // background-attachment: fixed;
   background: $page-bg;
   font-size: $font-size-base;
+  background-attachment: fixed;
+  font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6 {
