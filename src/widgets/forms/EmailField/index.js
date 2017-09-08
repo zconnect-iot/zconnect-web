@@ -4,19 +4,20 @@ import { Field } from 'redux-form/immutable'
 
 import genericInput, { propTypes } from '../genericInput/index'
 
-const classes = new BEMHelper('textfield')
+const classes = new BEMHelper('emailfield')
 
 const renderInner = props => genericInput(classes, props)
 
-const TextField = props => <Field
-  type='text'
+const EmailField = props => <Field
+  type='email'
   component={renderInner}
   {...props}
 />
 
-TextField.propTypes = propTypes
+
+EmailField.propTypes = propTypes
 
 export {
   renderInner,
-  TextField as default,
+  EmailField as default,
 }

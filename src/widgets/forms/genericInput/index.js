@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import styles from './style.scss'
 
 /** Generic error-rendering function. */
@@ -33,18 +35,18 @@ const genericInput = (
   renderWarning = genericWarning
 ) => {
   const {touched, error, warning} = props.meta
-  return <div {...classes()}>
+  return <div {...classes(null, null, styles.control)}>
     <label
       htmlFor={props.name}
-      {...classes('label')}
+      {...classes('label', null, styles.label)}
     >
       {props.label}
     </label>
 
     <input
       type={props.type}
-      placeholder={props.label}
-      {...classes('input')}
+      placeholder={props.placeholder || props.label}
+      {...classes('input', null, styles.input)}
       {...props.input}
     />
 
@@ -55,8 +57,19 @@ const genericInput = (
   </div>
 }
 
+/** Prop types which should be acceptable for most inputs. */
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  validate: PropTypes.arrayOf(PropTypes.func),
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+}
+
 export {
   genericWarning,
   genericError,
   genericInput as default,
+  propTypes,
 }

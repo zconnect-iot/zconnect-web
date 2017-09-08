@@ -1,0 +1,26 @@
+@import '~theme/variables';
+@import '~theme/mixins';
+
+
+.form {
+  border: 1px solid $border-faint;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.formHeader {
+  text-align: left;
+  font-size: 18px;
+  padding: 20px;
+  border-bottom: 1px solid $border-faint;
+  color: $text-color;
+  background-color: $header-bg-light;
+}
+
+.formBody {
+  background-color: $bg-light;
+
+  label {
+    min-width: 300px;
+  }
+}
