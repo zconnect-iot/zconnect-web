@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { logout } from 'zc-core/auth/actions'
 
-import Buildings from '../../views/demo/Buildings/index'
+import { Buildings } from '../../containers/demo/index'
 import Settings from '../Settings'
 
 class App extends React.Component {
