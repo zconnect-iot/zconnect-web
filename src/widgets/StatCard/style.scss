@@ -1,0 +1,75 @@
+@import "~theme/variables.scss";
+
+// StatCard (containing element).
+.statcard {
+  background-color: #f8f8f8;
+  padding: 24px 48px;
+}
+.statcardPrimary {
+  background-color: $brand-primary;
+}
+.statcardSuccess {
+  background-color: $brand-success;
+}
+.statcardWarning {
+  background-color: $brand-warning;
+}
+.statcardDanger {
+  background-color: $brand-danger;
+}
+
+// The figure to be displayed prominently.
+.figure {
+  color: $brand-primary;
+  text-align: center;
+  padding: 4px 0;
+  font-size: 30px;
+}
+
+// Description (usually text below the figure).
+.desc {
+  font-weight: bold;
+  color: $text-color-minor;
+}
+
+
+@mixin vertical-caret {
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    margin-left: 2px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+    border-top: 0;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+}
+
+// Delta (delta content, plus caret-up or caret-down).
+.delta {
+  font-size: 12px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.deltaUp {
+  @include vertical-caret;
+  color: $brand-success;
+
+  &:after {
+    border-bottom: 4px solid;
+  }
+}
+
+.deltaDown {
+  @include vertical-caret;
+  color: $brand-danger;
+
+  &:after {
+    border-top: 4px solid;
+  }
+}

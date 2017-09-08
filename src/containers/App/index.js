@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { logout } from 'zc-core/auth/actions'
 
+import Buildings from '../../views/demo/Buildings/index'
 import Settings from '../Settings'
 
 class App extends React.Component {
@@ -16,6 +17,9 @@ class App extends React.Component {
           <Link to="/settings">Settings</Link>
           <button onClick={this.onLogout}>Logout</button>
         </nav>
+
+        <Buildings />
+
         <Switch>
           <Route path="/settings" component={Settings} />
         </Switch>
