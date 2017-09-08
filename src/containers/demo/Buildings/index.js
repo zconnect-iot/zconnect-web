@@ -8,6 +8,7 @@ import StatCard, { DELTA_UP, DELTA_DOWN } from '../../../widgets/StatCard/index'
  */
 const Buildings = (props) => {
   return (<div>
+    <h3>Buildings</h3>
     <View row>
       <View column auto>
         <StatCard

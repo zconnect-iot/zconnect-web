@@ -1,0 +1,9 @@
+@import '~theme/variables.scss';
+
+.warning {
+  color: $brand-warning;
+}
+
+.error {
+  color: $brand-danger;
+}

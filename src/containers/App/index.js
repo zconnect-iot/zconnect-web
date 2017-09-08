@@ -5,6 +5,11 @@ import Page from 'components/Page'
 import buildingSVG from 'icons/White/Building.svg'
 import faucetSVG from 'icons/White/faucet.svg'
 import personSVG from 'icons/White/person.svg'
+import {
+  Buildings,
+  Account,
+} from '../../containers/demo/index'
+import Settings from '../Settings'
 
 import Widgets from '../../containers/Widgets'
 
