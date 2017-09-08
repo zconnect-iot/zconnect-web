@@ -1,22 +1,9 @@
-import React from 'react'
-import BEMHelper from 'react-bem-helper'
-import { Field } from 'redux-form/immutable'
+import { createFieldComponent } from '../genericInput/index'
 
-import genericInput, { propTypes } from '../genericInput/index'
-
-const classes = new BEMHelper('textfield')
-
-const renderInner = props => genericInput(classes, props)
-
-const TextField = props => <Field
-  type='text'
-  component={renderInner}
-  {...props}
-/>
-
-TextField.propTypes = propTypes
+const { component, renderInput, classes } = createFieldComponent('text-field', 'text')
 
 export {
-  renderInner,
-  TextField as default,
+  component as default,
+  renderInput,
+  classes,
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import BEMHelper from 'react-bem-helper'
+import { Field } from 'redux-form/immutable'
 
 import styles from './style.scss'
 
@@ -67,9 +69,37 @@ const propTypes = {
   onFocus: PropTypes.func,
 }
 
+/**
+ * Create a new field component.
+ *
+ * @param {string} blockname the name of the BEM block (e.g. 'email-field').
+ * @param {string} type the type of the input (e.g. 'email').
+ * @param {function} [renderError] a function for rendering errors.
+ * @param {function} [renderWarning] a function for rendering warnings.
+ * @returns {Object} the component and its input rendering function.
+ */
+const createFieldComponent = (
+  blockname,
+  type,
+  renderError = genericError,
+  renderWarning = genericWarning
+) => {
+  const classes = new BEMHelper(blockname)
+  const renderInput = props => genericInput(
+    classes, props, renderError, renderWarning)
+  const component = props =>
+    <Field type={type} component={renderInput} {...props} />
+  return {
+    classes,
+    renderInput,
+    component,
+  }
+}
+
 export {
   genericWarning,
   genericError,
   genericInput as default,
   propTypes,
+  createFieldComponent,
 }

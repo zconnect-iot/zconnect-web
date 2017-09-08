@@ -1,23 +1,9 @@
-import React from 'react'
-import BEMHelper from 'react-bem-helper'
-import { Field } from 'redux-form/immutable'
+import { createFieldComponent } from '../genericInput/index'
 
-import genericInput, { propTypes } from '../genericInput/index'
-
-const classes = new BEMHelper('emailfield')
-
-const renderInner = props => genericInput(classes, props)
-
-const EmailField = props => <Field
-  type='email'
-  component={renderInner}
-  {...props}
-/>
-
-
-EmailField.propTypes = propTypes
+const { component, renderInput, classes } = createFieldComponent('email-field', 'email')
 
 export {
-  renderInner,
-  EmailField as default,
+  component as default,
+  renderInput,
+  classes,
 }
