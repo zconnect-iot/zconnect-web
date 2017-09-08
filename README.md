@@ -1,6 +1,14 @@
 # zconnect-web
 Components and sample project for zconnect projects.
 
+This project contains the following;
+
+-   a set of components for building zconnect apps (see `src/widgets`,
+    `src/components` and `src/containers`);
+-   a base SASS theme in `src/style/theme` which can be used to change global
+    style variables when using the widgets;
+-   a demo application built using the above.
+
 
 ## Demo project quick start
 ### Dependencies
