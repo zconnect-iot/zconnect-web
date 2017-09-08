@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import {
   TextField,
   EmailField,
+  PasswordField,
 } from '../../../widgets/forms/index'
 
 import styles from './style.scss'
@@ -24,6 +25,7 @@ let PersonalDetails = reduxForm({
         label='Email address'
         placeholder='johnsmith@email.com'
       />
+      <PasswordField name='password' label='Password' placeholder='******' />
     </div>
   </form>
 })
