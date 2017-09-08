@@ -6,6 +6,7 @@ import {
   TextField,
   EmailField,
   PasswordField,
+  CheckboxField,
 } from '../../../widgets/forms/index'
 
 import styles from './style.scss'
@@ -26,6 +27,7 @@ let PersonalDetails = reduxForm({
         placeholder='johnsmith@email.com'
       />
       <PasswordField name='password' label='Password' placeholder='******' />
+      <CheckboxField name='keepUpdated' label='Keep me up-to-date' />
     </div>
   </form>
 })
