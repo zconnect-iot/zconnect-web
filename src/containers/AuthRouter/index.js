@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 
 import { selectUserLoggedIn } from 'zc-core/auth/selectors'
 
-import Login from '../../modules/zconnect-web/auth/Login'
-import { Register, Forgotten } from '../../modules/zconnect-web/auth'
+import Login from '../auth/Login'
+import { Register, Forgotten } from '../auth'
 
 function AuthRouter({ authenticated }) {
   if (authenticated) return (
