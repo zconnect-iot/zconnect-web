@@ -1,5 +1,5 @@
 {
-  "name": "zconnect-web",
+  "name": "zc-web",
   "version": "1.0.0",
   "description": "ZConnect Web App components",
   "main": "src/index.js",
