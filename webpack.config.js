@@ -23,6 +23,9 @@ const config = {
   resolve: {
     alias: {
       theme: path.resolve(__dirname, 'src/style/theme'),
+      widgets: path.resolve(__dirname, 'widgets'),
+      containers: path.resolve(__dirname, 'containers'),
+      components: path.resolve(__dirname, 'components')
     },
   },
   plugins: [

@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 
 import { selectUserLoggedIn } from 'zc-core/auth/selectors'
 
-import Login from '../auth/Login'
-import { Register, Forgotten } from '../auth'
+import { Register, Forgotten, Login } from 'containers/auth'
+
 
 function AuthRouter({ authenticated }) {
   if (authenticated) return (
