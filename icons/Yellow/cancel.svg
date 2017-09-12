@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>cancel</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-15619 -2752)">
+<g id="Icons/Yellow/cancel">
+<g id="Icons/Dark/cancel">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(15621 2754)" fill="#F0AD4E"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10 0C 4.47 0 0 4.47 0 10C 0 15.53 4.47 20 10 20C 15.53 20 20 15.53 20 10C 20 4.47 15.53 0 10 0ZM 15 13.59L 13.59 15L 10 11.41L 6.41 15L 5 13.59L 8.59 10L 5 6.41L 6.41 5L 10 8.59L 13.59 5L 15 6.41L 11.41 10L 15 13.59Z"/>
+</defs>
+</svg>

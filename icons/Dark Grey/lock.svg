@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>lock</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-13195 -2576)">
+<g id="Icons/Dark Grey/lock">
+<g id="Icons/Dark/lock">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(13199 2577)" fill="#818E96"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 14 7L 13 7L 13 5C 13 2.24 10.76 0 8 0C 5.24 0 3 2.24 3 5L 3 7L 2 7C 0.9 7 0 7.9 0 9L 0 19C 0 20.1 0.9 21 2 21L 14 21C 15.1 21 16 20.1 16 19L 16 9C 16 7.9 15.1 7 14 7ZM 8 16C 6.9 16 6 15.1 6 14C 6 12.9 6.9 12 8 12C 9.1 12 10 12.9 10 14C 10 15.1 9.1 16 8 16ZM 11.0999 7.00002L 4.8999 7.00002L 4.8999 5.00002C 4.8999 3.29002 6.2899 1.90002 7.9999 1.90002C 9.7099 1.90002 11.0999 3.29002 11.0999 5.00002L 11.0999 7.00002Z"/>
+</defs>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>history</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14535 -2576)">
+<g id="Icons/Green/history">
+<g id="Icons/Dark/history">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14536 2579)" fill="#19CCA8"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 12 0C 7.03 0 3 4.03 3 9L 0 9L 3.89 12.89L 3.96 13.03L 8 9L 5 9C 5 5.13 8.13 2 12 2C 15.87 2 19 5.13 19 9C 19 12.87 15.87 16 12 16C 10.07 16 8.32 15.21 7.06 13.94L 5.64 15.36C 7.27 16.99 9.51 18 12 18C 16.97 18 21 13.97 21 9C 21 4.03 16.97 0 12 0ZM 11 5L 11 10L 15.28 12.54L 16 11.33L 12.5 9.25L 12.5 5L 11 5Z"/>
+</defs>
+</svg>

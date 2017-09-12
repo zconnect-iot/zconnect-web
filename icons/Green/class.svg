@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>class</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14403 -2532)">
+<g id="Icons/Green/class">
+<g id="Icons/Dark/class">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14407 2534)" fill="#19CCA8"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 14 0L 2 0C 0.9 0 0 0.9 0 2L 0 18C 0 19.1 0.9 20 2 20L 14 20C 15.1 20 16 19.1 16 18L 16 2C 16 0.9 15.1 0 14 0ZM 2 2L 7 2L 7 10L 4.5 8.5L 2 10L 2 2Z"/>
+</defs>
+</svg>

@@ -1,0 +1,21 @@
+@import "~theme/variables.scss";
+
+:global(.Page) {
+  max-width: $page-max-width;
+}
+
+:global(.NavButton) {
+  background: transparent;
+  border: none;
+  color: $nav-color;
+  padding: 20px;
+
+  // TODO: Figure out why this doesn't work (?style loader?)
+  &.NavButton--active {
+    color: white;
+  }
+}
+
+:global(.NavButton--active) {
+  color: white;
+}

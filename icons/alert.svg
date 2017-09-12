@@ -1,0 +1,14 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>alert</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-13019 -2884)">
+<g id="Icons/alert">
+<g id="Icon">
+<use xlink:href="#path0_fill" transform="translate(13022 2886)" fill="#818E96"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 7.00977 19.01C 7.00977 20.11 7.89977 21 8.99977 21C 10.0998 21 10.9898 20.11 10.9898 19.01L 7.00977 19.01ZM 15.88 14.82L 15.88 9C 15.88 5.75 13.63 3.03 10.59 2.31L 10.59 1.59C 10.59 0.71 9.88 0 9 0C 8.12 0 7.41 0.71 7.41 1.59L 7.41 2.31C 4.37 3.03 2.12 5.75 2.12 9L 2.12 14.82L 0 16.94L 0 18L 18 18L 18 16.94L 15.88 14.82Z"/>
+</defs>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="21" height="24" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Building</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-12887 -2884)">
+<g id="Icons/Grey/Building">
+<g id="Icon">
+<use xlink:href="#path0_fill" transform="translate(12889.5 2886)" fill="#818E96"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10.0398 9L 10.0398 3L 7.52988 0L 5.01992 3L 5.01992 5L 0 5L 0 19L 15.0598 19L 15.0598 9L 10.0398 9ZM 3.34665 17L 1.67334 17L 1.67334 15L 3.34665 15L 3.34665 17ZM 3.34665 13L 1.67334 13L 1.67334 11L 3.34665 11L 3.34665 13ZM 3.34665 9L 1.67334 9L 1.67334 7L 3.34665 7L 3.34665 9ZM 8.36642 17L 6.69312 17L 6.69312 15L 8.36642 15L 8.36642 17ZM 8.36642 13L 6.69312 13L 6.69312 11L 8.36642 11L 8.36642 13ZM 8.36642 9L 6.69312 9L 6.69312 7L 8.36642 7L 8.36642 9ZM 8.36642 5L 6.69312 5L 6.69312 3L 8.36642 3L 8.36642 5ZM 13.3864 17L 11.7131 17L 11.7131 15L 13.3864 15L 13.3864 17ZM 13.3864 13L 11.7131 13L 11.7131 11L 13.3864 11L 13.3864 13Z"/>
+</defs>
+</svg>

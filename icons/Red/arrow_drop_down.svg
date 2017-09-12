@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>arrow_drop_down</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14923 -2752)">
+<g id="Icons/Red/arrow_drop_down">
+<g id="Icons/Dark/arrow_drop_down">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14930 2762)" fill="#FF6A6A"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 0L 5 5L 10 0L 0 0Z"/>
+</defs>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>apps</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14755 -2708)">
+<g id="Icons/Green/apps">
+<g id="Icons/Dark/apps">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14759 2712)" fill="#19CCA8"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 4L 4 4L 4 0L 0 0L 0 4ZM 6 16L 10 16L 10 12L 6 12L 6 16ZM 0 16L 4 16L 4 12L 0 12L 0 16ZM 0 10L 4 10L 4 6L 0 6L 0 10ZM 6 10L 10 10L 10 6L 6 6L 6 10ZM 12 0L 12 4L 16 4L 16 0L 12 0ZM 6 4L 10 4L 10 0L 6 0L 6 4ZM 12 10L 16 10L 16 6L 12 6L 12 10ZM 12 16L 16 16L 16 12L 12 12L 12 16Z"/>
+</defs>
+</svg>

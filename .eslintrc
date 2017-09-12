@@ -27,7 +27,8 @@
     "react/jsx-no-bind": [ 1,
       "allowArrowFunctions": false
     ],
-    "no-console": 0
+    "no-console": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
 
   "settings": {

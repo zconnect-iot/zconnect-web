@@ -8,6 +8,8 @@ import AppRouter from '../AppRouter'
 
 import { optimisticLogin } from './actions'
 
+import '../../style/demo.scss'
+
 class Root extends React.Component {
   componentWillMount() {
     this.props.optimisticLogin()

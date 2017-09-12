@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>refresh</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14147 -2796)">
+<g id="Icons/Blue/refresh">
+<g id="Icons/Dark/refresh">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14151 2800)" fill="#00ADEF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 13.64 2.35C 12.19 0.9 10.2 0 7.99 0C 3.57 0 0 3.58 0 8C 0 12.42 3.57 16 7.99 16C 11.72 16 14.83 13.45 15.72 10L 13.64 10C 12.82 12.33 10.6 14 7.99 14C 4.68 14 1.99 11.31 1.99 8C 1.99 4.69 4.68 2 7.99 2C 9.65 2 11.13 2.69 12.21 3.78L 8.99 7L 15.99 7L 15.99 4.44089e-16L 13.64 2.35Z"/>
+</defs>
+</svg>
