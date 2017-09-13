@@ -4,11 +4,23 @@
   max-width: $page-max-width;
 }
 
+:global(.Header) {
+  background: $header-bg;
+  padding: 15px;
+}
+
+:global(.Logo--small) {
+  background-image: $logo-small;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+}
+
 :global(.NavButton) {
   background: transparent;
   border: none;
   color: $nav-color;
-  padding: 20px;
+  padding: 10px;
 
   // TODO: Figure out why this doesn't work (?style loader?)
   &.NavButton--active {

@@ -1,4 +1,14 @@
 $page-max-width: 1000px;
+$page-bg: white;
+
+$header-bg: #E6E8E9;
+$header-color: #3F7FAE;
+
+$nav-bg: #202F39;
+$nav-color: #829EAF;
+$nav-active-color: #FFFFFF;
+
+$content-bg: #F5F8F8;
 
 $brand-primary: #44a0ee;
 $brand-secondary: #e25139;
@@ -15,6 +25,4 @@ $border-faint: #e0e0e0;
 $font-size-base: 14px;
 $font-family-sans-serif: "Helvetica Neue", Helvetica, sans-serif;
 
-$nav-bg-color: #202F39;
-$nav-color: #829EAF;
-$nav-active-color: #FFFFFF;
+$logo-small: url('assets/leocycle-small.png');

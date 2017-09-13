@@ -33,7 +33,8 @@ const config = {
       widgets: path.resolve(__dirname, 'widgets'),
       containers: path.resolve(__dirname, 'containers'),
       components: path.resolve(__dirname, 'components'),
-      icons: path.resolve(__dirname, 'icons')
+      icons: path.resolve(__dirname, 'icons'),
+      assets: path.resolve(__dirname, 'src/assets')
     },
   },
   plugins: [

@@ -1,0 +1,10 @@
+@import '~theme/variables.scss';
+
+:global(.Navbar) {
+  background: $nav-bg;
+  color: $nav-color;
+}
+
+:global(.Navbar__item) {
+  display: flex;
+}
