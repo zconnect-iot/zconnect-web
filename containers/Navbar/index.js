@@ -32,14 +32,15 @@ class Navbar extends React.Component {
     const { navigate, items, location } = this.props
     return (
       <Row {...classes()}>
-        {items.map(item => (<Col {...classes('item')} xs sm={1} key={item.title}>
-          <NavButton
+        <Col smOffset={2} sm={8}>
+          {items.map(item => (<NavButton
+            key={item.title}
             active={item.route === location.pathname}
             {...item}
             navigate={navigate}
-          />
-        </Col>))}
-        <NavButton title="Logout" icon={powerSVG} action={this.onLogout} />
+          />))}
+          <NavButton title="Logout" icon={powerSVG} action={this.onLogout} active={false} />
+        </Col>
       </Row>
     )
   }

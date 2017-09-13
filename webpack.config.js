@@ -45,7 +45,9 @@ const config = {
   ],
   devServer: {
     contentBase: isProd ? './dist' : './src',
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: 'index.html'
+    },
     port: 3000,
     compress: isProd,
     inline: !isProd,

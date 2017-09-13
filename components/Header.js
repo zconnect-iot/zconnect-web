@@ -8,7 +8,7 @@ const classes = BEMHelper({ name: 'Header' })
 export default function Header() {
   return (
     <Row {...classes()}>
-      <Col xs={4}>
+      <Col smOffset={2} sm={8}>
         <Logo small />
       </Col>
     </Row>
