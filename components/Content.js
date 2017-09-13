@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'react-proptypes'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
 import { Button } from 'components'
@@ -6,12 +7,15 @@ import { Button } from 'components'
 
 const classes = BEMHelper({ name: 'Content' })
 
-export default function Content({ title, actionItems, children }) {
+export default function Content({ title, subtitle, actionItems, children }) {
   return (
     <Col {...classes()} xs={12}>
       <Row {...classes('header')}>
         <Col {...classes('headerCenter')} smOffset={2} sm={8} xs={12}>
-          <h4 {...classes('title')}>{title}</h4>
+          <div {...classes('title')}>
+            <h4>{title}</h4>
+            <h6>{subtitle}</h6>
+          </div>
           {actionItems.map(item => (
             <Button {...classes('button')} key={item.title} hollow onClick={item.action}>
               <img alt="action icon" src={item.icon} />
@@ -27,4 +31,22 @@ export default function Content({ title, actionItems, children }) {
       </Row>
     </Col>
   )
+}
+
+Content.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  actionItems: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+    action: PropTypes.func.isRequired,
+  })).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+}
+
+Content.defaultProps = {
+  subtitle: '',
 }
