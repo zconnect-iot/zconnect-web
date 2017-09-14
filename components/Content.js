@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'react-proptypes'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
-import { Button } from 'components'
+import { Button } from '../components'
 
 
 const classes = BEMHelper({ name: 'Content' })

@@ -7,8 +7,8 @@ import { Row, Col } from 'react-flexbox-grid'
 import { logout } from 'zc-core/auth/actions'
 import BEMHelper from 'react-bem-helper'
 
-import powerSVG from 'icons/White/power.svg'
-import NavButton from 'components/NavButton'
+import powerSVG from '../../icons/White/power.svg'
+import NavButton from '../../components/NavButton'
 
 import './style.scss'
 
