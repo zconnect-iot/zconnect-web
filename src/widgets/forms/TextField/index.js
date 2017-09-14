@@ -1,6 +1,6 @@
 import { createFieldComponent } from '../genericInput/index'
 
-const { component, renderInput, classes } = createFieldComponent('text-field', 'text')
+const { component, renderInput, classes } = createFieldComponent('TextField', 'text')
 
 export {
   component as default,

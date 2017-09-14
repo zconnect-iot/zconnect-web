@@ -1,6 +1,6 @@
 import { createFieldComponent } from '../genericInput/index'
 
-const { component, renderInput, classes } = createFieldComponent('password-field', 'password')
+const { component, renderInput, classes } = createFieldComponent('PasswordField', 'password')
 
 export {
   component as default,
