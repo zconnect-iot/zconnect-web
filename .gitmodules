@@ -1,3 +1,0 @@
-[submodule "src/modules/zconnect-js"]
-	path = src/modules/zconnect-js
-	url = git@code.zoetrope.io:zconnect/zconnect-js.git
