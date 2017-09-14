@@ -33,8 +33,7 @@
     "react-proptypes": "^1.0.0",
     "regenerator-runtime": "^0.11.0",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "zc-core": "file:src/modules/zconnect-js"
+    "style-loader": "^0.18.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
