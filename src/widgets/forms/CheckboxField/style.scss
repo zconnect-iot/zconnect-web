@@ -1,9 +1,48 @@
 @import '~theme/variables';
 
 
-.input {
-  border: 1px solid $border-faint;
-  border-radius: 3px;
-  padding: 5px;
+:global(.CheckboxField__input) {
+  // Ensure the checkbox is out of sight, but still accessible to the user
+  // (i.e. no `display: none;`).
+  position: absolute;
+  left: -1000em;
+}
+
+
+:global(.CheckboxField__label) {
+  font-weight: bold;
   display: inline-block;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 0.5em 0 0;
+    background: url('/images/icons/checkbox.svg') no-repeat 0 0;
+
+    vertical-align: bottom;
+    position: relative;
+    bottom: 2px;
+  }
+}
+
+
+:global(.CheckboxField__input:checked) + :global(.CheckboxField__label:before) {
+  background-position: -16px 0;
+}
+
+
+:global(.CheckboxField__input:disabled) + :global(.CheckboxField__label:before) {
+  background-position: -32px 0;
+}
+
+
+:global(.CheckboxField__input:checked:disabled) + :global(.CheckboxField__label:before) {
+  background-position: -48px 0;
+}
+
+
+:global(.CheckboxField__input:focus) + .CheckboxField__label:before {
+  outline: 1px dotted dark;
 }

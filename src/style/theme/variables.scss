@@ -46,9 +46,7 @@ $content-header-color: $text-color;
 
 $logo-small: url('assets/leocycle-small.png');
 
-$font-size-sm: 1rem;
-$font-size-md: 1.3rem;
-$font-size-lg: 1.6rem;
-$font-size-xl: 1.8rem;
-$font-family-sans-serif: 'SofiaPro', 'Helvetica Neue', Helvetica, sans-serif;
-$font-family-default: $font-family-sans-serif;
+
+// Checkboxes.
+$checked-image-url: url('/icons/checked.svg');
+$unchecked-image-url: url('/icons/unchecked.svg');

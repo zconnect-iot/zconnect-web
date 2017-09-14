@@ -21,7 +21,7 @@ const genericWarning = message => <span className={styles.warning}>
  * For use inside a redux-form `Field` element.
  * @example
  * import BEMHelper from 'react-bem-helper'
- * const classes = new BEMHelper
+ * const classes = new BEMHelper('WidgetBlockName')
  * const renderInner = props => genericInner(classes, props)
  * <Field type='text' component={renderInner} {...props} />
  *
