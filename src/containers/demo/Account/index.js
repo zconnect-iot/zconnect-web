@@ -8,7 +8,7 @@ import style from './style.scss'
 /**
  * The Account container.
  */
-const Account = (props) => {
+export default (props) => {
   return (<div>
     <h3>Account</h3>
 
@@ -19,5 +19,3 @@ const Account = (props) => {
     </View>
   </div>)
 }
-
-export { Account as default }

@@ -6,7 +6,7 @@ import StatCard, { DELTA_UP, DELTA_DOWN } from '../../../widgets/StatCard/index'
 /**
  * The Buildings view.
  */
-const Buildings = (props) => {
+export default (props) => {
   return (<div>
     <h3>Buildings</h3>
     <View row>
@@ -55,5 +55,3 @@ const Buildings = (props) => {
     </View>
   </div>)
 }
-
-export { Buildings as default }
