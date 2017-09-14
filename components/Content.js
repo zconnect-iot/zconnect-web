@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'react-proptypes'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
-import { Button } from '../components'
+import { Button, Icon } from '../components'
 
 
 const classes = BEMHelper({ name: 'Content' })
@@ -18,7 +18,7 @@ export default function Content({ title, subtitle, actionItems, children }) {
           </div>
           {actionItems.map(item => (
             <Button {...classes('button')} key={item.title} hollow onClick={item.action}>
-              <img alt="action icon" src={item.icon} />
+              <Icon name={item.icon} size={24} />
               {item.title}
             </Button>
           ))}

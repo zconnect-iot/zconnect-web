@@ -3,13 +3,13 @@ import PropTypes from 'react-proptypes'
 import BEMHelper from 'react-bem-helper'
 import ICONS from '../../assets/icons/map.json'
 
+import './style.scss'
+
 const classes = BEMHelper({ name: 'Icon' })
 
 export default function Icon({ name, color, size, className }) {
   const styles = {
     svg: {
-      display: 'inline-block',
-      verticalAlign: 'middle',
       [color ? 'fill' : null]: color, // Only set `fill` if color specified, will inherit from parent by default
     },
   }
@@ -21,7 +21,7 @@ export default function Icon({ name, color, size, className }) {
       style={styles.svg}
       width={`${size}px`}
       height={`${size}px`}
-      viewBox="0 0 24 24"
+      viewBox="-3 -3 24 24"
     >
       <path
         d={d}
