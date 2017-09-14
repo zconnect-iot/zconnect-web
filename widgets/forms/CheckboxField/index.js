@@ -33,7 +33,7 @@ export const renderInput = props => {
     <input
       id={inputId}
       type='checkbox'
-      checked={props.input.checked}
+      placeholder={props.placeholder || props.label}
       {...classes('input')}
       {...props.input}
     />

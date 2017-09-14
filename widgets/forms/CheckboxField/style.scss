@@ -1,7 +1,13 @@
 @import '~theme/variables';
+@import '~theme/mixins';
 
+
+:global(.CheckboxField) {
+  @include form-control;
+}
 
 :global(.CheckboxField__input) {
+  @include form-input;
   // Ensure the checkbox is out of sight, but still accessible to the user
   // (i.e. no `display: none;`).
   position: absolute;
@@ -42,4 +48,13 @@
 
 :global(.CheckboxField__input:focus) + .CheckboxField__label:after {
   outline: 1px dotted dark;
+}
+
+
+:global(.CheckBoxField__error) {
+  @include form-error;
+}
+
+:global(.CheckBoxField__warning) {
+  @include form-warning;
 }

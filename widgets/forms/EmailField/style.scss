@@ -1,0 +1,23 @@
+@import '~theme/variables';
+@import '~theme/mixins';
+
+
+:global(.EmailField) {
+  @include form-control;
+}
+
+:global(.EmailField__label) {
+  @include form-label;
+}
+
+:global(.EmailField__input) {
+  @include form-input;
+}
+
+:global(.EmailField__error) {
+  @include form-error;
+}
+
+:global(.EmailField__warning) {
+  @include form-warning;
+}

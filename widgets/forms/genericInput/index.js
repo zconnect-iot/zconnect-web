@@ -2,16 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import { Field } from 'redux-form/immutable'
+import uniqueId from 'lodash/uniqueId'
 
 import styles from './style.scss'
 
 /** Generic error-rendering function. */
-const genericError = message => <span className={styles.error}>
+const genericError = (classes, message) => <span {...classes('error')}>
   {message}
 </span>
 
 /** Generic warning-rendering function. */
-const genericWarning = message => <span className={styles.warning}>
+const genericWarning = (classes, message) => <span {...classes('warning')}>
   {message}
 </span>
 
@@ -37,24 +38,29 @@ const genericInner = (
   renderWarning = genericWarning
 ) => {
   const {touched, error, warning} = props.meta
-  return <div {...classes(null, null, styles.control)}>
+  const inputId = uniqueId('FormField__input')
+  return <div {...classes()}>
     <label
-      htmlFor={props.name}
-      {...classes('label', null, styles.label)}
+      htmlFor={inputId}
+      {...classes('label', {
+        checked: props.input.checked,
+        disabled: props.input.disabled,
+      })}
     >
       {props.label}
     </label>
 
     <input
+      id={inputId}
       type={props.type}
       placeholder={props.placeholder || props.label}
-      {...classes('input', null, styles.input)}
+      {...classes('input')}
       {...props.input}
     />
 
     {touched && (
-      (error && renderError(error)) ||
-      (warning && renderWarning(warning))
+      (error && renderError(classes, error)) ||
+      (warning && renderWarning(classes, warning))
     )}
   </div>
 }

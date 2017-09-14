@@ -34,3 +34,32 @@
   background: -o-linear-gradient($_angle-with-vendor-prefix, $color-stops);
   background: linear-gradient($_angle, $color-stops);
 }
+
+
+@mixin form-control {
+  padding: 20px;
+  border-bottom: 1px dashed $border-faint;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@mixin form-label {
+  font-weight: bold;
+  display: inline-block;
+}
+
+@mixin form-input {
+  border: 1px solid $border-faint;
+  border-radius: 3px;
+  padding: 5px;
+  display: inline-block;
+}
+
+@mixin form-error {
+  color: $brand-danger;
+}
+
+@mixin form-warning {
+  color: $brand-warning;
+}
