@@ -1,0 +1,79 @@
+@import "~theme/variables.scss";
+
+:global(.Page) {
+  padding: 0;
+}
+
+:global(.Header) {
+  background: $header-bg;
+  padding: 15px 0;
+}
+
+:global(.Logo--small) {
+  background-image: $logo-small;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  min-width: 200px;
+}
+
+:global(.NavButton) {
+  background: transparent;
+  border: none;
+  color: $nav-color;
+  padding: 10px;
+  cursor: pointer;
+
+  &:global(.NavButton--active) {
+    color: white;
+  }
+}
+
+
+
+:global(.Content) {
+  background: $content-bg;
+  color: $content-color;
+
+  :global(.Content__header) {
+    background: $content-header-bg;
+    color: $content-header-color;
+    border-bottom: 1px solid darken($content-header-bg, 10%);
+  }
+
+  :global(.Content__headerCenter) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    :global(.Content__title) {
+      flex: 1;
+    }
+  }
+
+  :global(.Content__button) {
+    margin: 10px 0 10px 10px;
+  }
+}
+
+:global(.Button) {
+  border-radius: $border-radius;
+  height: 36px;
+  min-width: 130px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: $brand-grey;
+  border: 1px solid $brand-grey;
+  cursor: pointer;
+
+  &:global(.Button--primary) {
+    background: $brand-primary;
+    border: 1px solid $brand-primary;
+  }
+
+  &:global(.Button--hollow) {
+    background: transparent;
+  }
+}

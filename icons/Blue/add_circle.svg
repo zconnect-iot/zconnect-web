@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>add_circle</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-14191 -2664)">
+<g id="Icons/Blue/add_circle">
+<g id="Icons/Dark/add_circle">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(14193 2666)" fill="#00ADEF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10 0C 4.48 0 0 4.48 0 10C 0 15.52 4.48 20 10 20C 15.52 20 20 15.52 20 10C 20 4.48 15.52 0 10 0ZM 15 11L 11 11L 11 15L 9 15L 9 11L 5 11L 5 9L 9 9L 9 5L 11 5L 11 9L 15 9L 15 11Z"/>
+</defs>
+</svg>

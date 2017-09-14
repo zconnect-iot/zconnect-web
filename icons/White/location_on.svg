@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>location_on</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-13451 -2664)">
+<g id="Icons/White/location_on">
+<g id="Icons/Dark/location_on">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(13456 2666)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 7 0C 3.13 0 0 3.13 0 7C 0 12.25 7 20 7 20C 7 20 14 12.25 14 7C 14 3.13 10.87 0 7 0ZM 7 9.5C 5.62 9.5 4.5 8.38 4.5 7C 4.5 5.62 5.62 4.5 7 4.5C 8.38 4.5 9.5 5.62 9.5 7C 9.5 8.38 8.38 9.5 7 9.5Z"/>
+</defs>
+</svg>

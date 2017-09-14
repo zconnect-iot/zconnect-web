@@ -1,0 +1,30 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>power</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-15188 -2840)">
+<g id="Icons/Red/power">
+<g id="Icons/White/power">
+<g id="Group 4">
+<g id="Fill 1">
+<use xlink:href="#path0_fill" transform="translate(15201.9 2840.1)" fill="#FF6A6A"/>
+</g>
+<g id="Fill 3">
+<use xlink:href="#path1_fill" transform="translate(15206.2 2844.41)" fill="#FF6A6A"/>
+</g>
+</g>
+<g id="Fill 5">
+<use xlink:href="#path2_fill" transform="translate(15194.7 2843.04)" fill="#FF6A6A"/>
+</g>
+<g id="Fill 6">
+<use xlink:href="#path3_fill" transform="translate(15188 2855.27)" fill="#FF6A6A"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 5.11113 0.357585C 5.58217 0.834366 5.58217 1.60588 5.11113 2.08149L 1.70342 5.53076L 0 3.80685L 3.40771 0.357585C 3.87759 -0.119195 4.6401 -0.119195 5.11113 0.357585Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 5.11084 0.356707C 5.58188 0.833488 5.58188 1.60529 5.11084 2.0809L 1.70313 5.53017L 0 3.80598L 3.40771 0.356707C 3.87759 -0.118902 4.64096 -0.118902 5.11084 0.356707Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 4.684 0L 2.63619 2.07278L 3.48776 2.93473L 0.591857 7.0358C -0.205637 8.16644 -0.196673 9.57161 0.615568 10.3935L 3.78501 13.6016C 4.59697 14.4237 5.98521 14.4351 7.10222 13.6256L 11.1539 10.6943L 12.0057 11.5563L 14.0535 9.48351"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 6.02371 0L 8.57985 2.58732L 2.55614 8.68449L 0 6.09717"/>
+</defs>
+</svg>

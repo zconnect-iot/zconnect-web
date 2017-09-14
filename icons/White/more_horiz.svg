@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>more_horiz</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-13539 -2796)">
+<g id="Icons/White/more_horiz">
+<g id="Icons/Dark/more_horiz">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(13543 2806)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 2 0C 0.9 0 0 0.9 0 2C 0 3.1 0.9 4 2 4C 3.1 4 4 3.1 4 2C 4 0.9 3.1 0 2 0ZM 14 0C 12.9 0 12 0.9 12 2C 12 3.1 12.9 4 14 4C 15.1 4 16 3.1 16 2C 16 0.9 15.1 0 14 0ZM 8 0C 6.9 0 6 0.9 6 2C 6 3.1 6.9 4 8 4C 9.1 4 10 3.1 10 2C 10 0.9 9.1 0 8 0Z"/>
+</defs>
+</svg>

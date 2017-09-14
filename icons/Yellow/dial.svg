@@ -1,0 +1,22 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>dial</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-15801 -2840)">
+<g id="Icons/Yellow/dial">
+<g id="Icons/White/dial">
+<g id="lines">
+<g id="Fill 1">
+<use xlink:href="#path0_fill" transform="translate(15811 2851)" fill="#F0AD4E"/>
+</g>
+<g id="Stroke 2">
+<use xlink:href="#path1_stroke" transform="translate(15802 2842)" fill="#F0AD4E"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 4 2.0006C 4 3.10471 3.10498 4 2 4C 0.895021 4 0 3.10471 0 2.0006C 0 0.89529 0.895021 0 2 0C 3.10498 0 4 0.89529 4 2.0006Z"/>
+<path id="path1_stroke" d="M 19.8 17.4774L 19.8 18.4774C 20.1186 18.4774 20.4181 18.3256 20.6065 18.0686L 19.8 17.4774ZM 2.2 17.4774L 1.39351 18.0686C 1.58188 18.3256 1.88141 18.4774 2.2 18.4774L 2.2 17.4774ZM 20.6065 18.0686C 22.0208 16.1251 22.9828 13.6285 23 11L 21 11C 21.0172 13.2596 20.2673 15.163 18.9935 16.8861L 20.6065 18.0686ZM 23 11C 23 4.337 17.663 -1 11 -1L 11 1C 16.5584 1 21 5.44156 21 11L 23 11ZM 11 -1C 4.337 -1 -1 4.337 -1 11L 1 11C 1 5.44156 5.44156 1 11 1L 11 -1ZM -1 11C -0.98284 13.6285 -0.0207581 16.1251 1.39351 18.0686L 3.00649 16.8861C 1.73265 15.163 0.98284 13.2596 1 11L -1 11ZM 19.8 16.4774L 2.2 16.4774L 2.2 18.4774L 19.8 18.4774L 19.8 16.4774ZM 15.6702 4.91443L 10.2928 10.293L 11.7072 11.707L 17.0846 6.32849L 15.6702 4.91443Z"/>
+</defs>
+</svg>

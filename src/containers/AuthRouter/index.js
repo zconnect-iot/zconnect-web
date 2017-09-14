@@ -10,7 +10,7 @@ import { Register, Forgotten, Login } from 'containers/auth'
 
 function AuthRouter({ authenticated }) {
   if (authenticated) return (
-    <Redirect to="/" />
+    <Redirect to="/widgets" />
   )
   return (
     <div>

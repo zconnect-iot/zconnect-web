@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>more_vert</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-15143 -2796)">
+<g id="Icons/Red/more_vert">
+<g id="Icons/Dark/more_vert">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(15153 2800)" fill="#FF6A6A"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 2 4C 3.1 4 4 3.1 4 2C 4 0.9 3.1 0 2 0C 0.9 0 0 0.9 0 2C 0 3.1 0.9 4 2 4ZM 2 6C 0.9 6 0 6.9 0 8C 0 9.1 0.9 10 2 10C 3.1 10 4 9.1 4 8C 4 6.9 3.1 6 2 6ZM 2 12C 0.9 12 0 12.9 0 14C 0 15.1 0.9 16 2 16C 3.1 16 4 15.1 4 14C 4 12.9 3.1 12 2 12Z"/>
+</defs>
+</svg>

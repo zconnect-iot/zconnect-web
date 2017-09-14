@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>shopping_basket</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-13883 -2488)">
+<g id="Icons/Blue/shopping_basket">
+<g id="Icons/Dark/shopping_basket">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(13884 2490.02)" fill="#00ADEF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 16.21 6.98L 11.83 0.42C 11.64 0.14 11.32 0 11 0C 10.68 0 10.36 0.14 10.17 0.43L 5.79 6.98L 1 6.98C 0.45 6.98 0 7.43 0 7.98C 0 8.07 0.01 8.16 0.04 8.25L 2.58 17.52C 2.81 18.36 3.58 18.98 4.5 18.98L 17.5 18.98C 18.42 18.98 19.19 18.36 19.43 17.52L 21.97 8.25L 22 7.98C 22 7.43 21.55 6.98 21 6.98L 16.21 6.98ZM 8 6.98002L 11 2.58002L 14 6.98002L 8 6.98002ZM 11 14.98C 9.9 14.98 9 14.08 9 12.98C 9 11.88 9.9 10.98 11 10.98C 12.1 10.98 13 11.88 13 12.98C 13 14.08 12.1 14.98 11 14.98Z"/>
+</defs>
+</svg>

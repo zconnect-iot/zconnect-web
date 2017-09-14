@@ -1,38 +1,25 @@
 import React from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { logout } from 'zc-core/auth/actions'
+import { Route, Switch } from 'react-router-dom'
 
-import { Buildings } from '../../containers/demo/index'
-import Settings from '../Settings'
+import Page from 'components/Page'
+import buildingSVG from 'icons/White/Building.svg'
+import faucetSVG from 'icons/White/faucet.svg'
+import personSVG from 'icons/White/person.svg'
 
-class App extends React.Component {
-  onLogout = () => this.props.logout()
-  render() {
-    return (
-      <div>
-        <h3>App</h3>
-        <nav>
-          <Link to="/settings">Settings</Link>
-          <button onClick={this.onLogout}>Logout</button>
-        </nav>
+import Widgets from '../../containers/Widgets'
 
-        <Buildings />
-
-        <Switch>
-          <Route path="/settings" component={Settings} />
-        </Switch>
-      </div>
-    )
-  }
+export default function App() {
+  return (
+    <Page
+      navItems={[
+        { title: 'Widgets', icon: buildingSVG, route: '/widgets' },
+        { title: 'Outlets', icon: faucetSVG, route: '/outlets' },
+        { title: 'Account', icon: personSVG, route: '/account' },
+      ]}
+    >
+      <Switch>
+        <Route path="/widgets" component={Widgets} />
+      </Switch>
+    </Page>
+  )
 }
-
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
-})
-
-export default withRouter(connect(
-  null,
-  mapDispatchToProps,
-)(App))

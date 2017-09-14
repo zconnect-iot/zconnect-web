@@ -17,6 +17,13 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        }
       }
     ]
   },
@@ -25,7 +32,9 @@ const config = {
       theme: path.resolve(__dirname, 'src/style/theme'),
       widgets: path.resolve(__dirname, 'widgets'),
       containers: path.resolve(__dirname, 'containers'),
-      components: path.resolve(__dirname, 'components')
+      components: path.resolve(__dirname, 'components'),
+      icons: path.resolve(__dirname, 'icons'),
+      assets: path.resolve(__dirname, 'src/assets')
     },
   },
   plugins: [
@@ -36,7 +45,9 @@ const config = {
   ],
   devServer: {
     contentBase: isProd ? './dist' : './src',
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: 'index.html'
+    },
     port: 3000,
     compress: isProd,
     inline: !isProd,
@@ -99,6 +110,14 @@ else {
         'css-loader?modules=true&localIdentName=[local]_[hash:base64:6]&sourceMap',
         'postcss-loader?sourceMap',
         'sass-loader?sourceMap',
+      ],
+    },
+    {
+      test: /\.css$/,
+      include: /flexboxgrid/,
+      use: [
+        'style-loader?sourceMap',
+        'css-loader?modules=true&localIdentName=[local]_[hash:base64:6]&sourceMap',
       ],
     }
   )
