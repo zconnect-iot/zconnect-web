@@ -23,9 +23,11 @@
   color: $nav-color;
   padding: 10px;
   cursor: pointer;
+  fill: $nav-color;
 
   &:global(.NavButton--active) {
-    color: white;
+    color: $nav-active-color;
+    fill: $nav-active-color;
   }
 }
 

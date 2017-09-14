@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'react-proptypes'
 import BEMHelper from 'react-bem-helper'
 
+import Icon from './Icon'
+
 const classes = new BEMHelper({
   name: 'NavButton',
 })
@@ -14,7 +16,7 @@ export default function NavButton({ title, icon, navigate, action, route, active
   const onClick = route ? navigate.bind(null, route) : action
   return (
     <button {...classes(null, active ? 'active' : null)} onClick={onClick}>
-      <img src={icon} alt="Nav icon" />
+      <Icon name={icon} size={30} />
       <div>{title}</div>
     </button>
   )

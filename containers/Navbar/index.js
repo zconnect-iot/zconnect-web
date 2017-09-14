@@ -7,7 +7,6 @@ import { Row, Col } from 'react-flexbox-grid'
 import { logout } from 'zc-core/auth/actions'
 import BEMHelper from 'react-bem-helper'
 
-import powerSVG from '../../icons/White/power.svg'
 import NavButton from '../../components/NavButton'
 
 import './style.scss'
@@ -39,7 +38,7 @@ class Navbar extends React.Component {
             {...item}
             navigate={navigate}
           />))}
-          <NavButton title="Logout" icon={powerSVG} action={this.onLogout} active={false} />
+          <NavButton title="Logout" icon="POWER" action={this.onLogout} active={false} />
         </Col>
       </Row>
     )
