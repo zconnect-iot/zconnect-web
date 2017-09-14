@@ -8,7 +8,7 @@ import genericStyles from '../genericInput/style.scss'
 // import checkedIcon from '../../../svg/icons/checkbox-checked.svg'
 // import uncheckedIcon from '../../../svg/icons/checkbox-unchecked.svg'
 
-const classes = new BEMHelper('checkbox-field')
+const classes = new BEMHelper('CheckboxField')
 
 /**
  * Specialised checkbox component.
@@ -18,7 +18,7 @@ const classes = new BEMHelper('checkbox-field')
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Advanced_styling_for_HTML_forms#Check_boxes_and_radio_buttons}
  */
-class CheckboxInner extends Component {
+export class CheckboxInner extends Component {
   constructor(props) {
     super(props)
     this.state = { isChecked: !!props.initChecked }
@@ -65,9 +65,4 @@ class CheckboxInner extends Component {
   }
 }
 
-const checkbox = props => <Field component={CheckboxInner} {...props} />
-
-export {
-  CheckboxInner,
-  checkbox as default
-}
+export default (props) => (<Field component={CheckboxInner} {...props} />)
