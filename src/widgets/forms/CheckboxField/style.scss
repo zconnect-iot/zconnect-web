@@ -13,7 +13,7 @@
   font-weight: bold;
   display: inline-block;
 
-  &:before {
+  &:after {
     content: '';
     display: inline-block;
     width: 16px;
@@ -28,21 +28,18 @@
 }
 
 
-:global(.CheckboxField__input:checked) + :global(.CheckboxField__label:before) {
+:global(.CheckboxField__label--checked):after {
   background-position: -16px 0;
 }
-
-
-:global(.CheckboxField__input:disabled) + :global(.CheckboxField__label:before) {
+:global(.CheckboxField__label--disabled):after {
   background-position: -32px 0;
 }
-
-
-:global(.CheckboxField__input:checked:disabled) + :global(.CheckboxField__label:before) {
+:global(.CheckboxField__label--checked):global(.CheckboxField__label--disabled):after
+{
   background-position: -48px 0;
 }
 
 
-:global(.CheckboxField__input:focus) + .CheckboxField__label:before {
+:global(.CheckboxField__input:focus) + .CheckboxField__label:after {
   outline: 1px dotted dark;
 }

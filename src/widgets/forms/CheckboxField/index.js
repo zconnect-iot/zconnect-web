@@ -20,6 +20,16 @@ export const renderInput = props => {
   const { touched, error, warning } = props.meta
   const inputId = uniqueId('CheckboxField__input')
   return <div {...classes()}>
+    <label
+      htmlFor={inputId}
+      {...classes('label', {
+        checked: props.input.checked,
+        disabled: props.input.disabled,
+      })}
+    >
+      {props.label}
+    </label>
+
     <input
       id={inputId}
       type='checkbox'
@@ -27,13 +37,6 @@ export const renderInput = props => {
       {...classes('input')}
       {...props.input}
     />
-
-    <label
-      htmlFor={inputId}
-      {...classes('label', props.checked ? 'checked' : 'unchecked')}
-    >
-      {props.label}
-    </label>
 
     {touched && (
       (error && renderError(error)) ||

@@ -4,3 +4,10 @@
 @import '~theme/mixins.scss';
 @import '~theme/normalize.scss';
 @import '~theme/variables.scss';
+
+
+:global(.CheckboxField__label) {
+  &:after {
+    margin: 0 0.5em 0 182px;
+  }
+}
