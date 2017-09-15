@@ -1,3 +1,5 @@
+// Disable prop type linting while using temporary form components.
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
 import classnames from 'classnames'
@@ -26,7 +28,7 @@ function TextField(props) {
 
 
 const LoginForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, submitting } = props
   return (
     <form>
       <Field autoFocus label="Username" name="email" component={TextField} />

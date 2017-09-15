@@ -51,6 +51,9 @@
     "react-redux": "5.x",
     "redux": "3.x",
     "redux-form": "7.x",
-    "xdate": "0.x"
+    "xdate": "0.x",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.6"
   }
 }
