@@ -11,6 +11,7 @@ $text-color: #767676;
 $text-color-minor: #888888;
 
 $border-radius: 5px;
+$border-width: 1px;
 $border-faint: #e0e0e0;
 
 // Fonts
@@ -46,7 +47,16 @@ $content-header-color: $text-color;
 
 $logo-small: url('assets/leocycle-small.png');
 
+$tooltip-icon-color: $text-color;
+$tooltip-bg: $page-bg;
+$tooltip-color: $text-color;
+$tooltip-border-radius: $border-radius;
+$tooltip-border-width: $border-width;
+$tooltip-border-color: $text-color;
 
 // Checkboxes.
 $checked-image-url: url('/icons/checked.svg');
 $unchecked-image-url: url('/icons/unchecked.svg');
+
+// Animation
+$transition-duration: 0.5s;
