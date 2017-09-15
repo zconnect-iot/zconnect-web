@@ -2,6 +2,7 @@
 
 :global(.Tooltip) {
   position: relative;
+  top: 3px;
 
   :global(.Tooltip__icon) {
     cursor: pointer;

@@ -7,10 +7,10 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Tooltip' })
 
-export default function Tooltip({ children }) {
+export default function Tooltip({ children, size, icon, color, className }) {
   return (
-    <span {...classes()}>
-      <Icon {...classes('icon')} size={22} name="INFO" />
+    <span {...classes(null, null, className)}>
+      <Icon {...classes('icon')} size={size} name={icon} color={color} />
       <div {...classes('message')}>
         {children}
       </div>
@@ -23,4 +23,15 @@ Tooltip.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  size: PropTypes.number,
+  icon: PropTypes.string,
+  color: PropTypes.string,
+  className: PropTypes.string,
+}
+
+Tooltip.defaultProps = {
+  size: 20,
+  icon: 'INFO',
+  className: '',
+  color: null, // Default to parent element fil colour
 }
