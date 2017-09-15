@@ -41,6 +41,7 @@
     background: $content-header-bg;
     color: $content-header-color;
     border-bottom: 1px solid darken($content-header-bg, 10%);
+    height: 54px;
   }
 
   :global(.Content__headerCenter) {
@@ -55,6 +56,10 @@
 
   :global(.Content__button) {
     margin: 10px 0 10px 10px;
+  }
+
+  :global(.Content__body) {
+    padding-top: 20px;
   }
 }
 
