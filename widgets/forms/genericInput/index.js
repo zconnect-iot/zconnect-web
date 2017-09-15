@@ -67,7 +67,7 @@ const genericInner = (
 
 /** Prop types which should be acceptable for most inputs. */
 export const propTypes = {
-  meta: PropTypes.object.shape({
+  meta: PropTypes.shape({
     touched: PropTypes.bool.isRequired,
     error: PropTypes.string,
     warning: PropTypes.string,
