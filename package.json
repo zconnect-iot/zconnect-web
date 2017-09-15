@@ -4,7 +4,7 @@
   "description": "ZConnect Web App components",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc $(find . -type f -path \"*.js\" ! -path \"*node_modules*\")",
+    "lint": "eslint -c .eslintrc $(find containers/ components/ widgets/ -type f -path \"*.js\")",
     "test": "jest"
   },
   "keywords": [],
