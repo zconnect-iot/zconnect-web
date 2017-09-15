@@ -13,3 +13,7 @@ export default function Logo({ small }) {
 Logo.propTypes = {
   small: PropTypes.bool,
 }
+
+Logo.defaultProps = {
+  small: false,
+}

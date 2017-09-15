@@ -21,7 +21,6 @@
     "brace-style": ["warn", "stroustrup"],
     "react/jsx-first-prop-new-line": ["warn", "multiline"],
     "react/jsx-filename-extension": 0,
-    "react/require-default-props": 0,
     "no-underscore-dangle": 0,
     "camelcase": 0,
     "curly": ["warn", "multi"],

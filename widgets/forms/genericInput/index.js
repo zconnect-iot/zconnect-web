@@ -71,7 +71,7 @@ export const propTypes = {
     touched: PropTypes.bool.isRequired,
     error: PropTypes.string,
     warning: PropTypes.string,
-  }),
+  }).isRequired,
   input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -84,6 +84,14 @@ export const propTypes = {
 }
 
 genericInner.propTypes = propTypes
+
+genericInner.defaultProps = {
+  placeholder: '',
+  validate: [],
+  onBlur: null,
+  onChange: null,
+  onFocus: null,
+}
 
 /**
  * Create a new field component.

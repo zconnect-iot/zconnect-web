@@ -14,7 +14,14 @@ export default function Button({ color, hollow, children, className }) {
 
 Button.propTypes = {
   color: PropTypes.string,
-  hollow: PropTypes.string,
+  hollow: PropTypes.bool,
   children: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string,
+}
+
+Button.defaultProps = {
+  color: null,
+  hollow: null,
+  children: null,
+  className: '',
 }

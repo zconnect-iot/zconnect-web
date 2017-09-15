@@ -33,7 +33,10 @@ Login.propTypes = {
   api: PropTypes.shape({
     error: PropTypes.string,
     status: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
+}
+
+Login.defaultProps = {
 }
 
 const mapStateToProps = state => ({
