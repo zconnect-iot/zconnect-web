@@ -24,7 +24,6 @@
     "no-underscore-dangle": 0,
     "camelcase": 0,
     "curly": ["warn", "multi"],
-    "react/jsx-wrap-multilines": 0,
     "react/jsx-no-bind": [ 1,
       "allowArrowFunctions": false
     ],

@@ -7,14 +7,14 @@ import uniqueId from 'lodash/uniqueId'
 import './style.scss'
 
 /** Generic error-rendering function. */
-export const genericError = (classes, message) => <span {...classes('error')}>
+export const genericError = (classes, message) => (<span {...classes('error')}>
   {message}
-</span>
+</span>)
 
 /** Generic warning-rendering function. */
-export const genericWarning = (classes, message) => <span {...classes('warning')}>
+export const genericWarning = (classes, message) => (<span {...classes('warning')}>
   {message}
-</span>
+</span>)
 
 /**
  * Function providing generic structure for an input component.
