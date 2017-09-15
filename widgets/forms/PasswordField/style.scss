@@ -1,0 +1,23 @@
+@import '~theme/variables';
+@import '~theme/mixins';
+
+
+:global(.PasswordField) {
+  @include form-control;
+}
+
+:global(.PasswordField__label) {
+  @include form-label;
+}
+
+:global(.PasswordField__input) {
+  @include form-input;
+}
+
+:global(.PasswordField__error) {
+  @include form-error;
+}
+
+:global(.PasswordField__warning) {
+  @include form-warning;
+}

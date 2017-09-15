@@ -1,0 +1,23 @@
+@import '~theme/variables';
+@import '~theme/mixins';
+
+
+:global(.TextField) {
+  @include form-control;
+}
+
+:global(.TextField__label) {
+  @include form-label;
+}
+
+:global(.TextField__input) {
+  @include form-input;
+}
+
+:global(.TextField__error) {
+  @include form-error;
+}
+
+:global(.TextField__warning) {
+  @include form-warning;
+}

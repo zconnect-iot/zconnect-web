@@ -1,0 +1,30 @@
+@import '~theme/variables';
+
+
+.control {
+  padding: 20px;
+  border-bottom: 1px dashed $border-faint;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.input {
+  border: 1px solid $border-faint;
+  border-radius: 3px;
+  padding: 5px;
+  display: inline-block;
+}
+
+.error {
+  color: $brand-danger;
+}
+
+.warning {
+  color: $brand-warning;
+}

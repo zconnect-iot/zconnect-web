@@ -21,9 +21,10 @@ const config = {
       {
         test: /\.(jpg|png|svg)$/,
         loader: 'file-loader',
+        exclude: /node_modules/,
         options: {
           name: '[path][name].[hash].[ext]',
-        }
+        },
       }
     ]
   },
