@@ -66,15 +66,16 @@ const genericInner = (
 }
 
 /** Prop types which should be acceptable for most inputs. */
-export const propTypes = {
+export const innerPropTypes = {
   meta: PropTypes.shape({
     touched: PropTypes.bool.isRequired,
     error: PropTypes.string,
     warning: PropTypes.string,
   }).isRequired,
-  input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  input: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   validate: PropTypes.arrayOf(PropTypes.func),
@@ -83,15 +84,28 @@ export const propTypes = {
   onFocus: PropTypes.func,
 }
 
-genericInner.propTypes = propTypes
+genericInner.propTypes = innerPropTypes
 
-genericInner.defaultProps = {
+export const propTypes = {
+  checked: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onDragStart: PropTypes.func,
+  onDrop: PropTypes.func,
+  onFocus: PropTypes.func,
+  value: PropTypes.any,
+}
+
+export const defaultProps = {
   placeholder: '',
   validate: [],
   onBlur: null,
   onChange: null,
   onFocus: null,
 }
+
+genericInner.defaultProps = defaultProps
 
 /**
  * Create a new field component.

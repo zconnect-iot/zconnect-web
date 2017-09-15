@@ -1,10 +1,14 @@
 import React from 'react'
 import { Field } from 'redux-form/immutable'
-import { fieldPropTypes } from 'redux-form/es/propTypes'
 import BEMHelper from 'react-bem-helper'
 import uniqueId from 'lodash/uniqueId'
 
-import { genericError, genericWarning } from '../genericInput/index'
+import {
+  genericError,
+  genericWarning,
+  innerPropTypes,
+  propTypes,
+} from '../genericInput/index'
 
 import './style.scss'
 
@@ -47,14 +51,12 @@ export const renderInput = (props) => {
   </div>)
 }
 
-renderInput.propTypes = fieldPropTypes
-
 const component = props => (<Field
-  type={'checkbox'}
+  type='checkbox'
   component={renderInput}
   {...props}
 />)
 
-component.propTypes = fieldPropTypes
+component.propTypes = propTypes
 
 export default component
