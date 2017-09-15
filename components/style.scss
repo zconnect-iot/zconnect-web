@@ -41,6 +41,7 @@
     background: $content-header-bg;
     color: $content-header-color;
     border-bottom: 1px solid darken($content-header-bg, 10%);
+    height: 54px;
   }
 
   :global(.Content__headerCenter) {
@@ -56,6 +57,10 @@
   :global(.Content__button) {
     margin: 10px 0 10px 10px;
   }
+
+  :global(.Content__body) {
+    padding-top: 20px;
+  }
 }
 
 :global(.Button) {
@@ -69,6 +74,8 @@
   background: $brand-grey;
   border: 1px solid $brand-grey;
   cursor: pointer;
+  color: $text-color;
+  fill: currentColor;
 
   &:global(.Button--primary) {
     background: $brand-primary;
