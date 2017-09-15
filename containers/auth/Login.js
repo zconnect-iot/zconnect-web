@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { login } from 'zc-core/auth/actions'
 import { selectLoginAPIState } from 'zc-core/auth/selectors'
@@ -25,6 +26,17 @@ class Login extends React.Component {
       </div>
     )
   }
+}
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  api: PropTypes.shape({
+    error: PropTypes.string,
+    status: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+Login.defaultProps = {
 }
 
 const mapStateToProps = state => ({

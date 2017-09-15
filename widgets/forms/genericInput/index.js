@@ -4,17 +4,17 @@ import BEMHelper from 'react-bem-helper'
 import { Field } from 'redux-form/immutable'
 import uniqueId from 'lodash/uniqueId'
 
-import styles from './style.scss'
+import './style.scss'
 
 /** Generic error-rendering function. */
-const genericError = (classes, message) => <span {...classes('error')}>
+export const genericError = (classes, message) => (<span {...classes('error')}>
   {message}
-</span>
+</span>)
 
 /** Generic warning-rendering function. */
-const genericWarning = (classes, message) => <span {...classes('warning')}>
+export const genericWarning = (classes, message) => (<span {...classes('warning')}>
   {message}
-</span>
+</span>)
 
 /**
  * Function providing generic structure for an input component.
@@ -35,11 +35,11 @@ const genericInner = (
   classes,
   props,
   renderError = genericError,
-  renderWarning = genericWarning
+  renderWarning = genericWarning,
 ) => {
-  const {touched, error, warning} = props.meta
+  const { touched, error, warning } = props.meta
   const inputId = uniqueId('FormField__input')
-  return <div {...classes()}>
+  return (<div {...classes()}>
     <label
       htmlFor={inputId}
       {...classes('label', {
@@ -62,17 +62,35 @@ const genericInner = (
       (error && renderError(classes, error)) ||
       (warning && renderWarning(classes, warning))
     )}
-  </div>
+  </div>)
 }
 
 /** Prop types which should be acceptable for most inputs. */
-const propTypes = {
+export const propTypes = {
+  meta: PropTypes.object.shape({
+    touched: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    warning: PropTypes.string,
+  }).isRequired,
+  input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   validate: PropTypes.arrayOf(PropTypes.func),
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
+}
+
+genericInner.propTypes = propTypes
+
+genericInner.defaultProps = {
+  placeholder: '',
+  validate: [],
+  onBlur: null,
+  onChange: null,
+  onFocus: null,
 }
 
 /**
@@ -84,11 +102,11 @@ const propTypes = {
  * @param {function} [renderWarning] a function for rendering warnings.
  * @returns {Object} the component and its input rendering function.
  */
-const createFieldComponent = (
+export const createFieldComponent = (
   blockname,
   type,
   renderError = genericError,
-  renderWarning = genericWarning
+  renderWarning = genericWarning,
 ) => {
   const classes = new BEMHelper(blockname)
   const renderInput = props => genericInner(
@@ -100,12 +118,4 @@ const createFieldComponent = (
     renderInput,
     component,
   }
-}
-
-export {
-  genericWarning,
-  genericError,
-  genericInner,
-  propTypes,
-  createFieldComponent,
 }
