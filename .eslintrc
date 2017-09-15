@@ -34,9 +34,7 @@
     }],
     "import/no-unresolved": [2, {
       "ignore": [
-        "\\.scss$",
-        "^react$",
-        "^redux-form"
+        "\\.scss$"
       ]
     }]
   }
