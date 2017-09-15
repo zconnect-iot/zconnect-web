@@ -1,0 +1,58 @@
+@import "~theme/variables.scss";
+
+:global(.Tooltip) {
+  position: relative;
+
+  :global(.Tooltip__icon) {
+    cursor: pointer;
+    fill: $tooltip-icon-color;
+  }
+
+  :global(.Tooltip__message) {
+    visibility: hidden;
+    position: absolute;
+    left: -78px;
+    top: 22px;
+    padding: 12px 10px;
+    text-align: center;
+    width: 180px;
+    background: $tooltip-bg;
+    color: $tooltip-color;
+    border-radius: $tooltip-border-radius;
+    border: $tooltip-border-width solid $tooltip-border-color;
+    opacity: 0;
+    transition: visibility $transition-duration, opacity $transition-duration;
+
+    &:after, &:before {
+      bottom: 100%;
+    	left: 50%;
+    	border: solid transparent;
+    	content: " ";
+    	height: 0;
+    	width: 0;
+    	position: absolute;
+    	pointer-events: none;
+    }
+
+    &:after {
+      border-color: transparent;
+    	border-bottom-color: $tooltip-bg;
+    	border-width: 10px;
+    	margin-left: -10px;
+    }
+
+    &:before {
+    	border-color: transparent;
+    	border-bottom-color: $tooltip-border-color;
+    	border-width: 11px;
+    	margin-left: -11px;
+    }
+  }
+
+  &:hover {
+    :global(.Tooltip__message) {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

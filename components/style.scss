@@ -69,6 +69,8 @@
   background: $brand-grey;
   border: 1px solid $brand-grey;
   cursor: pointer;
+  color: $text-color;
+  fill: currentColor;
 
   &:global(.Button--primary) {
     background: $brand-primary;
