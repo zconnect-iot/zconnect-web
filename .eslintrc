@@ -21,17 +21,25 @@
     "brace-style": ["warn", "stroustrup"],
     "react/jsx-first-prop-new-line": ["warn", "multiline"],
     "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
     "no-underscore-dangle": 0,
     "camelcase": 0,
     "curly": ["warn", "multi"],
+    "react/jsx-wrap-multilines": 0,
     "react/jsx-no-bind": [ 1,
       "allowArrowFunctions": false
     ],
     "no-console": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
-  },
-
-  "settings": {
-    "import/resolver": "webpack"
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true,
+      "peerDependencies": true
+    }],
+    "import/no-unresolved": [2, {
+      "ignore": [
+        "\\.scss$",
+        "^react$",
+        "^redux-form"
+      ]
+    }]
   }
 }

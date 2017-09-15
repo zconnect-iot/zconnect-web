@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Field } from 'redux-form/immutable'
+import { fieldPropTypes } from 'redux-form/es/propTypes'
 import BEMHelper from 'react-bem-helper'
 import uniqueId from 'lodash/uniqueId'
+
+import { genericError, genericWarning } from '../genericInput/index'
 
 import './style.scss'
 
@@ -16,10 +18,10 @@ export const classes = new BEMHelper('CheckboxField')
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Advanced_styling_for_HTML_forms#Check_boxes_and_radio_buttons}
  */
-export const renderInput = props => {
+export const renderInput = (props) => {
   const { touched, error, warning } = props.meta
   const inputId = uniqueId('CheckboxField__input')
-  return <div {...classes()}>
+  return (<div {...classes()}>
     <label
       htmlFor={inputId}
       {...classes('label', {
@@ -32,21 +34,27 @@ export const renderInput = props => {
 
     <input
       id={inputId}
-      type='checkbox'
+      type="checkbox"
       placeholder={props.placeholder || props.label}
       {...classes('input')}
       {...props.input}
     />
 
     {touched && (
-      (error && renderError(error)) ||
-      (warning && renderWarning(warning))
+      (error && genericError(error)) ||
+      (warning && genericWarning(warning))
     )}
-  </div>
+  </div>)
 }
 
-export default props => <Field
+renderInput.propTypes = fieldPropTypes
+
+const component = props => (<Field
   type={'checkbox'}
   component={renderInput}
   {...props}
-/>
+/>)
+
+component.propTypes = fieldPropTypes
+
+export default component

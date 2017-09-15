@@ -4,6 +4,7 @@
   "description": "ZConnect Web App components",
   "main": "src/index.js",
   "scripts": {
+    "lint": "eslint -c .eslintrc $(find . -type f -path \"*.js\" ! -path \"*node_modules*\")",
     "test": "jest"
   },
   "keywords": [],
@@ -37,6 +38,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react-bem-helper": "^1.4.1",
     "react-flexbox": "^3.1.3"
   },
