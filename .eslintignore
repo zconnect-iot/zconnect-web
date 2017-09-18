@@ -1,3 +1,5 @@
 node_modules
 webpack.config.js
 scripts
+**/__tests__/**
+test.js

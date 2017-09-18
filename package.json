@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc $(find containers/ components/ widgets/ -type f -path \"*.js\")",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "Jon Wyatt",
@@ -13,21 +15,24 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.2",
+    "babel-jest": "^21.0.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^2.0.0",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^21.0.1",
     "node-sass": "^4.5.3",
-    "react-flexbox-grid": "^1.1.5",
-    "regenerator-runtime": "^0.11.0"
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -43,5 +48,20 @@
     "redux": "3.x",
     "redux-form": "7.x",
     "xdate": "0.x"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy",
+      "^.+\\.(gif|ttf|eot|svg)$": "identity-obj-proxy"
+    },
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "setupFiles": [
+      "./testSetup.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   }
 }
