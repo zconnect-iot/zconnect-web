@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": "zoetrope",
 
   "env": {
     "browser": true,
@@ -18,17 +18,6 @@
   },
 
   "rules": {
-    "semi": ["error", "never"],
-    "brace-style": ["warn", "stroustrup"],
-    "react/jsx-first-prop-new-line": ["warn", "multiline"],
-    "react/jsx-filename-extension": 0,
-    "no-underscore-dangle": 0,
-    "camelcase": 0,
-    "curly": ["warn", "multi"],
-    "react/jsx-no-bind": [ 1,
-      "allowArrowFunctions": false
-    ],
-    "no-console": 0,
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true,
       "peerDependencies": true
