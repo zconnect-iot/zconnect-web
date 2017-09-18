@@ -1,27 +1,15 @@
 @import "~theme/variables.scss";
 
-// StatCard (containing element).
-.statcard {
+
+:global(.StatCard) {
   display: flex;
   justify-content: center;
   background-color: #f8f8f8;
   padding: 24px 48px;
 }
-.statcardPrimary {
-  background-color: $brand-primary;
-}
-.statcardSuccess {
-  background-color: $brand-success;
-}
-.statcardWarning {
-  background-color: $brand-warning;
-}
-.statcardDanger {
-  background-color: $brand-danger;
-}
 
 // The figure to be displayed prominently.
-.figure {
+:global(.StatCard__figure) {
   color: $brand-primary;
   text-align: center;
   padding: 4px 0;
@@ -29,7 +17,7 @@
 }
 
 // Description (usually text below the figure).
-.desc {
+:global(.StatCard__description) {
   font-weight: bold;
   color: $text-color-minor;
 }
@@ -51,27 +39,26 @@
   }
 }
 
-// Delta (delta content, plus caret-up or caret-down).
-.delta {
+// Delta. Defaults to a green caret-up.
+:global(.StatCard__delta) {
   font-size: 12px;
   margin-left: 8px;
   vertical-align: middle;
-}
 
-.deltaUp {
   @include vertical-caret;
   color: $brand-success;
-
   &:after {
     border-bottom: 4px solid;
   }
 }
 
-.deltaDown {
-  @include vertical-caret;
-  color: $brand-danger;
-
+:global(.StatCard__delta--down) {
   &:after {
     border-top: 4px solid;
+    border-bottom: none;
   }
+}
+
+:global(.StatCard__delta--danger) {
+  color: $brand-danger;
 }
