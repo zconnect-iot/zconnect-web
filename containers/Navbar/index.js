@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { push } from 'react-router-redux'
 import { Row, Col } from 'react-flexbox-grid'
 import { logout } from 'zc-core/auth/actions'
 import BEMHelper from 'react-bem-helper'
@@ -18,25 +16,22 @@ class Navbar extends React.Component {
     items: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       route: PropTypes.string.isRequired,
-      icon: PropTypes.string.isRequired,
     })).isRequired,
-    navigate: PropTypes.func.isRequired,
+    activeRoute: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
+    navigate: PropTypes.func.isRequired,
   }
   onLogout = () => this.props.logout()
   render() {
-    const { navigate, items, location } = this.props
+    const { items, activeRoute, navigate } = this.props
     return (
       <Row {...classes()}>
         <Col smOffset={2} sm={8}>
           {items.map(item => (<NavButton
             key={item.title}
-            active={item.route === location.pathname}
-            {...item}
+            active={item.route === activeRoute}
             navigate={navigate}
+            {...item}
           />))}
           <NavButton title="Logout" icon="POWER" action={this.onLogout} active={false} />
         </Col>
@@ -47,10 +42,9 @@ class Navbar extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  navigate: route => dispatch(push(route)),
 })
 
-export default withRouter(connect(
+export default connect(
   null,
   mapDispatchToProps,
-)(Navbar))
+)(Navbar)
