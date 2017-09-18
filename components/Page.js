@@ -7,11 +7,16 @@ import Header from './Header'
 
 import './style.scss'
 
-export default function Page({ children, navItems }) {
+/*
+  To allow the <Navbar /> to be used with any routing tech (or none at all), <Page/>
+  needs the navItems, activeRoute and navigate function to pass down to the buttons
+*/
+
+export default function Page({ children, navItems, activeRoute, navigate }) {
   return (
     <Grid fluid className="Page">
       <Header />
-      <Navbar items={navItems} />
+      <Navbar items={navItems} activeRoute={activeRoute} navigate={navigate} />
       {children}
     </Grid>
   )
@@ -23,10 +28,12 @@ Page.propTypes = {
     icon: PropTypes.string,
     action: PropTypes.func,
   })).isRequired,
+  activeRoute: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  navigate: PropTypes.func.isRequired,
 }
 
 Page.defaultProps = {
