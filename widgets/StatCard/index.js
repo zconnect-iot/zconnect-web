@@ -9,15 +9,15 @@ import './style.scss'
  */
 export const classes = new BEMHelper('StatCard')
 
-const StatCard = props => {
+const StatCard = (props) => {
   let delta = null
   if (props.delta) {
     const down = props.delta < 0
-    delta = <span {...classes('delta', { down, danger: down === !props.reverseColor })}>
+    delta = (<span {...classes('delta', { down, danger: down === !props.reverseColor })}>
       {props.delta}{props.deltaUnits}
-    </span>
+    </span>)
   }
-  return <div {...classes()}>
+  return (<div {...classes()}>
     <div>
       <span {...classes('description')}>{props.description}</span>
       <div>
@@ -27,7 +27,7 @@ const StatCard = props => {
         </div>
       </div>
     </div>
-  </div>
+  </div>)
 }
 
 StatCard.propTypes = {
@@ -38,4 +38,9 @@ StatCard.propTypes = {
   deltaUnits: PropTypes.string,
 }
 
+StatCard.defaultProps = {
+  delta: 0,
+  reverseColor: false,
+  deltaUnits: '',
+}
 export default StatCard
