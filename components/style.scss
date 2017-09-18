@@ -25,6 +25,11 @@
   cursor: pointer;
   fill: $nav-color;
 
+  &:global(:hover) {
+    color: lighten($nav-color, 10%);
+    fill: lighten($nav-color, 10%);
+  }
+
   &:global(.NavButton--active) {
     color: $nav-active-color;
     fill: $nav-active-color;
