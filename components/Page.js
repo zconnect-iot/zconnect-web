@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'react-proptypes'
+import PropTypes from 'prop-types'
 import { Grid } from 'react-flexbox-grid'
 
 import Navbar from '../containers/Navbar'

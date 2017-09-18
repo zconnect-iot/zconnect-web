@@ -18,14 +18,10 @@ const StatCard = (props) => {
     </span>)
   }
   return (<div {...classes()}>
-    <div>
-      <span {...classes('description')}>{props.description}</span>
-      <div>
-        <div {...classes('figure')}>
-          {props.figure}
-          {delta}
-        </div>
-      </div>
+    <span {...classes('description')}>{props.description}</span>
+    <div {...classes('figure')}>
+      {props.figure}
+      {delta}
     </div>
   </div>)
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'react-proptypes'
+import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
 import Icon from './Icon'

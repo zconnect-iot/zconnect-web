@@ -3,17 +3,21 @@
 
 :global(.StatCard) {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #f8f8f8;
-  padding: 24px 48px;
+  padding: 12px;
+  min-height: 120px;
+  text-align: center;
 }
 
 // The figure to be displayed prominently.
 :global(.StatCard__figure) {
   color: $brand-primary;
-  text-align: center;
   padding: 4px 0;
   font-size: 30px;
+  white-space: nowrap;
 }
 
 // Description (usually text below the figure).

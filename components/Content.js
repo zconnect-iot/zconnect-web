@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'react-proptypes'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
 import { Button, Icon } from '../components'
