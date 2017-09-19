@@ -17,20 +17,16 @@ class Navbar extends React.Component {
       title: PropTypes.string.isRequired,
       route: PropTypes.string.isRequired,
     })).isRequired,
-    activeRoute: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired,
-    navigate: PropTypes.func.isRequired,
   }
   onLogout = () => this.props.logout()
   render() {
-    const { items, activeRoute, navigate } = this.props
+    const { items } = this.props
     return (
       <Row {...classes()}>
         <Col smOffset={2} sm={8}>
           {items.map(item => (<NavButton
             key={item.title}
-            active={item.route === activeRoute}
-            navigate={navigate}
             {...item}
           />))}
           <NavButton title="Logout" icon="POWER" action={this.onLogout} active={false} />
