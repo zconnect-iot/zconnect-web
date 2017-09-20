@@ -12,14 +12,23 @@ import './style.scss'
   needs the navItems, activeRoute and navigate function to pass down to the buttons
 */
 
-export default function Page({ children, navItems, activeRoute, navigate }) {
-  return (
-    <Grid fluid className="Page">
-      <Header />
-      <Navbar items={navItems} activeRoute={activeRoute} navigate={navigate} />
-      {children}
-    </Grid>
-  )
+export default class Page extends React.Component {
+  getChildContext() {
+    return {
+      navigate: this.props.navigate,
+      activeRoute: this.props.activeRoute,
+    }
+  }
+  render() {
+    const { children, navItems } = this.props
+    return (
+      <Grid fluid className="Page">
+        <Header />
+        <Navbar items={navItems} />
+        {children}
+      </Grid>
+    )
+  }
 }
 
 Page.propTypes = {
@@ -38,4 +47,9 @@ Page.propTypes = {
 
 Page.defaultProps = {
   subtitle: '',
+}
+
+Page.childContextTypes = {
+  navigate: PropTypes.func,
+  activeRoute: PropTypes.string,
 }
