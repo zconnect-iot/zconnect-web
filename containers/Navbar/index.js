@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Row, Col } from 'react-flexbox-grid'
-import { logout } from 'zc-core/auth/actions'
+import { logout } from 'zc-core/auth/actions' // eslint-disable-line import/extensions
 import BEMHelper from 'react-bem-helper'
 
 import NavButton from '../../components/NavButton'

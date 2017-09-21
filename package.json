@@ -4,11 +4,15 @@
   "description": "ZConnect Web App components",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc $(find containers/ components/ widgets/ -type f -path \"*.js\")",
+    "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "keywords": [],
   "author": "Jon Wyatt",
   "license": "ISC",
@@ -31,9 +35,13 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.0.1",
     "node-sass": "^4.5.3",
+    "pre-commit": "^1.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1"
+    "react-flexbox-grid": "^1.1.5",
+    "react-redux": "^5.0.6",
+    "react-test-renderer": "^15.6.1",
+    "redux-form": "^7.0.4"
   },
   "dependencies": {
     "classnames": "^2.2.5",

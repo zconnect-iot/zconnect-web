@@ -24,7 +24,8 @@
     }],
     "import/no-unresolved": [2, {
       "ignore": [
-        "\\.scss$"
+        "\\.scss$",
+        "zc-core"
       ]
     }]
   }
