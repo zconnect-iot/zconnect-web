@@ -74,6 +74,8 @@ export const innerPropTypes = {
   }).isRequired,
   input: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
   }).isRequired,
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

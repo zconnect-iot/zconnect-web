@@ -1,0 +1,27 @@
+@import '~theme/variables.scss';
+@import '~theme/mixins.scss';
+
+
+:global(.SelectField) {
+  @include form-control;
+}
+
+:global(.SelectField__label) {
+  @include form-label;
+}
+
+:global(.SelectField__select) {
+  @include form-input;
+  background-color: $bg-light;
+  padding: 8px 14px 8px 8px;
+  border-radius: 8px;
+  color: $text-color;
+}
+
+:global(.SelectField__error) {
+  @include form-error;
+}
+
+:global(.SelectField__warning) {
+  @include form-warning;
+}

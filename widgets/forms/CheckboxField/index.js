@@ -51,8 +51,10 @@ export const renderInput = (props) => {
   </div>)
 }
 
+renderInput.propTypes = innerPropTypes
+
 const component = props => (<Field
-  type='checkbox'
+  type="checkbox"
   component={renderInput}
   {...props}
 />)
