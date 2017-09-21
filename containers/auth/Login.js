@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { login } from 'zc-core/auth/actions'
-import { selectLoginAPIState } from 'zc-core/auth/selectors'
+import { login } from 'zc-core/auth/actions' // eslint-disable-line import/extensions
+import { selectLoginAPIState } from 'zc-core/auth/selectors' // eslint-disable-line import/extensions
 
 import LoginForm from './LoginForm'
 
