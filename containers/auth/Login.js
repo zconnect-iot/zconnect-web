@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { login } from 'zc-core/auth/actions' // eslint-disable-line import/extensions
-import { selectLoginAPIState } from 'zc-core/auth/selectors' // eslint-disable-line import/extensions
+import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selectors' // eslint-disable-line import/extensions
+// import { toJS } from 'zc-core/hocs'
 
 import LoginForm from './LoginForm'
 
@@ -18,11 +19,11 @@ class Login extends React.Component {
   }
 
   render() {
-    const { api } = this.props
+    const { api, errorMessage } = this.props
     return (
       <div>
         <LoginForm onSubmit={this.handleSubmit} />
-        {api.error && <p className={styles.errorText}>{api.status}</p>}
+        {api.error && <p className={styles.errorText}>{errorMessage}</p>}
       </div>
     )
   }
@@ -31,16 +32,20 @@ class Login extends React.Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   api: PropTypes.shape({
-    error: PropTypes.string,
-    status: PropTypes.string.isRequired,
+    error: PropTypes.bool.isRequired,
+    pending: PropTypes.bool.isRequired,
+    success: PropTypes.bool.isRequired,
   }).isRequired,
+  errorMessage: PropTypes.string,
 }
 
 Login.defaultProps = {
+  errorMessage: '',
 }
 
 const mapStateToProps = state => ({
   api: selectLoginAPIState(state),
+  errorMessage: selectLoginErrorMessage(state),
 })
 
 const mapDispatchToProps = dispatch => ({
