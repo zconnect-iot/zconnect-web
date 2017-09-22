@@ -1,0 +1,40 @@
+@import '~theme/variables.scss';
+
+
+$tab-height: 58px;
+$tab-padding: 20px;
+$tab-border-width: 1px;
+
+:global(.Tabs__link-list) {
+  display: table;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+:global(.Tabs__link-wrap) {
+  display: inline-block;
+  cursor: pointer;
+  // Remove the border on .contentWrapper below.
+  min-height: $tab-height;
+}
+
+:global(.Tabs__link) {
+  padding: $tab-padding;
+  text-align: center;
+  min-width: 160px;
+  &:global(.tab-link-active) {
+    background-color: $bg-light;
+    border: $tab-border-width solid $border-faint;
+    border-bottom: $tab-border-width solid $bg-light;
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+:global(.Tabs__content) {
+  background-color: $bg-light;
+  border: 1px solid $border-faint;
+  border-radius: 8px;
+  padding: 24px;
+  // Remove the border below the active tab.
+  margin-top: -2 * $tab-border-width;
+}

@@ -41,7 +41,8 @@
     "react-flexbox-grid": "^1.1.5",
     "react-redux": "^5.0.6",
     "react-test-renderer": "^15.6.1",
-    "redux-form": "^7.0.4"
+    "redux-form": "^7.0.4",
+    "react-tabs-redux": "^1.6.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
