@@ -11,6 +11,12 @@
   min-height: 120px;
   text-align: center;
 }
+:global(.StatCard--inline) {
+  display: inline-block;
+  padding: 4px 8px;
+  min-height: inherit;
+  background-color: inherit;
+}
 
 // The figure to be displayed prominently.
 :global(.StatCard__figure) {
@@ -18,12 +24,22 @@
   padding: 4px 0;
   font-size: 30px;
   white-space: nowrap;
+  font-weight: bold;
+}
+:global(.StatCard__figure--inline) {
+  font-size: $font-size-base;
+}
+:global(.StatCard__figure--danger) {
+  color: $brand-danger;
 }
 
 // Description (usually text below the figure).
 :global(.StatCard__description) {
   font-weight: bold;
   color: $text-color-minor;
+}
+:global(.StatCard__description--inline) {
+  font-weight: normal;
 }
 
 
