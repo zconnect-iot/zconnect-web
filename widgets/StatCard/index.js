@@ -17,13 +17,14 @@ const StatCard = (props) => {
       {props.delta}{props.deltaUnits}
     </span>)
   }
-  return (<div {...classes()}>
+  const contents = [
+    <div {...classes('figure')}>{props.figure}{delta}</div>,
     <span {...classes('description')}>{props.description}</span>
-    <div {...classes('figure')}>
-      {props.figure}
-      {delta}
-    </div>
-  </div>)
+  ]
+  if (props.invert) {
+    contents.reverse()
+  }
+  return (<div {...classes()}>{contents}</div>)
 }
 
 StatCard.propTypes = {
@@ -32,11 +33,13 @@ StatCard.propTypes = {
   delta: PropTypes.number,
   reverseColor: PropTypes.bool,
   deltaUnits: PropTypes.string,
+  invert: PropTypes.bool,
 }
 
 StatCard.defaultProps = {
   delta: 0,
   reverseColor: false,
   deltaUnits: '',
+  invert: false,
 }
 export default StatCard
