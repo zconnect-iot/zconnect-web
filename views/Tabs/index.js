@@ -58,7 +58,7 @@ export const TabLink = props => (
 TabLink.propTypes = Object.assign({
   children: PropTypes.oneOfType([
     PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node)
+    PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
 }, Link.propTypes)
 

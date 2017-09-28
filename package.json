@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "griddle-react": "^1.9.0",
     "lodash": "^4.17.4",
     "react-bem-helper": "^1.4.1"
   },
