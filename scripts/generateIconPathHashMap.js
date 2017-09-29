@@ -14,6 +14,8 @@ if (process.argv.length <= 2) {
 var path = process.argv[2];
 
 const ICONS = {}
+const ERRORS = []
+const OUTPUT = 'icons.json'
 
 function getPath(filename) {
   console.log(path, filename);
@@ -29,8 +31,20 @@ for (var i=0; i<items.length; i++) {
     const name = item.split('.')[0]
     const ext = item.split('.')[1]
     if (ext === 'svg') {
-      ICONS[name.toUpperCase()] = getPath(item, name)
+      try {
+        ICONS[name.toUpperCase()] = getPath(item, name)
+      }
+      catch (err) {
+        ERRORS.push(`Unable to strip 'd' attribute from '${item}'`)
+      }
     }
 }
 
-fs.writeFileSync('icons.json', JSON.stringify(ICONS, null, 2))
+fs.writeFileSync(OUTPUT, JSON.stringify(ICONS, null, 2))
+
+
+console.log("Hash map written to", OUTPUT)
+if (ERRORS.length) {
+  console.error("Encountered the following errors.\n- %s", ERRORS.join('\n- '))
+  process.exit(1)
+}
