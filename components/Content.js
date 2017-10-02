@@ -25,7 +25,7 @@ export default function Content({ title, subtitle, actionItems, children }) {
         </Col>
       </Row>
       <Row {...classes('body')}>
-        <Col smOffset={2} sm={8}>
+        <Col smOffset={2} sm={8} xs={12}>
           {children}
         </Col>
       </Row>
