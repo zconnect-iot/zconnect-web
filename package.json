@@ -41,13 +41,13 @@
     "react-flexbox-grid": "^1.1.5",
     "react-redux": "^5.0.6",
     "react-test-renderer": "^15.6.1",
-    "redux-form": "^7.0.4",
-    "react-tabs-redux": "^1.6.0"
+    "redux-form": "^7.0.4"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
-    "react-bem-helper": "^1.4.1"
+    "react-bem-helper": "^1.4.1",
+    "react-tabs-redux": "^1.6.0"
   },
   "peerDependencies": {
     "react-flexbox-grid": "1.x",
