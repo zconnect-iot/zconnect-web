@@ -66,8 +66,8 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
-  title: '',
-  subtitle: '',
+  title: undefined,
+  subtitle: undefined,
   image: null,
   icon: '',
   children: null,
