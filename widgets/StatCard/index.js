@@ -26,16 +26,18 @@ const StatCard = (props) => {
       {props.description}
     </span>,
 
-    <div key={0} {...classes('figure', {
-      inline: props.inline,
-      danger: props.dangerFigure
-    })}>
+    <div
+      key={0}
+      {...classes('figure', {
+        inline: props.inline,
+        danger: props.dangerFigure,
+      })}
+    >
       {props.figure}{delta}
     </div>,
   ]
-  if (props.invert) {
+  if (props.invert)
     contents.reverse()
-  }
 
   return <div {...classes(null, commonModifiers)}>{contents}</div>
 }
