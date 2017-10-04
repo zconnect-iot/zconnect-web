@@ -31,10 +31,12 @@ renderRow.propTypes = {
   className: PropTypes.string.isRequired,
 }
 
-export const ListRow = connect((state, props) => ({
+/** Default list row component. */
+export const defaultRow = connect((state, props) => ({
   rowData: plugins.LocalPlugin.selectors.rowDataSelector(state, props),
 }))(renderRow)
 
+/** Default list table component. */
 export const ListTable = () => {
   const CustomTable = (props, context) => <context.components.TableBody />
   CustomTable.contextTypes = {
@@ -43,6 +45,7 @@ export const ListTable = () => {
   return CustomTable
 }
 
+/** Default list table body component. */
 export const ListTableBody = ({ rowIds, Row, style, className }) => (
   <div style={style} className={className}>
     {rowIds && rowIds.map(r => <Row key={r} griddleKey={r} />)}
@@ -58,8 +61,17 @@ ListTableBody.defaultProps = {
   style: null,
 }
 
+/** Default layout component. */
+export const defaultLayout = ({ Table }) => <Table />
+defaultLayout.propTypes = {
+  Table: PropTypes.func.isRequired,
+}
+
 export const defaultComponents = {
-  Row: ListRow,
+  Layout: defaultLayout,
+  Row: defaultRow,
+  Table: ListTable,
+  TableBody: ListTableBody,
 }
 
 export const defineColumn = (col) => {
@@ -74,32 +86,35 @@ export const defineColumn = (col) => {
   )
 }
 
-const List = (props) => {
-  const components = Object.assign({}, defaultComponents, props.components)
-  return (
-    <Griddle
-      plugins={[plugins.LocalPlugin]}
-      components={components}
-      {...props}
-    >
-      {props.columns && (
-        <RowDefinition>
-          {props.columns.map(defineColumn)}
-        </RowDefinition>
-      )}
-    </Griddle>
-  )
-}
-
+/**
+ * List view.
+ *
+ * @param {(string|node)[]} props.columns a list of column IDs or definitions.
+ * @param {Object} props.components a dict of components (see Griddle docs).
+ */
+const List = props => (
+  <Griddle
+    plugins={[plugins.LocalPlugin]}
+    components={Object.assign({}, defaultComponents, props.components)}
+    {...props}
+  >
+    {props.columns && (
+      <RowDefinition>
+        {props.columns.map(defineColumn)}
+      </RowDefinition>
+    )}
+  </Griddle>
+)
 List.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ])).isRequired,
   components: PropTypes.shape({
+    Layout: PropTypes.func,
+    Row: PropTypes.func,
   }),
 }
-
 List.defaultProps = {
   components: null,
 }
