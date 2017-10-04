@@ -1,39 +1,16 @@
-// Disable prop type linting while using temporary form components.
-/* eslint-disable react/prop-types */
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
-import classnames from 'classnames'
+import { reduxForm } from 'redux-form/immutable'
 
-// import { TextField, PasswordField } from 'widgets/Form'
-
-function TextField(props) {
-  const { label, meta, input, className, ...otherProps } = props
-  const { dirty, error, asyncValidating } = meta
-  return (
-    <div className="TextField">
-      <div className="TextField--label">
-        {label}
-      </div>
-      <input
-        id={label}
-        className={classnames('TextField--input', className)}
-        type="text"
-        {...input}
-        {...otherProps}
-      />
-      { !asyncValidating && dirty && error && <div className="TextField--validation">{error}</div> }
-    </div>
-  )
-}
-
+import { TextField, PasswordField } from '../../widgets/forms'
+import { Button } from '../../components'
 
 const LoginForm = (props) => {
   const { handleSubmit, pristine, submitting } = props
   return (
     <form>
-      <Field autoFocus label="Username" name="email" component={TextField} />
-      <Field label="Password" name="password" component={TextField} />
-      <button type="submit" onClick={handleSubmit} disabled={pristine || submitting}>LOG IN</button>
+      <TextField name="email" label="E-mail" />
+      <PasswordField name="password" label="Password" />
+      <Button color="primary" action={handleSubmit} disabled={pristine || submitting}>LOG IN</Button>
     </form>
   )
 }

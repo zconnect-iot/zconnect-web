@@ -1,29 +1,43 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import BEMHelper from 'react-bem-helper'
 
-import { login } from 'zc-core/auth/actions' // eslint-disable-line import/extensions
-import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selectors' // eslint-disable-line import/extensions
-// import { toJS } from 'zc-core/hocs'
+import { login } from 'zc-core/auth/actions'
+import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selectors'
+import { toJS } from 'zc-core/hocs'
 
 import LoginForm from './LoginForm'
+import { Logo } from '../../components'
 
+import './style.scss'
 
-// import styles from './styles.scss'
-const styles = {}
+const classes = BEMHelper({ name: 'Login' })
 
 class Login extends React.Component {
   handleSubmit = (payload) => {
     const { email, password } = payload.toJS()
     this.props.login(email, password)
   }
+  handleForgotten = () => this.props.history.push('/forgotten')
 
   render() {
     const { api, errorMessage } = this.props
     return (
-      <div>
-        <LoginForm onSubmit={this.handleSubmit} />
-        {api.error && <p className={styles.errorText}>{errorMessage}</p>}
+      <div {...classes()}>
+        <div {...classes('form')}>
+          <Logo {...classes('logo')} large />
+          <LoginForm onSubmit={this.handleSubmit} />
+          {api.error && <div {...classes('error')}>{errorMessage}</div>}
+          <a
+            {...classes('forgotten')}
+            onClick={this.handleForgotten}
+            tabIndex={0}
+            role="button"
+          >
+            Forgot password?
+          </a>
+        </div>
       </div>
     )
   }
@@ -37,6 +51,9 @@ Login.propTypes = {
     success: PropTypes.bool.isRequired,
   }).isRequired,
   errorMessage: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 Login.defaultProps = {
@@ -55,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login)
+)(toJS(Login))
