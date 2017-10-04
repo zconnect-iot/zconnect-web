@@ -48,6 +48,7 @@
     "react-tabs-redux": "^1.6.0",
     "classnames": "^2.2.5",
     "griddle-react": "^1.9.0",
+    "immutable": "^3.8.2",
     "lodash": "^4.17.4",
     "react-bem-helper": "^1.4.1"
   },

@@ -46,13 +46,13 @@ export const Table = () => {
 }
 
 /** Default list table body component. */
-export const TableBody = ({ rowIds, Row, style, className }) => (
-  <tbody style={style} className={className}>
-    {rowIds && rowIds.map(rowId => <Row key={rowId} griddleKey={rowId} />)}
+export const TableBody = ({ rowIds, Row: TRow, style, className }) => (
+  <tbody style={style} {...classes('table-body', null, className)}>
+    {rowIds && rowIds.map(rowId => <TRow key={rowId} griddleKey={rowId} />)}
   </tbody>
-);
+)
 TableBody.propTypes = {
-  rowIds: PropTypes.instanceOf(ImmutableList),
+  rowIds: PropTypes.instanceOf(ImmutableList).isRequired,
   Row: PropTypes.func.isRequired,
   style: stylePropType,
   className: PropTypes.string.isRequired,
@@ -61,11 +61,13 @@ TableBody.defaultProps = {
   style: null,
 }
 
+/* eslint-disable react/no-unused-prop-types */
 /** Default layout component. */
-export const Layout = ({ Table }) => <Table />
+export const Layout = props => <props.Table />
 Layout.propTypes = {
   Table: PropTypes.func.isRequired,
 }
+/* eslint-enable react/no-unused-prop-types */
 
 export const components = {
   Layout,

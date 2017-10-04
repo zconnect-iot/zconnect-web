@@ -10,7 +10,7 @@
   text-align: left;
 }
 
-:global(.griddle-row) {
+:global(.List__row) {
   background-color: $bg-light;
   border-top: 1px solid $border-faint;
   font-size: 1rem;
@@ -22,6 +22,6 @@
   }
 }
 
-:global(.griddle-cell) {
+:global(.List__cell) {
   min-width: 50px;
 }
