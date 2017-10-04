@@ -40,6 +40,7 @@
     "react-dom": "^15.6.1",
     "react-flexbox-grid": "^1.1.5",
     "react-redux": "^5.0.6",
+    "react-style-proptype": "^3.0.0",
     "react-test-renderer": "^15.6.1",
     "redux-form": "^7.0.4"
   },
