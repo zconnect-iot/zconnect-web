@@ -8,7 +8,7 @@ import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selec
 import { toJS } from 'zc-core/hocs'
 
 import LoginForm from './LoginForm'
-import { Logo } from '../../components'
+import { Logo } from '../../../components'
 
 import './style.scss'
 
@@ -23,24 +23,29 @@ class Login extends React.Component {
 
   render() {
     const { api, errorMessage } = this.props
+    const { t } = this.context
     return (
       <div {...classes()}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <LoginForm onSubmit={this.handleSubmit} />
-          {api.error && <div {...classes('error')}>{errorMessage}</div>}
+          {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
           <a
             {...classes('forgotten')}
             onClick={this.handleForgotten}
             tabIndex={0}
             role="button"
           >
-            Forgot password?
+            {t('forgotten')}
           </a>
         </div>
       </div>
     )
   }
+}
+
+Login.contextTypes = {
+  t: PropTypes.func,
 }
 
 Login.propTypes = {
