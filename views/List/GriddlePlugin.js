@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 import { plugins } from 'griddle-react'
 import { connect } from 'react-redux'
 import stylePropType from 'react-style-proptype'
-import BEMHelper from 'react-bem-helper'
 import { List as ImmutableList } from 'immutable'
 
 import './style.scss'
-
-const classes = new BEMHelper('List')
 
 /** Render a list row. */
 export const renderRow = ({
@@ -18,14 +15,13 @@ export const renderRow = ({
   className,
   Cell,
 }) => (
-  <tr {...classes('row', null, className)}>
+  <tr className={className}>
     {columnIds.map(colId => (
       <Cell
         key={colId}
         griddleKey={griddleKey}
         columnId={colId}
         value={rowData[colId]}
-        {...classes('cell', null, 'griddle-cell')}
       />
     ))}
   </tr>
@@ -48,11 +44,7 @@ export const Row = connect((state, props) => ({
 
 /** Default list table component. */
 export const Table = () => {
-  const CustomTable = (props, context) => (
-    <context.components.TableBody
-      {...classes('table')}
-    />
-  )
+  const CustomTable = (props, context) => <context.components.TableBody />
   CustomTable.contextTypes = {
     components: React.PropTypes.object,
   }
@@ -61,7 +53,7 @@ export const Table = () => {
 
 /** Default list table body component. */
 export const TableBody = ({ rowIds, Row: TRow, style, className }) => (
-  <tbody style={style} {...classes('table-body', null, className)}>
+  <tbody style={style}>
     {rowIds && rowIds.map(rowId => <TRow key={rowId} griddleKey={rowId} />)}
   </tbody>
 )

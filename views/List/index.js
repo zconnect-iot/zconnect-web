@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Griddle, { RowDefinition, ColumnDefinition } from 'griddle-react'
+import BEMHelper from 'react-bem-helper'
 
 import { camelToTitleCase } from '../../util/string'
 
@@ -16,6 +17,31 @@ export const defineColumn = (col) => {
       title={camelToTitleCase(col)}
     />
   )
+}
+
+const classes = new BEMHelper('List')
+
+export const styleConfig = {
+  classNames: {
+    Cell: classes('cell').className,
+    Filter: classes('filter').className,
+    Loading: classes('loading').className,
+    NextButton: classes('next-button').className,
+    NoResults: classes('no-results').className,
+    PageDropdown: classes('page-dropdown').className,
+    Pagination: classes('pagination').className,
+    PreviousButton: classes('previous-button').className,
+    Row: classes('row').className,
+    RowDefinition: classes('row-definition').className,
+    Settings: classes('settings').className,
+    SettingsToggle: classes('settings-toggle').className,
+    Table: classes('table').className,
+    TableBody: classes('table-body').className,
+    TableHeading: classes('table-heading').className,
+    TableHeadingCell: classes('table-heading-cell').className,
+    TableHeadingCellAscending: classes('table-heading-cell-ascending').className.className,
+    TableHeadingCellDescending: classes('table-heading-cell-descending').className,
+  },
 }
 
 /**
@@ -39,7 +65,6 @@ const List = props => (
     )}
   </Griddle>
 )
-
 List.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
@@ -50,10 +75,13 @@ List.propTypes = {
     Row: PropTypes.func,
   }),
   className: PropTypes.string,
+  // eslint-disable-next-line react/disable-prop-types
+  styleConfig: PropTypes.object,
 }
 List.defaultProps = {
   components: null,
   className: '',
+  styleConfig,
 }
 
 export default List

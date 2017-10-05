@@ -1,12 +1,12 @@
 @import '~theme/variables.scss';
 
 
-:global(.griddle-table) {
+:global(.List__table) {
   border-collapse: collapse;
   width: 100%;
 }
 
-:global(.griddle-table-heading-cell) {
+:global(.List__table-heading-cell) {
   text-align: left;
 }
 
