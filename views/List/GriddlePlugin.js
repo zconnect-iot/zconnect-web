@@ -75,10 +75,10 @@ TableBody.defaultProps = {
   style: null,
 }
 
-export const components = {
+export const components = Object.assign({}, plugins.LocalPlugin.components, {
   Row,
   TableBody,
-}
+})
 
 export default Object.assign({}, plugins.LocalPlugin, {
   components,
