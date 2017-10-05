@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import BEMHelper from 'react-bem-helper'
 
@@ -19,8 +20,22 @@ const classes = new BEMHelper('GriddleViewLink')
  * />,
  *
  */
-export default ({ value, className }) => (
+const GriddleViewLink = ({ value, className }) => (
   <Link to={value} {...classes(null, null, className)}>
     View
   </Link>
 )
+
+GriddleViewLink.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  className: PropTypes.string,
+}
+
+GriddleViewLink.defaultProps = {
+  className: '',
+}
+
+export default GriddleViewLink
