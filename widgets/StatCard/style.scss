@@ -41,6 +41,7 @@
   color: $text-color-minor;
 }
 :global(.StatCard__description--inline) {
+  font-size: $font-size-small;
   font-weight: normal;
 }
 
