@@ -1,0 +1,57 @@
+@import '~theme/variables.scss';
+
+
+$block-padding: 1.25rem;
+
+:global(.Card) {
+  border: 1px solid $border-faint;
+  overflow: hidden;
+}
+
+:global(.Card__block) {
+  display: block;
+  width: 100%;
+}
+:global(.Card__top-content) {
+  padding: 0.5rem;
+  padding-bottom: 0;
+  text-align: center;
+}
+:global(.Card__block--border-top) {
+  border-top: 1px solid $border-faint;
+}
+:global(.Card__block--border-bottom) {
+  border-bottom: 1px solid $border-faint;
+}
+
+:global(.Card__title) {
+  padding-top: 4px;
+  border-bottom: 1px solid $border-faint;
+  background-color: $bg-dark;
+  font-size: $font-size-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+:global(.Card__subtitle) {
+  padding-top: 2px;
+  text-align: center;
+  color: $text-color-minor;
+  font-size: $font-size-small;
+  margin-bottom: 0.375rem;
+}
+:global(.Card__subtitle--centred) {
+  text-align: center;
+}
+
+:global(.Card__icon-wrapper) {
+  position: relative;
+}
+:global(.Card__icon) {
+  position: absolute;
+  right: 0;
+}
+
+:global(.Card__image) {
+  text-align: center;
+}
