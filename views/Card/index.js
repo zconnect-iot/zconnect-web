@@ -8,8 +8,8 @@ import './style.scss'
 
 export const classes = new BEMHelper('Card')
 
-const CardIcon = ({ name }) => (
-  <div {...classes('icon-wrapper')}>
+const CardIcon = ({ name, className }) => (
+  <div {...classes('icon-wrapper', null, className)}>
     <div {...classes('icon')}>
       <Icon name={name} />
     </div>
@@ -17,6 +17,10 @@ const CardIcon = ({ name }) => (
 )
 CardIcon.propTypes = {
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
+}
+CardIcon.defaultProps = {
+  className: '',
 }
 
 const Card = (props) => {
@@ -35,7 +39,7 @@ const Card = (props) => {
   const image = props.image ? <img src={props.image.src} alt={props.image.alt} /> : null
   const icon = props.icon ? <CardIcon name={props.icon} /> : null
   return (
-    <div {...classes()}>
+    <div {...classes('', '', props.className)}>
       {title}
       {(image || subtitle || icon) && (
         <div {...classes('top-content')}>
@@ -63,6 +67,7 @@ Card.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  className: PropTypes.string,
 }
 
 Card.defaultProps = {
@@ -71,6 +76,7 @@ Card.defaultProps = {
   image: null,
   icon: '',
   children: null,
+  className: '',
 }
 
 export default Card
