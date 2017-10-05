@@ -1,0 +1,7 @@
+@import '~theme/variables.scss';
+
+
+:global(.GriddleViewLink) {
+  color: $link-color;
+  text-decoration: none;
+}
