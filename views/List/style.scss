@@ -25,3 +25,8 @@
 :global(.List__cell) {
   min-width: 50px;
 }
+
+:global(.List__filter) {
+  width: 100%;
+  padding: 4px;
+}
