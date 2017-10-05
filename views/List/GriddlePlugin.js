@@ -11,20 +11,34 @@ import './style.scss'
 const classes = new BEMHelper('List')
 
 /** Render a list row. */
-export const renderRow = ({ rowData, columnIds, className }) => (
+export const renderRow = ({
+  griddleKey,
+  rowData,
+  columnIds,
+  className,
+  Cell,
+}) => (
   <tr {...classes('row', null, className)}>
     {columnIds.map(colId => (
-      <td key={colId} {...classes('cell', null, 'griddle-cell')}>
-        {rowData[colId]}
-      </td>
+      <Cell
+        key={colId}
+        griddleKey={griddleKey}
+        columnId={colId}
+        value={rowData[colId]}
+        {...classes('cell', null, 'griddle-cell')}
+      />
     ))}
   </tr>
 )
-
 renderRow.propTypes = {
   columnIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   rowData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string.isRequired,
+  Cell: PropTypes.func.isRequired,
+  griddleKey: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 }
 
 /** Default list row component. */
