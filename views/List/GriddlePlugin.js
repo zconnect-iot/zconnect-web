@@ -42,15 +42,6 @@ export const Row = connect((state, props) => ({
   rowData: plugins.LocalPlugin.selectors.rowDataSelector(state, props),
 }))(renderRow)
 
-/** Default list table component. */
-export const Table = () => {
-  const CustomTable = (props, context) => <context.components.TableBody />
-  CustomTable.contextTypes = {
-    components: React.PropTypes.object,
-  }
-  return CustomTable
-}
-
 /** Default list table body component. */
 export const TableBody = ({ rowIds, Row: TRow, style, className }) => (
   <tbody style={style} className={className}>
