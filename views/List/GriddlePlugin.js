@@ -53,7 +53,7 @@ export const Table = () => {
 
 /** Default list table body component. */
 export const TableBody = ({ rowIds, Row: TRow, style, className }) => (
-  <tbody style={style}>
+  <tbody style={style} className={className}>
     {rowIds && rowIds.map(rowId => <TRow key={rowId} griddleKey={rowId} />)}
   </tbody>
 )

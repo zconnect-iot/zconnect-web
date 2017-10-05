@@ -39,7 +39,7 @@ export const styleConfig = {
     TableBody: classes('table-body').className,
     TableHeading: classes('table-heading').className,
     TableHeadingCell: classes('table-heading-cell').className,
-    TableHeadingCellAscending: classes('table-heading-cell-ascending').className.className,
+    TableHeadingCellAscending: classes('table-heading-cell-ascending').className,
     TableHeadingCellDescending: classes('table-heading-cell-descending').className,
   },
 }
@@ -75,8 +75,7 @@ List.propTypes = {
     Row: PropTypes.func,
   }),
   className: PropTypes.string,
-  // eslint-disable-next-line react/disable-prop-types
-  styleConfig: PropTypes.object,
+  styleConfig: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
 List.defaultProps = {
   components: null,
