@@ -49,9 +49,11 @@ List.propTypes = {
     Layout: PropTypes.func,
     Row: PropTypes.func,
   }),
+  className: PropTypes.string,
 }
 List.defaultProps = {
   components: null,
+  className: '',
 }
 
 export default List
