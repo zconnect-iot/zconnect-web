@@ -23,6 +23,17 @@ CardIcon.defaultProps = {
   className: '',
 }
 
+/**
+ * Card component.
+ *
+ * @param {string} [props.title] a title to be displayed in a title bar.
+ * @param {string} [props.subtitle] a subtitle to display below title & image.
+ * @param {Object} [props.image] the `src` and `alt` for an image.
+ * @param {string} [props.icon] an optional icon to display by the image.
+ * @param {node|node[]} [props.children] content to show inside this Card.
+ * @param {string} [props.className] an additional class name to show.
+ * @param {boolean} [props.panel=false] whether to display as a bold panel.
+ */
 const Card = (props) => {
   let title = null
   if (typeof props.title === 'string')
@@ -39,7 +50,7 @@ const Card = (props) => {
   const image = props.image ? <img src={props.image.src} alt={props.image.alt} /> : null
   const icon = props.icon ? <CardIcon name={props.icon} /> : null
   return (
-    <div {...classes('', '', props.className)}>
+    <div {...classes('', props.panel && 'panel', props.className)}>
       {title}
       {(image || subtitle || icon) && (
         <div {...classes('top-content')}>
@@ -68,6 +79,7 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   className: PropTypes.string,
+  panel: PropTypes.bool,
 }
 
 Card.defaultProps = {
@@ -77,6 +89,7 @@ Card.defaultProps = {
   icon: '',
   children: null,
   className: '',
+  panel: false,
 }
 
 export default Card
