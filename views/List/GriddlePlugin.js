@@ -75,16 +75,7 @@ TableBody.defaultProps = {
   style: null,
 }
 
-/* eslint-disable react/no-unused-prop-types */
-/** Default layout component. */
-export const Layout = props => <props.Table />
-Layout.propTypes = {
-  Table: PropTypes.func.isRequired,
-}
-/* eslint-enable react/no-unused-prop-types */
-
 export const components = {
-  Layout,
   Row,
   TableBody,
 }

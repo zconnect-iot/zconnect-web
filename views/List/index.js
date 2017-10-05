@@ -57,3 +57,15 @@ List.defaultProps = {
 }
 
 export default List
+
+/* eslint-disable react/no-unused-prop-types */
+/**
+ * A basic layout component, for convenience.
+ *
+ * Renders only the table (no filtering, pagination or settings).
+ */
+export const BasicLayout = props => <props.Table />
+BasicLayout.propTypes = {
+  Table: PropTypes.func.isRequired,
+}
+/* eslint-enable react/no-unused-prop-types */
