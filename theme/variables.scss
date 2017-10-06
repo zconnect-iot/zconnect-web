@@ -11,9 +11,17 @@ $text-color: #767676;
 $text-color-minor: #888888;
 $link-color: #2A9FD8;
 
+$link-color: $brand-primary;
+
 $border-radius: 5px;
 $border-width: 1px;
 $border-faint: #e0e0e0;
+$border-style: solid;
+$border-color: $border-faint;
+$border: $border-width $border-style $border-color;
+
+// Structure
+$padding: 12px;
 
 // Backgrounds
 $bg-light: #fff;

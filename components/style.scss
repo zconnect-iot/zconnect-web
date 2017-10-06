@@ -9,12 +9,22 @@
   padding: 15px 0;
 }
 
-:global(.Logo--small) {
+:global(.Logo) {
   background-image: $logo-small;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 30px;
-  min-width: 200px;
+  height: 50px;
+
+  &:global(.Logo--small) {
+    height: 30px;
+    min-width: 200px;
+  }
+
+  &:global(.Logo--large) {
+    height: 70px;
+    min-width: 240px;
+  }
+
 }
 
 :global(.NavButton) {
@@ -85,6 +95,7 @@
   &:global(.Button--primary) {
     background: $brand-primary;
     border: 1px solid $brand-primary;
+    color: white;
   }
 
   &:global(.Button--hollow) {
