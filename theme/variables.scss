@@ -74,24 +74,3 @@ $unchecked-image-url: url('/icons/unchecked.svg');
 
 // Animation
 $transition-duration: 0.5s;
-
-
-// Generic colours.
-:global(.bg-) {
-  &:global(primary) { background-color: $brand-primary; }
-  &:global(secondary) { background-color: $brand-secondary; }
-  &:global(success) { background-color: $brand-success; }
-  &:global(warning) { background-color: $brand-warning; }
-  &:global(danger) { background-color: $brand-danger; }
-  &:global(info) { background-color: $brand-info; }
-  &:global(grey) { background-color: $brand-grey; }
-}
-:global(.text-) {
-  &:global(primary) { color: $brand-primary; }
-  &:global(secondary) { color: $brand-secondary; }
-  &:global(success) { color: $brand-success; }
-  &:global(warning) { color: $brand-warning; }
-  &:global(danger) { color: $brand-danger; }
-  &:global(info) { color: $brand-info; }
-  &:global(grey) { color: $brand-grey; }
-}
