@@ -39,7 +39,6 @@ Page.propTypes = {
   })).isRequired,
   location: PropTypes.shape({
     hash: PropTypes.string.isRequired,
-    key: PropTypes.string.isRequired,
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired,
   }).isRequired,
