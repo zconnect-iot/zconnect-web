@@ -21,7 +21,6 @@ const selectFormState = formValueSelector('registerForm')
 class Register extends React.Component {
   handleSubmit = (_payload) => {
     const payload = _payload.toJS()
-    console.log(payload);
     if (_payload.size !== 6) return this.props.registerError('incomplete')
     if (!isValidEmail(payload.email)) return this.props.registerError('emailinvalid')
     if (payload.email !== payload.email2) return this.props.registerError('emailsdontmatch')
@@ -36,8 +35,16 @@ class Register extends React.Component {
       <div {...classes()}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
-          <RegisterForm onSubmit={this.handleSubmit} initialValues={{ email }} />
+          <RegisterForm
+            pending={api.pending}
+            onSubmit={this.handleSubmit}
+            initialValues={{ email }}
+          />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
+          {api.success && <div {...classes('success')}>
+            <p>{t('registersuccess')}</p>
+            <p>{t('checkemail')}</p>
+          </div>}
         </div>
       </div>
     )

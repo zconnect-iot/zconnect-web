@@ -34,8 +34,7 @@
   margin-top: $padding;
 }
 
-:global(.Register__forgotten) {
+:global(.Register__success) {
+  color: $brand-success;
   margin-top: $padding;
-  cursor: pointer;
-  color: $link-color;
 }

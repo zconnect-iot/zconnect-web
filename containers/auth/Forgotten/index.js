@@ -33,6 +33,10 @@ class Forgotten extends React.Component {
           <Logo {...classes('logo')} large />
           <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
+          {api.success && <div {...classes('success')}>
+            <p>{t('success')}</p>
+            <p>{t('emailsent')}</p>
+          </div>}
         </div>
       </div>
     )
