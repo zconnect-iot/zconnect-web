@@ -13,6 +13,7 @@ const brandColors = [
   'warning',
   'danger',
   'info',
+  'grey',
 ]
 
 /**
@@ -26,12 +27,15 @@ const brandColors = [
  * @param {string} [props.text] optional text to render over the bar.
  */
 export const ProgressBar = (props) => {
+  const foregroundStyle = {
+    color: props.textColor,
+    width: `${Math.floor((100 * props.value) / props.maximum)}%`,
+  }
   let colorClass = ''
-  let colorStyle = ''
   if (brandColors.includes(props.color))
     colorClass = props.color
   else
-    colorStyle = props.color
+    foregroundStyle.backgroundColor = props.color
 
   const text = props.text || `${props.value}${props.units}`
   return (
@@ -39,14 +43,7 @@ export const ProgressBar = (props) => {
       {...classes('bar-background')}
       style={{ backgroundColor: props.background }}
     >
-      <div
-        {...classes('bar-foreground', colorClass)}
-        style={{
-          backgroundColor: colorStyle,
-          color: props.textColor,
-          width: `${Math.floor((100 * props.value) / props.maximum)}%`,
-        }}
-      >
+      <div {...classes('bar-foreground', colorClass)} style={foregroundStyle}>
         {text}
       </div>
     </div>
