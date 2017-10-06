@@ -26,6 +26,7 @@ export const ProgressBar = ({
   backgroundColor,
   textColor,
   text,
+  units,
 }) => {
   // Foreground styles.
   const foregroundStyle = {
