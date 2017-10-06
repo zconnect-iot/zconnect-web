@@ -25,25 +25,3 @@
   border-radius: 0;
   white-space: nowrap;
 }
-
-:global(.ProgressChart__bar-foreground--primary) {
-  background-color: $brand-primary;
-}
-:global(.ProgressChart__bar-foreground--secondary) {
-  background-color: $brand-secondary;
-}
-:global(.ProgressChart__bar-foreground--success) {
-  background-color: $brand-success;
-}
-:global(.ProgressChart__bar-foreground--warning) {
-  background-color: $brand-warning;
-}
-:global(.ProgressChart__bar-foreground--danger) {
-  background-color: $brand-danger;
-}
-:global(.ProgressChart__bar-foreground--info) {
-  background-color: $brand-info;
-}
-:global(.ProgressChart__bar-foreground--grey) {
-  background-color: $brand-grey;
-}

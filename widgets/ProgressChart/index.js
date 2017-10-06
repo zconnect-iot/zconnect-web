@@ -6,45 +6,61 @@ import './style.scss'
 
 const classes = new BEMHelper('ProgressChart')
 
-const brandColors = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'info',
-  'grey',
-]
-
 /**
  * A progress bar for use in a {@link ProgressChart}.
  *
+ * All colours can be specified as either a hex string or a theme colour string
+ * (e.g. `'primary').
+ *
  * @param {number} props.value the value to display.
  * @param {number} [props.maximum=100] a maximum value to compare against.
- * @param {string} [props.color] the foreground colour.
- * @param {string} [props.background] the background colour.
+ * @param {string} [props.foregroundColor] the foreground colour.
+ * @param {string} [props.backgroundColor] the background colour.
  * @param {string} [props.textColor] the text colour.
  * @param {string} [props.text] optional text to render over the bar.
  */
-export const ProgressBar = (props) => {
+export const ProgressBar = ({
+  value,
+  maximum,
+  foregroundColor,
+  backgroundColor,
+  textColor,
+  text,
+}) => {
+  // Foreground styles.
   const foregroundStyle = {
-    color: props.textColor,
-    width: `${Math.floor((100 * props.value) / props.maximum)}%`,
+    width: `${Math.floor((100 * value) / maximum)}%`,
   }
-  let colorClass = ''
-  if (brandColors.includes(props.color))
-    colorClass = props.color
-  else
-    foregroundStyle.backgroundColor = props.color
+  const foregroundClasses = []
+  if (foregroundColor.startsWith('#'))
+    foregroundStyle.backgroundColor = foregroundColor
+  else if (foregroundColor)
+    foregroundClasses.push(`bg-${foregroundColor}`)
+  if (textColor.startsWith('#'))
+    foregroundStyle.textColor = textColor
+  else if (textColor)
+    foregroundClasses.push(`bg-${textColor}`)
+  console.log('foreground', foregroundStyle, foregroundClasses)
 
-  const text = props.text || `${props.value}${props.units}`
+  // Background styles.
+  const backgroundStyle = {}
+  let backgroundClass = ''
+  if (backgroundColor.startsWith('#'))
+    backgroundStyle.backgroundColor = backgroundColor
+  else if (backgroundColor)
+    backgroundClass = `bg-${backgroundColor}`
+
+  const content = text || `${value}${units}`
   return (
     <div
-      {...classes('bar-background')}
-      style={{ backgroundColor: props.background }}
+      {...classes('bar-background', null, backgroundClass)}
+      style={backgroundStyle}
     >
-      <div {...classes('bar-foreground', colorClass)} style={foregroundStyle}>
-        {text}
+      <div
+        {...classes('bar-foreground', null, foregroundClasses)}
+        style={foregroundStyle}
+      >
+        {content}
       </div>
     </div>
   )
@@ -53,8 +69,8 @@ export const ProgressBar = (props) => {
 ProgressBar.propTypes = {
   value: PropTypes.number.isRequired,
   maximum: PropTypes.number,
-  color: PropTypes.string,
-  background: PropTypes.string,
+  foregroundColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
   textColor: PropTypes.string,
   text: PropTypes.string,
   units: PropTypes.string,
@@ -62,8 +78,8 @@ ProgressBar.propTypes = {
 
 ProgressBar.defaultProps = {
   maximum: 0,
-  color: '',
-  background: '',
+  foregroundColor: '',
+  backgroundColor: '',
   textColor: '',
   text: '',
   units: '%',
