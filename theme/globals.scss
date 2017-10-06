@@ -47,6 +47,11 @@ h5 {
   &:global(danger) { background-color: $brand-danger; }
   &:global(info) { background-color: $brand-info; }
   &:global(grey) { background-color: $brand-grey; }
+
+  &:global(light) { background-color: $bg-light; }
+  &:global(light) { background-color: $bg-light; }
+  &:global(dark) { background-color: $bg-dark; }
+  &:global(darker) { background-color: $bg-darker; }
 }
 :global(.text-) {
   &:global(primary) { color: $brand-primary; }
@@ -56,4 +61,7 @@ h5 {
   &:global(danger) { color: $brand-danger; }
   &:global(info) { color: $brand-info; }
   &:global(grey) { color: $brand-grey; }
+
+  &:global(minor) { color: $text-color-minor; }
+  &:global(light) { color: $text-color-light; }
 }
