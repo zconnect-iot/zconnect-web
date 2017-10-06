@@ -55,3 +55,11 @@ $block-padding: 1.25rem;
 :global(.Card__image) {
   text-align: center;
 }
+
+:global(.Card--panel) {
+  :global(.Card__title) {
+    text-align: inherit;
+    padding: 20px;
+    background-color: $header-bg-light;
+  }
+}
