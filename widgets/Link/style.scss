@@ -1,0 +1,7 @@
+@import '~theme/variables.scss';
+
+
+:global(.Link) {
+  color: $link-color;
+  text-decoration: none;
+}

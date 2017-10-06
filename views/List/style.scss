@@ -1,10 +1,32 @@
 @import '~theme/variables.scss';
 
 
-:global(.griddle-row) {
+:global(.List__table) {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+:global(.List__table-heading-cell) {
+  text-align: left;
+}
+
+:global(.List__row) {
   background-color: $bg-light;
+  border-top: 1px solid $border-faint;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2.5;
 
   &:nth-child(even) {
     background-color: $bg-light-alternate;
   }
+}
+
+:global(.List__cell) {
+  min-width: 50px;
+}
+
+:global(.List__filter) {
+  width: 100%;
+  padding: 4px;
 }
