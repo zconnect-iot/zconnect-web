@@ -38,10 +38,9 @@ export const ProgressBar = ({
   else if (foregroundColor)
     foregroundClasses.push(`bg-${foregroundColor}`)
   if (textColor.startsWith('#'))
-    foregroundStyle.textColor = textColor
+    foregroundStyle.color = textColor
   else if (textColor)
-    foregroundClasses.push(`bg-${textColor}`)
-  console.log('foreground', foregroundStyle, foregroundClasses)
+    foregroundClasses.push(`text-${textColor}`)
 
   // Background styles.
   const backgroundStyle = {}
