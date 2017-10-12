@@ -16,7 +16,7 @@ export default class Page extends React.Component {
   getChildContext() {
     return {
       navigate: this.props.navigate,
-      activeRoute: this.props.activeRoute,
+      location: this.props.location,
     }
   }
   render() {
@@ -37,7 +37,11 @@ Page.propTypes = {
     icon: PropTypes.string,
     action: PropTypes.func,
   })).isRequired,
-  activeRoute: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    hash: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
+  }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -51,5 +55,10 @@ Page.defaultProps = {
 
 Page.childContextTypes = {
   navigate: PropTypes.func,
-  activeRoute: PropTypes.string,
+  location: PropTypes.shape({
+    hash: PropTypes.string,
+    key: PropTypes.string,
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+  }),
 }

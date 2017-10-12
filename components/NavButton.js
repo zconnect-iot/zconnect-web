@@ -19,7 +19,7 @@ export default class NavButton extends React.Component {
   render() {
     const { icon, title, action, route } = this.props
     const onClick = route ? this.navigate : action
-    const active = this.context.activeRoute.indexOf(route) === 0
+    const active = this.context.location.pathname.indexOf(route) === 0
     return (
       <button {...classes(null, active ? 'active' : null)} onClick={onClick}>
         <Icon name={icon} size={30} />
@@ -31,7 +31,9 @@ export default class NavButton extends React.Component {
 
 NavButton.contextTypes = {
   navigate: PropTypes.func,
-  activeRoute: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
 }
 
 NavButton.propTypes = {

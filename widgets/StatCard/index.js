@@ -17,13 +17,29 @@ const StatCard = (props) => {
       {props.delta}{props.deltaUnits}
     </span>)
   }
-  return (<div {...classes()}>
-    <span {...classes('description')}>{props.description}</span>
-    <div {...classes('figure')}>
-      {props.figure}
-      {delta}
-    </div>
-  </div>)
+
+  const commonModifiers = {
+    inline: props.inline,
+  }
+  const contents = [
+    <span key={1} {...classes('description', commonModifiers)}>
+      {props.description}
+    </span>,
+
+    <div
+      key={0}
+      {...classes('figure', {
+        inline: props.inline,
+        danger: props.dangerFigure,
+      })}
+    >
+      {props.figure}{delta}
+    </div>,
+  ]
+  if (props.invert)
+    contents.reverse()
+
+  return <div {...classes(null, commonModifiers)}>{contents}</div>
 }
 
 StatCard.propTypes = {
@@ -32,11 +48,17 @@ StatCard.propTypes = {
   delta: PropTypes.number,
   reverseColor: PropTypes.bool,
   deltaUnits: PropTypes.string,
+  invert: PropTypes.bool,
+  inline: PropTypes.bool,
+  dangerFigure: PropTypes.bool,
 }
 
 StatCard.defaultProps = {
   delta: 0,
   reverseColor: false,
   deltaUnits: '',
+  invert: false,
+  inline: false,
+  dangerFigure: false,
 }
 export default StatCard

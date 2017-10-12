@@ -1,0 +1,27 @@
+@import '~theme/variables.scss';
+
+
+:global(.ProgressChart) {
+  padding: 2px;
+  padding-right: 40px;
+}
+
+:global(.ProgressChart__bar-background) {
+  color: $text-color-light;
+  border-radius: 6px;
+  line-height: 1.0;
+  overflow: hidden;
+  background-color: $bg-darker;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  &:first-child {
+    margin-bottom: 0;
+  }
+}
+
+:global(.ProgressChart__bar-foreground) {
+  font-size: $font-size-smaller;
+  padding: 4px 4px 4px 8px;
+  border-radius: 0;
+  white-space: nowrap;
+}

@@ -39,6 +39,10 @@
 @mixin form-control {
   padding: 20px;
   border-bottom: 1px dashed $border-faint;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   &:last-child {
     border-bottom: none;
   }
@@ -47,13 +51,15 @@
 @mixin form-label {
   font-weight: bold;
   display: inline-block;
+  min-width: 120px;
 }
 
 @mixin form-input {
   border: 1px solid $border-faint;
   border-radius: 3px;
   padding: 5px;
-  display: inline-block;
+  flex: 1;
+  min-width: 200px;
 }
 
 @mixin form-error {
