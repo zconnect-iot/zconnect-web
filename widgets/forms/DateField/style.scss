@@ -1,0 +1,23 @@
+@import '~theme/variables';
+@import '~theme/mixins';
+
+
+:global(.DateField) {
+  @include form-control;
+}
+
+:global(.DateField__label) {
+  @include form-label;
+}
+
+:global(.DateField__input) {
+  @include form-input;
+}
+
+:global(.DateField__error) {
+  @include form-error;
+}
+
+:global(.DateField__warning) {
+  @include form-warning;
+}
