@@ -19,7 +19,7 @@ export const classes = new BEMHelper('DateField')
 
 export const renderInner = ({
   input,
-  placeholder,
+  placeholderText,
   label,
   meta: { touched, error, warning },
   dateFormat,
@@ -33,7 +33,7 @@ export const renderInner = ({
         {...classes('input')}
         dateFormat={dateFormat}
         selected={input.value ? moment(input.value) : null}
-        placeholder={placeholder}
+        placeholderText={placeholderText}
       />
 
       {touched && (
@@ -45,7 +45,7 @@ export const renderInner = ({
 )
 renderInner.propTypes = {
   dateFormat: PropTypes.string,
-  placeholder: PropTypes.string,
+  placeholderText: PropTypes.string,
   meta: PropTypes.shape({
     touched: PropTypes.bool.isRequired,
     error: PropTypes.string,
@@ -65,7 +65,7 @@ renderInner.propTypes = {
 
 renderInner.defaultProps = Object.assign({
   dateFormat: 'DD/MM/YYYY',
-  placeholder: 'Date',
+  placeholderText: 'Date',
 }, defaultProps)
 
 const component = props => <Field component={renderInner} {...props} />
