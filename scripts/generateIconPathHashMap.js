@@ -1,50 +1,75 @@
-/*
-  Usage: node generateIconPathHashMap.js <PATH>
+/**
+ * Usage: node generateIconPathHashMap.js <PATH>
 
-  Strips the d attribute from all svg files at given PATH and adds to JSON dictionary using upper cased filename as key
+ * Strips the d attribute from all svg files at given PATH and adds to JSON
+ * dictionary using upper cased filename as key.
 */
+const ERR_SOME_OPTIMISATIONS_FAILED = 1
+const ERR_INVALID_ARGS = 2
+
+// Ensure the arguments are valid.
+if (process.argv.length !== 3) {
+  console.log("Usage: node", __filename, " path/to/icons/directory")
+  console.error('Received arguments:', process.argv)
+  process.exit(ERR_INVALID_ARGS)
+}
+
 
 const fs = require('fs')
+const path = require('path')
+const Svgo = require('svgo')
 
-if (process.argv.length <= 2) {
-  console.log("Usage: " + __filename + " path/to/directory")
-  process.exit(-1)
-}
-
-var path = process.argv[2];
-
+const ICONS_DIR = process.argv[2];
 const ICONS = {}
 const ERRORS = []
-const OUTPUT = 'icons.json'
+const OUTPUT = path.resolve(__dirname, 'icons.json')
 
-function getPath(filename) {
-  console.log(path, filename);
-  const data = fs.readFileSync(`${path}/${filename}`, 'utf8')
-  return data.match(/<path.*d="([^"]*)"/)[1]
+const optimiser = new Svgo({
+})
+
+const getSvgPathRegex = /<path.*d="([^"]*)"/
+function getSvgPath(svgString) {
+  if (typeof svgString !== 'string') {
+    throw new Error(`Expected string; got ${svgString}`)
+  }
+  return svgString.match(getSvgPathRegex)[1]
 }
 
-const items = fs.readdirSync(path)
+const optimise = (svgString) => new Promise((resolve, reject) => {
+  optimiser.optimize(svgString.toString(), data => {
+    if (data.error) reject(data)
+    else resolve(data)
+  })
+})
 
-for (var i=0; i<items.length; i++) {
-    const item = items[i]
-    // console.log(item);
-    const name = item.split('.')[0]
-    const ext = item.split('.')[1]
-    if (ext === 'svg') {
-      try {
-        ICONS[name.toUpperCase()] = getPath(item, name)
-      }
-      catch (err) {
-        ERRORS.push(`Unable to strip 'd' attribute from '${item}'`)
-      }
-    }
-}
+const readFile = filepath => new Promise((resolve, reject) => {
+  fs.readFile(filepath, (err, data) => {
+    if (err) reject(err)
+    else resolve(data)
+  })
+})
 
-fs.writeFileSync(OUTPUT, JSON.stringify(ICONS, null, 2))
+const processIcon = filepath => readFile(filepath)
+  .then(optimise)
+  .then(({ data }) => getSvgPath(data))
+  .then(svgPath => {
+    const iconName = path.basename(filepath).replace('.svg', '').toUpperCase()
+    ICONS[iconName] = svgPath
+  })
+  .catch(err => {
+    ERRORS.push(`Unable to process ${filepath}: ${err.message}`)
+  })
 
+const iconPaths = fs.readdirSync(ICONS_DIR)
+  .filter(filepath => filepath.endsWith('.svg'))
+  .map(filepath => path.resolve(ICONS_DIR, filepath))
+  .map(processIcon)
 
-console.log("Hash map written to", OUTPUT)
-if (ERRORS.length) {
-  console.error("Encountered the following errors.\n- %s", ERRORS.join('\n- '))
-  process.exit(1)
-}
+Promise.all(iconPaths).then(() => {
+  fs.writeFileSync(OUTPUT, JSON.stringify(ICONS, null, 2))
+  console.log('Hash map written to', OUTPUT)
+  if (ERRORS.length) {
+    console.error("Encountered the following errors.\n- %s", ERRORS.join('\n- '))
+    process.exit(ERR_SOME_OPTIMISATIONS_FAILED)
+  }
+})
