@@ -24,7 +24,9 @@ const ICONS = {}
 const ERRORS = []
 const OUTPUT = path.resolve(ICONS_DIR, 'map.json')
 
-const optimiser = new Svgo()
+const optimiser = new Svgo({
+  transformsWithOnePath: true,
+})
 
 const getSvgPathRegex = /<path.*d="([^"]*)"/
 function getSvgPath(svgString) {
