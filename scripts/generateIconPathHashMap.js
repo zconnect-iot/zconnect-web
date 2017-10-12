@@ -22,10 +22,9 @@ const Svgo = require('svgo')
 const ICONS_DIR = process.argv[2];
 const ICONS = {}
 const ERRORS = []
-const OUTPUT = path.resolve(__dirname, 'icons.json')
+const OUTPUT = path.resolve(ICONS_DIR, 'map.json')
 
-const optimiser = new Svgo({
-})
+const optimiser = new Svgo()
 
 const getSvgPathRegex = /<path.*d="([^"]*)"/
 function getSvgPath(svgString) {
