@@ -35,7 +35,6 @@ $animation-duration: 0.6s;
 :global(.Drawer__inner--vertical) {
   top: 0;
   bottom: 0;
-  width: $drawer-vertical-size;
   height: 100%;
 }
 
@@ -44,7 +43,6 @@ $animation-duration: 0.6s;
   left: 0;
   right: 0;
   width: 100%;
-  height: $drawer-horizontal-size;
 }
 
 :global(.Drawer__inner--top) {
