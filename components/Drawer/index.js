@@ -1,23 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
+import animate from 'animate.css'
+import upperFirst from 'lodash/upperFirst'
 
 import './style.scss'
 
 const classes = new BEMHelper('Drawer')
 
+window.animate = animate
+
 const calculateState = ({ position, size, open }) => {
   const isHoriz = position === 'top' || position === 'bottom'
+  const inOrOut = open ? 'In' : 'Out'
   const state = {
-    modifiers: {
-      hidden: !open,
+    innerMods: {
       horizontal: isHoriz,
       vertical: !isHoriz,
       [position]: true,
+      open,
     },
+    innerClasses: [
+      animate.animated,
+      animate[`fade${inOrOut}${upperFirst(position)}`],
+    ],
+    overlayClasses: [
+      animate.animated,
+      open ? animate.fadeIn : animate.fadeOut,
+    ],
     style: {},
     open,
   }
+  console.log('innerClasses', state.innerClasses)
 
   if (size)
     state.style[isHoriz ? 'width' : 'height'] = size
@@ -52,20 +66,19 @@ export default class Drawer extends React.Component {
   }
 
   render() {
-    if (!this.state.open)
-      return null
-
     const { position, children } = this.props
     return (
-      <div {...classes(null, { position, open: true })}>
-        <div
-          role="presentation"
-          onClick={this.onCloseClick}
-          {...classes('overlay')}
-        />
+      <div {...classes(null, { [position]: true, open: this.state.open })}>
+        {this.state.open && (
+          <div
+            role="presentation"
+            onClick={this.onCloseClick}
+            {...classes('overlay', null, this.state.overlayClasses)}
+          />
+        )}
 
-        <div {...classes('inner', this.state.modifiers)}>
-          {children}
+        <div {...classes('inner', this.state.innerMods, this.state.innerClasses)}>
+          {this.state.open && children}
         </div>
       </div>
     )

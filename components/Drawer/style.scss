@@ -2,12 +2,8 @@
 @import '~theme/globals.scss';
 
 
-:global(.Drawer) {
-  display: none;
-}
-:global(.Drawer--open) {
-  display: block;
-}
+$animation-duration: 0.6s;
+
 
 :global(.Drawer__overlay) {
   position: absolute;
@@ -16,12 +12,14 @@
   width: 100%;
   height: 100%;
   background-color: rgba($brand-grey, $drawer-alpha);
+  animation-duration: $animation-duration;
 }
 
 :global(.Drawer__inner) {
   position: fixed;
   background-color: $bg-light;
   box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  animation-duration: $animation-duration;
 }
 
 /** Opening from the side. */
