@@ -4,13 +4,13 @@ import BEMHelper from 'react-bem-helper'
 import animate from 'animate.css'
 import upperFirst from 'lodash/upperFirst'
 
-import './style.scss'
+import style from './style.scss'
 
 const classes = new BEMHelper('Drawer')
 
 window.animate = animate
 
-const calculateState = ({ position, size, open }) => {
+const calculateState = ({ position, size, open }, initial = false) => {
   const isHoriz = position === 'top' || position === 'bottom'
   const inOrOut = open ? 'In' : 'Out'
   const state = {
@@ -20,7 +20,7 @@ const calculateState = ({ position, size, open }) => {
       [position]: true,
       open,
     },
-    innerClasses: [
+    innerClasses: initial ? [style.hidden] : [
       animate.animated,
       animate[`fade${inOrOut}${upperFirst(position)}`],
     ],
@@ -43,7 +43,7 @@ export default class Drawer extends React.Component {
   constructor(props) {
     super(props)
     this.onCloseClick = () => this.state.open && this.close()
-    this.state = calculateState(props)
+    this.state = calculateState(props, true)
   }
 
   componentWillReceiveProps(nextProps) {
