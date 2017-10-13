@@ -1,0 +1,75 @@
+@import '~theme/variables.scss';
+@import '~theme/globals.scss';
+
+
+:global(.Drawer) {
+  display: none;
+}
+:global(.Drawer--open) {
+  display: block;
+}
+
+:global(.Drawer__overlay) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($brand-grey, $drawer-alpha);
+}
+
+:global(.Drawer__inner) {
+  position: fixed;
+  background-color: $bg-light;
+  box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+/** Opening from the side. */
+:global(.Drawer__inner--vertical) {
+  width: 0;
+  height: 100%;
+
+  &:global(.Drawer__inner--open) {
+    width: $drawer-vertical-size;
+  }
+}
+
+/** Opening from the top or bottom. */
+:global(.Drawer__inner--horizontal) {
+  width: 100%;
+  height: 0;
+
+  &:global(.Drawer__inner--open) {
+    height: $drawer-horizontal-size;
+  }
+}
+
+:global(.Drawer__inner--top) {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $drawer-vertical-size;
+}
+
+:global(.Drawer__inner--bottom) {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $drawer-vertical-size;
+}
+
+:global(.Drawer__inner--left) {
+  top: 0;
+  left: 0;
+  width: $drawer-horizontal-size;
+  height: 100%;
+}
+
+:global(.Drawer__inner--right) {
+  top: 0;
+  right: 0;
+  width: $drawer-horizontal-size;
+  height: 100%;
+}
