@@ -2,34 +2,34 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import animate from 'animate.css'
-import upperFirst from 'lodash/upperFirst'
 
 import style from './style.scss'
 
 const classes = new BEMHelper('Drawer')
 
+window.animate = animate
+
+const positionProperties = {
+  top: ['Down', 'Up', 'height', 'horizontal'],
+  bottom: ['Up', 'Down', 'height', 'horizontal'],
+  left: ['Left', 'Left', 'width', 'vertical'],
+  right: ['Right', 'Right', 'width', 'vertical'],
+}
+
 const calculateState = ({ position, size, open }, initial = false) => {
-  const isHoriz = position === 'top' || position === 'bottom'
-  const inOrOut = open ? 'In' : 'Out'
+  const [inDir, outDir, sizeKey, orientation] = positionProperties[position]
   const innerClasses = []
-  if (initial) {
-    if (!open)
-      innerClasses.push(style.hidden)
-  }
-  else
+  if (!initial)
     innerClasses.push(
       animate.animated,
-      animate[`fade${inOrOut}${upperFirst(position)}`],
+      animate[`fade${open ? 'In' : 'Out'}${open ? inDir : outDir}`],
     )
-  const innerModifiers = {
-    horizontal: isHoriz,
-    vertical: !isHoriz,
-    [position]: true,
-    open,
-  }
-  const innerStyle = size ? { [isHoriz ? 'width' : 'height']: size } : null
+  else if (!open)
+    innerClasses.push(style.hidden)
+  const innerModifiers = [orientation, position, open ? 'open' : '']
+  const innerStyle = size ? { [sizeKey]: size } : null
 
-  const state = {
+  return {
     innerClass: classes('inner', innerModifiers, innerClasses).className,
     innerStyle,
     overlayClasses: [
@@ -38,8 +38,6 @@ const calculateState = ({ position, size, open }, initial = false) => {
     ],
     open,
   }
-
-  return state
 }
 
 export default class Drawer extends React.Component {
@@ -82,7 +80,7 @@ export default class Drawer extends React.Component {
         )}
 
         <div className={innerClass} style={innerStyle}>
-          {open && children}
+          {children}
         </div>
       </div>
     )
