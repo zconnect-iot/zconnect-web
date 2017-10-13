@@ -8,6 +8,12 @@
   background: $header-bg;
   padding: 15px 0;
 }
+:global(.Header__left-content) {
+  flex: 1;
+}
+:global(.Header__right-content) {
+  margin-left: auto;
+}
 
 :global(.Logo) {
   background-image: $logo-small;
