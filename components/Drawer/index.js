@@ -21,25 +21,23 @@ const calculateState = ({ position, size, open }, initial = false) => {
       animate.animated,
       animate[`fade${inOrOut}${upperFirst(position)}`],
     )
+  const innerModifiers = {
+    horizontal: isHoriz,
+    vertical: !isHoriz,
+    [position]: true,
+    open,
+  }
+  const innerStyle = size ? { [isHoriz ? 'width' : 'height']: size } : null
 
   const state = {
-    innerMods: {
-      horizontal: isHoriz,
-      vertical: !isHoriz,
-      [position]: true,
-      open,
-    },
-    innerClasses,
+    innerClass: classes('inner', innerModifiers, innerClasses).className,
+    innerStyle,
     overlayClasses: [
       animate.animated,
       open ? animate.fadeIn : animate.fadeOut,
     ],
-    innerStyle: {},
     open,
   }
-
-  if (size)
-    state.innerStyle[isHoriz ? 'width' : 'height'] = size
 
   return state
 }
@@ -72,14 +70,7 @@ export default class Drawer extends React.Component {
 
   render() {
     const { position, children } = this.props
-    const {
-      open,
-      innerMods,
-      innerClasses,
-      innerStyle,
-      overlayClasses,
-    } = this.state
-    const innerClass = classes('inner', innerMods, innerClasses).className
+    const { open, innerClass, innerStyle, overlayClasses } = this.state
     return (
       <div {...classes(null, { [position]: true, open })}>
         {open && (
@@ -91,7 +82,7 @@ export default class Drawer extends React.Component {
         )}
 
         <div className={innerClass} style={innerStyle}>
-          {this.state.open && children}
+          {open && children}
         </div>
       </div>
     )
