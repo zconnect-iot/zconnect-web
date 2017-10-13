@@ -20,10 +20,10 @@ export default class Page extends React.Component {
     }
   }
   render() {
-    const { children, navItems } = this.props
+    const { children, navItems, headerRightContent } = this.props
     return (
       <Grid fluid className="Page">
-        <Header />
+        <Header rightContent={headerRightContent} />
         <Navbar items={navItems} />
         {children}
       </Grid>
@@ -47,10 +47,15 @@ Page.propTypes = {
     PropTypes.node,
   ]).isRequired,
   navigate: PropTypes.func.isRequired,
+  headerRightContent: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 }
 
 Page.defaultProps = {
   subtitle: '',
+  headerRightContent: null,
 }
 
 Page.childContextTypes = {
