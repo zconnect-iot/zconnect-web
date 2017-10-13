@@ -8,11 +8,20 @@ import style from './style.scss'
 
 const classes = new BEMHelper('Drawer')
 
-window.animate = animate
-
 const calculateState = ({ position, size, open }, initial = false) => {
   const isHoriz = position === 'top' || position === 'bottom'
   const inOrOut = open ? 'In' : 'Out'
+  const innerClasses = []
+  if (initial) {
+    if (!open)
+      innerClasses.push(style.hidden)
+  }
+  else
+    innerClasses.push(
+      animate.animated,
+      animate[`fade${inOrOut}${upperFirst(position)}`],
+    )
+
   const state = {
     innerMods: {
       horizontal: isHoriz,
@@ -20,21 +29,17 @@ const calculateState = ({ position, size, open }, initial = false) => {
       [position]: true,
       open,
     },
-    innerClasses: initial ? [style.hidden] : [
-      animate.animated,
-      animate[`fade${inOrOut}${upperFirst(position)}`],
-    ],
+    innerClasses,
     overlayClasses: [
       animate.animated,
       open ? animate.fadeIn : animate.fadeOut,
     ],
-    style: {},
+    innerStyle: {},
     open,
   }
-  console.log('innerClasses', state.innerClasses)
 
   if (size)
-    state.style[isHoriz ? 'width' : 'height'] = size
+    state.innerStyle[isHoriz ? 'width' : 'height'] = size
 
   return state
 }
@@ -67,17 +72,25 @@ export default class Drawer extends React.Component {
 
   render() {
     const { position, children } = this.props
+    const {
+      open,
+      innerMods,
+      innerClasses,
+      innerStyle,
+      overlayClasses,
+    } = this.state
+    const innerClass = classes('inner', innerMods, innerClasses).className
     return (
-      <div {...classes(null, { [position]: true, open: this.state.open })}>
-        {this.state.open && (
+      <div {...classes(null, { [position]: true, open })}>
+        {open && (
           <div
             role="presentation"
             onClick={this.onCloseClick}
-            {...classes('overlay', null, this.state.overlayClasses)}
+            {...classes('overlay', null, overlayClasses)}
           />
         )}
 
-        <div {...classes('inner', this.state.innerMods, this.state.innerClasses)}>
+        <div className={innerClass} style={innerStyle}>
           {this.state.open && children}
         </div>
       </div>
