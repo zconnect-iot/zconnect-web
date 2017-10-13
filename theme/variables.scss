@@ -69,6 +69,7 @@ $tooltip-border-width: $border-width;
 $tooltip-border-color: $text-color;
 
 $drawer-alpha: 0.25;
+$drawer-inner-z-index: 1000;
 
 // Checkboxes.
 $checked-image-url: url('/icons/checked.svg');

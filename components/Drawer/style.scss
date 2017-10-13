@@ -21,6 +21,7 @@ $animation-duration: 0.6s;
 }
 
 :global(.Drawer__inner) {
+  z-index: $drawer-inner-z-index;
   position: fixed;
   background-color: $bg-light;
   box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.5);
