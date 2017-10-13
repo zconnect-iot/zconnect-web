@@ -7,6 +7,11 @@ import Icon from './Icon'
 
 const classes = BEMHelper('DrawerToggle')
 
+/**
+ * Component which can toggle a <Drawer /> on and off.
+ *
+ * Passes children, position and open/close handlers through to the Drawer.
+ */
 export default class DrawerToggle extends React.Component {
   constructor(props) {
     super(props)
