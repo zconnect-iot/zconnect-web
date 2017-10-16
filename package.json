@@ -51,7 +51,8 @@
     "query-string": "^5.0.0",
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^0.55.0",
-    "react-tabs-redux": "^1.6.0"
+    "react-tabs-redux": "^1.6.0",
+    "animate.css": "^3.5.2"
   },
   "peerDependencies": {
     "react-flexbox-grid": "1.x",
