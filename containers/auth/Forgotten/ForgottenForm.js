@@ -5,9 +5,8 @@ import { reduxForm } from 'redux-form/immutable'
 import { TextField } from '../../../widgets/forms'
 import { Button } from '../../../components'
 
-const ForgottenForm = (props, context) => {
-  const { handleSubmit, pristine, submitting } = props
-  const { t } = context
+const ForgottenForm = (props) => {
+  const { handleSubmit, pristine, submitting, t } = props
   return (
     <form>
       <TextField name="email" label={t('email')} />
@@ -16,14 +15,11 @@ const ForgottenForm = (props, context) => {
   )
 }
 
-ForgottenForm.contextTypes = {
-  t: PropTypes.func,
-}
-
 ForgottenForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
 }
 
 export default reduxForm({

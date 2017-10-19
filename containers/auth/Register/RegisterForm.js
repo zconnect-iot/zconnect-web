@@ -5,9 +5,8 @@ import { reduxForm } from 'redux-form/immutable'
 import { TextField, PasswordField } from '../../../widgets/forms'
 import { Button, Spinner } from '../../../components'
 
-const RegisterForm = (props, context) => {
-  const { handleSubmit, pristine, submitting, pending } = props
-  const { t } = context
+const RegisterForm = (props) => {
+  const { handleSubmit, pristine, submitting, pending, t } = props
   return (
     <form>
       <TextField name="fname" label={t('firstname')} />
@@ -23,15 +22,12 @@ const RegisterForm = (props, context) => {
   )
 }
 
-RegisterForm.contextTypes = {
-  t: PropTypes.func,
-}
-
 RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
+  t: PropTypes.func.isRequired,
 }
 
 export default reduxForm({

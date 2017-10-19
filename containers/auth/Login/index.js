@@ -7,7 +7,7 @@ import { formValueSelector } from 'redux-form/immutable'
 import { isValidEmail } from 'zc-core/auth/utils'
 import { login, loginError } from 'zc-core/auth/actions'
 import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selectors'
-import { toJS } from 'zc-core/hocs'
+import { toJS, withTranslator } from 'zc-core/hocs'
 
 import LoginForm from './LoginForm'
 import { Logo } from '../../../components'
@@ -30,13 +30,12 @@ class Login extends React.Component {
     history.push(`/forgotten${queryString}`)
   }
   render() {
-    const { api, errorMessage } = this.props
-    const { t } = this.context
+    const { api, errorMessage, t } = this.props
     return (
       <div {...classes()}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
-          <LoginForm onSubmit={this.handleSubmit} />
+          <LoginForm onSubmit={this.handleSubmit} t={t} />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
           <a
             {...classes('forgotten')}
@@ -52,10 +51,6 @@ class Login extends React.Component {
   }
 }
 
-Login.contextTypes = {
-  t: PropTypes.func,
-}
-
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   registerError: PropTypes.func.isRequired,
@@ -69,6 +64,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  t: PropTypes.func.isRequired,
 }
 
 Login.defaultProps = {
@@ -90,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(toJS(Login))
+)(toJS(withTranslator(Login)))

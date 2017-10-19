@@ -8,7 +8,7 @@ import queryString from 'query-string'
 import { isValidEmail } from 'zc-core/auth/utils'
 import { registerUser, registerUserError } from 'zc-core/auth/actions'
 import { selectRegisterAPIState, selectRegisterErrorMessage } from 'zc-core/auth/selectors'
-import { toJS } from 'zc-core/hocs'
+import { toJS, withTranslator } from 'zc-core/hocs'
 
 import RegisterForm from './RegisterForm'
 import { Logo } from '../../../components'
@@ -28,8 +28,7 @@ class Register extends React.Component {
     return this.props.register(payload)
   }
   render() {
-    const { api, errorMessage } = this.props
-    const { t } = this.context
+    const { api, errorMessage, t } = this.props
     const email = queryString.parse(location.search).email
     return (
       <div {...classes()}>
@@ -39,6 +38,7 @@ class Register extends React.Component {
             pending={api.pending}
             onSubmit={this.handleSubmit}
             initialValues={{ email }}
+            t={t}
           />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
           {api.success && <div {...classes('success')}>
@@ -49,10 +49,6 @@ class Register extends React.Component {
       </div>
     )
   }
-}
-
-Register.contextTypes = {
-  t: PropTypes.func,
 }
 
 Register.propTypes = {
@@ -68,6 +64,7 @@ Register.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  t: PropTypes.func.isRequired,
 }
 
 Register.defaultProps = {
@@ -89,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(toJS(Register))
+)(toJS(withTranslator(Register)))

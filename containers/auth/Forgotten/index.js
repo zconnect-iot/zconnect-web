@@ -7,7 +7,7 @@ import queryString from 'query-string'
 import { isValidEmail } from 'zc-core/auth/utils'
 import { resetPassword, resetPasswordError } from 'zc-core/auth/actions'
 import { selectResetPasswordAPIState, selectForgottenPasswordErrorMessage } from 'zc-core/auth/selectors'
-import { toJS } from 'zc-core/hocs'
+import { toJS, withTranslator } from 'zc-core/hocs'
 
 import ForgottenForm from './ForgottenForm'
 import { Logo } from '../../../components'
@@ -24,14 +24,13 @@ class Forgotten extends React.Component {
   }
 
   render() {
-    const { api, errorMessage, location } = this.props
-    const { t } = this.context
+    const { api, errorMessage, location, t } = this.props
     const email = queryString.parse(location.search).email
     return (
       <div {...classes()}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
-          <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} />
+          <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} t={t} />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
           {api.success && <div {...classes('success')}>
             <p>{t('success')}</p>
@@ -62,6 +61,7 @@ Forgotten.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string.isRequired,
   }).isRequired,
+  t: PropTypes.func.isRequired,
 }
 
 Forgotten.defaultProps = {
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(toJS(Forgotten))
+)(toJS(withTranslator(Forgotten)))
