@@ -19,8 +19,8 @@ export default function Icon({ name, color, size, className }) {
     <svg
       {...classes(null, name, className)}
       style={styles.svg}
-      width={`${size}px`}
-      height={`${size}px`}
+      width={size ? `${size}px` : '100%'}
+      height={size ? `${size}px` : '100%'}
       viewBox="-3 -3 24 24"
     >
       <path
@@ -38,7 +38,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  size: 16,
+  size: null,
   color: null,
   className: null,
 }
