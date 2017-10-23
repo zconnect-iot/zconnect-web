@@ -1,0 +1,13 @@
+@import '~theme/variables.scss';
+
+:global(.Codeblock) {
+  background: $codeblock-bg;
+  border: $codeblock-border;
+  border-radius: $border-radius;
+  color: $codeblock-color;
+  padding: 20px;
+
+  :global(.Codeblock__pre) {
+    margin: 0;
+  }
+}
