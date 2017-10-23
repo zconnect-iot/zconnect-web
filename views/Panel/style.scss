@@ -1,0 +1,44 @@
+@import '~theme/variables.scss';
+
+:global(.Panel) {
+  border: 1px solid $border-faint;
+  overflow: hidden;
+  background: $panel-bg;
+  color: $panel-color;
+  fill: $panel-color;
+  border-radius: $border-radius;
+
+  :global(.Panel__header) {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 30px;
+    border-bottom: $border;
+    max-height: 100px;
+    align-items: center;
+    font-size: $font-size-large;
+
+    :global(.Panel__image) {
+      max-height: 44px;
+      margin-right: 20px;
+    }
+  }
+
+  :global(.Panel__body) {
+    padding: 30px;
+  }
+
+  :global(.Panel__footer) {
+    height: 40px;
+    border-top: $border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:global(.Panel--collapsed) {
+
+    :global(.Panel__body) {
+      display: none;
+    }
+  }
+}
