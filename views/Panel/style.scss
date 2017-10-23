@@ -7,6 +7,7 @@
   color: $panel-color;
   fill: $panel-color;
   border-radius: $border-radius;
+  margin-bottom: 20px;
 
   :global(.Panel__header) {
     display: flex;
@@ -33,6 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    outline: none;
   }
 
   &:global(.Panel--collapsed) {
