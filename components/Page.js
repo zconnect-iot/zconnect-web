@@ -10,6 +10,7 @@ import './style.scss'
 /*
   To allow the <Navbar /> to be used with any routing tech (or none at all), <Page/>
   needs the navItems, activeRoute and navigate function to pass down to the buttons
+  If a NavBar component is passed it will render this instead of the built in NavBar
 */
 
 export default class Page extends React.Component {
@@ -24,7 +25,7 @@ export default class Page extends React.Component {
     return (
       <Grid fluid className="Page">
         <Header rightContent={headerRightContent} />
-        <Navbar items={navItems} />
+        { this.props.NavBar ? <this.props.NavBar /> : <Navbar items={navItems} />}
         {children}
       </Grid>
     )
@@ -36,7 +37,8 @@ Page.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string,
     action: PropTypes.func,
-  })).isRequired,
+  })),
+  NavBar: PropTypes.func,
   location: PropTypes.shape({
     hash: PropTypes.string.isRequired,
     pathname: PropTypes.string.isRequired,
@@ -56,6 +58,8 @@ Page.propTypes = {
 Page.defaultProps = {
   subtitle: '',
   headerRightContent: null,
+  NavBar: null,
+  navItems: [],
 }
 
 Page.childContextTypes = {
