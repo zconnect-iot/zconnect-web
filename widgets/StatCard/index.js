@@ -39,7 +39,7 @@ const StatCard = (props) => {
   if (props.invert)
     contents.reverse()
 
-  return <div {...classes(null, commonModifiers)}>{contents}</div>
+  return <div {...classes(null, commonModifiers, props.className)}>{contents}</div>
 }
 
 StatCard.propTypes = {
@@ -51,6 +51,7 @@ StatCard.propTypes = {
   invert: PropTypes.bool,
   inline: PropTypes.bool,
   dangerFigure: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 StatCard.defaultProps = {
@@ -60,5 +61,6 @@ StatCard.defaultProps = {
   invert: false,
   inline: false,
   dangerFigure: false,
+  className: null,
 }
 export default StatCard

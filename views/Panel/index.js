@@ -36,7 +36,7 @@ export default class Panel extends React.PureComponent {
         </div>
         { collapsible ?
           <div {...classes('footer')} onClick={this.toggleCollapsed} role="button" tabIndex={0}>
-            <Icon name={`ARROW_DROP_${collapsed ? 'DOWN' : 'UP'}`} size={30} />
+            <Icon name={`CHEVRON_${collapsed ? 'DOWN' : 'UP'}`} size={30} />
           </div> : null
         }
       </div>

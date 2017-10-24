@@ -7,9 +7,9 @@ import { Button, Icon } from '../components'
 
 const classes = BEMHelper({ name: 'Content' })
 
-export default function Content({ title, subtitle, actionItems, children }) {
+export default function Content({ title, subtitle, actionItems, children, className }) {
   return (
-    <Col {...classes()} xs={12}>
+    <Col {...classes(null, null, className)} xs={12}>
       <Row {...classes('header')}>
         <Col {...classes('headerCenter')} smOffset={2} sm={8} xs={12}>
           <div {...classes('title')}>

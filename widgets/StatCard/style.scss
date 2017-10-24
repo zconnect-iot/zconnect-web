@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f8f8f8;
+  background-color: $statcard-bg;
   padding: 12px;
   min-height: 120px;
   text-align: center;
@@ -38,7 +38,7 @@
 // Description (usually text below the figure).
 :global(.StatCard__description) {
   font-weight: bold;
-  color: $text-color-minor;
+  color: $statcard-color;
 }
 :global(.StatCard__description--inline) {
   font-size: $font-size-small;
