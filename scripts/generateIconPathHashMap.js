@@ -26,6 +26,8 @@ const OUTPUT = path.resolve(ICONS_DIR, 'map.json')
 
 const optimiser = new Svgo({
   transformsWithOnePath: true,
+  cleanupNumericValues: true,
+  convertPathData: true,
 })
 
 const getSvgPathRegex = /<path.*d="([^"]*)"/
@@ -34,6 +36,14 @@ function getSvgPath(svgString) {
     throw new Error(`Expected string; got ${svgString}`)
   }
   return svgString.match(getSvgPathRegex)[1]
+}
+
+const getSvgTransformRegex = /<use.*transform="([^"]*)"/
+function getTransformAttr(svgString) {
+  if (typeof svgString !== 'string') {
+    throw new Error(`Expected string; got ${svgString}`)
+  }
+  return svgString.match(getSvgTransformRegex)[1]
 }
 
 const optimise = (svgString) => new Promise((resolve, reject) => {
@@ -52,10 +62,10 @@ const readFile = filepath => new Promise((resolve, reject) => {
 
 const processIcon = filepath => readFile(filepath)
   .then(optimise)
-  .then(({ data }) => getSvgPath(data))
-  .then(svgPath => {
+  .then(({ data }) => ({ d: getSvgPath(data), transform: getTransformAttr(data) }))
+  .then(attributes => {
     const iconName = path.basename(filepath).replace('.svg', '').toUpperCase()
-    ICONS[iconName] = svgPath
+    ICONS[iconName] = attributes
   })
   .catch(err => {
     ERRORS.push(`Unable to process ${filepath}: ${err.message}`)

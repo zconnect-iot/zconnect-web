@@ -13,7 +13,7 @@ export default function Icon({ name, color, size, className }) {
       [color ? 'fill' : null]: color, // Only set `fill` if color specified, will inherit from parent by default
     },
   }
-  const d = ICONS[name]
+  const { transform, d } = ICONS[name]
 
   return (
     <svg
@@ -21,9 +21,10 @@ export default function Icon({ name, color, size, className }) {
       style={styles.svg}
       width={size ? `${size}px` : '100%'}
       height={size ? `${size}px` : '100%'}
-      viewBox="-3 -3 24 24"
+      viewBox="0 0 24 24"
     >
       <path
+        transform={transform}
         d={d}
       />
     </svg>
