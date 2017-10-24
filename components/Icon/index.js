@@ -7,7 +7,7 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Icon' })
 
-export default function Icon({ name, color, size, className }) {
+export default function Icon({ name, color, size, className, onClick }) {
   const styles = {
     svg: {
       [color ? 'fill' : null]: color, // Only set `fill` if color specified, will inherit from parent by default
@@ -22,6 +22,7 @@ export default function Icon({ name, color, size, className }) {
       width={size ? `${size}px` : '100%'}
       height={size ? `${size}px` : '100%'}
       viewBox="0 0 24 24"
+      onClick={onClick}
     >
       <path
         transform={transform}
@@ -36,10 +37,12 @@ Icon.propTypes = {
   color: PropTypes.number,
   size: PropTypes.number,
   className: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 Icon.defaultProps = {
   size: null,
   color: null,
   className: null,
+  onClick: () => {},
 }

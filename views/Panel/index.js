@@ -22,7 +22,7 @@ export default class Panel extends React.PureComponent {
   }
   toggleCollapsed = () => this.setState({ collapsed: !this.state.collapsed })
   render() {
-    const { title, image, icon, collapsible, className, children } = this.props
+    const { title, image, icon, collapsible, className, children, onClick } = this.props
     const { collapsed } = this.state
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>
@@ -30,6 +30,7 @@ export default class Panel extends React.PureComponent {
           { image ? <img {...classes('image')} src={image} alt="Device Icon" /> : null }
           { icon ? <Icon name={icon} /> : null }
           { title }
+          { onClick ? <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} /> : null}
         </div>
         <div {...classes('body')}>
           { children }
@@ -55,6 +56,7 @@ Panel.propTypes = {
   className: PropTypes.string,
   collapsible: PropTypes.bool,
   collapsed: PropTypes.bool,
+  onClick: PropTypes.func,
 }
 
 Panel.defaultProps = {
@@ -65,4 +67,5 @@ Panel.defaultProps = {
   className: '',
   collapsible: false,
   collapsed: undefined,
+  onClick: null,
 }
