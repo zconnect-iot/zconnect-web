@@ -22,6 +22,11 @@
       max-height: 44px;
       margin-right: 20px;
     }
+
+    :global(.Icon--CHEVRON_RIGHT) {
+      margin-left: auto;
+      cursor: pointer;
+    }
   }
 
   :global(.Panel__body) {
