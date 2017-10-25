@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
 
-import { Icon, Button } from '../../components'
+import { Icon, Button, Codeblock } from '../../components'
+
+import './style.scss'
 
 const classes = BEMHelper('Message')
 
@@ -35,14 +37,19 @@ export default class Message extends React.Component {
       this.setState({ expanded: nextProps.expanded })
   }
 
-  expand() {
+  expand = () => {
     this.setState({ expanded: true })
     if (this.props.onExpand) this.props.onExpand()
   }
 
-  contract() {
+  contract = () => {
     this.setState({ expanded: false })
     if (this.props.onContract) this.props.onContract()
+  }
+
+  toggle = () => {
+    if (this.state.expanded) return this.contract()
+    return this.expand()
   }
 
   render() {
@@ -50,23 +57,29 @@ export default class Message extends React.Component {
     const { expanded } = this.state
     return (
       <div {...classes(null, { collapsed: !expanded })}>
-        <div {...classes('header')}>
+        <div {...classes('left')}>
           { renderIcon ? renderIcon() : <Icon
             name={typeToIconName[type]}
+            size={40}
             {...classes('icon', type)}
           />}
-          <div {...classes('headerMiddle')}>
-            <h3 {...classes('title')}>{title}</h3>
-            {subtitle && <h6 {...classes('subtitle')}>{subtitle}</h6>}
-            {time && <h6 {...classes('time')}>{moment(time, 'YYYYMMDD').fromNow()}</h6>}
-          </div>
         </div>
-        <div {...classes('body')}>
-          {description && <div {...classes('description')}>{description}</div>}
-          {codeblock && <div {...classes('codeblock')}>{codeblock}</div>}
-          {actions && <div {...classes('actions')}>
-            {actions.map(renderAction)}
-          </div>}
+        <div {...classes('right')}>
+          <div {...classes('header')}>
+            <div {...classes('headerMiddle')}>
+              <h5 {...classes('title')}>{title}</h5>
+              {subtitle && <h6 {...classes('subtitle')}>{subtitle}</h6>}
+              {time && <h6 {...classes('time')}>{moment(time, 'YYYYMMDD').fromNow()}</h6>}
+            </div>
+            <Icon {...classes('toggle')} name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} onClick={this.toggle} size={34} />
+          </div>
+          <div {...classes('body')}>
+            {description && <div {...classes('description')}>{description}</div>}
+            {codeblock && <Codeblock>{codeblock}</Codeblock>}
+            {actions && <div {...classes('actions')}>
+              {actions.map(renderAction)}
+            </div>}
+          </div>
         </div>
       </div>
     )

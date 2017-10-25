@@ -1,21 +1,45 @@
+@import "~theme/variables.scss";
+
 :global(.Message) {
   background: $message-bg;
   color: $message-color;
-  border-radius: $border-radius
+  border-radius: $border-radius;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
 
-  :global(.Message__header) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  :global(.Message__left) {
+    min-width: 40px;
+    margin-right: 20px;
+  }
 
-    :global(.Message__headerMiddle) {
-      flex: 1;
+  :global(.Message__right) {
+    overflow: hidden;
+    width: 100%;
+
+    :global(.Message__header) {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      height: 40px;
+      margin-bottom: 20px;
+
+      :global(.Message__headerMiddle) {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
     }
   }
 
+  :global(.Message__toggle) {
+    cursor: pointer;
+  }
+
   &:global(.Message--collapsed) {
+    :global(.Message__header) {
+      margin: 0;
+    }
     :global(.Message__body) {
       display: none;
     }
