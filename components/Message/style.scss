@@ -30,6 +30,11 @@
         justify-content: space-between;
       }
     }
+
+    :global(.Message__body) {
+      max-height: 1000px;
+      transition: all 0.25s ease-out;
+    }
   }
 
   :global(.Message__toggle) {
@@ -41,7 +46,8 @@
       margin: 0;
     }
     :global(.Message__body) {
-      display: none;
+      max-height: 0;
+      visibility: hidden;
     }
   }
 

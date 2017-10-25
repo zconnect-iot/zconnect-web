@@ -24,42 +24,42 @@ const typeToIconName = {
   warning: 'THUMB_DOWN',
 }
 
-export default class Message extends React.Component {
+export default class Message extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       expanded: props.expanded,
-      focused: props.focused,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.props.expanded)
-      this.setState({ expanded: nextProps.expanded, focused: nextProps.focused })
+      this.setState({ expanded: nextProps.expanded })
   }
 
   expand = () => {
-    this.setState({ expanded: true, focused: true })
-    if (this.props.onExpand) this.props.onExpand()
+    this.setState({ expanded: true })
+    if (this.props.onExpand) this.props.onExpand(this.props)
   }
 
   contract = () => {
-    this.setState({ expanded: false, focused: true })
-    if (this.props.onContract) this.props.onContract()
+    this.setState({ expanded: false })
+    if (this.props.onContract) this.props.onContract(this.props)
   }
 
   toggle = () => {
+    if (this.props.onToggle) this.props.onToggle(this.props)
     if (this.state.expanded) return this.contract()
     return this.expand()
   }
 
   render() {
-    const { renderIcon, type, title, subtitle, description, actions, codeblock, time } = this.props
-    const { expanded, focused } = this.state
+    const { renderIcon, type, title, subtitle, description, actions, codeblock, time, focused } = this.props
+    const { expanded } = this.state
     return (
       <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
         <div {...classes('left')}>
-          { renderIcon ? renderIcon() : <Icon
+          { renderIcon ? renderIcon(this.props) : <Icon
             name={typeToIconName[type]}
             size={40}
             {...classes('icon', type)}
@@ -103,6 +103,7 @@ Message.propTypes = {
   })),
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
+  onToggle: PropTypes.func,
   expanded: PropTypes.bool,
   renderIcon: PropTypes.func,
   codeblock: PropTypes.string,
@@ -114,6 +115,7 @@ Message.defaultProps = {
   type: 'default',
   onExpand: null,
   onContract: null,
+  onToggle: null,
   expanded: false,
   renderIcon: null,
   subtitle: '',
