@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import XDate from 'xdate'
+import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
 
-import { Icon, Button } from 'zc-web/components'
+import { Icon, Button } from '../../components'
 
 const classes = BEMHelper('Message')
 
 export const renderAction = props => (
   <Button hollow action={props.action} {...classes('action')}>
-    <Icon name={props.icon} />
+    <Icon name={props.icon} size={40} />
   </Button>
 )
 
@@ -37,28 +37,36 @@ export default class Message extends React.Component {
 
   expand() {
     this.setState({ expanded: true })
-    if (this.props.onExpand)
-      this.props.onExpand()
+    if (this.props.onExpand) this.props.onExpand()
   }
 
   contract() {
     this.setState({ expanded: false })
-    if (this.props.onContract)
-      this.props.onContact()
+    if (this.props.onContract) this.props.onContract()
   }
 
   render() {
+    const { renderIcon, type, title, subtitle, description, actions, codeblock, time } = this.props
+    const { expanded } = this.state
     return (
-      <div {...classes(null, this.props.type)}>
-        <Icon
-          name={typeToIconName[this.props.type]}
-          {...classes('icon', this.props.type)}
-        />
-        <h3 {...classes('title')}>{this.props.title}</h3>
-        <h6 {...classes('subtitle')}>{this.state.subtitle}</h6>
-        <div {...classes('description')}>{this.props.description}</div>
-        <div {...classes('actions')}>
-          {this.props.actions.map(renderAction)}
+      <div {...classes(null, { collapsed: !expanded })}>
+        <div {...classes('header')}>
+          { renderIcon ? renderIcon() : <Icon
+            name={typeToIconName[type]}
+            {...classes('icon', type)}
+          />}
+          <div {...classes('headerMiddle')}>
+            <h3 {...classes('title')}>{title}</h3>
+            {subtitle && <h6 {...classes('subtitle')}>{subtitle}</h6>}
+            {time && <h6 {...classes('time')}>{moment(time, 'YYYYMMDD').fromNow()}</h6>}
+          </div>
+        </div>
+        <div {...classes('body')}>
+          {description && <div {...classes('description')}>{description}</div>}
+          {codeblock && <div {...classes('codeblock')}>{codeblock}</div>}
+          {actions && <div {...classes('actions')}>
+            {actions.map(renderAction)}
+          </div>}
         </div>
       </div>
     )
@@ -68,20 +76,22 @@ export default class Message extends React.Component {
 Message.propTypes = {
   type: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   time: PropTypes.oneOfType([
-    PropTypes.instanceOf(XDate),
     PropTypes.string,
-  ]).isRequired,
-  description: PropTypes.string.isRequired,
+  ]),
+  description: PropTypes.string,
   actions: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     action: PropTypes.func,
     route: PropTypes.string,
-  })).isRequired,
+  })),
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
   expanded: PropTypes.bool,
+  renderIcon: PropTypes.func,
+  codeblock: PropTypes.string,
 }
 
 Message.defaultProps = {
@@ -89,4 +99,10 @@ Message.defaultProps = {
   onExpand: null,
   onContract: null,
   expanded: false,
+  renderIcon: null,
+  subtitle: '',
+  description: '',
+  codeblock: '',
+  actions: [],
+  time: '',
 }

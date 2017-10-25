@@ -1,7 +1,23 @@
-:global(.Message__title) {
-  text-align: center;
-}
+:global(.Message) {
+  background: $message-bg;
+  color: $message-color;
+  border-radius: $border-radius
 
-:global(.Message__icon) {
-  position: fixed;
+  :global(.Message__header) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    :global(.Message__headerMiddle) {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &:global(.Message--collapsed) {
+    :global(.Message__body) {
+      display: none;
+    }
+  }
 }
