@@ -1,8 +1,8 @@
 @import "~theme/variables.scss";
 
 :global(.Message) {
-  background: $message-bg;
   color: $message-color;
+  fill: $message-color;
   border-radius: $border-radius;
   padding: 20px;
   display: flex;
@@ -43,5 +43,10 @@
     :global(.Message__body) {
       display: none;
     }
+  }
+
+  &:global(.Message--focused) {
+    background: $message-bg;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   }
 }

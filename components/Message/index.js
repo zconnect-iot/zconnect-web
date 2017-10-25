@@ -29,21 +29,22 @@ export default class Message extends React.Component {
     super(props)
     this.state = {
       expanded: props.expanded,
+      focused: props.focused,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.props.expanded)
-      this.setState({ expanded: nextProps.expanded })
+      this.setState({ expanded: nextProps.expanded, focused: nextProps.focused })
   }
 
   expand = () => {
-    this.setState({ expanded: true })
+    this.setState({ expanded: true, focused: true })
     if (this.props.onExpand) this.props.onExpand()
   }
 
   contract = () => {
-    this.setState({ expanded: false })
+    this.setState({ expanded: false, focused: true })
     if (this.props.onContract) this.props.onContract()
   }
 
@@ -54,9 +55,9 @@ export default class Message extends React.Component {
 
   render() {
     const { renderIcon, type, title, subtitle, description, actions, codeblock, time } = this.props
-    const { expanded } = this.state
+    const { expanded, focused } = this.state
     return (
-      <div {...classes(null, { collapsed: !expanded })}>
+      <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
         <div {...classes('left')}>
           { renderIcon ? renderIcon() : <Icon
             name={typeToIconName[type]}
@@ -105,6 +106,8 @@ Message.propTypes = {
   expanded: PropTypes.bool,
   renderIcon: PropTypes.func,
   codeblock: PropTypes.string,
+  className: PropTypes.string,
+  focused: PropTypes.bool,
 }
 
 Message.defaultProps = {
@@ -118,4 +121,6 @@ Message.defaultProps = {
   codeblock: '',
   actions: [],
   time: '',
+  className: '',
+  focused: false,
 }
