@@ -39,13 +39,16 @@ Content.propTypes = {
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     icon: PropTypes.string,
-  })).isRequired,
+  })),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  className: PropTypes.string,
 }
 
 Content.defaultProps = {
   subtitle: '',
+  actionItems: [],
+  className: '',
 }
