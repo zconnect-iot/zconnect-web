@@ -40,6 +40,10 @@
     align-items: center;
     justify-content: center;
     outline: none;
+
+    :global(.Icon--CHEVRON_UP), :global(.Icon--CHEVRON_DOWN) {
+      cursor: pointer;
+    }
   }
 
   &:global(.Panel--collapsed) {
