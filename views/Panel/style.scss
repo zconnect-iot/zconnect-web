@@ -51,5 +51,9 @@
     :global(.Panel__body) {
       display: none;
     }
+
+    :global(.Panel__footer) {
+      border-top: 0px;
+    }
   }
 }
