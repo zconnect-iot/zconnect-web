@@ -4,11 +4,11 @@
 html, body {
   font-family: $font-family;
   color: $text-color;
+  fill: $text-color;
   height: 100%;
   background: $page-bg;
   font-size: $font-size-base;
   background-attachment: fixed;
-  font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,19 +23,19 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
-}
-
-h3 {
   font-size: 2rem;
 }
 
-h4 {
+h3 {
   font-size: 1.5rem;
 }
 
-h5 {
+h4 {
   font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
 }
 
 // Generic colours.
@@ -48,7 +48,6 @@ h5 {
   &:global(info) { background-color: $brand-info; }
   &:global(grey) { background-color: $brand-grey; }
 
-  &:global(light) { background-color: $bg-light; }
   &:global(light) { background-color: $bg-light; }
   &:global(dark) { background-color: $bg-dark; }
   &:global(darker) { background-color: $bg-darker; }

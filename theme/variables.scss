@@ -9,7 +9,7 @@ $link-color: $brand-primary;
 $border-radius: 5px;
 $border-width: 1px;
 $border-style: solid;
-$border-color: $off-white;
+$border-color: $pale-gray;
 $border: $border-width $border-style $border-color;
 
 // Structure
@@ -18,9 +18,9 @@ $padding: 12px;
 // Backgrounds
 $bg-light: #fff;
 $bg-light-alternate: $off-white;
-$bg-dark: #f0f3f4;
-$bg-darker: #adadad;
-$header-bg-light: #f6f8f8;
+$bg-dark: $pale-gray
+$bg-darker: $lighter-gray
+$header-bg-light: $off-white;
 
 // Fonts
 $font-size-base: 12px;
