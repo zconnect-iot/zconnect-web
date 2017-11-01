@@ -4,7 +4,7 @@
 $block-padding: 1.25rem;
 
 :global(.Card) {
-  border: 1px solid $border-faint;
+  border: $border;
   overflow: hidden;
 }
 
@@ -18,15 +18,15 @@ $block-padding: 1.25rem;
   text-align: center;
 }
 :global(.Card__block--border-top) {
-  border-top: 1px solid $border-faint;
+  border-top: $border;
 }
 :global(.Card__block--border-bottom) {
-  border-bottom: 1px solid $border-faint;
+  border-bottom: $border;
 }
 
 :global(.Card__title) {
   padding-top: 4px;
-  border-bottom: 1px solid $border-faint;
+  border-bottom: $border;
   background-color: $bg-dark;
   font-size: $font-size-large;
   font-weight: bold;

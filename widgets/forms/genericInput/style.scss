@@ -3,7 +3,7 @@
 
 .control {
   padding: 20px;
-  border-bottom: 1px dashed $border-faint;
+  border-bottom: 1px dashed $border-color;
   &:last-child {
     border-bottom: none;
   }
@@ -15,7 +15,7 @@
 }
 
 .input {
-  border: 1px solid $border-faint;
+  border: $border;
   border-radius: 3px;
   padding: 5px;
   display: inline-block;

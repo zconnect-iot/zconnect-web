@@ -38,7 +38,7 @@
 
 @mixin form-control {
   padding: 20px;
-  border-bottom: 1px dashed $border-faint;
+  border-bottom: 1px dashed $border-color;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -55,7 +55,7 @@
 }
 
 @mixin form-input {
-  border: 1px solid $border-faint;
+  border: $border;
   border-radius: 3px;
   padding: 5px;
   flex: 1;
