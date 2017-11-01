@@ -1,24 +1,15 @@
-// Colours
-$brand-primary: #44a0ee;
-$brand-secondary: #e25139;
-$brand-success: #5cb85c;
-$brand-warning: #f0ad4e;
-$brand-danger: #d9534f;
-$brand-info: #5bc0de;
-$brand-grey: #829EAF;
+@import './colors';
 
-$text-color: #767676;
-$text-color-minor: #888888;
-$link-color: #2A9FD8;
-$text-color-light: #f8f8f8;
+$text-color: $gray;
+$text-color-minor: $light-gray;
+$text-color-light: $off-white;
 
 $link-color: $brand-primary;
 
 $border-radius: 5px;
 $border-width: 1px;
-$border-faint: #e0e0e0;
 $border-style: solid;
-$border-color: $border-faint;
+$border-color: $off-white;
 $border: $border-width $border-style $border-color;
 
 // Structure
@@ -26,22 +17,22 @@ $padding: 12px;
 
 // Backgrounds
 $bg-light: #fff;
-$bg-light-alternate: aliceblue;
+$bg-light-alternate: $off-white;
 $bg-dark: #f0f3f4;
 $bg-darker: #adadad;
 $header-bg-light: #f6f8f8;
 
 // Fonts
-$font-size-base: 14px;
+$font-size-base: 12px;
 $font-family-sans-serif: "Helvetica Neue", Helvetica, sans-serif;
 $font-family: $font-family-sans-serif;
 
-$font-size-largest: 1.6rem;
-$font-size-larger: 1.4rem;
-$font-size-large: 1.2rem;
-$font-size-small: 0.8rem;
-$font-size-smaller: 0.7rem;
-$font-size-smallest: 0.6rem;
+$font-size-largest: 1.3rem;
+$font-size-larger: 1.2rem;
+$font-size-large: 1.1rem;
+$font-size-small: 0.9rem;
+$font-size-smaller: 0.8rem;
+$font-size-smallest: 0.7rem;
 
 // Components
 $page-max-width: 1000px;
@@ -70,6 +61,19 @@ $tooltip-border-color: $text-color;
 
 $drawer-alpha: 0.25;
 $drawer-inner-z-index: 1000;
+
+$codeblock-bg: $bg-light;
+$codeblock-border: $border;
+$codeblock-color: $text-color;
+
+$panel-bg: $bg-light;
+$panel-color: $text-color;
+
+$statcard-bg: $bg-light;
+$statcard-color: $text-color-minor;
+
+$message-bg: $bg-light;
+$message-color: $text-color-minor;
 
 // Checkboxes.
 $checked-image-url: url('/icons/checked.svg');
