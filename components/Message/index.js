@@ -107,7 +107,10 @@ Message.propTypes = {
   onToggle: PropTypes.func,
   expanded: PropTypes.bool,
   renderIcon: PropTypes.func,
-  codeblock: PropTypes.objectOf(PropTypes.any),
+  codeblock: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
   focused: PropTypes.bool,
 }
