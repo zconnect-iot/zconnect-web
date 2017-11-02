@@ -76,7 +76,8 @@ export default class Message extends React.PureComponent {
           </div>
           <div {...classes('body')}>
             {description && <div {...classes('description')}>{description}</div>}
-            {codeblock && <Codeblock>{codeblock}</Codeblock>}
+            {codeblock && typeof codeblock === 'string' && <Codeblock>{codeblock}</Codeblock>}
+            {codeblock && typeof codeblock === 'object' && <Codeblock dictionary={codeblock} />}
             {actions && <div {...classes('actions')}>
               {actions.map(renderAction)}
             </div>}
@@ -106,7 +107,10 @@ Message.propTypes = {
   onToggle: PropTypes.func,
   expanded: PropTypes.bool,
   renderIcon: PropTypes.func,
-  codeblock: PropTypes.string,
+  codeblock: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
   focused: PropTypes.bool,
 }
@@ -120,7 +124,7 @@ Message.defaultProps = {
   renderIcon: null,
   subtitle: '',
   description: '',
-  codeblock: '',
+  codeblock: undefined,
   actions: [],
   time: '',
   className: '',
