@@ -76,7 +76,8 @@ export default class Message extends React.PureComponent {
           </div>
           <div {...classes('body')}>
             {description && <div {...classes('description')}>{description}</div>}
-            {codeblock && <Codeblock dictionary={codeblock} />}
+            {codeblock && typeof codeblock === 'string' && <Codeblock>{codeblock}</Codeblock>}
+            {codeblock && typeof codeblock === 'object' && <Codeblock dictionary={codeblock} />}
             {actions && <div {...classes('actions')}>
               {actions.map(renderAction)}
             </div>}
