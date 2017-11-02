@@ -75,6 +75,9 @@ $statcard-color: $text-color-minor;
 $message-bg: $bg-light;
 $message-color: $text-color-minor;
 
+$spinner-color: $brand-primary;
+$spinner-speed: 1s;
+
 // Checkboxes.
 $checked-image-url: url('/icons/checked.svg');
 $unchecked-image-url: url('/icons/unchecked.svg');
