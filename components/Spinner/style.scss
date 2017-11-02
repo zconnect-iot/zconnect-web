@@ -1,43 +1,54 @@
-// @import "~theme/variables.scss";
-//
-// :global(.Spinner) {
-//   @keyframes :global(lds-dual-ring) {
-//     0% {
-//       -webkit-transform: rotate(0);
-//       transform: rotate(0);
-//     }
-//     100% {
-//       -webkit-transform: rotate(360deg);
-//       transform: rotate(360deg);
-//     }
-//   }
-//   @-webkit-keyframes :global(lds-dual-ring) {
-//     0% {
-//       -webkit-transform: rotate(0);
-//       transform: rotate(0);
-//     }
-//     100% {
-//       -webkit-transform: rotate(360deg);
-//       transform: rotate(360deg);
-//     }
-//   }
-//   :global(.lds-dual-ring) {
-//     position: relative;
-//     width: 200px !important;
-//     height: 200px !important;
-//     -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
-//     transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
-//   }
-//   :global(.lds-dual-ring div) {
-//     position: absolute;
-//     width: 160px;
-//     height: 160px;
-//     top: 20px;
-//     left: 20px;
-//     border-radius: 50%;
-//     border: 8px solid #000;
-//     border-color: #00ADEF transparent #00ADEF transparent;
-//     -webkit-animation: lds-dual-ring 1s linear infinite;
-//     animation: lds-dual-ring 1s linear infinite;
-//   }
-// }
+@import "~theme/variables.scss";
+
+:global(.Spinner) {
+  padding: 6px;
+
+  &:global(.Spinner--full) {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color $transition-duration ease;
+  }
+}
+@keyframes :global(lds-dual-ring) {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes :global(lds-dual-ring) {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+:global(.lds-dual-ring) :global {
+  position: relative;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+
+  div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: $spinner-color transparent $spinner-color transparent;
+    -webkit-animation: lds-dual-ring $spinner-speed linear infinite;
+    animation: lds-dual-ring $spinner-speed linear infinite;
+  }
+}
