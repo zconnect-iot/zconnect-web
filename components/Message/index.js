@@ -37,10 +37,14 @@ export default class Message extends React.PureComponent {
     if (this.props.focused) scrollToElement(this.ref)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.focused && nextProps.focused) scrollToElement(this.ref)
+  componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.expanded !== this.props.expanded)
       this.setState({ expanded: nextProps.expanded })
+    if (nextProps.focused && (nextState.expanded !== this.state.expanded)) {
+      // Have to wait for the expanded css transition to finish before scrolling
+      clearTimeout(this.scroll)
+      this.scroll = setTimeout(() => scrollToElement(this.ref, { align: 'middle' }), 100)
+    }
   }
 
   setRef = (ref) => {
@@ -49,8 +53,6 @@ export default class Message extends React.PureComponent {
 
   expand = () => {
     this.setState({ expanded: true })
-    // Have to wait for the expanded css transition to finish before scrolling
-    setTimeout(() => scrollToElement(this.ref, { align: 'middle' }), 100)
     if (this.props.onExpand) this.props.onExpand(this.props)
   }
 
