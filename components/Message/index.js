@@ -49,6 +49,8 @@ export default class Message extends React.PureComponent {
 
   expand = () => {
     this.setState({ expanded: true })
+    // Have to wait for the expanded css transition to finish before scrolling
+    setTimeout(() => scrollToElement(this.ref, { align: 'middle' }), 100)
     if (this.props.onExpand) this.props.onExpand(this.props)
   }
 
