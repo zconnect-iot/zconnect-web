@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
+import scrollToElement from 'scroll-to-element'
 
 import { Icon, Button, Codeblock } from '../../components'
 
@@ -32,9 +33,18 @@ export default class Message extends React.PureComponent {
     }
   }
 
+  componentDidMount() {
+    if (this.props.focused) scrollToElement(this.ref)
+  }
+
   componentWillReceiveProps(nextProps) {
+    if (!this.props.focused && nextProps.focused) scrollToElement(this.ref)
     if (nextProps.expanded !== this.props.expanded)
       this.setState({ expanded: nextProps.expanded })
+  }
+
+  setRef = (ref) => {
+    this.ref = ref
   }
 
   expand = () => {
@@ -54,10 +64,15 @@ export default class Message extends React.PureComponent {
   }
 
   render() {
-    const { renderIcon, type, title, subtitle, description, actions, codeblock, time, focused } = this.props
+    const {
+      renderIcon, type, title, subtitle, description, actions, codeblock, time,
+      focused } = this.props
     const { expanded } = this.state
     return (
-      <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
+      <div
+        ref={this.setRef}
+        {...classes(null, { collapsed: !expanded, focused }, this.props.className)}
+      >
         <div {...classes('left')}>
           { renderIcon ? renderIcon(this.props) : <Icon
             name={typeToIconName[type]}
@@ -89,7 +104,7 @@ export default class Message extends React.PureComponent {
 }
 
 Message.propTypes = {
-  type: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
+  type: PropTypes.string,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   time: PropTypes.oneOfType([
