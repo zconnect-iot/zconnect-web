@@ -1,0 +1,12 @@
+<svg width="42" height="51" viewBox="0 0 42 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>firmware_update</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="matrix(3 0 0 3 -18573 -666)">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(6191 222)" fill="#FFFFFF"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 14 6L 10 6L 10 0L 4 0L 4 6L 0 6L 7 13L 14 6ZM 0 15L 0 17L 14 17L 14 15L 0 15Z"/>
+</defs>
+</svg>
