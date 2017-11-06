@@ -14,12 +14,12 @@ const classes = BEMHelper({ name: 'Button' })
 export default class Button extends React.Component {
   navigate = () => this.context.navigate(this.props.route)
   render() {
-    const { color, hollow, children, className, action, route } = this.props
+    const { color, hollow, children, className, action, route, active } = this.props
     const onClick = route ? this.navigate : action
     return (
       <button
         onClick={onClick}
-        {...classes(null, [color || null, hollow ? 'hollow' : null], className)}
+        {...classes(null, [color || null, hollow ? 'hollow' : null, active ? 'active' : null], className)}
       >
         {children}
       </button>
@@ -41,6 +41,7 @@ Button.propTypes = {
     PropTypes.node,
   ]),
   className: PropTypes.string,
+  active: PropTypes.bool,
 }
 
 Button.defaultProps = {
@@ -50,4 +51,5 @@ Button.defaultProps = {
   className: '',
   action: null,
   route: null,
+  active: false,
 }
