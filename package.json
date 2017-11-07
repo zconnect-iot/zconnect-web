@@ -50,6 +50,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
     "query-string": "^5.0.0",
+    "react-bar-chart": "^0.1.2",
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^0.55.0",
     "react-tabs-redux": "^1.6.0",

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
-import { Icon } from '../../components'
+import { Icon, Button } from '../../components'
 
 import './style.scss'
 
@@ -21,8 +21,11 @@ export default class Panel extends React.PureComponent {
     })
   }
   toggleCollapsed = () => this.setState({ collapsed: !this.state.collapsed })
+  renderActions = actions => actions.map(action => (<Button key={action.title} {...action}>
+    {action.title}
+  </Button>))
   render() {
-    const { title, image, icon, collapsible, className, children, onClick } = this.props
+    const { title, image, icon, collapsible, className, children, onClick, actions } = this.props
     const { collapsed } = this.state
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>
@@ -30,7 +33,8 @@ export default class Panel extends React.PureComponent {
           { image ? <img {...classes('image')} src={image} alt="Device Icon" /> : null }
           { icon ? <Icon name={icon} /> : null }
           { title }
-          { onClick ? <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} /> : null}
+          { onClick ? <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} /> : null }
+          { actions.length ? this.renderActions(actions) : null }
         </div>
         <div {...classes('body')}>
           { children }
@@ -57,6 +61,10 @@ Panel.propTypes = {
   collapsible: PropTypes.bool,
   collapsed: PropTypes.bool,
   onClick: PropTypes.func,
+  actions: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    route: PropTypes.string,
+  })),
 }
 
 Panel.defaultProps = {
@@ -68,4 +76,5 @@ Panel.defaultProps = {
   collapsible: false,
   collapsed: undefined,
   onClick: null,
+  actions: [],
 }
