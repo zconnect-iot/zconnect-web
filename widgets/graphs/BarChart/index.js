@@ -2,36 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Barchart from 'react-bar-chart'
 
-export default class BarChart extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      width: 0,
-    }
-  }
-  componentDidMount() {
-    window.onresize = this.updateWidth
-    setTimeout(this.updateWidth, 0)
-  }
-  componentWillUnmount() {
-    window.onresize = null
-  }
-  setRef = (ref) => {
-    this.ref = ref
-  }
-  updateWidth = () => this.setState({ width: this.ref.offsetWidth })
-  render() {
-    const { className, data, margin, yLabel, height, width } = this.props
-    return (<div ref={this.setRef} className={className}>
-      <Barchart
-        data={data.map(item => ({ ...item, text: item.label }))}
-        margin={margin}
-        yLabel={yLabel}
-        height={height}
-        width={width || this.state.width}
-      />
-    </div>)
-  }
+import { withDimensions } from '../../../hocs'
+
+function BarChart(props) {
+  const { className, data, margin, yLabel, height, width } = props
+  return (<div className={className}>
+    <Barchart
+      data={data.map(item => ({ ...item, text: item.label }))}
+      margin={margin}
+      yLabel={yLabel}
+      height={height}
+      width={width}
+    />
+  </div>)
 }
 
 BarChart.propTypes = {
@@ -47,11 +30,8 @@ BarChart.propTypes = {
     right: PropTypes.number,
   }),
   yLabel: PropTypes.string,
-  height: PropTypes.number,
-  width: PropTypes.oneOf([
-    PropTypes.number,
-    PropTypes.null,
-  ]),
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 }
 
 BarChart.defaultProps = {
@@ -64,6 +44,6 @@ BarChart.defaultProps = {
     left: 24,
   },
   yLabel: '',
-  height: 300,
-  width: null,
 }
+
+export default withDimensions(BarChart)
