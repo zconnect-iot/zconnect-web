@@ -38,10 +38,10 @@ BarChart.defaultProps = {
   className: '',
   data: [],
   margin: {
-    top: 0,
+    top: 8,
     right: 0,
     bottom: 20,
-    left: 24,
+    left: 34,
   },
   yLabel: '',
 }
