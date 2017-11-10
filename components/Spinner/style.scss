@@ -1,7 +1,9 @@
 @import "~theme/variables.scss";
 
 :global(.Spinner) {
-  padding: 6px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 
   &:global(.Spinner--full) {
     position: absolute;
