@@ -78,7 +78,7 @@ ProgressBar.propTypes = {
 
 ProgressBar.defaultProps = {
   maximum: 0,
-  foregroundColor: '',
+  foregroundColor: 'success',
   backgroundColor: '',
   textColor: '',
   text: '',
