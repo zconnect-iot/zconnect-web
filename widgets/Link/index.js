@@ -12,18 +12,17 @@ const classes = new BEMHelper('Link')
 */
 
 export default class Link extends React.Component {
-  navigate = () => this.context.navigate(this.props.route)
-  action = (e) => {
+  onClick = (e) => {
     e.preventDefault()
-    this.props.action()
+    const { route, action } = this.props
+    return route ? this.context.navigate(route) : action()
   }
   render() {
     const { className, children, route } = this.props
-    const onClick = route ? this.navigate : this.action
     return (
       <a
         href={route}
-        onClick={onClick}
+        onClick={this.onClick}
         {...classes(null, null, className)}
       >
         {children}
