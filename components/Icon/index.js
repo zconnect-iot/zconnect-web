@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import ICONS from '../../assets/icons/map.json'
 
-import './style.scss'
-
 const classes = BEMHelper({ name: 'Icon' })
 
 export default function Icon({ name, color, size, className, onClick }) {

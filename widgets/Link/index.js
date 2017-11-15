@@ -6,36 +6,27 @@ import './style.scss'
 
 const classes = new BEMHelper('Link')
 
-/**
- * Link component.
- *
- * Can be used as a normal link:
- * @example
- * <Link value={href}>Click me!</Link>
- *
- * Can also be used as a Griddle column component (in this case the anchor will
- * have `innerText` `"View"`):
- * @example
- * <ColumnDefinition
- *   id="link"
- *   key="link"
- *   title="Link"
- *   customComponent={Link}
- * />
- */
-export default class Link extends React.Component {
-  navigate = () => this.context.navigate(this.props.value)
+/*
+  Returns anchor tag that navigates to props.route if provided or invokes
+  props.action if not. Similar to <Button/>.
+*/
 
+export default class Link extends React.Component {
+  navigate = () => this.context.navigate(this.props.route)
+  action = (e) => {
+    e.preventDefault()
+    this.props.action()
+  }
   render() {
-    const { value, className, children } = this.props
-    const contents = children || 'View'
+    const { className, children, route } = this.props
+    const onClick = route ? this.navigate : this.action
     return (
       <a
-        href={value}
-        onClick={this.navigate}
+        href={route}
+        onClick={onClick}
         {...classes(null, null, className)}
       >
-        {contents}
+        {children}
       </a>
     )
   }
@@ -46,10 +37,8 @@ Link.contextTypes = {
 }
 
 Link.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  action: PropTypes.func,
+  route: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -60,4 +49,6 @@ Link.propTypes = {
 Link.defaultProps = {
   className: '',
   children: null,
+  action: () => {},
+  route: '',
 }
