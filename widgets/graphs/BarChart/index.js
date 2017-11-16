@@ -4,7 +4,7 @@ import Barchart from 'react-bar-chart'
 
 import { withDimensions } from '../../../hocs'
 
-function BarChart(props) {
+export function BarChart(props) {
   const { className, data, margin, yLabel, height, width } = props
   return (<div className={className}>
     <Barchart
@@ -30,8 +30,8 @@ BarChart.propTypes = {
     right: PropTypes.number,
   }),
   yLabel: PropTypes.string,
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  height: PropTypes.number,
+  width: PropTypes.number,
 }
 
 BarChart.defaultProps = {
@@ -44,6 +44,8 @@ BarChart.defaultProps = {
     left: 34,
   },
   yLabel: '',
+  height: 300,
+  width: 400,
 }
 
-export default withDimensions(BarChart)
+export const ResponsiveBarChart = withDimensions({ debounceInterval: 100 })(BarChart)
