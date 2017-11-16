@@ -80,6 +80,8 @@
 }
 
 :global(.Button) {
+  height: 36px;
+  min-width: 100px;
   border-radius: $border-radius;
   display: flex;
   flex-direction: row;
