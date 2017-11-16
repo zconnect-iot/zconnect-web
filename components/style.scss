@@ -2,6 +2,7 @@
 
 :global(.Page) {
   padding: 0;
+  overflow: hidden;
 }
 
 :global(.Header) {
@@ -82,6 +83,7 @@
   border-radius: $border-radius;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   background: $brand-grey;
   border: 1px solid $brand-grey;
