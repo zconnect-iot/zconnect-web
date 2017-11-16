@@ -24,12 +24,18 @@ class Navbar extends React.Component {
     const { items } = this.props
     return (
       <Row {...classes()}>
-        <Col smOffset={2} sm={8}>
-          {items.map(item => (<NavButton
-            key={item.title}
-            {...item}
-          />))}
-          <NavButton title="Logout" icon="POWER" action={this.onLogout} active={false} />
+        <Col xs smOffset={2} sm={8}>
+          <Row>
+            {items.map(item => (<Col xs sm={1} {...classes('item')}>
+              <NavButton
+                key={item.title}
+                {...item}
+              />
+            </Col>))}
+            <Col xs sm={1} {...classes('item')}>
+              <NavButton title="Logout" icon="POWER" action={this.onLogout} active={false} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     )

@@ -11,9 +11,11 @@ export default function Header(props) {
   const right = props.rightContent || null
   return (
     <Row {...classes()}>
-      <Col smOffset={2} sm={8} style={{ display: 'flex' }}>
-        {left && <div {...classes('left-content')}>{left}</div>}
-        {right && <div {...classes('right-content')}>{right}</div>}
+      <Col xs smOffset={2} sm={8}>
+        <Row>
+          <Col xs>{left}</Col>
+          {right && <Col end="xs">{right}</Col>}
+        </Row>
       </Col>
     </Row>
   )

@@ -8,12 +8,6 @@
   background: $header-bg;
   padding: 15px 0;
 }
-:global(.Header__left-content) {
-  flex: 1;
-}
-:global(.Header__right-content) {
-  margin-left: auto;
-}
 
 :global(.Logo) {
   background-image: $logo-small;
@@ -86,17 +80,15 @@
 
 :global(.Button) {
   border-radius: $border-radius;
-  height: 36px;
-  min-width: 130px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   background: $brand-grey;
   border: 1px solid $brand-grey;
   cursor: pointer;
   color: $text-color;
   fill: currentColor;
+  font-size: 14px;
 
   &:global(.Button--primary) {
     background: $brand-primary;
