@@ -7,13 +7,14 @@
 
 :global(.Header) {
   background: $header-bg;
-  padding: 15px 0;
+  padding: 8px 0;
 
   :global(.Header__Logo) {
     background: transparent;
     border: none;
     height: auto;
     width: auto;
+    padding: 0;
   }
 }
 
