@@ -26,6 +26,10 @@
     min-width: 240px;
   }
 
+  &:global(.Logo--clickable) {
+    cursor: pointer;
+  }
+
 }
 
 :global(.NavButton) {

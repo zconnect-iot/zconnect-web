@@ -7,7 +7,7 @@ import Logo from './Logo'
 const classes = BEMHelper({ name: 'Header' })
 
 export default function Header(props) {
-  const left = props.leftContent || <Logo small />
+  const left = props.leftContent || <Logo small onClick={props.navToRoot} />
   const right = props.rightContent || null
   return (
     <Row {...classes()}>
@@ -30,10 +30,12 @@ Header.propTypes = {
   children: nodeOrArray,
   leftContent: nodeOrArray,
   rightContent: nodeOrArray,
+  navToRoot: PropTypes.func,
 }
 
 Header.defaultProps = {
   children: null,
   leftContent: null,
   rightContent: null,
+  navToRoot: () => {},
 }
