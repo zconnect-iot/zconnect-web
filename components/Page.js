@@ -20,12 +20,11 @@ export default class Page extends React.Component {
       location: this.props.location,
     }
   }
-  navToRoot = () => this.props.navigate('/')
   render() {
     const { children, navItems, headerRightContent } = this.props
     return (
       <Grid fluid className="Page">
-        <Header rightContent={headerRightContent} navToRoot={this.navToRoot} />
+        <Header rightContent={headerRightContent} />
         { this.props.NavBar ? <this.props.NavBar /> : <Navbar items={navItems} />}
         {children}
       </Grid>

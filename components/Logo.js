@@ -4,29 +4,18 @@ import BEMHelper from 'react-bem-helper'
 
 const classes = BEMHelper({ name: 'Logo' })
 
-export default function Logo(props) {
-  const { small, large, onClick } = props
-  const modifiers = [
-    small ? 'small' : null,
-    large ? 'large' : null,
-    onClick ? 'clickable' : null,
-  ]
+export default function Logo({ small, large }) {
   return (
-    <div
-      {...classes(null, modifiers)}
-      {...props}
-    />
+    <div {...classes(null, [small ? 'small' : null, large ? 'large' : null])} />
   )
 }
 
 Logo.propTypes = {
   small: PropTypes.bool,
   large: PropTypes.bool,
-  onClick: PropTypes.func,
 }
 
 Logo.defaultProps = {
   small: false,
   large: false,
-  onClick: null,
 }

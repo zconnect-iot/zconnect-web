@@ -8,6 +8,13 @@
 :global(.Header) {
   background: $header-bg;
   padding: 15px 0;
+
+  :global(.Header__Logo) {
+    background: transparent;
+    border: none;
+    height: auto;
+    width: auto;
+  }
 }
 
 :global(.Logo) {
@@ -25,11 +32,6 @@
     height: 70px;
     min-width: 240px;
   }
-
-  &:global(.Logo--clickable) {
-    cursor: pointer;
-  }
-
 }
 
 :global(.NavButton) {
