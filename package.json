@@ -53,7 +53,6 @@
     "react-bar-chart": "^0.1.2",
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^0.55.0",
-    "react-syntax-highlighter": "^6.0.3",
     "react-tabs-redux": "^1.6.0",
     "scroll-to-element": "^2.0.0"
   },
