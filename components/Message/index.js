@@ -4,17 +4,11 @@ import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
 import scrollToElement from 'scroll-to-element'
 
-import { Icon, Button, Codeblock } from '../../components'
+import { Icon } from '../../components'
 
 import './style.scss'
 
 const classes = BEMHelper('Message')
-
-export const renderAction = props => (
-  <Button hollow action={props.action} {...classes('action')}>
-    <Icon name={props.icon} size={40} />
-  </Button>
-)
 
 const typeToIconName = {
   default: 'INFO',
@@ -38,12 +32,11 @@ export default class Message extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps, nextState) {
-    if (nextProps.expanded !== this.props.expanded)
-      this.setState({ expanded: nextProps.expanded })
+    if (nextProps.expanded !== this.props.expanded) this.setState({ expanded: nextProps.expanded })
     if (nextProps.focused && (nextState.expanded !== this.state.expanded)) {
       // Have to wait for the expanded css transition to finish before scrolling
       clearTimeout(this.scroll)
-      this.scroll = setTimeout(() => scrollToElement(this.ref, { align: 'middle' }), 100)
+      this.scroll = setTimeout(() => scrollToElement(this.ref, { align: 'top' }), 100)
     }
   }
 
@@ -68,9 +61,7 @@ export default class Message extends React.PureComponent {
   }
 
   render() {
-    const {
-      renderIcon, type, title, subtitle, description, actions, codeblock, time,
-      focused } = this.props
+    const { renderIcon, type, title, subtitle, children, time, focused } = this.props
     const { expanded } = this.state
     return (
       <div
@@ -93,14 +84,7 @@ export default class Message extends React.PureComponent {
             </div>
             <Icon {...classes('toggle')} name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} onClick={this.toggle} size={34} />
           </div>
-          <div {...classes('body')}>
-            {description && <div {...classes('description')}>{description}</div>}
-            {codeblock && typeof codeblock === 'string' && <Codeblock>{codeblock}</Codeblock>}
-            {codeblock && typeof codeblock === 'object' && <Codeblock dictionary={codeblock} />}
-            {actions && <div {...classes('actions')}>
-              {actions.map(renderAction)}
-            </div>}
-          </div>
+          { expanded ? <div {...classes('body')}>{children}</div> : null }
         </div>
       </div>
     )
@@ -114,24 +98,17 @@ Message.propTypes = {
   time: PropTypes.oneOfType([
     PropTypes.string,
   ]),
-  description: PropTypes.string,
-  actions: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    action: PropTypes.func,
-    route: PropTypes.string,
-  })),
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
   onToggle: PropTypes.func,
   expanded: PropTypes.bool,
   renderIcon: PropTypes.func,
-  codeblock: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]),
   className: PropTypes.string,
   focused: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 }
 
 Message.defaultProps = {
@@ -142,9 +119,6 @@ Message.defaultProps = {
   expanded: false,
   renderIcon: null,
   subtitle: '',
-  description: '',
-  codeblock: undefined,
-  actions: [],
   time: '',
   className: '',
   focused: false,
