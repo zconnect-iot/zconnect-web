@@ -40,9 +40,6 @@
     :global(.Message__header) {
       margin: 0;
     }
-    :global(.Message__body) {
-      display: none;
-    }
   }
 
   &:global(.Message--focused) {

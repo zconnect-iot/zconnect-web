@@ -86,9 +86,7 @@ export default class Message extends React.PureComponent {
             </div>
             <Icon {...classes('toggle')} name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} onClick={this.toggle} size={34} />
           </div>
-          <div {...classes('body')}>
-            {children}
-          </div>
+          { expanded ? <div {...classes('body')}>{children}</div> : null }
         </div>
       </div>
     )
