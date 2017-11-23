@@ -4,6 +4,8 @@ import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
 import scrollToElement from 'scroll-to-element'
 
+import { instanceOfXDate } from 'zc-core/utils/propTypes'
+
 import { Icon } from '../../components'
 
 import './style.scss'
@@ -79,8 +81,8 @@ export default class Message extends React.PureComponent {
           <div {...classes('header')}>
             <div {...classes('headerMiddle')}>
               <h5 {...classes('title')}>{title}</h5>
-              {subtitle && <h6 {...classes('subtitle')}>{subtitle}</h6>}
-              {time && <h6 {...classes('time')}>{moment(time, 'YYYYMMDD').fromNow()}</h6>}
+              {subtitle && <span {...classes('subtitle')}>{subtitle}</span>}
+              {time && <span {...classes('time')}>{moment(time.toISOString()).fromNow()}</span>}
             </div>
             <Icon {...classes('toggle')} name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} onClick={this.toggle} size={34} />
           </div>
@@ -95,9 +97,7 @@ Message.propTypes = {
   type: PropTypes.string,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  time: PropTypes.oneOfType([
-    PropTypes.string,
-  ]),
+  time: instanceOfXDate,
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
   onToggle: PropTypes.func,
