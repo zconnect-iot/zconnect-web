@@ -30,16 +30,11 @@ export default class Message extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.focused) scrollToElement(this.ref)
+    if (this.props.scrollTo) scrollToElement(this.ref)
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.props.expanded) this.setState({ expanded: nextProps.expanded })
-    if (nextProps.focused && (nextState.expanded !== this.state.expanded)) {
-      // Have to wait for the expanded css transition to finish before scrolling
-      clearTimeout(this.scroll)
-      this.scroll = setTimeout(() => scrollToElement(this.ref, { align: 'top' }), 100)
-    }
   }
 
   setRef = (ref) => {
@@ -109,6 +104,7 @@ Message.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  scrollTo: PropTypes.bool.isRequired,
 }
 
 Message.defaultProps = {
@@ -122,4 +118,5 @@ Message.defaultProps = {
   time: '',
   className: '',
   focused: false,
+  scrollTo: false,
 }
