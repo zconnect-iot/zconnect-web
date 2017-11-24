@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
+import { withPageContext } from '../hocs'
+
 import Icon from './Icon'
 
 const classes = new BEMHelper({
@@ -14,12 +16,12 @@ const classes = new BEMHelper({
 */
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class NavButton extends React.Component {
-  navigate = () => this.context.navigate(this.props.route)
+class NavButton extends React.Component {
+  navigate = () => this.props.navigate(this.props.route)
   render() {
     const { icon, title, action, route } = this.props
     const onClick = route ? this.navigate : action
-    const active = this.context.location.pathname.indexOf(route) === 0
+    const active = this.props.location.indexOf(route) === 0
     return (
       <button {...classes(null, active ? 'active' : null)} onClick={onClick}>
         <Icon name={icon} size={30} />
@@ -29,21 +31,19 @@ export default class NavButton extends React.Component {
   }
 }
 
-NavButton.contextTypes = {
-  navigate: PropTypes.func,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
-}
 
 NavButton.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   action: PropTypes.func,
   route: PropTypes.string,
+  navigate: PropTypes.func.isRequired,
+  location: PropTypes.string,
 }
 
 NavButton.defaultProps = {
   action: null,
   route: null,
 }
+
+export default withPageContext()(NavButton)
