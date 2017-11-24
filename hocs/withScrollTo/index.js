@@ -10,7 +10,7 @@ import scrollToElement from 'scroll-to-element'
   trigger the scroll-to effect manually
 */
 
-export default function withScrollTo({ offset = 0, align = 'top', duration = 1000, delay = 0 } = {}) {
+export default function withScrollTo({ offset = 0, align = 'top', duration = 1000, delay = 0, className } = {}) {
   return function withScrollToEnhancer(WrappedComponent) {
     class WithScrollTo extends React.PureComponent {
       componentDidMount() {
@@ -25,7 +25,7 @@ export default function withScrollTo({ offset = 0, align = 'top', duration = 100
         else this.scrollToElement()
       }
       render() {
-        return (<div ref={this.setRef}>
+        return (<div ref={this.setRef} className={className}>
           <WrappedComponent {...this.props} scrollTo={this.scrollToComponent} />
         </div>)
       }
