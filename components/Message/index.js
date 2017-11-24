@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
-import scrollToElement from 'scroll-to-element'
 
 import { instanceOfXDate } from 'zc-core/utils/propTypes'
 
@@ -29,21 +28,8 @@ export default class Message extends React.PureComponent {
     }
   }
 
-  componentDidMount() {
-    if (this.props.focused) scrollToElement(this.ref)
-  }
-
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.props.expanded) this.setState({ expanded: nextProps.expanded })
-    if (nextProps.focused && (nextState.expanded !== this.state.expanded)) {
-      // Have to wait for the expanded css transition to finish before scrolling
-      clearTimeout(this.scroll)
-      this.scroll = setTimeout(() => scrollToElement(this.ref, { align: 'top' }), 100)
-    }
-  }
-
-  setRef = (ref) => {
-    this.ref = ref
   }
 
   expand = () => {
@@ -66,10 +52,7 @@ export default class Message extends React.PureComponent {
     const { renderIcon, type, title, subtitle, children, time, focused } = this.props
     const { expanded } = this.state
     return (
-      <div
-        ref={this.setRef}
-        {...classes(null, { collapsed: !expanded, focused }, this.props.className)}
-      >
+      <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
         <div {...classes('left')}>
           { renderIcon ? renderIcon(this.props) : <Icon
             name={typeToIconName[type]}
