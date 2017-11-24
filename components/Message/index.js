@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import BEMHelper from 'react-bem-helper'
-import scrollToElement from 'scroll-to-element'
 
 import { instanceOfXDate } from 'zc-core/utils/propTypes'
 
@@ -29,16 +28,8 @@ export default class Message extends React.PureComponent {
     }
   }
 
-  componentDidMount() {
-    if (this.props.scrollTo) scrollToElement(this.ref)
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.props.expanded) this.setState({ expanded: nextProps.expanded })
-  }
-
-  setRef = (ref) => {
-    this.ref = ref
   }
 
   expand = () => {
@@ -61,10 +52,7 @@ export default class Message extends React.PureComponent {
     const { renderIcon, type, title, subtitle, children, time, focused } = this.props
     const { expanded } = this.state
     return (
-      <div
-        ref={this.setRef}
-        {...classes(null, { collapsed: !expanded, focused }, this.props.className)}
-      >
+      <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
         <div {...classes('left')}>
           { renderIcon ? renderIcon(this.props) : <Icon
             name={typeToIconName[type]}
@@ -104,7 +92,6 @@ Message.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  scrollTo: PropTypes.bool.isRequired,
 }
 
 Message.defaultProps = {
@@ -118,5 +105,4 @@ Message.defaultProps = {
   time: '',
   className: '',
   focused: false,
-  scrollTo: false,
 }
