@@ -9,7 +9,8 @@ import './style.scss'
 
 /*
   To allow the <Navbar /> to be used with any routing tech (or none at all), <Page/>
-  needs the navItems, location and navigate function to pass down to the buttons
+  needs the navItems, current location path and navigate function to pass down to the buttons
+  so that they can show active state if their route matches the current one.
   The subscribe/unsubscribe ensures that changes to the location prop aren't blocked by any
   component in between that implements shouldComponentUpdate (like connect) so that the
   withPageContext HOC always updates when the Page location prop changes
