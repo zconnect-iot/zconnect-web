@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
+import { withPageContext } from '../hocs'
+
 const classes = BEMHelper({ name: 'Button' })
 
 /*
@@ -10,16 +12,15 @@ const classes = BEMHelper({ name: 'Button' })
   the action function
 */
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class Button extends React.Component {
-  navigate = () => this.context.navigate(this.props.route)
+class Button extends React.Component {
+  navigate = () => this.props.navigate(this.props.route)
   render() {
     const { color, hollow, children, className, action, route, active } = this.props
     const onClick = route ? this.navigate : action
     return (
       <button
         onClick={onClick}
-        {...classes(null, [color || null, hollow ? 'hollow' : null, active ? 'active' : null], className)}
+        {...classes(null, { hollow, active, color }, className)}
       >
         {children}
       </button>
@@ -27,9 +28,6 @@ export default class Button extends React.Component {
   }
 }
 
-Button.contextTypes = {
-  navigate: PropTypes.func,
-}
 
 Button.propTypes = {
   color: PropTypes.string,
@@ -42,6 +40,7 @@ Button.propTypes = {
   ]),
   className: PropTypes.string,
   active: PropTypes.bool,
+  navigate: PropTypes.func,
 }
 
 Button.defaultProps = {
@@ -52,4 +51,7 @@ Button.defaultProps = {
   action: null,
   route: null,
   active: false,
+  navigate: () => {},
 }
+
+export default withPageContext()(Button)
