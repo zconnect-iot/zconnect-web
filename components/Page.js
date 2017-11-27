@@ -9,17 +9,40 @@ import './style.scss'
 
 /*
   To allow the <Navbar /> to be used with any routing tech (or none at all), <Page/>
-  needs the navItems, activeRoute and navigate function to pass down to the buttons
+  needs the navItems, current location path and navigate function to pass down to the buttons
+  so that they can show active state if their route matches the current one.
+  The subscribe/unsubscribe ensures that changes to the location prop aren't blocked by any
+  component in between that implements shouldComponentUpdate (like connect) so that the
+  withPageContext HOC always updates when the Page location prop changes
   If a NavBar component is passed it will render this instead of the built in NavBar
 */
 
 export default class Page extends React.Component {
+  constructor(props) {
+    super(props)
+    this.subscribers = {}
+    this.subId = 0
+  }
   getChildContext() {
     return {
-      navigate: this.props.navigate,
-      location: this.props.location,
+      page: {
+        navigate: this.props.navigate,
+        subscribe: this.addSubscriber,
+        unsubscribe: this.removeSubscriber,
+        location: this.props.location.pathname,
+      },
     }
   }
+  componentWillReceiveProps(next) {
+    if (next.location.pathname !== this.props.location.pathname) {
+      Object.values(this.subscribers).forEach(s => s(next.location.pathname))
+    }
+  }
+  addSubscriber = (s) => {
+    this.subscribers[this.subId += 1] = s
+    return this.subId
+  }
+  removeSubscriber = s => delete this.subscribers[s]
   render() {
     const { children, navItems, headerRightContent } = this.props
     return (
@@ -39,11 +62,6 @@ Page.propTypes = {
     action: PropTypes.func,
   })),
   NavBar: PropTypes.func,
-  location: PropTypes.shape({
-    hash: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired,
-  }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -53,6 +71,9 @@ Page.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 Page.defaultProps = {
@@ -63,11 +84,9 @@ Page.defaultProps = {
 }
 
 Page.childContextTypes = {
-  navigate: PropTypes.func,
-  location: PropTypes.shape({
-    hash: PropTypes.string,
-    key: PropTypes.string,
-    pathname: PropTypes.string,
-    search: PropTypes.string,
+  page: PropTypes.shape({
+    navigate: PropTypes.func,
+    subscribe: PropTypes.func,
+    location: PropTypes.string,
   }),
 }

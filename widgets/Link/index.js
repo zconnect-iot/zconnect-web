@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
+import { withPageContext } from '../../hocs'
+
 import './style.scss'
 
 const classes = new BEMHelper('Link')
@@ -11,11 +13,11 @@ const classes = new BEMHelper('Link')
   props.action if not. Similar to <Button/>.
 */
 
-export default class Link extends React.Component {
+class Link extends React.Component {
   onClick = (e) => {
     e.preventDefault()
     const { route, action } = this.props
-    return route ? this.context.navigate(route) : action()
+    return route ? this.props.navigate(route) : action()
   }
   render() {
     const { className, children, route } = this.props
@@ -31,10 +33,6 @@ export default class Link extends React.Component {
   }
 }
 
-Link.contextTypes = {
-  navigate: PropTypes.func.isRequired,
-}
-
 Link.propTypes = {
   action: PropTypes.func,
   route: PropTypes.string,
@@ -43,6 +41,7 @@ Link.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  navigate: PropTypes.func.isRequired,
 }
 
 Link.defaultProps = {
@@ -51,3 +50,5 @@ Link.defaultProps = {
   action: () => {},
   route: '',
 }
+
+export default withPageContext()(Link)
