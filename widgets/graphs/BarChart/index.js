@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Barchart from 'react-bar-chart'
+import BEMHelper from 'react-bem-helper'
 
 import { withDimensions } from '../../../hocs'
 
+const classes = new BEMHelper('BarChart')
+
 export function BarChart(props) {
   const { className, data, margin, yLabel, height, width } = props
-  return (<div className={className}>
+  return (<div {...classes(null, null, className)}>
     <Barchart
       data={data.map(item => ({ ...item, text: item.label }))}
       margin={margin}
