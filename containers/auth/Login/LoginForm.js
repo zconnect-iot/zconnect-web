@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form/immutable'
 
 import { TextField, PasswordField } from '../../../widgets/forms'
-import { Button } from '../../../components'
+import { SimpleButton } from '../../../components'
 
 const LoginForm = (props) => {
   const { handleSubmit, pristine, submitting, t } = props
@@ -11,9 +11,9 @@ const LoginForm = (props) => {
     <form>
       <TextField name="email" label={t('email')} />
       <PasswordField name="password" label={t('password')} />
-      <Button color="primary" action={handleSubmit} disabled={pristine || submitting}>
+      <SimpleButton color="primary" action={handleSubmit} disabled={pristine || submitting}>
         {t('login').toUpperCase()}
-      </Button>
+      </SimpleButton>
     </form>
   )
 }

@@ -12,7 +12,7 @@ const classes = BEMHelper({ name: 'Button' })
   the action function
 */
 
-class Button extends React.Component {
+export class Button extends React.Component {
   navigate = () => this.props.navigate(this.props.route)
   render() {
     const { color, hollow, children, className, action, route, active } = this.props
@@ -20,7 +20,7 @@ class Button extends React.Component {
     return (
       <button
         onClick={onClick}
-        {...classes(null, { hollow, active, color }, className)}
+        {...classes(null, { hollow, active, [color]: color }, className)}
       >
         {children}
       </button>

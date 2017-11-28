@@ -4,15 +4,56 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  z-index: 1;
+
+  &:global(.modal-enter) {
+    opacity: 0.01;
+
+    &:global(.modal-enter-active) {
+      opacity: 1;
+      transition: opacity $transition-duration ease-in;
+    }
+  }
+
+  &:global(.modal-leave) {
+    opacity: 1;
+
+    &:global(.modal-leave-active) {
+      opacity: 0.01;
+      transition: opacity $transition-duration ease-in;
+    }
+  }
 
   :global(.Modal__content) {
-    margin: 0 auto;
-    margin-top: 20px;
-    max-width: 700px;
+    flex: 1;
+    margin: 20px;
+    max-width: 500px;
+    min-width: 240px;
     background: white;
     border-radius: $border-radius;
+
+    :global(.Modal__header) {
+      height: 54px;
+      border-bottom: 1px solid $border-color;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1.15rem;
+
+      a {
+        vertical-align: middle;
+      }
+    }
+
+    :global(.Modal__body) {
+    }
   }
 }
