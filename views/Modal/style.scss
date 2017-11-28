@@ -1,7 +1,7 @@
 @import '~theme/variables.scss';
 
 :global(.Modal) {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
