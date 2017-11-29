@@ -20,15 +20,18 @@ export default class ModalContainer extends React.PureComponent {
   componentWillReceiveProps({ visible }) {
     if (visible !== this.state.visible) this.setState({ visible })
   }
-  closeModal = () => this.setState({ visible: false })
+  closeModal = () => {
+    this.setState({ visible: false })
+    this.props.onClose()
+  }
   render() {
     const { visible, ...modalProps } = this.props
     return (
       <ReactCSSTransitionGroup
         transitionName="modal"
-        transitionEnterTimeout={400}
+        transitionEnterTimeout={200}
         transitionLeave
-        transitionLeaveTimeout={400}
+        transitionLeaveTimeout={200}
       >
         {this.state.visible && <Modal {...modalProps} onClose={this.closeModal} />}
       </ReactCSSTransitionGroup>
@@ -43,9 +46,11 @@ ModalContainer.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   visible: PropTypes.bool,
+  onClose: PropTypes.func,
 }
 
 ModalContainer.defaultProps = {
   title: '',
   visible: true,
+  onClose: () => {},
 }
