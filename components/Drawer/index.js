@@ -80,7 +80,7 @@ export default class Drawer extends React.Component {
         )}
 
         <div className={innerClass} style={innerStyle}>
-          {children}
+          {open && children}
         </div>
       </div>
     )
