@@ -3,5 +3,10 @@
 
 :global(.Link) {
   color: $link-color;
+  fill: currentColor;
   text-decoration: none;
+
+  &:hover {
+    color: lighten($link-color, 15%);
+  }
 }

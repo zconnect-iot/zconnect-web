@@ -6,17 +6,12 @@ import ICONS from '../../assets/icons/map.json'
 const classes = BEMHelper({ name: 'Icon' })
 
 export default function Icon({ name, color, size, className, onClick }) {
-  const styles = {
-    svg: {
-      [color ? 'fill' : null]: color, // Only set `fill` if color specified, will inherit from parent by default
-    },
-  }
   const { transform, d } = ICONS[name]
+  const fill = color ? `text-${color}` : null
 
   return (
     <svg
-      {...classes(null, name, className)}
-      style={styles.svg}
+      {...classes(null, name, [fill, className])}
       width={size ? `${size}px` : '100%'}
       height={size ? `${size}px` : '100%'}
       viewBox="0 0 24 24"
@@ -32,7 +27,7 @@ export default function Icon({ name, color, size, className, onClick }) {
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  color: PropTypes.number,
+  color: PropTypes.string,
   size: PropTypes.number,
   className: PropTypes.string,
   onClick: PropTypes.func,
@@ -40,7 +35,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   size: null,
-  color: null,
-  className: null,
+  color: '',
+  className: '',
   onClick: () => {},
 }

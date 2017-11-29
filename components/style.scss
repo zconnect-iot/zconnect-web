@@ -107,6 +107,18 @@
     color: white;
   }
 
+  &:global(.Button--success) {
+    background: $brand-success;
+    border: 1px solid $brand-success;
+    color: white;
+  }
+
+  &:global(.Button--danger) {
+    background: $brand-danger;
+    border: 1px solid $brand-danger;
+    color: white;
+  }
+
   &:global(.Button--hollow) {
     background: transparent;
   }

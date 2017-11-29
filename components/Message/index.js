@@ -67,9 +67,17 @@ export default class Message extends React.PureComponent {
               {subtitle && <span {...classes('subtitle')}>{subtitle}</span>}
               {time && <span {...classes('time')}>{moment(time.toISOString()).fromNow()}</span>}
             </div>
-            <Icon {...classes('toggle')} name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} onClick={this.toggle} size={34} />
+            { children ?
+              <Icon
+                {...classes('toggle')}
+                name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`}
+                onClick={this.toggle}
+                size={34}
+              /> :
+              null
+            }
           </div>
-          { expanded ? <div {...classes('body')}>{children}</div> : null }
+          { children && expanded ? <div {...classes('body')}>{children}</div> : null }
         </div>
       </div>
     )
@@ -91,7 +99,7 @@ Message.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]).isRequired,
+  ]),
 }
 
 Message.defaultProps = {
@@ -105,4 +113,5 @@ Message.defaultProps = {
   time: '',
   className: '',
   focused: false,
+  children: null,
 }

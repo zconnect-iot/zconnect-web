@@ -38,7 +38,7 @@ NavButton.propTypes = {
   action: PropTypes.func,
   route: PropTypes.string,
   navigate: PropTypes.func.isRequired,
-  location: PropTypes.string,
+  location: PropTypes.string.isRequired,
 }
 
 NavButton.defaultProps = {
