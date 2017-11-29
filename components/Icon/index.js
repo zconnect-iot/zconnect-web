@@ -11,7 +11,7 @@ export default function Icon({ name, color, size, className, onClick }) {
 
   return (
     <svg
-      {...classes(null, name, fill, className)}
+      {...classes(null, name, [fill, className])}
       width={size ? `${size}px` : '100%'}
       height={size ? `${size}px` : '100%'}
       viewBox="0 0 24 24"
