@@ -5,7 +5,7 @@
     position: relative;
     margin-bottom: 20px;
     box-shadow: none;
-    border: 1px solid $pale-gray;
+    border: 1px solid $border-color;
 
     :global(.Message__header) {
       height: auto;
