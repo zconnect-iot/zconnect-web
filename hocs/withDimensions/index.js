@@ -16,9 +16,10 @@ export default function withDimensions({ debounceInterval = 250 } = {}) {
       }
       componentDidMount() {
         window.onresize = debounceInterval ? this.debouncedUpdateDims : this.updateDims
-        setTimeout(this.updateDims, 0)
+        this.timer = setTimeout(this.updateDims, 0)
       }
       componentWillUnmount() {
+        clearTimeout(this.timer)
         window.onresize = null
       }
       setRef = (ref) => {
@@ -29,8 +30,8 @@ export default function withDimensions({ debounceInterval = 250 } = {}) {
         height: this.ref.offsetHeight,
       })
       debouncedUpdateDims = () => {
-        clearTimeout(this.debounce)
-        this.debounce = setTimeout(this.updateDims, debounceInterval)
+        clearTimeout(this.timer)
+        this.timer = setTimeout(this.updateDims, debounceInterval)
       }
       render() {
         return (<div ref={this.setRef}>
