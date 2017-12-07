@@ -122,4 +122,8 @@
   &:global(.Button--hollow) {
     background: transparent;
   }
+
+  &:global(.Button--disabled) {
+    cursor: not-allowed;
+  }
 }

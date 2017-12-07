@@ -15,12 +15,13 @@ const classes = BEMHelper({ name: 'Button' })
 export class Button extends React.Component {
   navigate = () => this.props.navigate(this.props.route)
   render() {
-    const { color, hollow, children, className, action, route, active } = this.props
+    const { color, hollow, children, className, action, route, active, disabled } = this.props
     const onClick = route ? this.navigate : action
     return (
       <button
         onClick={onClick}
-        {...classes(null, { hollow, active, [color]: color }, className)}
+        disabled={disabled}
+        {...classes(null, { disabled, hollow, active, [color]: color }, className)}
       >
         {children}
       </button>
@@ -41,6 +42,7 @@ Button.propTypes = {
   className: PropTypes.string,
   active: PropTypes.bool,
   navigate: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 Button.defaultProps = {
@@ -52,6 +54,7 @@ Button.defaultProps = {
   route: null,
   active: false,
   navigate: () => {},
+  disabled: false,
 }
 
 export default withPageContext()(Button)
