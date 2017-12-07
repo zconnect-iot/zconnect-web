@@ -33,6 +33,10 @@
     height: 70px;
     min-width: 240px;
   }
+
+  &:global(.Logo--center) {
+    background-position: center;
+  }
 }
 
 :global(.NavButton) {

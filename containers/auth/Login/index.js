@@ -34,7 +34,7 @@ class Login extends React.Component {
     return (
       <div {...classes()}>
         <div {...classes('form')}>
-          <Logo {...classes('logo')} large />
+          <Logo {...classes('logo')} large center />
           <LoginForm onSubmit={this.handleSubmit} t={t} />
           {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
           <a
