@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import { Field } from 'redux-form/immutable'
 import BEMHelper from 'react-bem-helper'
 import moment from 'moment'
-import DatePicker from 'react-datepicker'
+import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
+import XDate from 'xdate'
+
+import { instanceOfXDate } from 'zc-core/utils/propTypes'
 
 import {
   genericError,
@@ -17,33 +20,43 @@ import './style.scss'
 
 export const classes = new BEMHelper('DateField')
 
-export const renderInner = ({
-  input,
-  placeholderText,
-  label,
-  meta: { touched, error, warning },
-  dateFormat,
-}) => (
-  <div {...classes()}>
-    <label htmlFor={input.name} {...classes('label')}>{label}</label>
+export class DatePicker extends React.Component {
+  onChange = value => this.props.input.onChange(XDate(value.toISOString()))
+  noop = () => {}
+  render() {
+    const {
+      input,
+      placeholderText,
+      label,
+      meta: { touched, error, warning },
+      dateFormat,
+    } = this.props
+    return (
+      <div {...classes()}>
+        <label htmlFor={input.name} {...classes('label')}>{label}</label>
 
-    <div {...classes('input-wrapper')}>
-      <DatePicker
-        {...input}
-        {...classes('input')}
-        dateFormat={dateFormat}
-        selected={input.value ? moment(input.value) : null}
-        placeholderText={placeholderText}
-      />
+        <div {...classes('input-wrapper')}>
+          <ReactDatePicker
+            {...input}
+            {...classes('input')}
+            onChange={this.onChange}
+            onBlur={this.noop}
+            dateFormat={dateFormat}
+            selected={input.value ? moment(input.value.toISOString()) : null}
+            placeholderText={placeholderText}
+          />
 
-      {touched && (
-        (error && genericError(classes, error)) ||
-        (warning && genericWarning(classes, warning))
-      )}
-    </div>
-  </div>
-)
-renderInner.propTypes = {
+          {touched && (
+            (error && genericError(classes, error)) ||
+            (warning && genericWarning(classes, warning))
+          )}
+        </div>
+      </div>
+    )
+  }
+}
+
+DatePicker.propTypes = {
   dateFormat: PropTypes.string,
   placeholderText: PropTypes.string,
   meta: PropTypes.shape({
@@ -53,8 +66,9 @@ renderInner.propTypes = {
   }).isRequired,
   input: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    checked: PropTypes.bool,
+    value: instanceOfXDate.isRequired,
     disabled: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
   }).isRequired,
   label: PropTypes.string.isRequired,
   validate: PropTypes.arrayOf(PropTypes.func),
@@ -63,12 +77,12 @@ renderInner.propTypes = {
   onFocus: PropTypes.func,
 }
 
-renderInner.defaultProps = Object.assign({
+DatePicker.defaultProps = Object.assign({
   dateFormat: 'DD/MM/YYYY',
   placeholderText: 'Date',
 }, defaultProps)
 
-const component = props => <Field component={renderInner} {...props} />
+const component = props => <Field component={DatePicker} {...props} />
 component.propTypes = propTypes
 component.defaultProp = defaultProps
 
