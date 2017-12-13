@@ -32,8 +32,28 @@
     }
   }
 
+  :global(.Message__title) {
+    color: $black;
+  }
+
   :global(.Message__toggle) {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    span {
+      visibility: hidden;
+    }
+
+    &:hover {
+      span {
+        visibility: visible;
+      }
+    }
+
+    :global(.Icon) {
+      margin-left: 10px;
+    }
   }
 
   &:global(.Message--collapsed) {
