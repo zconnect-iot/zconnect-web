@@ -40,7 +40,11 @@
       visibility: hidden;
     }
 
-    &:hover, &:focus {
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
       span {
         visibility: visible;
       }
