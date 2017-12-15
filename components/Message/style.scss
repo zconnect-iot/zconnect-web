@@ -40,7 +40,7 @@
       visibility: hidden;
     }
 
-    &:hover {
+    &:hover, &:focus {
       span {
         visibility: visible;
       }

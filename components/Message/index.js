@@ -66,7 +66,7 @@ export default class Message extends React.PureComponent {
             {time && <span {...classes('time')}>{moment(time.toISOString()).fromNow()}</span>}
           </div>
           { children ?
-            <div {...classes('toggle')} onClick={this.toggle} role="button" tabIndex>
+            <div {...classes('toggle')} onClick={this.toggle} onKeyPress={this.toggle} role="button" tabIndex={0} >
               <span>{expanded ? 'Collapse' : 'Expand'}</span>
               <Icon name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} size={28} />
             </div> :
