@@ -25,7 +25,7 @@ export default class Panel extends React.PureComponent {
     {action.title}
   </Button>))
   render() {
-    const { title, image, icon, collapsible, className, children, onClick, actions } = this.props
+    const { title, image, icon, collapsible, className, children, onClick, actions, renderStatic } = this.props
     const { collapsed } = this.state
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>
@@ -36,6 +36,7 @@ export default class Panel extends React.PureComponent {
           { onClick ? <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} /> : null }
           { actions.length ? this.renderActions(actions) : null }
         </div>
+        {renderStatic ? renderStatic(this.props) : null}
         <div {...classes('body')}>
           { children }
         </div>
@@ -65,6 +66,7 @@ Panel.propTypes = {
     title: PropTypes.string,
     route: PropTypes.string,
   })),
+  renderStatic: PropTypes.func,
 }
 
 Panel.defaultProps = {
@@ -77,4 +79,5 @@ Panel.defaultProps = {
   collapsed: undefined,
   onClick: null,
   actions: [],
+  renderStatic: undefined,
 }
