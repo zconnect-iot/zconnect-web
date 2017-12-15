@@ -12,10 +12,10 @@ export default function Header(props) {
   const right = props.rightContent || null
   return (
     <Row {...classes()}>
-      <Col xs smOffset={2} sm={8}>
-        <Row>
-          <Col xs>{left}</Col>
-          {right && <Col end="xs">{right}</Col>}
+      <Col xs={12} lgOffset={1} lg={10}>
+        <Row between="xs">
+          <Col>{left}</Col>
+          {right && <Col>{right}</Col>}
         </Row>
       </Col>
     </Row>
