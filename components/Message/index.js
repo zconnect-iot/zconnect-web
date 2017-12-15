@@ -53,30 +53,27 @@ export default class Message extends React.PureComponent {
     const { expanded } = this.state
     return (
       <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>
-        <div {...classes('left')}>
-          { renderIcon ? renderIcon(this.props) : <Icon
-            name={typeToIconName[type]}
-            size={40}
-            {...classes('icon', type)}
-          />}
-        </div>
-        <div {...classes('right')}>
-          <div {...classes('header')}>
-            <div {...classes('headerMiddle')}>
-              <h5 {...classes('title')}>{title}</h5>
-              {subtitle && <span {...classes('subtitle')}>{subtitle}</span>}
-              {time && <span {...classes('time')}>{moment(time.toISOString()).fromNow()}</span>}
-            </div>
-            { children ?
-              <div {...classes('toggle')} onClick={this.toggle} role="button" tabIndex>
-                <span>{expanded ? 'Collapse' : 'Expand'}</span>
-                <Icon name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} size={28} />
-              </div> :
-              null
-            }
+        <div {...classes('header')}>
+          <div {...classes('icon', type)}>
+            { renderIcon ? renderIcon(this.props) : <Icon
+              name={typeToIconName[type]}
+              size={40}
+            />}
           </div>
-          { children && expanded ? <div {...classes('body')}>{children}</div> : null }
+          <div {...classes('headerMiddle')}>
+            <h5>{title}</h5>
+            {subtitle && <span {...classes('subtitle')}>{subtitle}</span>}
+            {time && <span {...classes('time')}>{moment(time.toISOString()).fromNow()}</span>}
+          </div>
+          { children ?
+            <div {...classes('toggle')} onClick={this.toggle} role="button" tabIndex>
+              <span>{expanded ? 'Collapse' : 'Expand'}</span>
+              <Icon name={`CHEVRON_${expanded ? 'UP' : 'DOWN'}`} size={28} />
+            </div> :
+            null
+          }
         </div>
+        { children && expanded ? <div {...classes('body')}>{children}</div> : null }
       </div>
     )
   }

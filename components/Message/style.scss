@@ -4,36 +4,31 @@
   color: $message-color;
   fill: $message-color;
   border-radius: $border-radius;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
 
-  :global(.Message__left) {
-    min-width: 40px;
-    margin-right: 20px;
-  }
+  :global(.Message__header) {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
 
-  :global(.Message__right) {
-    overflow: hidden;
-    width: 100%;
+    :global(.Message__icon) {
+      min-width: 40px;
+      margin-right: 20px;
+    }
 
-    :global(.Message__header) {
+    :global(.Message__headerMiddle) {
+      flex: 1;
       display: flex;
-      flex-direction: row;
-      height: 40px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      justify-content: space-between;
 
-      :global(.Message__headerMiddle) {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      h5 {
+        color: $black;
+      }
+
+      :global(.Message__time) {
+        font-size: 0.9rem;
       }
     }
-  }
-
-  :global(.Message__title) {
-    color: $black;
   }
 
   :global(.Message__toggle) {
@@ -67,7 +62,7 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   }
 
-  :global(.Message__time) {
-    font-size: 0.9rem;
+  :global(.Message__body) {
+    padding: 0 20px 20px 80px;
   }
 }
