@@ -7,7 +7,7 @@
 
 :global(.Header) {
   background: $header-bg;
-  padding: 8px 0;
+  padding: $padding $padding * 2;
 
   :global(.Header__Logo) {
     background: transparent;
@@ -43,7 +43,7 @@
   background: transparent;
   border: none;
   color: $nav-color;
-  padding: 10px;
+  padding: $padding;
   cursor: pointer;
   fill: $nav-color;
 
@@ -82,11 +82,11 @@
   }
 
   :global(.Content__button) {
-    margin: 10px 0 10px 10px;
+    margin: $padding 0 $padding $padding;
   }
 
   :global(.Content__body) {
-    padding-top: 20px;
+    padding-top: $padding * 2;
   }
 }
 

@@ -11,7 +11,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
   return (
     <Col {...classes(null, null, className)} xs={12}>
       <Row {...classes('header')}>
-        <Col {...classes('headerCenter')} smOffset={2} sm={8} xs={12}>
+        <Col {...classes('headerCenter')} xs={12} lgOffset={1} lg={10}>
           <div {...classes('title')}>
             <h4>{title}</h4>
             <h6>{subtitle}</h6>
@@ -25,7 +25,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
         </Col>
       </Row>
       <Row {...classes('body')}>
-        <Col smOffset={2} sm={8} xs={12}>
+        <Col xs={12} lgOffset={1} lg={10}>
           {children}
         </Col>
       </Row>

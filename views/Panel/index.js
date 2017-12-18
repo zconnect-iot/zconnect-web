@@ -25,17 +25,24 @@ export default class Panel extends React.PureComponent {
     {action.title}
   </Button>))
   render() {
-    const { title, image, icon, collapsible, className, children, onClick, actions } = this.props
+    const { title, renderIcon, collapsible, className, children, onClick, actions,
+      renderStatic, onClickLabel, subtitle } = this.props
     const { collapsed } = this.state
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>
         <div {...classes('header')}>
-          { image ? <img {...classes('image')} src={image} alt="Device Icon" /> : null }
-          { icon ? <Icon name={icon} /> : null }
-          { title }
-          { onClick ? <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} /> : null }
+          { renderIcon ? renderIcon(this.props) : null }
+          <div {...classes('headerMiddle')}>
+            <h3>{ title }</h3>
+            <div {...classes('subtitle')}>{ subtitle }</div>
+          </div>
+          { onClick ? <span {...classes('onClick')} onClick={onClick} role="button" tabIndex={0}>
+            {onClickLabel}
+            <Icon size={30} name="CHEVRON_RIGHT" />
+          </span> : null }
           { actions.length ? this.renderActions(actions) : null }
         </div>
+        {renderStatic ? renderStatic(this.props) : null}
         <div {...classes('body')}>
           { children }
         </div>
@@ -51,8 +58,7 @@ export default class Panel extends React.PureComponent {
 
 Panel.propTypes = {
   title: PropTypes.string,
-  image: PropTypes.string,
-  icon: PropTypes.string,
+  renderIcon: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -65,16 +71,21 @@ Panel.propTypes = {
     title: PropTypes.string,
     route: PropTypes.string,
   })),
+  renderStatic: PropTypes.func,
+  onClickLabel: PropTypes.string,
+  subtitle: PropTypes.string,
 }
 
 Panel.defaultProps = {
   title: undefined,
-  image: null,
-  icon: '',
   children: null,
   className: '',
   collapsible: false,
   collapsed: undefined,
   onClick: null,
   actions: [],
+  renderStatic: undefined,
+  renderIcon: undefined,
+  onClickLabel: '',
+  subtitle: '',
 }
