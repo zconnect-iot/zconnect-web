@@ -7,30 +7,44 @@
   color: $panel-color;
   fill: $panel-color;
   border-radius: $border-radius;
-  margin-bottom: 20px;
+  margin-bottom: $padding * 2;
 
   :global(.Panel__header) {
     display: flex;
     flex-direction: row;
-    padding: 20px 30px;
+    padding: $padding * 2;
     border-bottom: $border;
     max-height: 100px;
     align-items: center;
-    font-size: $font-size-large;
 
-    :global(.Panel__image) {
-      max-height: 44px;
-      margin-right: 20px;
+    :global(.Panel__headerMiddle) {
+      flex:1;
+      display: flex;
+      flex-direction: column;
+
+      :global(.Panel__title) {
+        font-size: $font-size-larger;
+      }
+
+      :global(.Panel__subtitle) {
+        color: $text-color-minor;
+      }
     }
 
-    :global(.Icon--CHEVRON_RIGHT) {
-      margin-left: auto;
+    :global(.Panel__onClick) {
       cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      fill: $text-color-minor;
+      color: $text-color-minor;
+      font-weight: bold;
+      font-size: $font-size-large;
     }
   }
 
   :global(.Panel__body) {
-    padding: 30px;
+    padding: $padding * 2;
   }
 
   :global(.Panel__footer) {
@@ -40,6 +54,7 @@
     align-items: center;
     justify-content: center;
     outline: none;
+    fill: $text-color-minor;
 
     :global(.Icon--CHEVRON_UP), :global(.Icon--CHEVRON_DOWN) {
       cursor: pointer;
