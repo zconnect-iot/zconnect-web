@@ -33,12 +33,12 @@ export default class Panel extends React.PureComponent {
         <div {...classes('header')}>
           { renderIcon ? renderIcon(this.props) : null }
           <div {...classes('headerMiddle')}>
-            <div {...classes('title')}>{ title }</div>
+            <h3>{ title }</h3>
             <div {...classes('subtitle')}>{ subtitle }</div>
           </div>
-          { onClick ? <span {...classes('onClick')}>
+          { onClick ? <span {...classes('onClick')} onClick={onClick} role="button" tabIndex={0}>
             {onClickLabel}
-            <Icon size={30} name="CHEVRON_RIGHT" onClick={onClick} />
+            <Icon size={30} name="CHEVRON_RIGHT" />
           </span> : null }
           { actions.length ? this.renderActions(actions) : null }
         </div>
@@ -72,6 +72,8 @@ Panel.propTypes = {
     route: PropTypes.string,
   })),
   renderStatic: PropTypes.func,
+  onClickLabel: PropTypes.string,
+  subtitle: PropTypes.string,
 }
 
 Panel.defaultProps = {
@@ -84,4 +86,6 @@ Panel.defaultProps = {
   actions: [],
   renderStatic: undefined,
   renderIcon: undefined,
+  onClickLabel: '',
+  subtitle: '',
 }
