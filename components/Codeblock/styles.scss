@@ -5,7 +5,7 @@
   border: $codeblock-border;
   border-radius: $border-radius;
   color: $codeblock-color;
-  padding: 20px;
+  padding: $padding * 2;
   overflow: auto;
 
   :global(.Codeblock__pre) {
