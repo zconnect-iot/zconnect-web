@@ -2,7 +2,10 @@
 
 :global(.Page) {
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 :global(.Header) {
@@ -61,8 +64,10 @@
 
 
 :global(.Content) {
+  flex: 1;
   background: $content-bg;
   color: $content-color;
+  padding: $padding * 2;
 
   :global(.Content__header) {
     background: $content-header-bg;
@@ -83,10 +88,6 @@
 
   :global(.Content__button) {
     margin: $padding 0 $padding $padding;
-  }
-
-  :global(.Content__body) {
-    padding-top: $padding * 2;
   }
 }
 
