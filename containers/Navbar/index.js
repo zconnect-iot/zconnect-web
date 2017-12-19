@@ -24,7 +24,7 @@ class Navbar extends React.Component {
     const { items } = this.props
     return (
       <Row {...classes()}>
-        <Col xs smOffset={2} sm={8}>
+        <Col xs={12} lgOffset={1} lg={10}>
           <Row>
             {items.map(item => (<Col xs sm={1} key={item.title} {...classes('item')}>
               <NavButton

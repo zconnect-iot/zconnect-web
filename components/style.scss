@@ -67,13 +67,13 @@
   flex: 1;
   background: $content-bg;
   color: $content-color;
-  padding: $padding * 2;
 
   :global(.Content__header) {
     background: $content-header-bg;
     color: $content-header-color;
     border-bottom: 1px solid darken($content-header-bg, 10%);
     height: 54px;
+    padding: 0 $padding * 2;
   }
 
   :global(.Content__headerCenter) {
@@ -88,6 +88,10 @@
 
   :global(.Content__button) {
     margin: $padding 0 $padding $padding;
+  }
+
+  :global(.Content__body) {
+    padding: $padding * 2;
   }
 }
 
