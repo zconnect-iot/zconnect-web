@@ -55,8 +55,7 @@
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^0.55.0",
     "react-immutable-proptypes": "^2.1.0",
-    "react-tabs-redux": "^1.6.0",
-    "scroll-to-element": "^2.0.0"
+    "react-tabs-redux": "^1.6.0"
   },
   "peerDependencies": {
     "react-flexbox-grid": "1.x",

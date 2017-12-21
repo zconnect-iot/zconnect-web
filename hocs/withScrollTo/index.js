@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import scrollToElement from 'scroll-to-element'
 
 /*
   scrollTo provides an api to trigger auto scrolling to a wrapped component.
@@ -10,7 +9,7 @@ import scrollToElement from 'scroll-to-element'
   trigger the scroll-to effect manually
 */
 
-export default function withScrollTo({ offset = 0, align = 'top', duration = 1000, delay = 0, className } = {}) {
+export default function withScrollTo({ behavior = 'smooth', block = 'center', inline = 'nearest', delay = 0, className } = {}) {
   return function withScrollToEnhancer(WrappedComponent) {
     class WithScrollTo extends React.PureComponent {
       componentDidMount() {
@@ -19,14 +18,16 @@ export default function withScrollTo({ offset = 0, align = 'top', duration = 100
       setRef = (ref) => {
         this.ref = ref
       }
-      scrollToElement = () => scrollToElement(this.ref, { offset, align, duration })
+      scrollToElement = () => {
+        return this.ref.scrollIntoView ? this.ref.scrollIntoView({ behavior, block, inline }) : null
+      }
       scrollToComponent = () => {
         if (delay) setTimeout(this.scrollToElement, delay)
         else this.scrollToElement()
       }
       render() {
         return (<div ref={this.setRef} className={className}>
-          <WrappedComponent {...this.props} scrollTo={this.scrollToComponent} />
+          <WrappedComponent {...this.props} scrollTo={this.scrollToElement} />
         </div>)
       }
     }
