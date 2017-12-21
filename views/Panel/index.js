@@ -31,7 +31,7 @@ export default class Panel extends React.PureComponent {
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>
         <div {...classes('header')}>
-          { renderIcon ? renderIcon(this.props) : null }
+          { renderIcon ? renderIcon(this.props, this.state) : null }
           <div {...classes('headerMiddle')}>
             <h3>{ title }</h3>
             <div {...classes('subtitle')}>{ subtitle }</div>
@@ -42,7 +42,7 @@ export default class Panel extends React.PureComponent {
           </span> : null }
           { actions.length ? this.renderActions(actions) : null }
         </div>
-        {renderStatic ? renderStatic(this.props) : null}
+        {renderStatic ? renderStatic(this.props, this.state) : null}
         <div {...classes('body')}>
           { children }
         </div>
