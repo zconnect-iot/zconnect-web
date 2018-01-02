@@ -11,7 +11,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
   return (
     <Row {...classes(null, null, className)}>
       <Col xs={12}>
-        <Row {...classes('header')}>
+        {title && <Row {...classes('header')}>
           <Col {...classes('headerCenter')} xs={12} lgOffset={1} lg={10}>
             <div {...classes('title')}>
               <h4>{title}</h4>
@@ -24,7 +24,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
               </Button>
             ))}
           </Col>
-        </Row>
+        </Row>}
         <Row {...classes('body')}>
           <Col xs={12} lgOffset={1} lg={10}>
             {children}
@@ -36,7 +36,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
 }
 
 Content.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subtitle: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -53,4 +53,5 @@ Content.defaultProps = {
   subtitle: '',
   actionItems: [],
   className: '',
+  title: '',
 }
