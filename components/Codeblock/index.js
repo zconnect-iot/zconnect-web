@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import './styles.scss'
 
 
-export default function Codeblock({ dictionary, children }) {
+export default function Codeblock({ dictionary, children, className }) {
   const codeString = children || JSON.stringify(dictionary, null, '  ')
   return (
-    <div className="Codeblock">
+    <div className={classnames('Codeblock', className)}>
       <pre className="Codeblock__pre">
         {codeString}
       </pre>
@@ -21,9 +22,11 @@ Codeblock.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  className: PropTypes.string,
 }
 
 Codeblock.defaultProps = {
   dictionary: null,
   children: null,
+  className: '',
 }
