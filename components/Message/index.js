@@ -41,7 +41,7 @@ export default class Message extends React.PureComponent {
 
   contract = () => {
     this.setState({ expanded: false }, () => {
-      if (this.props.onExpand) this.props.onContract(this.props)
+      if (this.props.onContract) this.props.onContract(this.props)
       if (this.props.onToggle) this.props.onToggle(this.props, this.state)
     })
   }
