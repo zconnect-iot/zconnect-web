@@ -33,17 +33,20 @@ export default class Message extends React.PureComponent {
   }
 
   expand = () => {
-    this.setState({ expanded: true })
-    if (this.props.onExpand) this.props.onExpand(this.props)
+    this.setState({ expanded: true }, () => {
+      if (this.props.onExpand) this.props.onExpand(this.props)
+      if (this.props.onToggle) this.props.onToggle(this.props, this.state)
+    })
   }
 
   contract = () => {
-    this.setState({ expanded: false })
-    if (this.props.onContract) this.props.onContract(this.props)
+    this.setState({ expanded: false }, () => {
+      if (this.props.onExpand) this.props.onContract(this.props)
+      if (this.props.onToggle) this.props.onToggle(this.props, this.state)
+    })
   }
 
   toggle = () => {
-    if (this.props.onToggle) this.props.onToggle(this.props)
     if (this.state.expanded) return this.contract()
     return this.expand()
   }
@@ -81,7 +84,11 @@ export default class Message extends React.PureComponent {
 
 Message.propTypes = {
   type: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.string,
+  ]).isRequired,
   subtitle: PropTypes.string,
   time: instanceOfXDate,
   onExpand: PropTypes.func,

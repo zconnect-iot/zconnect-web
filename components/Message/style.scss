@@ -8,11 +8,11 @@
   :global(.Message__header) {
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: $padding * 2;
 
     :global(.Message__icon) {
       min-width: 40px;
-      margin-right: 20px;
+      margin-right: $padding * 2;
     }
 
     :global(.Message__headerMiddle) {
@@ -51,7 +51,7 @@
     }
 
     :global(.Icon) {
-      margin-left: 10px;
+      margin-left: $padding;
     }
   }
 
