@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
 import { Icon } from '../../components'
-import { Link } from '../../widgets'
+import { SimpleLink } from '../../widgets'
 
 import './style.scss'
 
@@ -31,7 +31,7 @@ export default class Modal extends React.PureComponent {
         <div {...classes('content')}>
           <div {...classes('header')}>
             {title}
-            <Link action={onClose}><Icon name="CLOSE" size={24} /></Link>
+            <SimpleLink action={onClose}><Icon name="CLOSE" size={24} /></SimpleLink>
           </div>
           <div {...classes('body')}>
             {children}
