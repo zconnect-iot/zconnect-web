@@ -4,8 +4,11 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  color: $spinner-color;
+  fill: $spinner-color;
 
   &:global(.Spinner--full) {
+    flex-direction: column;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -16,6 +19,10 @@
     align-items: center;
     justify-content: center;
     transition: background-color $transition-duration ease;
+
+    :global(.lds-dual-ring) {
+      margin-bottom: $padding * 2;
+    }
   }
 }
 @keyframes :global(lds-dual-ring) {

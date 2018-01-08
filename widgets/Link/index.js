@@ -11,9 +11,12 @@ const classes = new BEMHelper('Link')
 /*
   Returns anchor tag that navigates to props.route if provided or invokes
   props.action if not. Similar to <Button/>.
+
+  Default export wraps SimpleLink with getPageContext to provide the navigate
+  functionality. This means SimpleLink can only be used to call the action prop.
 */
 
-class Link extends React.Component {
+export class SimpleLink extends React.Component {
   onClick = (e) => {
     e.preventDefault()
     const { route, action } = this.props
@@ -33,7 +36,7 @@ class Link extends React.Component {
   }
 }
 
-Link.propTypes = {
+SimpleLink.propTypes = {
   action: PropTypes.func,
   route: PropTypes.string,
   className: PropTypes.string,
@@ -41,14 +44,17 @@ Link.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
-Link.defaultProps = {
+const noop = () => null
+
+SimpleLink.defaultProps = {
   className: '',
   children: null,
-  action: () => {},
+  action: noop,
   route: '',
+  navigate: noop,
 }
 
-export default withPageContext()(Link)
+export default withPageContext()(SimpleLink)
