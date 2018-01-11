@@ -11,8 +11,10 @@ import { SimpleLink } from '../../components'
 function ErrorHandler({ retry, logoutUser, loggedIn, error }) {
   return (
     <Modal title="Something went wrong" onClose={retry}>
-      <p>Overlock encountered an error. Click <SimpleLink action={retry}>here</SimpleLink> to try again.
-      If that doesn't work try reloading your browser.</p>
+      <p>
+        Overlock encountered an error. Click <SimpleLink action={retry}>here</SimpleLink> to try again.
+        {"If that doesn't work try reloading your browser."}
+      </p>
       {loggedIn && <p>Alternatively, <SimpleLink action={logoutUser}>log out</SimpleLink> and try again.</p>}
       <br />
       <h5>Error details:</h5>
