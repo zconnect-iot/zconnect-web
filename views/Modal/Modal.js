@@ -21,7 +21,7 @@ export default class Modal extends React.PureComponent {
     if (e.target.classList.contains('Modal')) this.props.onClose()
   }
   render() {
-    const { onClose, title, className, children } = this.props
+    const { onClose, title, className, children, dismissable } = this.props
     return (
       <div
         {...classes(null, null, className)}
@@ -31,7 +31,9 @@ export default class Modal extends React.PureComponent {
         <div {...classes('content')}>
           <div {...classes('header')}>
             {title}
-            <SimpleLink action={onClose}><Icon name="CLOSE" size={24} /></SimpleLink>
+            { dismissable &&
+              <SimpleLink action={onClose}><Icon name="CLOSE" size={24} /></SimpleLink>
+            }
           </div>
           <div {...classes('body')}>
             {children}
@@ -50,10 +52,12 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
   onClose: PropTypes.func,
+  dismissable: PropTypes.bool,
 }
 
 Modal.defaultProps = {
   className: '',
   onClose: () => {},
   title: '',
+  dismissable: true,
 }
