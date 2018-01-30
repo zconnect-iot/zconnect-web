@@ -36,8 +36,12 @@ export default class DrawerToggle extends React.Component {
     }
   }
 
-  toggleDrawer() {
+  toggleDrawer = () => {
     this.setState({ open: !this.state.open })
+  }
+
+  getChildContext() {
+    return { toggleDrawer : this.toggleDrawer }
   }
 
   render() {
@@ -62,6 +66,10 @@ export default class DrawerToggle extends React.Component {
       </div>
     )
   }
+}
+
+DrawerToggle.childContextTypes = {
+  toggleDrawer: PropTypes.func,
 }
 
 DrawerToggle.propTypes = {
