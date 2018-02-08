@@ -9,18 +9,20 @@ import './style.scss'
 /*
   Wrapper around google-map-react that defaults to showing a Marker at the
   lat and long provided in the center prop.
-  If children are passed it renders them instead and position them at thir lat
+
+  <Map center={{ lat: 51.460346, lng: -2.612759 }} color="danger" />
+
+  If children are passed it renders them instead and positions them at their lat
   lng props e.g.
 
   <Map center={{ lat: 51.460346, lng: -2.612759 }}>
     <MyMarker lat={51.465} lng={-2.61277} />
   </Map>
-
 */
 
 const classes = BEMHelper({ name: 'Map' })
 
-export default function Map({ center, zoom, children, className, ...props }) {
+export default function Map({ center, zoom, children, className, color, ...props }) {
   return (
     <div {...classes(null, null, className)}>
       <GoogleMap
@@ -32,7 +34,7 @@ export default function Map({ center, zoom, children, className, ...props }) {
         defaultZoom={zoom}
         {...props}
       >
-        {children || <Marker {...center} />}
+        {children || <Marker {...center} color={color} />}
       </GoogleMap>
     </div>
   )
@@ -49,10 +51,12 @@ Map.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   className: PropTypes.string,
+  color: PropTypes.string,
 }
 
 Map.defaultProps = {
   zoom: 12,
   children: null,
   className: '',
+  color: 'success',
 }
