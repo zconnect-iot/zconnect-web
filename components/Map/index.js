@@ -4,13 +4,23 @@ import GoogleMap from 'google-map-react'
 import BEMHelper from 'react-bem-helper'
 
 import Marker from './Marker'
-
 import './style.scss'
 
+/*
+  Wrapper around google-map-react that defaults to showing a Marker at the
+  lat and long provided in the center prop.
+  If children are passed it renders them instead and position them at thir lat
+  lng props e.g.
+
+  <Map center={{ lat: 51.460346, lng: -2.612759 }}>
+    <MyMarker lat={51.465} lng={-2.61277} />
+  </Map>
+
+*/
 
 const classes = BEMHelper({ name: 'Map' })
 
-export default function Map({ center, zoom, label, children, className }) {
+export default function Map({ center, zoom, children, className, ...props }) {
   return (
     <div {...classes(null, null, className)}>
       <GoogleMap
@@ -20,8 +30,9 @@ export default function Map({ center, zoom, label, children, className }) {
         }}
         defaultCenter={center}
         defaultZoom={zoom}
+        {...props}
       >
-        {children || <Marker {...center}>{label}</Marker>}
+        {children || <Marker {...center} />}
       </GoogleMap>
     </div>
   )
@@ -37,13 +48,11 @@ Map.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  label: PropTypes.string,
   className: PropTypes.string,
 }
 
 Map.defaultProps = {
-  zoom: 11,
+  zoom: 12,
   children: null,
-  label: '',
   className: '',
 }

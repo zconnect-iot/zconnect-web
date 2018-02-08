@@ -1,35 +1,13 @@
 :global(.Map) {
   width: 100%;
   height: 300px;
-}
 
-:global(.Map__Marker) {
-  position: relative;
-	background: #88b7d5;
-	border: 4px solid #c2e1f5;
-
-  &:after, &:before {
-    top: 100%;
-  	left: 50%;
-  	border: solid transparent;
-  	content: " ";
-  	height: 0;
-  	width: 0;
-  	position: absolute;
-  	pointer-events: none;
-  }
-
-  &:after {
-  	border-color: rgba(136, 183, 213, 0);
-  	border-top-color: #88b7d5;
-  	border-width: 30px;
-  	margin-left: -30px;
-  }
-
-  &:before {
-  	border-color: rgba(194, 225, 245, 0);
-  	border-top-color: #c2e1f5;
-  	border-width: 36px;
-  	margin-left: -36px;
+  :global(.Map__Marker) {
+    fill: red;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -20px;
+    top: -40px;
   }
 }
