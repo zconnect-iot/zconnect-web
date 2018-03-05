@@ -1,0 +1,23 @@
+@import '~theme/variables.scss';
+
+.CheckboxForm {
+  .grid {
+    display: flex;
+    flex-direction: row;
+
+    :global(.row) {
+      margin-bottom: $padding;
+      justify-content: center;
+      height: 14px;
+    }
+
+    .rowTitles {
+      justify-content: start;
+    }
+  }
+
+  :global(.Button) {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
