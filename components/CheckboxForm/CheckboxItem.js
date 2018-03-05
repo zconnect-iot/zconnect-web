@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default class CheckboxItem extends React.Component {
-  onChange = () => {
+  onChange = (event) => {
     const { checkbox, input } = this.props
     const newValue = [...input.value]
     if (event.target.checked) newValue.push(checkbox)

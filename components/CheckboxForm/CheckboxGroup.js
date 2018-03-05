@@ -8,14 +8,17 @@ import styles from './style.scss'
 
 
 export default class CheckboxGroup extends React.Component {
+  componentDidMount() {
+    const { input, initialState } = this.props
+    // Before any checkbox clicked set initial state to represent the device.state in the DB
+    if (input.value === '') input.onChange(initialState)
+  }
+
   checkboxGroup() {
-    const { options, input, rowRef, initialState } = this.props
+    const { options, input, rowRef } = this.props
 
     return options.map((option) => {
       const checkbox = `${rowRef}.${option.ref}`
-      // Before any checkbox clicked set initial state to represent the device.state in the DB
-      if (input.value === '') input.onChange(initialState)
-
       return (
         <Row xs={3} key={option.id}>
           <CheckboxItem
