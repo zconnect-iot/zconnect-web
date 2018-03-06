@@ -10,7 +10,7 @@ import styles from './style.scss'
 
 
 const RowTitles = ({ options }) => (
-  <Col xs={2} className={styles.centre}>
+  <Col xs={3} className={styles.centre}>
     <Row />
     {options.map(option =>
       <Row key={option.id} className={styles.rowTitles}>{option.name}</Row>)
