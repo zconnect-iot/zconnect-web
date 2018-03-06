@@ -36,7 +36,7 @@ export default function CheckboxForm(props) {
         <Spinner /> :
         <div>
           <div className={styles.grid}>
-            <RowTitles options={questions} />
+            <RowTitles options={options} />
             {questions.map(question =>
               (<Field
                 key={question.id}
