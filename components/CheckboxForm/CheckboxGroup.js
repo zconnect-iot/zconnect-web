@@ -10,8 +10,8 @@ import styles from './style.scss'
 export default class CheckboxGroup extends React.Component {
   componentDidMount() {
     const { input, initialState } = this.props
-    // Before any checkbox clicked set initial state to represent the device.state in the DB
-    if (input.value === '') input.onChange(initialState)
+    // Before any checkbox clicked set initial state
+    if (initialState && input.value === '') input.onChange(initialState)
   }
 
   checkboxGroup() {
@@ -50,6 +50,10 @@ CheckboxGroup.propTypes = {
     }).isRequired,
   ).isRequired,
   rowRef: PropTypes.string.isRequired,
-  initialState: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialState: PropTypes.arrayOf(PropTypes.string),
   input: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+CheckboxGroup.defaultProps = {
+  initialState: null,
 }
