@@ -27,13 +27,13 @@ export class SimpleLink extends React.Component {
     return route ? this.props.navigate(route) : action()
   }
   render() {
-    const { className, children, route, navigate, action, ...props } = this.props
+    const { className, children, route, navigate, action, style } = this.props
     return (
       <a
         href={route}
         onClick={this.onClick}
+        style={style}
         {...classes(null, null, className)}
-        {...props}
       >
         {children}
       </a>
