@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
+import { Row, Col } from 'react-flexbox-grid'
 
 import './style.scss'
 
@@ -22,24 +23,31 @@ const StatCard = (props) => {
     inline: props.inline,
   }
   const contents = [
-    <span key={1} {...classes('description', commonModifiers)}>
-      {props.description}
-    </span>,
+    <Col xs>
+      <span key={1} {...classes('description', commonModifiers)}>
+        {props.description}
+      </span>
+    </Col>,
 
-    <div
-      key={0}
-      {...classes('figure', {
-        inline: props.inline,
-        danger: props.dangerFigure,
-      })}
-    >
-      {props.figure}{delta}
-    </div>,
+    <Col xs>
+      <div
+        key={0}
+        {...classes('figure', {
+          inline: props.inline,
+          danger: props.dangerFigure,
+        })}
+      >
+        {props.figure}{delta}
+      </div>
+    </Col>,
   ]
-  if (props.invert)
-    contents.reverse()
+  if (props.invert) contents.reverse()
 
-  return <div {...classes(null, commonModifiers, props.className)}>{contents}</div>
+  return (
+    <Row {...classes(null, commonModifiers, props.className)}>
+      {contents}
+    </Row>
+  )
 }
 
 StatCard.propTypes = {
