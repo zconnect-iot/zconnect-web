@@ -74,6 +74,11 @@
     border-bottom: 1px solid darken($content-header-bg, 10%);
     height: 54px;
     padding: 0 $padding * 2;
+
+    img {
+      height: 46px;
+      padding-right: $padding;
+    }
   }
 
   :global(.Content__headerCenter) {
