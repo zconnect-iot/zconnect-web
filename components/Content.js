@@ -40,7 +40,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
 }
 
 Content.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.node,
   subtitle: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
