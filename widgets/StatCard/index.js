@@ -23,13 +23,13 @@ const StatCard = (props) => {
     inline: props.inline,
   }
   const contents = [
-    <Col xs>
+    <Col xs key={1}>
       <span key={1} {...classes('description', commonModifiers)}>
         {props.description}
       </span>
     </Col>,
 
-    <Col xs>
+    <Col xs key={0}>
       <div
         key={0}
         {...classes('figure', {
