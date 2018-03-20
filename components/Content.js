@@ -7,7 +7,7 @@ import { Button, Icon } from '../components'
 
 const classes = BEMHelper({ name: 'Content' })
 
-export default function Content({ title, subtitle, actionItems, children, className, image }) {
+export default function Content({ title, subtitle, header, actionItems, children, className, image }) {
   return (
     <Row {...classes(null, null, className)}>
       <Col xs={12}>
@@ -21,6 +21,11 @@ export default function Content({ title, subtitle, actionItems, children, classN
                 </div>
               }
             </div>
+            { header &&
+              <div {...classes('title')}>
+                <h4>{header}</h4>
+              </div>
+            }
             {actionItems.map(item => (
               <Button {...classes('button')} key={item.title} hollow {...item}>
                 <Icon name={item.icon} size={24} />
@@ -42,6 +47,7 @@ export default function Content({ title, subtitle, actionItems, children, classN
 Content.propTypes = {
   title: PropTypes.node,
   subtitle: PropTypes.string,
+  header: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     icon: PropTypes.string,
@@ -59,5 +65,6 @@ Content.defaultProps = {
   actionItems: [],
   className: '',
   title: '',
+  header: '',
   image: null,
 }
