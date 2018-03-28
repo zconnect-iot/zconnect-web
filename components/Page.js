@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Grid } from 'react-flexbox-grid'
+import classnames from 'classnames'
 
 import Navbar from '../containers/Navbar'
 import Header from './Header'
@@ -44,9 +45,9 @@ export default class Page extends React.Component {
   }
   removeSubscriber = s => delete this.subscribers[s]
   render() {
-    const { children, navItems, headerRightContent } = this.props
+    const { children, navItems, headerRightContent, className } = this.props
     return (
-      <Grid fluid className="Page">
+      <Grid fluid className={classnames('Page', className)}>
         <Header rightContent={headerRightContent} />
         { this.props.NavBar ? <this.props.NavBar /> : <Navbar items={navItems} />}
         {children}
@@ -74,6 +75,7 @@ Page.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  className: PropTypes.string,
 }
 
 Page.defaultProps = {
@@ -81,6 +83,7 @@ Page.defaultProps = {
   headerRightContent: null,
   NavBar: null,
   navItems: [],
+  className: '',
 }
 
 Page.childContextTypes = {
