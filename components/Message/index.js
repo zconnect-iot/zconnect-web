@@ -14,7 +14,7 @@ const classes = BEMHelper('Message')
 const typeToIconName = {
   default: 'INFO',
   danger: 'WARNING',
-
+  firmware: 'FIRMWARE_UPDATE',
   // TODO: these aren't correct but I couldn't find the appropriate icons.
   success: 'THUMB_UP',
   warning: 'THUMB_DOWN',
