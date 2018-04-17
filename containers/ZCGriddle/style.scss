@@ -1,0 +1,96 @@
+@import "~theme/variables.scss";
+
+:global(.griddle__title) {
+  margin-bottom: $padding * 2;
+}
+
+:global(.griddle__filterBar) {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $padding * 2;
+  align-items: center;
+
+  h3 {
+    flex: 1
+  }
+
+  :global(.griddle__filter) {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    :global(.griddle__filterInput) {
+      width: 206px;
+    }
+  }
+}
+
+:global(.griddle__viewAll) {
+  background: white;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-color-minor;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    color: $text-color-minor;
+    background: white;
+  }
+}
+
+:global(.griddle-pagination) {
+  margin-top: $padding * 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  select {
+    background: white;
+    border: none;
+    width: 70px;
+    font-size: 14px;
+    height: 34px;
+    margin-left: $padding * 2;
+  }
+
+  button {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: $brand-success;
+    border: none;
+    fill: white;
+    margin-left: $padding * 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+:global(.TextInput) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0 $padding;
+
+  :global(.TextInput__Icon) {
+    margin-right: $padding;
+    flex-shrink: 0;
+  }
+
+  input {
+    border: none;
+    background: transparent;
+    flex: 1;
+  }
+}
