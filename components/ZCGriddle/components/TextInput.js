@@ -1,9 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import { Icon } from '../../components'
+import { Icon } from '../../../components'
 
-import './style.scss'
 
 export default function TextInput({ icon, className, children, ...props }) {
   return (

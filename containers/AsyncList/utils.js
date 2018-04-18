@@ -6,7 +6,6 @@ import { Map } from 'immutable'
 
   This allows the Griddle to take the lastResponse as it's data to display but
   also caches the results by id for easier grabbing by other comonents.
-
   It assumes the results will always have an id field
 
   The resulting format is:
@@ -25,7 +24,7 @@ import { Map } from 'immutable'
 export const storeMethod = (last = Map(), next) => {
   const resultsAsMap = next
     .get('results')
-    .reduce((res, item) => res.set(item.get('id', item)), Map())
+    .reduce((res, item) => res.set(item.get('id'), item), Map())
   return last
     .merge(resultsAsMap)
     .set('lastResponse', next)

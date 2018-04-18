@@ -2,18 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Griddle from 'griddle-react'
 
-import LayoutContainer from './LayoutContainer'
-import Filter from './Filter'
-import FilterLayout from './FilterLayout'
-import NextButton from './NextButton'
-import PreviousButton from './PreviousButton'
+import { FilterLayout } from './components'
 
 import './style.scss'
 
 
 export default function ZCGriddle(props) {
-  const { data, title, className, components, children, currentPage, pageSize,
-    recordCount, onNext, onPrevious, onGetPage, ...griddleProps } = props
+  const { data, className, components, children, ...griddleProps } = props
   return (<Griddle
     data={data}
     styleConfig={{
@@ -21,23 +16,8 @@ export default function ZCGriddle(props) {
         Layout: className,
       },
     }}
-    title={title}
-    pageProperties={{
-      pageSize,
-      currentPage,
-      recordCount,
-    }}
-    events={{
-      onNext,
-      onPrevious,
-      onGetPage,
-    }}
     components={{
-      LayoutContainer,
       Layout: FilterLayout,
-      Filter,
-      NextButton,
-      PreviousButton,
       ...components,
     }}
     {...griddleProps}
@@ -48,9 +28,6 @@ export default function ZCGriddle(props) {
 
 ZCGriddle.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  currentPage: PropTypes.number,
-  pageSize: PropTypes.number,
-  recordCount: PropTypes.number,
   title: PropTypes.string,
   className: PropTypes.string,
   components: PropTypes.objectOf(PropTypes.any),
@@ -63,9 +40,6 @@ ZCGriddle.propTypes = {
 const emptyObject = {}
 
 ZCGriddle.defaultProps = {
-  currentPage: 1,
-  pageSize: 10,
-  recordCount: 0,
   title: '',
   components: emptyObject,
   className: '',

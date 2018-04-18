@@ -1,0 +1,13 @@
+@import "~theme/variables.scss";
+
+:global(.griddle-table) {
+  width: 100%;
+}
+
+:global(.griddle__filterBar) {
+  input {
+    width: 100%;
+    height: 26px;
+  }
+  margin-bottom: $padding;
+}
