@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Griddle from 'griddle-react'
 
-import { FilterLayout } from './components'
+import { FilterLayout, LayoutContainer } from './components'
 
 import './style.scss'
 
 
 export default function ZCGriddle(props) {
-  const { data, className, components, children, ...griddleProps } = props
+  const { data, className, hideFilter, hidePagination, components, children, ...griddleProps } = props
   return (<Griddle
     data={data}
     styleConfig={{
@@ -17,9 +17,12 @@ export default function ZCGriddle(props) {
       },
     }}
     components={{
+      LayoutContainer,
       Layout: FilterLayout,
       ...components,
     }}
+    hideFilter={hideFilter}
+    hidePagination={hidePagination}
     {...griddleProps}
   >
     {children}
@@ -35,6 +38,8 @@ ZCGriddle.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  hideFilter: PropTypes.bool,
+  hidePagination: PropTypes.bool,
 }
 
 const emptyObject = {}
@@ -44,4 +49,6 @@ ZCGriddle.defaultProps = {
   components: emptyObject,
   className: '',
   children: null,
+  hideFilter: false,
+  hidePagination: false,
 }

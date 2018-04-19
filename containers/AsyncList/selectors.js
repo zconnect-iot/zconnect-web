@@ -8,6 +8,8 @@ const selectStoreKeyFromProps = (_, { storeKey }) => storeKey
 
 const selectPageSizeFromProps = (_, { pageSize }) => pageSize
 
+const selectCurrentPageFromProps = (_, { currentPage }) => currentPage
+
 const selectApiDomain = state => state.get('api')
 
 const selectRequest = createSelector(
@@ -40,4 +42,16 @@ export const selectMaxPages = createSelector(
 export const selectResults = createSelector(
   selectLastResponse,
   response => response.get('results', emptyList),
+)
+
+// Returns the pageProperties object required by Griddle when externally controlled
+export const selectPageProperties = createSelector(
+  selectRecordCount,
+  selectPageSizeFromProps,
+  selectCurrentPageFromProps,
+  (recordCount, pageSize, currentPage) => ({
+    recordCount,
+    currentPage,
+    pageSize,
+  }),
 )

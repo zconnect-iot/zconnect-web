@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { plugins } from 'griddle-react'
+import { plugins, connect } from 'griddle-react'
 import getContext from 'recompose/getContext'
 import mapProps from 'recompose/mapProps'
 import compose from 'recompose/compose'
@@ -15,6 +15,8 @@ const EnhancedLayout = OriginalComponent => compose(
       className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'Layout'),
       style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'Layout'),
       title: state.get('title'),
+      hidePagination: state.get('hidePagination'),
+      hideFilter: state.get('hideFilter'),
     }),
   ),
   mapProps(props => ({
@@ -26,6 +28,8 @@ const EnhancedLayout = OriginalComponent => compose(
     className: props.className,
     style: props.style,
     title: props.title,
+    hidePagination: props.hidePagination,
+    hideFilter: props.hideFilter,
   })),
 )(OriginalComponent)
 

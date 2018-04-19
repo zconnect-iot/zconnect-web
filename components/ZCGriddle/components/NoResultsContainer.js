@@ -3,7 +3,6 @@
   Requires an api prop to be passed to the Griddle
 */
 
-import React from 'react'
 import PropTypes from 'prop-types'
 import { connect, plugins } from 'griddle-react'
 import { compose, mapProps, getContext } from 'recompose'
@@ -27,6 +26,6 @@ const NoResultsContainer = OriginalComponent => compose(
       ...otherProps,
     }
   }),
-)(props => <OriginalComponent {...props} />)
+)(OriginalComponent)
 
 export default NoResultsContainer

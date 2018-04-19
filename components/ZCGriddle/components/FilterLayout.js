@@ -1,13 +1,13 @@
 import React from 'react'
 
 
-const FilterLayout = ({ Table, Pagination, Filter, className }) => (
+const FilterLayout = ({ Table, Pagination, Filter, className, hidePagination, hideFilter }) => (
   <div className={className}>
-    <div className="griddle__filterBar">
+    {!hideFilter && <div className="griddle__filterBar">
       <Filter />
-    </div>
+    </div>}
     <Table />
-    <Pagination />
+    {!hidePagination && <Pagination />}
   </div>
 )
 
