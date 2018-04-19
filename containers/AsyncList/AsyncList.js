@@ -5,7 +5,7 @@ import { zcApiShapeJS } from 'zc-core/utils/propTypes'
 
 import ZCGriddle from '../../components/ZCGriddle'
 import { NoResults, NoResultsContainer } from '../../components/ZCGriddle/components'
-
+import { styleConfig } from '../../views/List'
 
 export default class AsyncList extends React.Component {
   componentDidMount() {
@@ -26,6 +26,7 @@ export default class AsyncList extends React.Component {
         ...components,
       }}
       api={api}
+      styleConfig={styleConfig}
       {...griddleProps}
     >
       {children}
