@@ -36,7 +36,7 @@ export const selectRecordCount = createSelector(
 export const selectMaxPages = createSelector(
   selectRecordCount,
   selectPageSizeFromProps,
-  (records, pageSize) => Math.floor(records / pageSize) + 1,
+  (records, pageSize) => Math.ceil(records / pageSize),
 )
 
 export const selectResults = createSelector(
