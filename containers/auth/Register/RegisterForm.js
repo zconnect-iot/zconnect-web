@@ -9,8 +9,8 @@ const RegisterForm = (props) => {
   const { handleSubmit, pristine, submitting, pending, t } = props
   return (
     <form>
-      <TextField name="fname" label={t('firstname')} />
-      <TextField name="lname" label={t('lastname')} />
+      <TextField name="first_name" label={t('firstname')} />
+      <TextField name="last_name" label={t('lastname')} />
       <TextField name="email" label={t('email')} />
       <TextField name="email2" label={t('repeatemail')} />
       <PasswordField name="password" label={t('password')} />

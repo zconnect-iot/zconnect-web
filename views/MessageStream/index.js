@@ -15,7 +15,7 @@ export default class MessageStream extends React.PureComponent {
     const { messages, MessageIcon, className } = this.props
     return (<div {...classes(null, null, className)}>
       {messages.valueSeq().map((message) => {
-        const id = message.get('issue_id')
+        const id = message.get('id')
         return (<Message
           key={id}
           type={message.get('type')}
