@@ -20,7 +20,7 @@
 */
 
 import { connect } from 'react-redux'
-import { compose, withStateHandlers } from 'recompose'
+import { withStateHandlers } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
 import { apiRequest } from 'zc-core/api/actions'
@@ -90,14 +90,13 @@ const mergeProps = (
   },
 })
 
-export default compose(
-  withStateHandlers(
-    getInitialState,
-    stateHandlers,
-  ),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps,
-  ),
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps,
+)(toJS(AsyncList))
+
+export const AsyncListWithState = withStateHandlers(
+  getInitialState,
+  stateHandlers,
 )(toJS(AsyncList))
