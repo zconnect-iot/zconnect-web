@@ -27,7 +27,7 @@ export default function Content({ title, subtitle, header, actionItems, children
               </div>
             }
             {actionItems.map(item => (
-              <Button {...classes('button')} key={item.title} hollow {...item}>
+              <Button {...classes('button')} key={item.title || item.icon} hollow {...item}>
                 {item.icon && <Icon name={item.icon} size={24} />}
                 {item.title && <span>{item.title}</span>}
               </Button>
@@ -49,7 +49,7 @@ Content.propTypes = {
   subtitle: PropTypes.string,
   header: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     icon: PropTypes.string,
   })),
   children: PropTypes.oneOfType([

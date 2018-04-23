@@ -8,7 +8,6 @@ import './style.scss'
 
 
 export default function ZCGriddle(props) {
-  console.log('ZCGriddle', props);
   const { data, className, hideFilter, hidePagination, components, children, ...griddleProps } = props
   return (<Griddle
     data={data}
