@@ -30,7 +30,7 @@ export default function withPaginationContentProps() {
         return (
           <div>
             <ModalContainer title="Go to page" visible={pageSelectorOpen} onClose={this.togglePageSelector}>
-              <select onChange={onGetPage} value={currentPage}>
+              <select onChange={this.onGetPage} value={currentPage}>
                 {range(1, maxPages + 1).map(i => <option value={i} key={i}>{i}</option>)}
               </select>
             </ModalContainer>
