@@ -28,8 +28,8 @@ export default function Content({ title, subtitle, header, actionItems, children
             }
             {actionItems.map(item => (
               <Button {...classes('button')} key={item.title} hollow {...item}>
-                <Icon name={item.icon} size={24} />
-                {item.title}
+                {item.icon && <Icon name={item.icon} size={24} />}
+                {item.title && <span>{item.title}</span>}
               </Button>
             ))}
           </Col>
