@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   reset: email => dispatch(resetPassword({ email })),
-  registerError: e => dispatch(resetPasswordError({ title: e })),
+  registerError: e => dispatch(resetPasswordError({ detail: e })),
 })
 
 export default connect(

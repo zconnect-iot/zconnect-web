@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
-  registerError: e => dispatch(loginError({ title: e })),
+  registerError: e => dispatch(loginError({ detail: e })),
 })
 
 export default connect(

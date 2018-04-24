@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   register: payload => dispatch(registerUser(payload)),
-  registerError: e => dispatch(registerUserError({ title: e })),
+  registerError: e => dispatch(registerUserError({ detail: e })),
 })
 
 export default connect(
