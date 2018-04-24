@@ -5,6 +5,11 @@ import { range } from 'lodash'
 
 import { ModalContainer } from '../../views'
 
+/*
+  This could be used to wrap Content to convert the props provided by withPaginationProps
+  (or any other source) into actionItems. It also adds the ModalContainer for the page selector
+  and handles it's state.
+*/
 
 export default function withPaginationContentProps() {
   return function withPaginationContentPropsEnhancer(WrappedComponent) {

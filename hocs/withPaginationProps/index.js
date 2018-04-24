@@ -17,15 +17,23 @@ export default function withPaginationProps({ storeKey }) {
         const convertToUrl = params => `${location.pathname}?${qs.stringify(params)}`
         const { push } = history
         const params = qs.parse(location.search)
-        const { currentPage = 1 } = params
-        let { pageSize = 10 } = params
-        if (+pageSize > 100) pageSize = 100
+        const { page = 1 } = params
+        let { page_size = 10 } = params
+        if (+page_size > 100) page_size = 100
         return {
-          currentPage: +currentPage,
-          pageSize: +pageSize,
-          onGetPage: ({ target }) => push(convertToUrl({ pageSize, currentPage: +target.value })),
-          onNext: () => push(convertToUrl({ pageSize, currentPage: +currentPage + 1 })),
-          onPrevious: () => push(convertToUrl({ pageSize, currentPage: +currentPage - 1 })),
+          currentPage: +page,
+          pageSize: +page_size,
+          onGetPage: ({ target }) => push(convertToUrl({
+            page_size,
+            page: +target.value,
+          })),
+          onNext: () => push(convertToUrl({
+            page_size,
+            page: +page + 1 })),
+          onPrevious: () => push(convertToUrl({
+            page_size,
+            page: +page - 1,
+          })),
           ...props,
         }
       },
