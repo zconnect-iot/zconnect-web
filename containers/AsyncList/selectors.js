@@ -6,9 +6,9 @@ const emptyList = List()
 
 const selectStoreKeyFromProps = (_, { storeKey }) => storeKey
 
-const selectPageSizeFromProps = (_, { pageSize }) => pageSize
+const selectPageSizeFromProps = (_, { pageSize }) => pageSize || 10
 
-const selectCurrentPageFromProps = (_, { currentPage }) => currentPage
+const selectCurrentPageFromProps = (_, { currentPage }) => currentPage || 1
 
 const selectApiDomain = state => state.get('api')
 
@@ -23,6 +23,16 @@ const selectResponse = createSelector(
   request => request.get('response', emptyMap),
 )
 
+const selectErrorResponse = createSelector(
+  selectRequest,
+  request => request.getIn(['error', 'response'], emptyMap),
+)
+
+export const selectErrorMessage = createSelector(
+  selectErrorResponse,
+  error => error.getIn(['json', 'detail'], 'An unknown fetch error occurred'),
+)
+
 const selectLastResponse = createSelector(
   selectResponse,
   response => response.get('lastResponse', emptyMap),
@@ -33,6 +43,8 @@ export const selectRecordCount = createSelector(
   response => response.get('count', 0),
 )
 
+// Utility selector not used by default as Griddle generates max pages automatically
+// from the pageProperties
 export const selectMaxPages = createSelector(
   selectRecordCount,
   selectPageSizeFromProps,

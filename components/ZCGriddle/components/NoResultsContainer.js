@@ -17,6 +17,7 @@ const NoResultsContainer = OriginalComponent => compose(
       className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'NoResults'),
       style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'NoResults'),
       api: state.get('api'),
+      errorMessage: state.get('errorMessage'),
     }),
   ),
   mapProps((props) => {
