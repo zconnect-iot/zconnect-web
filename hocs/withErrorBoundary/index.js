@@ -10,7 +10,7 @@ import ErrorHandler from './ErrorHandler'
 export default function withErrorBoundary(config = {}) {
   const { FallbackComponent = ErrorHandler, errorCallback = null } = config
   return function withErrorBoundaryEnhancer(WrappedComponent) {
-    class WithErrorBoundary extends React.PureComponent {
+    class WithErrorBoundary extends React.Component {
       constructor(props) {
         super(props)
         this.state = {
@@ -18,12 +18,16 @@ export default function withErrorBoundary(config = {}) {
         }
       }
       componentDidCatch(error, info) {
-        this.setState({ error })
+        this.setState({ error, info })
         return errorCallback ? errorCallback(error, info) : null
       }
       retry = () => this.setState({ error: null })
       render() {
-        if (this.state.error) return <FallbackComponent retry={this.retry} error={this.state.error} />
+        if (this.state.error) return (<FallbackComponent
+          retry={this.retry}
+          error={this.state.error}
+          info={this.state.info}
+        />)
         return <WrappedComponent {...this.props} />
       }
     }
