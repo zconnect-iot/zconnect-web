@@ -40,7 +40,7 @@ class Register extends React.Component {
             initialValues={{ email }}
             t={t}
           />
-          {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
+          {api.error && <div {...classes('error')}>{errorMessage}</div>}
           {api.success && <div {...classes('success')}>
             <p>{t('registersuccess')}</p>
             <p>{t('checkemail')}</p>
@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   register: payload => dispatch(registerUser(payload)),
-  registerError: e => dispatch(registerUserError({ detail: e })),
+  registerError: e => dispatch(registerUserError({ response: { json: { code: e } } })),
 })
 
 export default connect(
