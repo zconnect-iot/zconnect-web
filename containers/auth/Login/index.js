@@ -36,7 +36,7 @@ class Login extends React.Component {
         <div {...classes('form')}>
           <Logo {...classes('logo')} large center />
           <LoginForm onSubmit={this.handleSubmit} t={t} />
-          {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
+          {api.error && <div {...classes('error')}>{errorMessage}</div>}
           <a
             {...classes('forgotten')}
             onClick={this.handleForgotten}
@@ -80,7 +80,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
-  registerError: e => dispatch(loginError({ title: e })),
+  // This simulates an api error so the selector displays the appropriate message
+  registerError: e => dispatch(loginError({ response: { json: { code: e } } })),
 })
 
 export default connect(

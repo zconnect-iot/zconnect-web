@@ -31,7 +31,7 @@ class Forgotten extends React.Component {
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} t={t} />
-          {api.error && <div {...classes('error')}>{t(errorMessage)}</div>}
+          {api.error && <div {...classes('error')}>{errorMessage}</div>}
           {api.success && <div {...classes('success')}>
             <p>{t('success')}</p>
             <p>{t('emailsent')}</p>
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   reset: email => dispatch(resetPassword({ email })),
-  registerError: e => dispatch(resetPasswordError({ title: e })),
+  registerError: e => dispatch(resetPasswordError({ response: { json: { code: e } } })),
 })
 
 export default connect(
