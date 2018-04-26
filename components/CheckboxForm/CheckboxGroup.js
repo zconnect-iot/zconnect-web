@@ -18,7 +18,7 @@ export default class CheckboxGroup extends React.Component {
     const { options, input, rowRef } = this.props
 
     return options.map((option) => {
-      const checkbox = `${rowRef}.${option.ref}`
+      const checkbox = `${option.ref}${rowRef}`
       return (
         <Row xs={3} key={option.id}>
           <CheckboxItem
