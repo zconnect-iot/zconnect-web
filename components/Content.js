@@ -27,7 +27,7 @@ export default function Content({ title, subtitle, header, actionItems, children
               </div>
             }
             {actionItems.map(item => (
-              <Button {...classes('button')} key={item.title || item.icon} hollow {...item}>
+              <Button key={item.title || item.icon} hollow {...item} {...classes('button', null, item.className)}>
                 {item.icon && <Icon name={item.icon} size={24} />}
                 {item.title && <span>{item.title}</span>}
               </Button>
