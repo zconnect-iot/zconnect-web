@@ -4,42 +4,40 @@ import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import { compose } from 'recompose'
 
-import { isValidEmail } from 'zc-core/auth/utils'
-import { registerUser, registerUserError } from 'zc-core/auth/actions'
-import { selectRegisterAPIState, selectRegisterErrorMessage } from 'zc-core/auth/selectors'
+import { resetPasswordConfirm, resetPasswordConfirmError } from 'zc-core/auth/actions'
+import { selectResetPasswordConfirmAPIState, selectResetPasswordConfirmErrorMessage } from 'zc-core/auth/selectors'
 import { toJS, withTranslator } from 'zc-core/hocs'
 
-import RegisterForm from './RegisterForm'
+import PasswordConfirmForm from './PasswordConfirmForm'
 import { Logo } from '../../../components'
 
 
 const classes = BEMHelper({ name: 'Auth' })
 
-class Register extends React.Component {
+class PasswordConfirm extends React.Component {
+  componentWillReceiveProps(props) {
+    if (props.onSuccess && props.api.success) props.onSuccess()
+  }
   handleSubmit = (_payload) => {
     const payload = _payload.toJS()
-    if (_payload.size !== 6) return this.props.registerError('incomplete')
-    if (!isValidEmail(payload.email)) return this.props.registerError('emailinvalid')
-    if (payload.email !== payload.email2) return this.props.registerError('emailsdontmatch')
-    if (payload.password !== payload.password2) return this.props.registerError('passwordsdontmatch')
-    return this.props.register(payload)
+    if (payload.new_password1.length < 8) return this.props.registerError('passwordinvalid')
+    if (payload.new_password1 !== payload.new_password2) return this.props.registerError('passwordsdontmatch')
+    return this.props.submit(payload)
   }
   render() {
-    const { api, errorMessage, t, email, className } = this.props
+    const { api, errorMessage, t, className } = this.props
     return (
       <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
-          <RegisterForm
+          <PasswordConfirmForm
             pending={api.pending}
             onSubmit={this.handleSubmit}
-            initialValues={{ email }}
             t={t}
           />
           {api.error && <div {...classes('error')}>{errorMessage}</div>}
           {api.success && <div {...classes('success')}>
-            <p>{t('registersuccess')}</p>
-            <p>{t('checkemail')}</p>
+            <p>{t('success')}</p>
           </div>}
         </div>
       </div>
@@ -47,10 +45,9 @@ class Register extends React.Component {
   }
 }
 
-Register.propTypes = {
-  register: PropTypes.func.isRequired,
+PasswordConfirm.propTypes = {
+  submit: PropTypes.func.isRequired,
   registerError: PropTypes.func.isRequired,
-  email: PropTypes.string,
   api: PropTypes.shape({
     error: PropTypes.bool.isRequired,
     pending: PropTypes.bool.isRequired,
@@ -58,23 +55,26 @@ Register.propTypes = {
   }).isRequired,
   errorMessage: PropTypes.string,
   t: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func,
   className: PropTypes.string,
 }
 
-Register.defaultProps = {
+PasswordConfirm.defaultProps = {
   errorMessage: '',
-  email: '',
+  onSuccess: null,
   className: '',
 }
 
 const mapStateToProps = state => ({
-  api: selectRegisterAPIState(state),
-  errorMessage: selectRegisterErrorMessage(state),
+  api: selectResetPasswordConfirmAPIState(state),
+  errorMessage: selectResetPasswordConfirmErrorMessage(state),
 })
 
-const mapDispatchToProps = dispatch => ({
-  register: payload => dispatch(registerUser(payload)),
-  registerError: e => dispatch(registerUserError({ response: { json: { code: e } } })),
+const mapDispatchToProps = (dispatch, { token, uid }) => ({
+  submit: payload => dispatch(
+    resetPasswordConfirm({ uid, token, ...payload }),
+  ),
+  registerError: e => dispatch(resetPasswordConfirmError({ response: { json: { code: e } } })),
 })
 
 export default compose(
@@ -84,4 +84,4 @@ export default compose(
   ),
   toJS,
   withTranslator,
-)(Register)
+)(PasswordConfirm)

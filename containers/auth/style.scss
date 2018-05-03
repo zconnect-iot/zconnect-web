@@ -1,6 +1,6 @@
 @import '~theme/variables.scss';
 
-:global(.Register) {
+:global(.Auth) {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -9,7 +9,7 @@
   background: transparent;
 }
 
-:global(.Register__form) {
+:global(.Auth__form) {
   flex: 0.5;
   padding: $padding 0;
   max-width: 400px;
@@ -23,18 +23,19 @@
     width: 100%;
 
     button {
-      margin: 0 auto;
-      margin-top: $padding;
+      margin: $padding auto;
     }
   }
 }
 
-:global(.Register__error) {
+:global(.Auth__error) {
+  padding: 0 20px;
   color: $brand-danger;
   margin-top: $padding;
 }
 
-:global(.Register__success) {
+:global(.Auth__success) {
+  padding: 0 20px;
   color: $brand-success;
   margin-top: $padding;
 }

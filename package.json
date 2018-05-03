@@ -42,6 +42,7 @@
     "react-flexbox-grid": "^1.1.5",
     "react-redux": "^5.0.6",
     "react-test-renderer": "^15.6.1",
+    "recompose": "^0.26.0",
     "redux-form": "^7.0.4"
   },
   "dependencies": {
@@ -65,6 +66,7 @@
     "query-string": "5.x",
     "react": "15.x",
     "react-redux": "5.x",
+    "recompose": "0.x",
     "redux": "3.x",
     "redux-form": "7.x",
     "xdate": "0.x"

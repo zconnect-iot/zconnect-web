@@ -2,19 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
-import queryString from 'query-string'
+import { compose } from 'recompose'
 
 import { isValidEmail } from 'zc-core/auth/utils'
 import { resetPassword, resetPasswordError } from 'zc-core/auth/actions'
-import { selectResetPasswordAPIState, selectForgottenPasswordErrorMessage } from 'zc-core/auth/selectors'
+import { selectResetPasswordAPIState, selectResetPasswordErrorMessage } from 'zc-core/auth/selectors'
 import { toJS, withTranslator } from 'zc-core/hocs'
 
 import ForgottenForm from './ForgottenForm'
 import { Logo } from '../../../components'
 
-import './style.scss'
 
-const classes = BEMHelper({ name: 'Forgotten' })
+const classes = BEMHelper({ name: 'Auth' })
 
 class Forgotten extends React.Component {
   handleSubmit = (payload) => {
@@ -24,10 +23,9 @@ class Forgotten extends React.Component {
   }
 
   render() {
-    const { api, errorMessage, location, t } = this.props
-    const email = queryString.parse(location.search).email
+    const { api, errorMessage, t, email, className } = this.props
     return (
-      <div {...classes()}>
+      <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} t={t} />
@@ -42,10 +40,6 @@ class Forgotten extends React.Component {
   }
 }
 
-Forgotten.contextTypes = {
-  t: PropTypes.func,
-}
-
 Forgotten.propTypes = {
   reset: PropTypes.func.isRequired,
   registerError: PropTypes.func.isRequired,
@@ -55,22 +49,20 @@ Forgotten.propTypes = {
     success: PropTypes.bool.isRequired,
   }).isRequired,
   errorMessage: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-  }).isRequired,
   t: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  className: PropTypes.string,
 }
 
 Forgotten.defaultProps = {
   errorMessage: '',
+  email: '',
+  className: '',
 }
 
 const mapStateToProps = state => ({
   api: selectResetPasswordAPIState(state),
-  errorMessage: selectForgottenPasswordErrorMessage(state),
+  errorMessage: selectResetPasswordErrorMessage(state),
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -78,7 +70,11 @@ const mapDispatchToProps = dispatch => ({
   registerError: e => dispatch(resetPasswordError({ response: { json: { code: e } } })),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(toJS(withTranslator(Forgotten)))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+  withTranslator,
+)(Forgotten)
