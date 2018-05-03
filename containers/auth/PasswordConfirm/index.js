@@ -16,7 +16,7 @@ const classes = BEMHelper({ name: 'Auth' })
 
 class PasswordConfirm extends React.Component {
   componentWillReceiveProps(props) {
-    if (props.onSuccess && props.api.error) props.onSuccess()
+    if (props.onSuccess && props.api.success) props.onSuccess()
   }
   handleSubmit = (_payload) => {
     const payload = _payload.toJS()
