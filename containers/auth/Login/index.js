@@ -14,6 +14,7 @@ import { Logo } from '../../../components'
 
 import './style.scss'
 
+
 const classes = BEMHelper({ name: 'Login' })
 const selectFormState = formValueSelector('loginForm')
 
@@ -24,18 +25,18 @@ class Login extends React.Component {
     if (password.length < 8) return this.props.registerError('passwordinvalid')
     return this.props.login(email, password)
   }
-  handleForgotten = () => {
-    const { history, email } = this.props
-    const queryString = email ? `?email=${encodeURIComponent(email)}` : ''
-    history.push(`/forgotten${queryString}`)
-  }
+  handleForgotten = () => this.props.onForgotten(this.props.email)
   render() {
-    const { api, errorMessage, t } = this.props
+    const { api, errorMessage, t, initialValues } = this.props
     return (
       <div {...classes()}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large center />
-          <LoginForm onSubmit={this.handleSubmit} t={t} />
+          <LoginForm
+            onSubmit={this.handleSubmit}
+            t={t}
+            initialValues={initialValues}
+          />
           {api.error && <div {...classes('error')}>{errorMessage}</div>}
           <a
             {...classes('forgotten')}
@@ -54,27 +55,29 @@ class Login extends React.Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   registerError: PropTypes.func.isRequired,
-  email: PropTypes.string,
   api: PropTypes.shape({
     error: PropTypes.bool.isRequired,
     pending: PropTypes.bool.isRequired,
     success: PropTypes.bool.isRequired,
   }).isRequired,
   errorMessage: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
   t: PropTypes.func.isRequired,
+  onForgotten: PropTypes.func.isRequired,
+  initialValues: PropTypes.shape({
+    email: PropTypes.string,
+  }).isRequired,
+  email: PropTypes.string,
 }
 
 Login.defaultProps = {
   errorMessage: '',
-  email: null,
+  email: '',
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { email = '' }) => ({
   api: selectLoginAPIState(state),
   errorMessage: selectLoginErrorMessage(state),
+  initialValues: { email },
   email: selectFormState(state, 'email'),
 })
 

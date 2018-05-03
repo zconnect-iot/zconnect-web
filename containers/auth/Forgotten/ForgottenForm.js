@@ -6,18 +6,23 @@ import { TextField } from '../../../widgets/forms'
 import { SimpleButton } from '../../../components'
 
 const ForgottenForm = (props) => {
-  const { handleSubmit, pristine, submitting, t } = props
+  const { handleSubmit, submitting, t } = props
   return (
     <form>
       <TextField name="email" label={t('email')} />
-      <SimpleButton color="primary" action={handleSubmit} disabled={pristine || submitting}>{t('resetpassword').toUpperCase()}</SimpleButton>
+      <SimpleButton
+        color="primary"
+        action={handleSubmit}
+        disabled={submitting}
+      >
+        {t('resetpassword').toUpperCase()}
+      </SimpleButton>
     </form>
   )
 }
 
 ForgottenForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
 }

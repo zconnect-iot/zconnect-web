@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
-import { formValueSelector } from 'redux-form/immutable'
-import queryString from 'query-string'
 
 import { isValidEmail } from 'zc-core/auth/utils'
 import { registerUser, registerUserError } from 'zc-core/auth/actions'
@@ -15,8 +13,8 @@ import { Logo } from '../../../components'
 
 import './style.scss'
 
+
 const classes = BEMHelper({ name: 'Register' })
-const selectFormState = formValueSelector('registerForm')
 
 class Register extends React.Component {
   handleSubmit = (_payload) => {
@@ -28,8 +26,7 @@ class Register extends React.Component {
     return this.props.register(payload)
   }
   render() {
-    const { api, errorMessage, t } = this.props
-    const email = queryString.parse(location.search).email
+    const { api, errorMessage, t, email } = this.props
     return (
       <div {...classes()}>
         <div {...classes('form')}>
@@ -61,21 +58,17 @@ Register.propTypes = {
     success: PropTypes.bool.isRequired,
   }).isRequired,
   errorMessage: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
   t: PropTypes.func.isRequired,
 }
 
 Register.defaultProps = {
   errorMessage: '',
-  email: null,
+  email: '',
 }
 
 const mapStateToProps = state => ({
   api: selectRegisterAPIState(state),
   errorMessage: selectRegisterErrorMessage(state),
-  email: selectFormState(state, 'email'),
 })
 
 const mapDispatchToProps = dispatch => ({
