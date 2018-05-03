@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
+import { compose } from 'recompose'
 
 import { isValidEmail } from 'zc-core/auth/utils'
 import { resetPassword, resetPasswordError } from 'zc-core/auth/actions'
@@ -11,9 +12,8 @@ import { toJS, withTranslator } from 'zc-core/hocs'
 import ForgottenForm from './ForgottenForm'
 import { Logo } from '../../../components'
 
-import './style.scss'
 
-const classes = BEMHelper({ name: 'Forgotten' })
+const classes = BEMHelper({ name: 'Auth' })
 
 class Forgotten extends React.Component {
   handleSubmit = (payload) => {
@@ -23,9 +23,9 @@ class Forgotten extends React.Component {
   }
 
   render() {
-    const { api, errorMessage, t, email } = this.props
+    const { api, errorMessage, t, email, className } = this.props
     return (
-      <div {...classes()}>
+      <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <ForgottenForm onSubmit={this.handleSubmit} initialValues={{ email }} t={t} />
@@ -40,10 +40,6 @@ class Forgotten extends React.Component {
   }
 }
 
-Forgotten.contextTypes = {
-  t: PropTypes.func,
-}
-
 Forgotten.propTypes = {
   reset: PropTypes.func.isRequired,
   registerError: PropTypes.func.isRequired,
@@ -55,11 +51,13 @@ Forgotten.propTypes = {
   errorMessage: PropTypes.string,
   t: PropTypes.func.isRequired,
   email: PropTypes.string,
+  className: PropTypes.string,
 }
 
 Forgotten.defaultProps = {
   errorMessage: '',
   email: '',
+  className: '',
 }
 
 const mapStateToProps = state => ({
@@ -72,7 +70,11 @@ const mapDispatchToProps = dispatch => ({
   registerError: e => dispatch(resetPasswordError({ response: { json: { code: e } } })),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(toJS(withTranslator(Forgotten)))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+  withTranslator,
+)(Forgotten)

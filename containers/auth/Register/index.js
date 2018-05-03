@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
+import { compose } from 'recompose'
 
 import { isValidEmail } from 'zc-core/auth/utils'
 import { registerUser, registerUserError } from 'zc-core/auth/actions'
@@ -11,10 +12,8 @@ import { toJS, withTranslator } from 'zc-core/hocs'
 import RegisterForm from './RegisterForm'
 import { Logo } from '../../../components'
 
-import './style.scss'
 
-
-const classes = BEMHelper({ name: 'Register' })
+const classes = BEMHelper({ name: 'Auth' })
 
 class Register extends React.Component {
   handleSubmit = (_payload) => {
@@ -26,9 +25,9 @@ class Register extends React.Component {
     return this.props.register(payload)
   }
   render() {
-    const { api, errorMessage, t, email } = this.props
+    const { api, errorMessage, t, email, className } = this.props
     return (
-      <div {...classes()}>
+      <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <RegisterForm
@@ -59,11 +58,13 @@ Register.propTypes = {
   }).isRequired,
   errorMessage: PropTypes.string,
   t: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 Register.defaultProps = {
   errorMessage: '',
   email: '',
+  className: '',
 }
 
 const mapStateToProps = state => ({
@@ -76,7 +77,11 @@ const mapDispatchToProps = dispatch => ({
   registerError: e => dispatch(registerUserError({ response: { json: { code: e } } })),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(toJS(withTranslator(Register)))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+  withTranslator,
+)(Register)

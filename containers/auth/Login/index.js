@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import { formValueSelector } from 'redux-form/immutable'
+import { compose } from 'recompose'
 
 import { isValidEmail } from 'zc-core/auth/utils'
 import { login, loginError } from 'zc-core/auth/actions'
@@ -10,12 +11,10 @@ import { selectLoginAPIState, selectLoginErrorMessage } from 'zc-core/auth/selec
 import { toJS, withTranslator } from 'zc-core/hocs'
 
 import LoginForm from './LoginForm'
-import { Logo } from '../../../components'
-
-import './style.scss'
+import { Logo, SimpleLink } from '../../../components'
 
 
-const classes = BEMHelper({ name: 'Login' })
+const classes = BEMHelper({ name: 'Auth' })
 const selectFormState = formValueSelector('loginForm')
 
 class Login extends React.Component {
@@ -27,9 +26,9 @@ class Login extends React.Component {
   }
   handleForgotten = () => this.props.onForgotten(this.props.email)
   render() {
-    const { api, errorMessage, t, initialValues } = this.props
+    const { api, errorMessage, t, initialValues, className } = this.props
     return (
-      <div {...classes()}>
+      <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large center />
           <LoginForm
@@ -38,14 +37,9 @@ class Login extends React.Component {
             initialValues={initialValues}
           />
           {api.error && <div {...classes('error')}>{errorMessage}</div>}
-          <a
-            {...classes('forgotten')}
-            onClick={this.handleForgotten}
-            tabIndex={0}
-            role="button"
-          >
+          <SimpleLink action={this.handleForgotten}>
             {t('forgotten')}
-          </a>
+          </SimpleLink>
         </div>
       </div>
     )
@@ -67,11 +61,13 @@ Login.propTypes = {
     email: PropTypes.string,
   }).isRequired,
   email: PropTypes.string,
+  className: PropTypes.string,
 }
 
 Login.defaultProps = {
   errorMessage: '',
   email: '',
+  className: '',
 }
 
 const mapStateToProps = (state, { email = '' }) => ({
@@ -87,7 +83,11 @@ const mapDispatchToProps = dispatch => ({
   registerError: e => dispatch(loginError({ response: { json: { code: e } } })),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(toJS(withTranslator(Login)))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+  withTranslator,
+)(Login)

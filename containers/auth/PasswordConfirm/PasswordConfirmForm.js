@@ -12,7 +12,7 @@ const PasswordConfirmForm = (props) => {
       <PasswordField name="new_password1" label={t('password')} />
       <PasswordField name="new_password2" label={t('repeatpassword')} />
       <SimpleButton color="primary" action={handleSubmit} disabled={pristine || submitting || pending}>
-        {pending ? <Spinner /> : t('register').toUpperCase()}
+        {pending ? <Spinner /> : t('resetpassword').toUpperCase()}
       </SimpleButton>
     </form>
   )

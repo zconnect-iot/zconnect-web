@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
+import { compose } from 'recompose'
 
 import { resetPasswordConfirm, resetPasswordConfirmError } from 'zc-core/auth/actions'
 import { selectResetPasswordConfirmAPIState, selectResetPasswordConfirmErrorMessage } from 'zc-core/auth/selectors'
@@ -10,9 +11,8 @@ import { toJS, withTranslator } from 'zc-core/hocs'
 import PasswordConfirmForm from './PasswordConfirmForm'
 import { Logo } from '../../../components'
 
-import './style.scss'
 
-const classes = BEMHelper({ name: 'PasswordConfirm' })
+const classes = BEMHelper({ name: 'Auth' })
 
 class PasswordConfirm extends React.Component {
   componentWillReceiveProps(props) {
@@ -25,9 +25,9 @@ class PasswordConfirm extends React.Component {
     return this.props.submit(payload)
   }
   render() {
-    const { api, errorMessage, t } = this.props
+    const { api, errorMessage, t, className } = this.props
     return (
-      <div {...classes()}>
+      <div {...classes(null, className)}>
         <div {...classes('form')}>
           <Logo {...classes('logo')} large />
           <PasswordConfirmForm
@@ -56,11 +56,13 @@ PasswordConfirm.propTypes = {
   errorMessage: PropTypes.string,
   t: PropTypes.func.isRequired,
   onSuccess: PropTypes.func,
+  className: PropTypes.string,
 }
 
 PasswordConfirm.defaultProps = {
   errorMessage: '',
   onSuccess: null,
+  className: '',
 }
 
 const mapStateToProps = state => ({
@@ -75,7 +77,11 @@ const mapDispatchToProps = (dispatch, { token, uid }) => ({
   registerError: e => dispatch(resetPasswordConfirmError({ response: { json: { code: e } } })),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(toJS(withTranslator(PasswordConfirm)))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+  withTranslator,
+)(PasswordConfirm)
