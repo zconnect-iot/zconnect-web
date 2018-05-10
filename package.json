@@ -33,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "identity-obj-proxy": "^3.0.0",
+    "immutable": "^3.8.2",
     "jest": "^21.0.1",
     "node-sass": "^4.5.3",
     "pre-commit": "^1.2.2",
@@ -43,7 +44,8 @@
     "react-redux": "^5.0.6",
     "react-test-renderer": "^15.6.1",
     "recompose": "^0.26.0",
-    "redux-form": "^7.0.4"
+    "redux-form": "^7.0.4",
+    "reselect": "^3.0.1"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
@@ -60,6 +62,7 @@
     "react-tabs-redux": "^1.6.0"
   },
   "peerDependencies": {
+    "immutable": "> 2 < 4",
     "react-flexbox-grid": "1.x",
     "zc-core": "3.x",
     "prop-types": "15.x",
@@ -69,6 +72,7 @@
     "recompose": "0.x",
     "redux": "3.x",
     "redux-form": "7.x",
+    "reselect": "> 2 < 4",
     "xdate": "0.x"
   },
   "jest": {

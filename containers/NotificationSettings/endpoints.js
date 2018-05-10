@@ -1,6 +1,7 @@
 import { Map, List } from 'immutable'
 
 export default {
+  // Bit of a beast reduction. Tests show input - output shapes
   getSubscriptions: {
     url: 'api/v3/users/${userId}/subscriptions/',
     method: 'GET',
@@ -8,13 +9,18 @@ export default {
     storeKey: 'subscriptions',
     storeMethod: (last = Map(), next, params) => last.set(
       params.userId,
-      next.reduce((subs, sub) => subs.setIn(
-        [sub.getIn(['organisation', 'id']), sub.get('category')],
-        subs.getIn([sub.getIn(['organisation', 'id']), sub.get('category')], Map)
-          .set(sub.get('type'), Map({ id: sub.get('id'), enabled: true }))
-          .set('weight', 1) // Implement with counter based on list pos
-          .set('min_severity', sub.get('min_severity')), // Take min of this or previous
-      ), Map),
+      next.reduce((subs, sub) => {
+        const pathToCategory = [sub.getIn(['organization', 'id']), sub.get('category')]
+        return subs.setIn(
+          pathToCategory,
+          subs.getIn(pathToCategory, Map())
+            .set(sub.get('type'), sub.get('id'))
+            .set(
+              'min_severity',
+              subs.getIn([...pathToCategory, 'min_severity'], sub.get('min_severity')),
+            ),
+        )
+      }, Map()),
     ),
   },
   getSubscription: {

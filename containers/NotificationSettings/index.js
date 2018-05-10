@@ -1,6 +1,12 @@
 /*
   Required props:
     categories - list of available categories
+    severities - list of label:min_severity tuples (in order displayed in dropdown)
+      [['Important', 30], ['Some', 20]]
+    types - list of possible notification type label:key tuples (in order of columns)
+      [['SMS', 'sms'], ['E-mail', 'email']]
+  Optional props:
+    userId - if not provided the current logged in users id will be used
 */
 
 import { connect } from 'react-redux'
@@ -9,14 +15,18 @@ import { toJS } from 'zc-core/hocs'
 import { apiRequest } from 'zc-core/api/actions'
 import { selectUserId } from 'zc-core/auth/selectors'
 
+import {
+  selectCategories,
+  selectErrorMessage,
+  selectApiState,
+} from './selectors'
 import NotificationSettings from './NotificationSettings'
 
-// const mapStateToProps = (state, props) => ({
-//   data: selectResults(state, props),
-//   errorMessage: selectErrorMessage(state, props),
-//   api: selectAPIState(state, props),
-//   pageProperties: selectPageProperties(state, props),
-// })
+const mapStateToProps = (state, props) => ({
+  categories: selectCategories(state, props),
+  // errorMessage: selectErrorMessage(state, props),
+  api: selectApiState(state, props),
+})
 
 const mapDispatchToProps = (dispatch, props) => ({
   fetchSubs: () => dispatch(apiRequest(
@@ -25,23 +35,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   )),
 })
 
-/*
-  This filters out some props that don't need to be passed down to AsyncList / ZCGriddle
-  or are otherwise already being passed down wrapped in pageProperties
-*/
-
-// const mergeProps = (
-//   state,
-//   dispatch,
-//   { currentPage, pageSize, storeKey, endpoint, ...props },
-// ) => ({
-//   ...state,
-//   ...dispatch,
-//   ...props,
-// })
-
 export default connect(
-  // mapStateToProps,
+  mapStateToProps,
   mapDispatchToProps,
-  // mergeProps,
 )(toJS(NotificationSettings))
