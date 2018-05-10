@@ -16,8 +16,8 @@ export default {
           subs.getIn(pathToCategory, Map())
             .set(sub.get('type'), sub.get('id'))
             .set(
-              'min_severity',
-              subs.getIn([...pathToCategory, 'min_severity'], sub.get('min_severity')),
+              'severity',
+              subs.getIn([...pathToCategory, 'severity'], sub.get('min_severity')),
             ),
         )
       }, Map()),

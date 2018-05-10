@@ -23,7 +23,7 @@ import {
 import NotificationSettings from './NotificationSettings'
 
 const mapStateToProps = (state, props) => ({
-  categories: selectCategories(state, props),
+  initialState: selectCategories(state, props),
   // errorMessage: selectErrorMessage(state, props),
   api: selectApiState(state, props),
 })

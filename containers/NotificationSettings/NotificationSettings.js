@@ -1,15 +1,29 @@
 import React from 'react'
-import { Row, Col } from 'react-flexbox-grid'
+import { reduxForm } from 'redux-form'
 
+import CategoryRow from './components/CategoryRow'
 
-export default class NotificationSettings extends React.Component {
+class NotificationSettings extends React.Component {
   componentDidMount() {
     this.props.fetchSubs()
   }
   render() {
     console.log(this.props);
+    const { categories, severities, types } = this.props
     return (
-      <div>Hello</div>
+      <div>
+        {categories.map(category => (<CategoryRow
+          key={category}
+          title={category}
+          severities={severities}
+          types={types}
+        />))}
+      </div>
     )
   }
 }
+
+export default reduxForm({
+  form: 'subscriptions',
+  enableReinitialize: true,
+})(NotificationSettings)

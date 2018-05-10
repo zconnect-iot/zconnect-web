@@ -56,12 +56,12 @@ describe.only('endpoints', () => {
             'business metrics': {
               sms: 1,
               email: 2,
-              min_severity: 30,
+              severity: 30,
             },
             'company events': {
               sms: 3,
               push: 4,
-              min_severity: 0,
+              severity: 0,
             },
           },
         },

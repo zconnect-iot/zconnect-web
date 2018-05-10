@@ -26,7 +26,7 @@ export const renderInput = (props) => {
   const { touched, error, warning } = props.meta
   const inputId = uniqueId('CheckboxField__input')
   return (<div {...classes()}>
-    <label
+    {props.label && <label
       htmlFor={inputId}
       {...classes('label', {
         checked: props.input.checked,
@@ -34,7 +34,7 @@ export const renderInput = (props) => {
       })}
     >
       {props.label}
-    </label>
+    </label>}
 
     <input
       id={inputId}
