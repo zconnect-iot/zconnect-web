@@ -16,9 +16,9 @@ export default {
     method: 'POST',
     token: true,
     storeKey: 'subscriptions',
-    storeMethod: (last = Map(), next, params) => last.setIn(
+    storeMethod: (last = Map(), next, params) => last.set(
       params.userId,
-      last.get(params.userId).push(next),
+      last.get(params.userId, List()).push(next),
     ),
   },
   deleteSubscription: {
@@ -26,7 +26,18 @@ export default {
     method: 'DELETE',
     token: true,
     storeKey: 'subscriptions',
-    storeMethod: (last = Map(), next, params) => last,
-    // TODO: delete the subscription
+    storeMethod: (last = Map(), next, { userId, subscriptionId }) => last.deleteIn(
+      [userId, last.get(userId).findIndex(sub => sub.get('id') === subscriptionId)],
+    ),
+  },
+  editSubscription: {
+    url: 'api/v3/users/${userId}/subscriptions/${subscriptionId}/',
+    method: 'PATCH',
+    token: true,
+    storeKey: 'subscriptions',
+    storeMethod: (last = Map(), next, { userId, subscriptionId }) => last.setIn(
+      [userId, last.get(userId).findIndex(sub => sub.get('id') === subscriptionId)],
+      next,
+    ),
   },
 }
