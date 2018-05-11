@@ -27,6 +27,7 @@
         "\\.scss$",
         "zc-core"
       ]
-    }]
+    }],
+    "no-return-assign": ["error", "except-parens"]
   }
 }

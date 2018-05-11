@@ -14,6 +14,7 @@ const selectSubscriptions = state => selectResponse(state, { storeKey })
 export const selectApiState = state => selectAPIState(state, { storeKey })
 
 const selectCategoriesFromProps = (_, { categories }) => categories
+const selectTypesFromProps = (_, { types }) => types
 const selectUserIdFromProps = (_, { userId }) => userId
 
 // Placeholder used just prevent selector errors when no data has been fetched
@@ -28,18 +29,41 @@ const selectSubsForUser = createSelector(
   (subs, userId, currentUser) => subs.get(userId || currentUser, defaultUserOrg),
 )
 
+// Bit of a beast reduction. Tests show input - output shapes
+export const selectSubsByOrg = createSelector(
+  selectSubsForUser,
+  subscriptions => subscriptions.reduce((subs, sub) => {
+    const pathToCategory = [sub.getIn(['organization', 'id']), sub.get('category')]
+    return subs.setIn(
+      pathToCategory,
+      subs.getIn(pathToCategory, Map())
+        .set(sub.get('type'), sub.get('id'))
+        .set(
+          'severity',
+          subs.getIn([...pathToCategory, 'severity'], sub.get('min_severity')),
+        ),
+    )
+  }, emptyMap),
+)
+
 // TODO: Add compatibility for multiple orgs when required. Currently just taking
 // the first and only org stored for the user
 const selectSubsForOrg = createSelector(
-  selectSubsForUser,
-  user => user.get(user.keySeq().first()),
+  selectSubsByOrg,
+  orgs => orgs.get(orgs.keySeq().first(), emptyMap),
 )
 
-export const selectCategories = createSelector(
+export const selectInitialValues = createSelector(
   selectSubsForOrg,
   selectCategoriesFromProps,
-  (subs, categories) => categories.map(category => ({
-    title: capitalize(category),
-    ...subs.get(category, emptyMap).toJS(),
-  })),
+  selectTypesFromProps,
+  (subsByCategory, categories, types) => categories.reduce((initial, category) => {
+    const subsForCategory = subsByCategory.get(category, emptyMap).toJS()
+    const next = { ...initial }
+    next[`${category}_severity`] = subsForCategory.severity || 0
+    types.forEach(([, type]) => {
+      next[`${category}_${type}`] = subsForCategory[type] || false
+    })
+    return next
+  }, {}),
 )

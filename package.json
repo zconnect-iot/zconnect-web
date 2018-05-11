@@ -24,6 +24,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "deep-object-diff": "^1.1.0",
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^2.0.0",
     "eslint": "^4.6.1",
@@ -62,6 +63,7 @@
     "react-tabs-redux": "^1.6.0"
   },
   "peerDependencies": {
+    "deep-object-diff": "1.x",
     "immutable": "> 2 < 4",
     "react-flexbox-grid": "1.x",
     "zc-core": "3.x",
@@ -79,6 +81,10 @@
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(gif|ttf|eot|svg)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
     },
     "moduleDirectories": [
       "node_modules"

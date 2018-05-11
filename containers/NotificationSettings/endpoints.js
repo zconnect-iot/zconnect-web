@@ -1,7 +1,6 @@
 import { Map, List } from 'immutable'
 
 export default {
-  // Bit of a beast reduction. Tests show input - output shapes
   getSubscriptions: {
     url: 'api/v3/users/${userId}/subscriptions/',
     method: 'GET',
@@ -9,28 +8,25 @@ export default {
     storeKey: 'subscriptions',
     storeMethod: (last = Map(), next, params) => last.set(
       params.userId,
-      next.reduce((subs, sub) => {
-        const pathToCategory = [sub.getIn(['organization', 'id']), sub.get('category')]
-        return subs.setIn(
-          pathToCategory,
-          subs.getIn(pathToCategory, Map())
-            .set(sub.get('type'), sub.get('id'))
-            .set(
-              'severity',
-              subs.getIn([...pathToCategory, 'severity'], sub.get('min_severity')),
-            ),
-        )
-      }, Map()),
+      next.get('results'),
     ),
   },
-  getSubscription: {
-    url: 'api/v3/users/${userId}/subscriptions/${subscriptionId}',
-    method: 'GET',
+  postSubscription: {
+    url: 'api/v3/users/${userId}/subscriptions/',
+    method: 'POST',
     token: true,
     storeKey: 'subscriptions',
     storeMethod: (last = Map(), next, params) => last.setIn(
-      [params.userId, next.getIn(['organisation', 'id']), next.get('category')],
-      next,
-    ), // TODO: Implement if/when needed
+      params.userId,
+      last.get(params.userId).push(next),
+    ),
+  },
+  deleteSubscription: {
+    url: 'api/v3/users/${userId}/subscriptions/${subscriptionId}/',
+    method: 'DELETE',
+    token: true,
+    storeKey: 'subscriptions',
+    storeMethod: (last = Map(), next, params) => last,
+    // TODO: delete the subscription
   },
 }

@@ -1,0 +1,23 @@
+@import '~theme/variables.scss';
+
+:global(.SubsSettings) {
+
+  :global(.row) {
+    margin-bottom: $padding;
+  }
+
+  :global(.row) :global(.col-xs) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-of-type {
+      justify-content: flex-start;
+    }
+  }
+
+  :global(.SubsSettings__save) {
+    margin-top: $padding * 2;
+    width: 100%;
+  }
+}

@@ -10,20 +10,26 @@
 */
 
 import { connect } from 'react-redux'
+import { getFormValues } from 'redux-form/immutable'
+import { diff } from 'deep-object-diff'
+import { Map } from 'immutable'
 
 import { toJS } from 'zc-core/hocs'
 import { apiRequest } from 'zc-core/api/actions'
 import { selectUserId } from 'zc-core/auth/selectors'
 
 import {
-  selectCategories,
+  selectInitialValues,
   selectErrorMessage,
   selectApiState,
 } from './selectors'
 import NotificationSettings from './NotificationSettings'
 
+const emptyMap = Map()
+
 const mapStateToProps = (state, props) => ({
-  initialState: selectCategories(state, props),
+  initialValues: selectInitialValues(state, props),
+  currentValues: getFormValues('subscriptions')(state) || emptyMap,
   // errorMessage: selectErrorMessage(state, props),
   api: selectApiState(state, props),
 })
@@ -33,9 +39,51 @@ const mapDispatchToProps = (dispatch, props) => ({
     'getSubscriptions',
     { userId: props.userId || selectUserId },
   )),
+  createSub: sub => dispatch(apiRequest(
+    'postSubscription',
+    { userId: props.userId || selectUserId },
+    sub,
+  )),
+  deleteSub: subscriptionId => dispatch(apiRequest(
+    'deleteSubscription',
+    {
+      userId: props.userId || selectUserId,
+      subscriptionId,
+    },
+  )),
+})
+
+const mergeProps = (state, dispatch, props) => ({
+  ...state,
+  ...props,
+  fetchSubs: dispatch.fetchSubs,
+  submitForm: () => {
+    const changes = diff(state.initialValues, state.currentValues.toJS())
+    console.log(changes);
+    Object.entries(changes).forEach(([field, value]) => {
+      const [category, type] = field.split('_')
+
+      // Create newly checked notification types
+      if (value === true) dispatch.createSub({
+        organisation: { // TODO: Get from prop or selector
+          id: 'ORG_ID',
+          name: 'My cool Organization'
+        },
+        category,
+        min_severity: state.currentValues.toJS()[`${category}_severity`],
+        type,
+      })
+
+      // Delete unchecked notification types
+      if (value === false) dispatch.deleteSub(state.initialValues[field])
+
+      // TODO: Handle changes to severity without repeating requests made above
+    })
+  },
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
+  mergeProps,
 )(toJS(NotificationSettings))
