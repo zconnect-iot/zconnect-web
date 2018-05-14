@@ -16,6 +16,7 @@ export const selectApiState = state => selectAPIState(state, { storeKey })
 const selectCategoriesFromProps = (_, { categories }) => categories
 const selectTypesFromProps = (_, { types }) => types
 const selectUserIdFromProps = (_, { userId }) => userId
+const selectOrganisationIdFromProps = (_, { organisationId }) => organisationId
 
 // Placeholder used just prevent selector errors when no data has been fetched
 const defaultUserOrg = fromJS({
@@ -47,10 +48,11 @@ export const selectSubsByOrg = createSelector(
 )
 
 // TODO: Add compatibility for multiple orgs when required. Currently just taking
-// the first and only org stored for the user
+// the orgId passed as prop or the first and only org stored for the user
 const selectSubsForOrg = createSelector(
   selectSubsByOrg,
-  orgs => orgs.get(orgs.keySeq().first(), emptyMap),
+  selectOrganisationIdFromProps,
+  (orgs, orgId) => orgs.get(orgId, emptyMap),
 )
 
 export const selectInitialValues = createSelector(

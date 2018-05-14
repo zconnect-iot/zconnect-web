@@ -1,9 +1,11 @@
 import React from 'react'
-import { reduxForm } from 'redux-form/immutable'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
 
-import { Button } from '../../components'
+import { zcApiShapeJS } from 'zc-core/utils/propTypes'
+
+import { Button, Spinner } from '../../components'
 
 import CategoryRow from './components/CategoryRow'
 
@@ -12,12 +14,14 @@ import './style.scss'
 
 export const classes = BEMHelper({ name: 'SubsSettings' })
 
-class NotificationSettings extends React.Component {
+export default class NotificationSettings extends React.Component {
   componentDidMount() {
     this.props.fetchSubs()
   }
   render() {
-    const { categories, severities, types, dirty, submitForm } = this.props
+    const { categories, severities, types, isDirty, submitForm, api, errorMessage } = this.props
+    if (api.pending) return <Spinner />
+    if (api.error) return <h4 className="text-danger">{errorMessage}</h4>
     return (
       <div {...classes()}>
         <Row>
@@ -33,7 +37,7 @@ class NotificationSettings extends React.Component {
           severities={severities}
           types={types}
         />))}
-        {dirty && <Button
+        {isDirty && <Button
           {...classes('save')}
           color="success"
           action={submitForm}
@@ -45,7 +49,13 @@ class NotificationSettings extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'subscriptions',
-  enableReinitialize: true,
-})(NotificationSettings)
+NotificationSettings.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  severities: PropTypes.arrayOf(PropTypes.array).isRequired,
+  types: PropTypes.arrayOf(PropTypes.array).isRequired,
+  isDirty: PropTypes.bool.isRequired,
+  submitForm: PropTypes.func.isRequired,
+  api: zcApiShapeJS.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  fetchSubs: PropTypes.func.isRequired,
+}

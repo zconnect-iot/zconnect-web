@@ -1,5 +1,6 @@
 /*
   Required props:
+    organisationId
     categories - list of available categories
     severities - list of label:min_severity tuples (in order displayed in dropdown)
       [['Important', 30], ['Some', 20]]
@@ -7,12 +8,15 @@
       [['SMS', 'sms'], ['E-mail', 'email']]
   Optional props:
     userId - if not provided the current logged in users id will be used
+    organisationId - will take first org id from list of subs if not passed
 */
 
 import { connect } from 'react-redux'
-import { getFormValues } from 'redux-form/immutable'
+import { getFormValues, reduxForm } from 'redux-form/immutable'
 import { diff } from 'deep-object-diff'
 import { Map } from 'immutable'
+import { startsWith } from 'lodash'
+import { compose } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
 import { apiRequest } from 'zc-core/api/actions'
@@ -61,22 +65,32 @@ const mapDispatchToProps = (dispatch, props) => ({
   )),
 })
 
-const mergeProps = (state, dispatch, props) => ({
-  ...state,
-  ...props,
-  fetchSubs: dispatch.fetchSubs,
-  submitForm: () => {
-    const currentValues = state.currentValues.toJS()
-    const changes = diff(state.initialValues, currentValues)
-    console.log(changes);
-    Object.entries(changes).forEach(([field, value]) => {
+const mergeProps = (state, dispatch, props) => {
+  const currentValues = state.currentValues.toJS()
+  const changes = diff(state.initialValues, currentValues)
+  console.log(changes);
+  return {
+    ...state,
+    ...props,
+    // We need a custom dirty state selector here to ignore changes to severity
+    // dropdown if there are no checked notification types for that category
+    isDirty: Object.keys(changes)
+      .filter((key) => {
+        const [category, type] = key.split('_')
+        return type !== 'severity' || Object
+          .entries(currentValues)
+          .filter(([change, checked]) => checked && startsWith(change, category))
+          .length > 1
+      })
+      .length > 0,
+    fetchSubs: dispatch.fetchSubs,
+    submitForm: () => Object.entries(changes).forEach(([field, value]) => {
       const [category, type] = field.split('_')
 
       // Create newly checked notification types
       if (value === true) dispatch.createSub({
-        organisation: { // TODO: Get from prop or selector
-          id: '2',
-          name: 'My cool Organization'
+        organization: {
+          id: props.organisationId,
         },
         category,
         min_severity: currentValues[`${category}_severity`],
@@ -97,12 +111,19 @@ const mergeProps = (state, dispatch, props) => ({
             min_severity: value,
           },
         ))
-    })
-  },
-})
+    }),
+  }
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mergeProps,
-)(toJS(NotificationSettings))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+  ),
+  toJS,
+  reduxForm({
+    form: 'subscriptions',
+    enableReinitialize: true,
+  }),
+)(NotificationSettings)
