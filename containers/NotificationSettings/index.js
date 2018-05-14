@@ -8,32 +8,27 @@
       [['SMS', 'sms'], ['E-mail', 'email']]
   Optional props:
     userId - if not provided the current logged in users id will be used
-    organisationId - will take first org id from list of subs if not passed
 */
 import { connect } from 'react-redux'
 import { getFormValues, reduxForm } from 'redux-form/immutable'
 import { diff } from 'deep-object-diff'
-import { Map } from 'immutable'
 import { startsWith } from 'lodash'
 import { compose } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
+import { emptyMap } from 'zc-core/utils'
 import { apiRequest } from 'zc-core/api/actions'
 import { selectErrorMessage } from 'zc-core/api/selectors'
 import { selectUserId } from 'zc-core/auth/selectors'
 
-import {
-  selectInitialValues,
-  selectApiState,
-} from './selectors'
+import { selectInitialValues, selectApiState, STORE_KEY } from './selectors'
 import NotificationSettings from './NotificationSettings'
 
-const emptyMap = Map()
 
 const mapStateToProps = (state, props) => ({
   initialValues: selectInitialValues(state, props),
-  currentValues: getFormValues('subscriptions')(state) || emptyMap,
-  errorMessage: selectErrorMessage(state, { storeKey: 'subscriptions' }),
+  currentValues: getFormValues(STORE_KEY)(state) || emptyMap,
+  errorMessage: selectErrorMessage(state, { storeKey: STORE_KEY }),
   api: selectApiState(state, props),
 })
 
@@ -119,9 +114,9 @@ export default compose(
     mapDispatchToProps,
     mergeProps,
   ),
-  toJS,
   reduxForm({
-    form: 'subscriptions',
+    form: STORE_KEY,
     enableReinitialize: true,
   }),
+  toJS,
 )(NotificationSettings)

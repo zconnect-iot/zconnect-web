@@ -19,7 +19,7 @@ export const renderInner = (props) => {
   const { touched, error, warning } = props.meta
   const selectId = uniqueId('SelectField__input')
   return (<div {...classes()}>
-    {props.label && <label
+    <label
       htmlFor={selectId}
       {...classes('label', {
         checked: props.input.checked,
@@ -27,7 +27,7 @@ export const renderInner = (props) => {
       })}
     >
       {props.label}
-    </label>}
+    </label>
 
     <select
       id={selectId}

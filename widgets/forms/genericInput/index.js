@@ -40,7 +40,7 @@ const genericInner = (
   const { touched, error, warning } = props.meta
   const inputId = uniqueId('FormField__input')
   return (<div {...classes()}>
-    {props.label && <label
+    <label
       htmlFor={inputId}
       {...classes('label', {
         checked: props.input.checked,
@@ -48,7 +48,7 @@ const genericInner = (
       })}
     >
       {props.label}
-    </label>}
+    </label>
 
     <input
       id={inputId}
@@ -78,7 +78,7 @@ export const innerPropTypes = {
     disabled: PropTypes.bool,
   }).isRequired,
   type: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   validate: PropTypes.arrayOf(PropTypes.func),
   onBlur: PropTypes.func,
@@ -105,7 +105,6 @@ export const defaultProps = {
   onBlur: null,
   onChange: null,
   onFocus: null,
-  label: '',
 }
 
 genericInner.defaultProps = defaultProps
