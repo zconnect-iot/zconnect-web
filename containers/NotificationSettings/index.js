@@ -97,6 +97,7 @@ const mergeProps = (state, dispatch, props) => {
       if (type === 'severity') Object.entries(currentValues)
         // If the value is a string it's a previously enabled subscription type
         // and the value is the sub id
+        .filter(([valField]) => startsWith(valField, category))
         .filter(([, val]) => typeof val === 'string')
         .forEach(([, id]) => dispatch.editSub(
           id,

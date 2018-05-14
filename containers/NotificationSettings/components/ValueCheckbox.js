@@ -28,7 +28,7 @@ export default class ValueCheckbox extends React.Component {
 
 ValueCheckbox.propTypes = {
   input: PropTypes.shape({
-    value: PropTypes.oneOf([
+    value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
     ]).isRequired,
