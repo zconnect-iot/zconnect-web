@@ -26,7 +26,7 @@ export default class NotificationSettings extends React.Component {
   render() {
     const { categories, severities, types, isDirty, submitForm, api, errorMessage, hideSave } = this.props
     if (api.pending) return <Spinner />
-    if (api.error) return <h4 className="text-danger">{errorMessage}</h4>
+    if (!isDirty && api.error) return <h4 className="text-danger">{errorMessage}</h4>
     return (
       <div {...classes()}>
         <Row>
@@ -49,6 +49,7 @@ export default class NotificationSettings extends React.Component {
         >
           Save
         </Button>}
+        {api.error && <h4 className="text-danger margin-top">{errorMessage}</h4>}
       </div>
     )
   }

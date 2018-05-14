@@ -10,7 +10,6 @@
     userId - if not provided the current logged in users id will be used
     organisationId - will take first org id from list of subs if not passed
 */
-import React from 'react'
 import { connect } from 'react-redux'
 import { getFormValues, reduxForm } from 'redux-form/immutable'
 import { diff } from 'deep-object-diff'
@@ -20,11 +19,11 @@ import { compose } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
 import { apiRequest } from 'zc-core/api/actions'
+import { selectErrorMessage } from 'zc-core/api/selectors'
 import { selectUserId } from 'zc-core/auth/selectors'
 
 import {
   selectInitialValues,
-  selectErrorMessage,
   selectApiState,
 } from './selectors'
 import NotificationSettings from './NotificationSettings'
@@ -34,7 +33,7 @@ const emptyMap = Map()
 const mapStateToProps = (state, props) => ({
   initialValues: selectInitialValues(state, props),
   currentValues: getFormValues('subscriptions')(state) || emptyMap,
-  // errorMessage: selectErrorMessage(state, props),
+  errorMessage: selectErrorMessage(state, { storeKey: 'subscriptions' }),
   api: selectApiState(state, props),
 })
 

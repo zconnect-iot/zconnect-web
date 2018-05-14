@@ -25,12 +25,11 @@ $block-padding: 1.25rem;
 }
 
 :global(.Card__title) {
-  padding-top: 4px;
   border-bottom: $border;
   background-color: $bg-dark;
-  font-size: $font-size-large;
   font-weight: bold;
-  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 :global(.Card__subtitle) {

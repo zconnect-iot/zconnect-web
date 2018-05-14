@@ -20,4 +20,8 @@
     margin-top: $padding * 2;
     width: 100%;
   }
+
+  form :global(.text-danger) {
+    margin-top: $padding * 2;
+  }
 }
