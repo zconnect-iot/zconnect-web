@@ -10,7 +10,7 @@
     userId - if not provided the current logged in users id will be used
     organisationId - will take first org id from list of subs if not passed
 */
-
+import React from 'react'
 import { connect } from 'react-redux'
 import { getFormValues, reduxForm } from 'redux-form/immutable'
 import { diff } from 'deep-object-diff'
@@ -68,7 +68,6 @@ const mapDispatchToProps = (dispatch, props) => ({
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
   const changes = diff(state.initialValues, currentValues)
-  console.log(changes);
   return {
     ...state,
     ...props,
