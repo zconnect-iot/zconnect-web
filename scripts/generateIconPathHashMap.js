@@ -62,7 +62,11 @@ const readFile = filepath => new Promise((resolve, reject) => {
 
 const processIcon = filepath => readFile(filepath)
   .then(optimise)
-  .then(({ data }) => ({ d: getSvgPath(data), transform: getTransformAttr(data) }))
+  .then(({ data }) => ({
+    d: getSvgPath(data),
+    transform: getTransformAttr(data),
+    hello: console.log(new RegExp(/<path.* (\w)="([^"]*)"/g).exec(data)),
+  }))
   .then(attributes => {
     const iconName = path.basename(filepath).replace('.svg', '').toUpperCase()
     ICONS[iconName] = attributes

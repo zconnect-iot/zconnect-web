@@ -39,7 +39,7 @@ AsyncList.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]).isRequired,
+  ]),
   fetchResults: PropTypes.func.isRequired,
   components: PropTypes.shape(),
   api: zcApiShapeJS.isRequired,
@@ -52,4 +52,5 @@ AsyncList.propTypes = {
 
 AsyncList.defaultProps = {
   components: {},
+  children: [],
 }

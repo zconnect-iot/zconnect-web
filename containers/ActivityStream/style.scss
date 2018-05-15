@@ -1,0 +1,26 @@
+:global(.ActivityStream) {
+  :global(.ActivityStream__Activity) {
+    :global(.ActivityStream__Icon) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      :global(.ActivityStream__IconSeverity) {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        margin-right: 16px;
+      }
+    }
+    :global(.Message__headerMiddle) {
+      h5 {
+        position: relative;
+      }
+      :global(.Icon) {
+        position: absolute;
+        top: -3px;
+        margin-left: 4px;
+      }
+    }
+  }
+}
