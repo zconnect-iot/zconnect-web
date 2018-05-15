@@ -4,6 +4,7 @@ import { mapProps, compose } from 'recompose'
 import XDate from 'xdate'
 
 import { Message, Icon } from '../../components'
+import { Tooltip } from '../../widgets'
 
 import { classes } from './'
 
@@ -35,9 +36,12 @@ export default compose(
   }),
   mapProps(props => ({
     ...props,
-    title: <span>{props.description} {props.notify && <Icon name="DONE_ALL" size={20} />}</span>,
+    title: (<span>
+      {props.description}
+      {props.notify && <Tooltip icon="DONE_ALL" size={20} color="success">You should have been notified about this event</Tooltip>}
+    </span>),
     time: XDate(props.created_at),
-    subtitle: props.category,
+    // subtitle: props.category,
     renderIcon,
     className: classes('Activity').className,
   })),

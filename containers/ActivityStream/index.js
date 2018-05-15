@@ -38,6 +38,7 @@ export default class ActivityStream extends React.Component {
             Layout: classes().className,
           },
         }}
+        pageSize={100}
       />
     )
   }
