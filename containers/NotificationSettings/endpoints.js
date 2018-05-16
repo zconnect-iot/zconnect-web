@@ -8,7 +8,7 @@ export default {
     storeKey: 'subscriptions',
     storeMethod: (last = Map(), next, params) => last.set(
       params.userId,
-      next.get('results'),
+      next,
     ),
   },
   postSubscription: {
