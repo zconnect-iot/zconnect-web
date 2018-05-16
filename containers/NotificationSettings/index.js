@@ -62,7 +62,6 @@ const mapDispatchToProps = (dispatch, props) => ({
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
   const changes = diff(state.initialValues, currentValues)
-  console.log(changes);
   return {
     ...state,
     ...props,
@@ -73,11 +72,12 @@ const mergeProps = (state, dispatch, props) => {
         const [category, type] = key.split('_')
         return type !== 'severity' || Object
           .entries(currentValues)
-          .filter(([change, checked]) => checked && startsWith(change, category))
+          .filter(([change, checked]) =>
+            checked !== null && checked !== false && startsWith(change, category))
           .length > 1
       })
       // And also ignore any unchecked types that were previously false and now null
-      .filter(([key, value]) => value !== null || state.initialValues[key] !== false)
+      // .filter(([key, value]) => value !== null || state.initialValues[key] !== false)
       .length > 0,
     fetchSubs: dispatch.fetchSubs,
     submitForm: () => Object.entries(changes).forEach(([field, value]) => {
@@ -94,7 +94,7 @@ const mergeProps = (state, dispatch, props) => {
       })
 
       // Delete unchecked notification types
-      if (!value && typeof state.initialValues[field] === 'string') dispatch.deleteSub(state.initialValues[field])
+      if ((value === null || value === false) && typeof state.initialValues[field] === 'string') dispatch.deleteSub(state.initialValues[field])
 
       // Edit any enabled notification types with the updated severity
       if (type === 'severity') Object.entries(currentValues)
