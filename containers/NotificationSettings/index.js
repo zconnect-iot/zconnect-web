@@ -62,6 +62,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
   const changes = diff(state.initialValues, currentValues)
+  console.log(changes);
   return {
     ...state,
     ...props,
@@ -93,7 +94,7 @@ const mergeProps = (state, dispatch, props) => {
       })
 
       // Delete unchecked notification types
-      if (!value) dispatch.deleteSub(state.initialValues[field])
+      if (!value && typeof state.initialValues[field] === 'string') dispatch.deleteSub(state.initialValues[field])
 
       // Edit any enabled notification types with the updated severity
       if (type === 'severity') Object.entries(currentValues)
