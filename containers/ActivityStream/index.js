@@ -1,5 +1,6 @@
 import React from 'react'
 import BEMHelper from 'react-bem-helper'
+import PropTypes from 'prop-types'
 
 import { Panel } from '../../views'
 import { TableBody, TableContainer } from '../../components/ZCGriddle/components'
@@ -12,14 +13,7 @@ import './style.scss'
 
 export const classes = BEMHelper({ name: 'ActivityStream' })
 
-export default class ActivityStream extends React.Component {
-  componentDidMount() {
-    // this.props.getRef(this)
-    // this.props.fetchSubs()
-  }
-  componentWillReceiveProps(props) {
-    // if (props.isDirty !== this.props.isDirty) props.onChange()
-  }
+export default class ActivityStream extends React.PureComponent {
   render() {
     const { deviceId } = this.props
     return (
@@ -42,4 +36,8 @@ export default class ActivityStream extends React.Component {
       />
     )
   }
+}
+
+ActivityStream.propTypes = {
+  deviceId: PropTypes.string.isRequired,
 }
