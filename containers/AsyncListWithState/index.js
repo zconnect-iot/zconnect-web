@@ -48,7 +48,7 @@ const stateHandlers = {
   }),
 }
 
-export const AsyncListWithState = compose(
+export default compose(
   withStateHandlers(
     getInitialState,
     stateHandlers,
