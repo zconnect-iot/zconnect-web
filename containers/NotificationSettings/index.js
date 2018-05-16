@@ -67,14 +67,16 @@ const mergeProps = (state, dispatch, props) => {
     ...props,
     // We need a custom dirty state selector here to ignore changes to severity
     // dropdown if there are no checked notification types for that category
-    isDirty: Object.keys(changes)
-      .filter((key) => {
+    isDirty: Object.entries(changes)
+      .filter(([key]) => {
         const [category, type] = key.split('_')
         return type !== 'severity' || Object
           .entries(currentValues)
           .filter(([change, checked]) => checked && startsWith(change, category))
           .length > 1
       })
+      // And also ignore any unchecked types that were previously false and now null
+      .filter(([key, value]) => value !== null || state.initialValues[key] !== false)
       .length > 0,
     fetchSubs: dispatch.fetchSubs,
     submitForm: () => Object.entries(changes).forEach(([field, value]) => {
@@ -91,7 +93,7 @@ const mergeProps = (state, dispatch, props) => {
       })
 
       // Delete unchecked notification types
-      if (value === false) dispatch.deleteSub(state.initialValues[field])
+      if (!value) dispatch.deleteSub(state.initialValues[field])
 
       // Edit any enabled notification types with the updated severity
       if (type === 'severity') Object.entries(currentValues)
