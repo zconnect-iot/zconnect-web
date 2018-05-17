@@ -6,7 +6,7 @@ import ICONS from '../../assets/icons/map.json'
 const classes = BEMHelper({ name: 'Icon' })
 
 export default function Icon({ name, color, size, className, onClick }) {
-  const { transform, d } = ICONS[name]
+  const pathAttrs = ICONS[name]
   const fill = color ? `text-${color}` : null
 
   return (
@@ -17,10 +17,7 @@ export default function Icon({ name, color, size, className, onClick }) {
       viewBox="0 0 24 24"
       onClick={onClick}
     >
-      <path
-        transform={transform}
-        d={d}
-      />
+      <path {...pathAttrs} />
     </svg>
   )
 }
