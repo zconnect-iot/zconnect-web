@@ -9,7 +9,12 @@
   background-color: $statcard-bg;
   padding: 12px;
   min-height: 120px;
-  text-align: center;
+
+  :global(.col-xs) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 :global(.StatCard--inline) {
   display: inline-block;
