@@ -40,7 +40,7 @@ export default compose(
       {props.description}
       {props.notify && <Tooltip icon="DONE_ALL" size={20} color="success">You should have been notified about this event</Tooltip>}
     </span>),
-    time: XDate(props.created_at),
+    time: XDate(props.created_at, true),
     // subtitle: props.category,
     renderIcon,
     className: classes('Activity').className,
