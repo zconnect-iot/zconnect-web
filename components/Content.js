@@ -17,7 +17,7 @@ export default function Content({ title, subtitle, header, actionItems, children
               { image ||
                 <div>
                   <h4>{title}</h4>
-                  <h6>{subtitle}</h6>
+                  {subtitle && <h6>{subtitle}</h6>}
                 </div>
               }
             </div>
@@ -46,7 +46,11 @@ export default function Content({ title, subtitle, header, actionItems, children
 
 Content.propTypes = {
   title: PropTypes.node,
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.string,
+  ]).isRequired,
   header: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
