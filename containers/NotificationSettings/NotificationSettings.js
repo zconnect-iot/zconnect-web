@@ -16,15 +16,31 @@ import './style.scss'
 export const classes = BEMHelper({ name: 'SubsSettings' })
 
 export default class NotificationSettings extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      submitted: false,
+    }
+  }
   componentDidMount() {
     this.props.getRef(this)
     this.props.fetchSubs()
   }
   componentWillReceiveProps(props) {
+    console.log(this.state.submitted,props.isDirty,
+      this.props.isDirty === false);
     if (props.isDirty !== this.props.isDirty) props.onChange()
+    // Reset submitted state when form dirtied after successful submission
+    if (this.state.submitted && props.isDirty &&
+      this.props.isDirty === false) this.setState({ submitted: false })
+  }
+  submitForm = () => {
+    this.setState({ submitted: true })
+    this.props.submitForm()
   }
   render() {
-    const { categories, severities, types, isDirty, submitForm, api, errorMessage, hideSave } = this.props
+    const { categories, severities, types, isDirty, api, errorMessage, hideSave } = this.props
+    const { submitted } = this.state
     if (api.pending) return <Spinner />
     if (!isDirty && api.error) return <h4 className="text-danger">{errorMessage}</h4>
     return (
@@ -45,11 +61,12 @@ export default class NotificationSettings extends React.Component {
         {isDirty && !hideSave && <Button
           {...classes('save')}
           color="success"
-          action={submitForm}
+          action={this.submitForm}
         >
           Save
         </Button>}
         {api.error && <h4 className="text-danger margin-top">{errorMessage}</h4>}
+        {submitted && api.success && <h4 className="text-success margin-top">Notification settings updated</h4>}
       </div>
     )
   }
