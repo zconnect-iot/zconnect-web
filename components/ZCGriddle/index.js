@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Griddle from 'griddle-react'
 
-import { FilterLayout, LayoutContainer } from './components'
+import { FilterLayout, LayoutContainer, PreviousButton, NextButton } from './components'
 
 import './style.scss'
 
@@ -19,6 +19,8 @@ export default function ZCGriddle(props) {
     components={{
       LayoutContainer,
       Layout: FilterLayout,
+      PreviousButton,
+      NextButton,
       ...components,
     }}
     hideFilter={hideFilter}

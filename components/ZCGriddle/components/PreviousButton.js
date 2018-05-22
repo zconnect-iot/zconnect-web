@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Icon } from 'zc-web/components'
+import { Icon } from '../../../components'
 
 
 const PreviousButton = ({ hasPrevious, onClick, className }) => (hasPrevious ? (

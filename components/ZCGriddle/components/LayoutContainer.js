@@ -14,8 +14,6 @@ const EnhancedLayout = OriginalComponent => compose(
     state => ({
       className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'Layout'),
       style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'Layout'),
-      pageSize: plugins.LocalPlugin.selectors.pageSizeSelector(state),
-      recordCount: state.getIn(['pageProperties', 'recordCount']),
       dataSize: plugins.LocalPlugin.selectors.filteredDataSelector(state).size,
       title: state.get('title'),
       hidePagination: state.get('hidePagination'),
@@ -31,11 +29,9 @@ const EnhancedLayout = OriginalComponent => compose(
     className: props.className,
     style: props.style,
     title: props.title,
-    // When griddle is controlled recordCount is passed as a prop and present in state
-    // otherwise the filteredDataSelector can be used to determine whether pagination
-    // should be shown
-    hidePagination: !props.dataSize || props.hidePagination ||
-      ((props.recordCount || props.dataSize) < props.pageSize),
+    // Hide the paginator if no data to prevent user triggering fetches for next page whilst
+    // already loading
+    hidePagination: !props.dataSize || props.hidePagination,
     hideFilter: props.hideFilter,
   })),
 )(OriginalComponent)
