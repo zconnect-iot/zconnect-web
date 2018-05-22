@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form/immutable'
 
 import { PasswordField } from '../../../widgets/forms'
-import { SimpleButton, Spinner } from '../../../components'
+
+import SpinButton from '../components/SpinButton'
+
 
 const PasswordConfirmForm = (props) => {
-  const { handleSubmit, pristine, submitting, pending, t } = props
+  const { handleSubmit, pristine, pending, t } = props
   return (
     <form>
       <PasswordField name="new_password1" label={t('password')} />
       <PasswordField name="new_password2" label={t('repeatpassword')} />
-      <SimpleButton color="primary" action={handleSubmit} disabled={pristine || submitting || pending}>
-        {pending ? <Spinner /> : t('resetpassword').toUpperCase()}
-      </SimpleButton>
+      <SpinButton pending={pending} color="primary" action={handleSubmit} disabled={pristine || pending}>
+        {t('resetpassword').toUpperCase()}
+      </SpinButton>
     </form>
   )
 }
@@ -21,7 +23,6 @@ const PasswordConfirmForm = (props) => {
 PasswordConfirmForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired,
   pending: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
 }
