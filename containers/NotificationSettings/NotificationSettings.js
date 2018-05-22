@@ -27,8 +27,6 @@ export default class NotificationSettings extends React.Component {
     this.props.fetchSubs()
   }
   componentWillReceiveProps(props) {
-    console.log(this.state.submitted,props.isDirty,
-      this.props.isDirty === false);
     if (props.isDirty !== this.props.isDirty) props.onChange()
     // Reset submitted state when form dirtied after successful submission
     if (this.state.submitted && props.isDirty &&
