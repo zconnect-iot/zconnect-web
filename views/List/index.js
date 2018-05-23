@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Griddle, { RowDefinition, ColumnDefinition } from 'griddle-react'
+import { RowDefinition, ColumnDefinition } from 'griddle-react'
 import BEMHelper from 'react-bem-helper'
+
+import { ZCGriddle } from '../../components'
 
 import { camelToTitleCase } from '../../util/string'
 
@@ -53,27 +55,20 @@ export const styleConfig = {
  * Uses the Griddle plugin defined at {@link ./GriddlePlugin.js} to define
  * components.
  */
-const List = props => (
-  <Griddle
-    plugins={[listPlugin]}
-    {...props}
-  >
-    {props.columns && (
+const List = ({ columns, ...props }) => (
+  <ZCGriddle plugins={[listPlugin]} {...props}>
+    {columns && (
       <RowDefinition>
-        {props.columns.map(defineColumn)}
+        {columns.map(defineColumn)}
       </RowDefinition>
     )}
-  </Griddle>
+  </ZCGriddle>
 )
 List.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ])).isRequired,
-  components: PropTypes.shape({
-    Layout: PropTypes.func,
-    Row: PropTypes.func,
-  }),
   className: PropTypes.string,
   styleConfig: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
