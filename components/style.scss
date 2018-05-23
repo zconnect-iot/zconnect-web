@@ -73,10 +73,15 @@
     color: $content-header-color;
     border-bottom: 1px solid darken($content-header-bg, 10%);
     height: 54px;
-    padding: 0 $padding * 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     img {
-      height: 46px;
+      max-height: 46px;
+      max-width: 200px;
+      width: auto;
+      height: auto;
     }
   }
 
