@@ -17,7 +17,12 @@ const RegisterForm = (props) => {
       <TextField name="email2" label={t('repeatemail')} />
       <PasswordField name="password" label={t('password')} />
       <PasswordField name="password2" label={t('repeatpassword')} />
-      <SpinButton pending={pending} color="primary" action={handleSubmit} disabled={pristine || pending}>
+      <SpinButton
+        pending={pending}
+        color="primary"
+        action={handleSubmit}
+        disabled={pristine || pending}
+      >
         {t('register').toUpperCase()}
       </SpinButton>
     </form>

@@ -29,7 +29,8 @@ export default function withSpinner() {
       className: '',
       spinnerSize: 30,
     }
-    withSpinner.displayName = `withSpinner(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`
+    const innerName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
+    withSpinner.displayName = `withSpinner(${innerName})`
     return WithSpinner
   }
 }

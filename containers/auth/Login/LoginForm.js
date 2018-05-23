@@ -15,7 +15,12 @@ const LoginForm = (props) => {
     <form>
       <TextField name="email" label={t('email')} />
       <PasswordField name="password" label={t('password')} />
-      <SpinButton pending={api.pending} color="primary" action={handleSubmit} disabled={pristine || api.pending}>
+      <SpinButton
+        pending={api.pending}
+        color="primary"
+        action={handleSubmit}
+        disabled={pristine || api.pending}
+      >
         {t('login').toUpperCase()}
       </SpinButton>
     </form>
