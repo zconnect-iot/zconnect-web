@@ -17,11 +17,11 @@ import { compose } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
 import { emptyMap } from 'zc-core/utils'
-import { apiRequest } from 'zc-core/api/actions'
+import { apiRequest, apiBatchRequest } from 'zc-core/api/actions'
 import { selectErrorMessage } from 'zc-core/api/selectors'
 import { selectUserId } from 'zc-core/auth/selectors'
 
-import { selectInitialValues, selectApiState, STORE_KEY } from './selectors'
+import { selectInitialValues, selectBatchApiState, selectApiState, STORE_KEY } from './selectors'
 import NotificationSettings from './NotificationSettings'
 
 
@@ -29,7 +29,8 @@ const mapStateToProps = (state, props) => ({
   initialValues: selectInitialValues(state, props),
   currentValues: getFormValues(STORE_KEY)(state) || emptyMap,
   errorMessage: selectErrorMessage(state, { storeKey: STORE_KEY }),
-  api: selectApiState(state, props),
+  api: selectApiState(state),
+  batchApi: selectBatchApiState(state),
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -37,31 +38,36 @@ const mapDispatchToProps = (dispatch, props) => ({
     'getSubscriptions',
     { userId: props.userId || selectUserId },
   )),
-  createSub: sub => dispatch(apiRequest(
+  createSub: sub => apiRequest(
     'postSubscription',
     { userId: props.userId || selectUserId },
     sub,
-  )),
-  deleteSub: subscriptionId => dispatch(apiRequest(
+  ),
+  deleteSub: subscriptionId => apiRequest(
     'deleteSubscription',
     {
       userId: props.userId || selectUserId,
       subscriptionId,
     },
-  )),
-  editSub: (subscriptionId, patch) => dispatch(apiRequest(
+  ),
+  editSub: (subscriptionId, patch) => apiRequest(
     'editSubscription',
     {
       userId: props.userId || selectUserId,
       subscriptionId,
     },
     patch,
+  ),
+  batchRequest: requests => dispatch(apiBatchRequest(
+    'subscriptionsBatch',
+    requests,
   )),
 })
 
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
   const changes = diff(state.initialValues, currentValues)
+  const requests = {}
   return {
     ...state,
     ...props,
@@ -76,39 +82,42 @@ const mergeProps = (state, dispatch, props) => {
             checked !== null && checked !== false && startsWith(change, category))
           .length > 1
       })
-      // And also ignore any unchecked types that were previously false and now null
-      // .filter(([key, value]) => value !== null || state.initialValues[key] !== false)
       .length > 0,
     fetchSubs: dispatch.fetchSubs,
-    submitForm: () => Object.entries(changes).forEach(([field, value]) => {
-      const [category, type] = field.split('_')
+    submitForm: () => {
+      Object.entries(changes).forEach(([field, value]) => {
+        const [category, type] = field.split('_')
 
-      // Create newly checked notification types
-      if (value === true) dispatch.createSub({
-        organization: {
-          id: props.organisationId,
-        },
-        category,
-        min_severity: currentValues[`${category}_severity`],
-        type,
-      })
-
-      // Delete unchecked notification types
-      if ((value === null || value === false) && typeof state.initialValues[field] === 'string') dispatch.deleteSub(state.initialValues[field])
-
-      // Edit any enabled notification types with the updated severity
-      if (type === 'severity') Object.entries(currentValues)
-        // If the value is a string it's a previously enabled subscription type
-        // and the value is the sub id
-        .filter(([valField]) => startsWith(valField, category))
-        .filter(([, val]) => typeof val === 'string')
-        .forEach(([, id]) => dispatch.editSub(
-          id,
-          {
-            min_severity: value,
+        // Create newly checked notification types
+        if (value === true) requests[field] = dispatch.createSub({
+          organization: {
+            id: props.organisationId,
           },
-        ))
-    }),
+          category,
+          min_severity: currentValues[`${category}_severity`],
+          type,
+        })
+
+        // Delete unchecked notification types
+        if ((value === null || value === false) && typeof state.initialValues[field] === 'string') {
+          requests[field] = dispatch.deleteSub(state.initialValues[field])
+        }
+
+        // Edit any enabled notification types with the updated severity
+        if (type === 'severity') Object.entries(currentValues)
+          // If the value is a string it's a previously enabled subscription type
+          // and the value is the sub id
+          .filter(([valField]) => startsWith(valField, category))
+          .filter(([, val]) => typeof val === 'string')
+          .forEach(([fieldName, id]) => (requests[fieldName] = dispatch.editSub(
+            id,
+            {
+              min_severity: value,
+            },
+          )))
+      })
+      return dispatch.batchRequest(requests)
+    },
   }
 }
 

@@ -70,3 +70,6 @@ export const selectInitialValues = createSelector(
     return next
   }, {}),
 )
+
+// The POST, PATCH and DELETE requests are all wrapped in a batch request
+export const selectBatchApiState = state => selectAPIState(state, { storeKey: 'subscriptionsBatch' })

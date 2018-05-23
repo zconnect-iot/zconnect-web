@@ -56,7 +56,7 @@
     height: 100%;
     border-radius: 50%;
     border-style: solid;
-    border-color: $spinner-color transparent $spinner-color transparent;
+    border-color: currentColor transparent;
     -webkit-animation: lds-dual-ring $spinner-speed linear infinite;
     animation: lds-dual-ring $spinner-speed linear infinite;
   }

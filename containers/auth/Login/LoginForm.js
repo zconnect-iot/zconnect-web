@@ -2,18 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form/immutable'
 
+import { zcApiShapeJS } from 'zc-core/utils/propTypes'
+
 import { TextField, PasswordField } from '../../../widgets/forms'
-import { SimpleButton } from '../../../components'
+
+import SpinButton from '../components/SpinButton'
+
 
 const LoginForm = (props) => {
-  const { handleSubmit, pristine, submitting, t } = props
+  const { handleSubmit, pristine, t, api } = props
   return (
     <form>
       <TextField name="email" label={t('email')} />
       <PasswordField name="password" label={t('password')} />
-      <SimpleButton color="primary" action={handleSubmit} disabled={pristine || submitting}>
+      <SpinButton
+        pending={api.pending}
+        color="primary"
+        action={handleSubmit}
+        disabled={pristine || api.pending}
+      >
         {t('login').toUpperCase()}
-      </SimpleButton>
+      </SpinButton>
     </form>
   )
 }
@@ -21,8 +30,8 @@ const LoginForm = (props) => {
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
+  api: zcApiShapeJS.isRequired,
 }
 
 export default reduxForm({
