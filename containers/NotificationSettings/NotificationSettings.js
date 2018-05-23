@@ -29,17 +29,17 @@ export default class NotificationSettings extends React.Component {
   componentWillReceiveProps(props) {
     if (props.isDirty !== this.props.isDirty) props.onChange()
     // Reset submitted state when form dirtied after successful submission
-    if (this.state.submitted && props.isDirty &&
-      this.props.isDirty === false) this.setState({ submitted: false })
+    if (this.state.submitted && this.props.batchApi.success && !this.props.isDirty &&
+      props.isDirty) this.setState({ submitted: false })
   }
   submitForm = () => {
-    this.setState({ submitted: true })
     this.props.submitForm()
+    this.setState({ submitted: true })
   }
   render() {
-    const { categories, severities, types, isDirty, api, errorMessage, hideSave } = this.props
+    const { categories, severities, types, isDirty, api, batchApi, errorMessage, hideSave } = this.props
     const { submitted } = this.state
-    if (api.pending) return <Spinner />
+    if (api.pending || batchApi.pending) return <Spinner />
     if (!isDirty && api.error) return <h4 className="text-danger">{errorMessage}</h4>
     return (
       <div {...classes()}>
@@ -63,8 +63,8 @@ export default class NotificationSettings extends React.Component {
         >
           Save
         </Button>}
-        {api.error && <h4 className="text-danger margin-top">{errorMessage}</h4>}
-        {submitted && api.success && <h4 className="text-success margin-top">Notification settings updated</h4>}
+        {batchApi.error && <h4 className="text-danger margin-top">{errorMessage}</h4>}
+        {submitted && batchApi.success && <h4 className="text-success margin-top">Notification settings updated</h4>}
       </div>
     )
   }
@@ -82,6 +82,7 @@ NotificationSettings.propTypes = {
   hideSave: PropTypes.bool,
   getRef: PropTypes.func,
   onChange: PropTypes.func,
+  batchApi: zcApiShapeJS.isRequired,
 }
 
 NotificationSettings.defaultProps = {
