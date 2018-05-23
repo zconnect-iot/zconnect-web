@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { noop } from 'lodash'
 import { zcApiShapeJS } from 'zc-core/utils/propTypes'
 
 import ZCGriddle from '../../components/ZCGriddle'
@@ -10,6 +10,7 @@ import { styleConfig } from '../../views/List'
 export default class AsyncList extends React.Component {
   componentDidMount() {
     this.props.fetchResults()
+    this.props.getRef(this)
   }
   componentWillReceiveProps(props) {
     if (props.pageProperties.currentPage !== this.props.pageProperties.currentPage) {
@@ -48,9 +49,11 @@ AsyncList.propTypes = {
     pageSize: PropTypes.number.isRequired,
     recordCount: PropTypes.number.isRequired,
   }).isRequired,
+  getRef: PropTypes.func,
 }
 
 AsyncList.defaultProps = {
   components: {},
   children: [],
+  getRef: noop,
 }

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { fromJS, Map } from 'immutable'
 
-import { emptyMap } from 'zc-core/utils'
+import { emptyMap, emptyList } from 'zc-core/utils'
 import { selectUserId } from 'zc-core/auth/selectors'
 import { selectResponse, selectAPIState } from 'zc-core/api/selectors'
 
@@ -17,16 +17,11 @@ const selectTypesFromProps = (_, { types }) => types
 const selectUserIdFromProps = (_, { userId }) => userId
 const selectOrganisationIdFromProps = (_, { organisationId }) => organisationId
 
-// Placeholder used just prevent selector errors when no data has been fetched
-const defaultUserOrg = fromJS({
-  ORG: {},
-})
-
 const selectSubsForUser = createSelector(
   selectSubscriptions,
   selectUserIdFromProps,
   selectUserId,
-  (subs, userId, currentUser) => subs.get(userId || currentUser, defaultUserOrg),
+  (subs, userId, currentUser) => subs.get(userId || currentUser, emptyList),
 )
 
 // This converts the list of subscriptions to a map keyed by orgId -> category -> <TYPE>
