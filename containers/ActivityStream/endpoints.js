@@ -1,4 +1,6 @@
-import { storeMethod } from '../AsyncList/utils'
+/*
+  Only one list of activities per
+*/
 
 export default {
   getActivities: {
@@ -6,6 +8,13 @@ export default {
     method: 'GET',
     token: true,
     storeKey: 'activities',
-    storeMethod,
+    storeMethod: (last = Map(), next, params) => {
+      if (params.page === 1) return last.set(params.deviceId, next)
+      return last
+        .setIn(
+          [params.deviceId, 'results'],
+          last.getIn([params.deviceId, 'results']).concat(next.get('results')),
+        )
+    },
   },
 }

@@ -1,43 +1,52 @@
-import React from 'react'
-import BEMHelper from 'react-bem-helper'
-import PropTypes from 'prop-types'
+/*
+  Required props:
+    deviceId - the device id to fetch activities for
+  Optional props:
+    start - start period for range UTC ISO string (default = 1 week ago)
+    end - end period for range (default = now)
+*/
 
-import { Panel } from '../../views'
-import { TableBody, TableContainer } from '../../components/ZCGriddle/components'
+import { connect } from 'react-redux'
+import { compose, withStateHandlers } from 'recompose'
 
-import { AsyncListWithState } from '../'
+import { toJS } from 'zc-core/hocs'
+import { apiRequest } from 'zc-core/api/actions'
+import { selectAPIState, selectErrorMessage } from 'zc-core/api/selectors'
 
-import Activity from './Activity'
-import './style.scss'
+import { selectResults, selectMoreAvailable, storeKey } from './selectors'
+
+import ActivityStream from './ActivityStream'
 
 
-export const classes = BEMHelper({ name: 'ActivityStream' })
+const mapStateToProps = (state, props) => ({
+  activities: selectResults(state, props),
+  errorMessage: selectErrorMessage(state, { storeKey }),
+  api: selectAPIState(state, { storeKey }),
+  moreAvailable: selectMoreAvailable(state, props),
+})
 
-export default class ActivityStream extends React.PureComponent {
-  render() {
-    const { deviceId } = this.props
-    return (
-      <AsyncListWithState
-        endpoint="getActivities"
-        storeKey="activities"
-        params={{ deviceId }}
-        hideFilter
-        components={{
-          Row: Activity,
-          TableContainer,
-          TableBody,
-        }}
-        styleConfig={{
-          classNames: {
-            Layout: classes().className,
-          },
-        }}
-        pageSize={100}
-      />
-    )
-  }
-}
+const mapDispatchToProps = (dispatch, { deviceId, start, end, page, onNext }) => ({
+  fetchActivities: () => {
+    onNext() // Increment page counter
+    dispatch(apiRequest(
+      'getActivities',
+      { deviceId, start, end, page, page_size: 10 },
+    ))
+  },
+})
 
-ActivityStream.propTypes = {
-  deviceId: PropTypes.string.isRequired,
-}
+export default compose(
+  withStateHandlers(
+    { page: 1 },
+    {
+      onNext: ({ page }) => () => ({
+        page: page + 1,
+      }),
+    },
+  ),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  toJS,
+)(ActivityStream)
