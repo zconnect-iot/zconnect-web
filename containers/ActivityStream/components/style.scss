@@ -87,4 +87,11 @@
       height: 40px;
     }
   }
+
+  :global(.ActivityStream__More) {
+    :global(.Spinner) {
+      color: white;
+      fill: white;
+    }
+  }
 }

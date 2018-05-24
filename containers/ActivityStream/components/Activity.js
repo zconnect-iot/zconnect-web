@@ -2,8 +2,8 @@ import React from 'react'
 import { mapProps } from 'recompose'
 import XDate from 'xdate'
 
-import { Message, Icon } from '../../components'
-import { Tooltip } from '../../widgets'
+import { Message, Icon } from '../../../components'
+import { Tooltip } from '../../../widgets'
 
 import { classes } from './ActivityStream'
 

@@ -15,7 +15,7 @@ import { selectAPIState, selectErrorMessage } from 'zc-core/api/selectors'
 
 import { selectResults, selectMoreAvailable, storeKey } from './selectors'
 
-import ActivityStream from './ActivityStream'
+import ActivityStream from './components/ActivityStream'
 
 
 const mapStateToProps = (state, props) => ({
