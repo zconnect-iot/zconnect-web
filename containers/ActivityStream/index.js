@@ -27,11 +27,11 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, { deviceId, start, end, page, onNext }) => ({
   fetchActivities: () => {
-    onNext() // Increment page counter
     dispatch(apiRequest(
       'getActivities',
       { deviceId, start, end, page, page_size: 10 },
     ))
+    onNext() // Increment page counter
   },
 })
 
@@ -42,6 +42,7 @@ export default compose(
       onNext: ({ page }) => () => ({
         page: page + 1,
       }),
+      resetPage: () => () => ({ page: 1 }),
     },
   ),
   connect(

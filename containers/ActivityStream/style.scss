@@ -2,7 +2,6 @@
 
 :global(.ActivityStream__ActivityWrapper) {
   position: relative;
-  z-index: 100;
   margin-bottom: $padding * 4;
 
   &::after {
