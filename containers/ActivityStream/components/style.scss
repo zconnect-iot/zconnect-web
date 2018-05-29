@@ -6,7 +6,7 @@
 
   &::after {
     content: '';
-    background: $timeline-color;
+    background: $activity-bg;
     height: 100%;
     position: absolute;
     top: 68px;
@@ -22,7 +22,8 @@
 :global(.ActivityStream) {
   :global(.ActivityStream__Activity) {
     z-index: 100;
-    background: $off-white;
+    background: $activity-bg;
+    color: $activity-color;
 
     :global(.ActivityStream__Icon) {
       width: 36px;
