@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
-import Logo from './Logo'
-import Button from './Button'
+import { Button, Logo } from './'
 
 const classes = BEMHelper({ name: 'Header' })
 
