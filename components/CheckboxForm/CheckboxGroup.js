@@ -42,11 +42,13 @@ export default class CheckboxGroup extends React.Component {
 
 CheckboxGroup.propTypes = {
   title: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    ref: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      ref: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
   rowRef: PropTypes.string.isRequired,
   initialState: PropTypes.arrayOf(PropTypes.string),
   input: PropTypes.objectOf(PropTypes.any).isRequired,

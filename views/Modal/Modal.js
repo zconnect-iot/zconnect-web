@@ -21,9 +21,7 @@ export default class Modal extends React.PureComponent {
     if (e.target.classList.contains('Modal')) this.props.onClose()
   }
   render() {
-    const {
-      onClose, title, className, children, dismissable,
-    } = this.props
+    const { onClose, title, className, children, dismissable } = this.props
     return (
       <div
         {...classes(null, null, className)}

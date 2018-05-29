@@ -19,17 +19,17 @@ const RowTitles = ({ options }) => (
 )
 
 RowTitles.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    ref: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      ref: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 }
 
 export default function CheckboxForm(props) {
-  const {
-    handleSubmit, initialState, showSpinner, questions, options,
-  } = props
+  const { handleSubmit, initialState, showSpinner, questions, options } = props
   return (
     <form className={styles.CheckboxForm}>
       { showSpinner ?
@@ -46,7 +46,8 @@ export default function CheckboxForm(props) {
                 component={CheckboxGroup}
                 options={options}
                 initialState={initialState}
-              />))}
+              />),
+            )}
           </div>
           <Button action={handleSubmit} color="success">Submit</Button>
         </div>
@@ -59,14 +60,18 @@ CheckboxForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   initialState: PropTypes.arrayOf(PropTypes.string).isRequired,
   showSpinner: PropTypes.bool.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    ref: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    ref: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      ref: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      ref: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 }

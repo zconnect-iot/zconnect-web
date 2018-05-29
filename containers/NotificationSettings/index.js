@@ -67,7 +67,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
   const changes = diff(state.initialValues, currentValues)
-  const requests = []
+  const requests = {}
   return {
     ...state,
     ...props,
@@ -89,19 +89,19 @@ const mergeProps = (state, dispatch, props) => {
         const [category, type] = field.split('_')
 
         // Create newly checked notification types
-        if (value === true) requests.push(dispatch.createSub({
+        if (value === true) requests[field] = dispatch.createSub({
           organization: {
             id: props.organisationId,
           },
           category,
           min_severity: currentValues[`${category}_severity`],
           type,
-        }))
+        })
 
         // Delete unchecked notification types
-        if ((value === null || value === false) && typeof state.initialValues[field] === 'string')
-          requests.push(dispatch.deleteSub(state.initialValues[field]))
-
+        if ((value === null || value === false) && typeof state.initialValues[field] === 'string') {
+          requests[field] = dispatch.deleteSub(state.initialValues[field])
+        }
 
         // Edit any enabled notification types with the updated severity
         if (type === 'severity') Object.entries(currentValues)
@@ -109,12 +109,12 @@ const mergeProps = (state, dispatch, props) => {
           // and the value is the sub id
           .filter(([valField]) => startsWith(valField, category))
           .filter(([, val]) => typeof val === 'string')
-          .forEach(([, id]) => (requests.push(dispatch.editSub(
+          .forEach(([fieldName, id]) => (requests[fieldName] = dispatch.editSub(
             id,
             {
               min_severity: value,
             },
-          ))))
+          )))
       })
       return dispatch.batchRequest(requests)
     },

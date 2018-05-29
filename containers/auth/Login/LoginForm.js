@@ -10,9 +10,7 @@ import SpinButton from '../components/SpinButton'
 
 
 const LoginForm = (props) => {
-  const {
-    handleSubmit, pristine, t, api,
-  } = props
+  const { handleSubmit, pristine, t, api } = props
   return (
     <form>
       <TextField name="email" label={t('email')} />

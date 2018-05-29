@@ -28,9 +28,9 @@ export const ProgressBar = ({
   text,
   units,
 }) => {
-  if (!value)
+  if (!value) {
     return null
-
+  }
   // Foreground styles.
   const foregroundStyle = {
     width: `${Math.floor((100 * value) / maximum)}%`,

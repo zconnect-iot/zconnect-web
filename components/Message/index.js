@@ -52,9 +52,7 @@ export default class Message extends React.PureComponent {
   }
 
   render() {
-    const {
-      renderIcon, type, title, subtitle, children, time, focused,
-    } = this.props
+    const { renderIcon, type, title, subtitle, children, time, focused } = this.props
     const { expanded } = this.state
     return (
       <div {...classes(null, { collapsed: !expanded, focused }, this.props.className)}>

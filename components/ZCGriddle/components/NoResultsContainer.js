@@ -12,12 +12,14 @@ const NoResultsContainer = OriginalComponent => compose(
   getContext({
     components: PropTypes.object,
   }),
-  connect(state => ({
-    className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'NoResults'),
-    style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'NoResults'),
-    api: state.get('api'),
-    errorMessage: state.get('errorMessage'),
-  })),
+  connect(
+    state => ({
+      className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'NoResults'),
+      style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'NoResults'),
+      api: state.get('api'),
+      errorMessage: state.get('errorMessage'),
+    }),
+  ),
   mapProps((props) => {
     const { components, ...otherProps } = props
     return {

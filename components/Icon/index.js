@@ -5,9 +5,7 @@ import ICONS from '../../assets/icons/map.json'
 
 const classes = BEMHelper({ name: 'Icon' })
 
-export default function Icon({
-  name, color, size, className, onClick,
-}) {
+export default function Icon({ name, color, size, className, onClick }) {
   const pathAttrs = ICONS[name]
   const fill = color ? `text-${color}` : null
 

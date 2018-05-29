@@ -26,7 +26,9 @@ export default {
     method: 'DELETE',
     token: true,
     storeKey: 'subscriptions',
-    storeMethod: (last = Map(), next, { userId, subscriptionId }) => last.deleteIn([userId, last.get(userId).findIndex(sub => sub.get('id') === subscriptionId)]),
+    storeMethod: (last = Map(), next, { userId, subscriptionId }) => last.deleteIn(
+      [userId, last.get(userId).findIndex(sub => sub.get('id') === subscriptionId)],
+    ),
   },
   editSubscription: {
     url: 'api/v3/users/${userId}/subscriptions/${subscriptionId}/',

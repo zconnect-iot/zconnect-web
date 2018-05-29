@@ -19,9 +19,7 @@ const classes = new BEMHelper({
 class NavButton extends React.Component {
   navigate = () => this.props.navigate(this.props.route)
   render() {
-    const {
-      icon, title, action, route, location,
-    } = this.props
+    const { icon, title, action, route, location } = this.props
     const onClick = route ? this.navigate : action
     // If a NavButton is simply linking back to '/', we most likely don't want
     // it to appear active all the time.

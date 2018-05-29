@@ -7,9 +7,7 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Tooltip' })
 
-export default function Tooltip({
-  children, size, icon, color, className,
-}) {
+export default function Tooltip({ children, size, icon, color, className }) {
   return (
     <span {...classes(null, null, className)}>
       <Icon {...classes('icon')} size={size} name={icon} color={color} />

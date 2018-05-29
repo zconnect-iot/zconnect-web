@@ -15,17 +15,13 @@ const classes = BEMHelper({ name: 'Button' })
 export class Button extends React.Component {
   navigate = () => this.props.navigate(this.props.route)
   render() {
-    const {
-      color, hollow, children, className, action, route, active, disabled,
-    } = this.props
+    const { color, hollow, children, className, action, route, active, disabled } = this.props
     const onClick = route ? this.navigate : action
     return (
       <button
         onClick={onClick}
         disabled={disabled}
-        {...classes(null, {
- disabled, hollow, active, [color]: color,
-}, className)}
+        {...classes(null, { disabled, hollow, active, [color]: color }, className)}
       >
         {children}
       </button>

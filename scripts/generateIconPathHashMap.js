@@ -9,7 +9,7 @@ const ERR_INVALID_ARGS = 2
 
 // Ensure the arguments are valid.
 if (process.argv.length !== 3) {
-  console.log('Usage: node', __filename, ' path/to/icons/directory')
+  console.log("Usage: node", __filename, " path/to/icons/directory")
   console.error('Received arguments:', process.argv)
   process.exit(ERR_INVALID_ARGS)
 }
@@ -19,7 +19,7 @@ const fs = require('fs')
 const path = require('path')
 const Svgo = require('svgo')
 
-const ICONS_DIR = process.argv[2]
+const ICONS_DIR = process.argv[2];
 const ICONS = {}
 const ERRORS = []
 const OUTPUT = path.resolve(ICONS_DIR, 'map.json')
@@ -32,22 +32,22 @@ const optimiser = new Svgo({
 
 const getSvgPathRegex = /<path.*d="([^"]*)"/
 function getSvgPath(svgString) {
-  if (typeof svgString !== 'string')
+  if (typeof svgString !== 'string') {
     throw new Error(`Expected string; got ${svgString}`)
-
+  }
   return svgString.match(getSvgPathRegex)[1]
 }
 
 const getSvgTransformRegex = /<use.*transform="([^"]*)"/
 function getTransformAttr(svgString) {
-  if (typeof svgString !== 'string')
+  if (typeof svgString !== 'string') {
     throw new Error(`Expected string; got ${svgString}`)
-
+  }
   return svgString.match(getSvgTransformRegex)[1]
 }
 
-const optimise = svgString => new Promise((resolve, reject) => {
-  optimiser.optimize(svgString.toString(), (data) => {
+const optimise = (svgString) => new Promise((resolve, reject) => {
+  optimiser.optimize(svgString.toString(), data => {
     if (data.error) reject(data)
     else resolve(data)
   })
@@ -67,11 +67,11 @@ const processIcon = filepath => readFile(filepath)
     transform: getTransformAttr(data),
     hello: console.log(new RegExp(/<path.* (\w)="([^"]*)"/g).exec(data)),
   }))
-  .then((attributes) => {
+  .then(attributes => {
     const iconName = path.basename(filepath).replace('.svg', '').toUpperCase()
     ICONS[iconName] = attributes
   })
-  .catch((err) => {
+  .catch(err => {
     ERRORS.push(`Unable to process ${filepath}: ${err.message}`)
   })
 
@@ -84,7 +84,7 @@ Promise.all(iconPaths).then(() => {
   fs.writeFileSync(OUTPUT, JSON.stringify(ICONS, null, 2))
   console.log('Hash map written to', OUTPUT)
   if (ERRORS.length) {
-    console.error('Encountered the following errors.\n- %s', ERRORS.join('\n- '))
+    console.error("Encountered the following errors.\n- %s", ERRORS.join('\n- '))
     process.exit(ERR_SOME_OPTIMISATIONS_FAILED)
   }
 })

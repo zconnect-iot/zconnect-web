@@ -25,10 +25,8 @@ export default class Panel extends React.PureComponent {
     {action.title}
   </Button>))
   render() {
-    const {
-      title, renderIcon, collapsible, className, children, onClick, actions,
-      renderStatic, onClickLabel, subtitle,
-    } = this.props
+    const { title, renderIcon, collapsible, className, children, onClick, actions,
+      renderStatic, onClickLabel, subtitle } = this.props
     const { collapsed } = this.state
     return (
       <div {...classes(null, collapsed ? 'collapsed' : null, className)}>

@@ -9,9 +9,7 @@ import PropTypes from 'prop-types'
   trigger the scroll-to effect manually
 */
 
-export default function withScrollTo({
-  behavior = 'smooth', inline = 'nearest', delay = 0, className,
-} = {}) {
+export default function withScrollTo({ behavior = 'smooth', inline = 'nearest', delay = 0, className } = {}) {
   return function withScrollToEnhancer(WrappedComponent) {
     class WithScrollTo extends React.PureComponent {
       componentDidMount() {
@@ -20,7 +18,9 @@ export default function withScrollTo({
       setRef = (ref) => {
         this.ref = ref
       }
-      scrollToElement = () => (this.ref.scrollIntoView ? this.ref.scrollIntoView({ behavior, inline }) : null)
+      scrollToElement = () => {
+        return this.ref.scrollIntoView ? this.ref.scrollIntoView({ behavior, inline }) : null
+      }
       scrollToComponent = () => {
         if (delay) setTimeout(this.scrollToElement, delay)
         else this.scrollToElement()
