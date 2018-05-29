@@ -3,6 +3,7 @@
 :global(.Navbar) {
   background: $nav-bg;
   color: $nav-color;
+  padding: 0 $padding * 2;
 }
 
 :global(.Navbar__item) {

@@ -49,10 +49,11 @@
   padding: $padding;
   cursor: pointer;
   fill: $nav-color;
+  transition: color $transition-duration, fill $transition-duration;
 
   &:global(:hover) {
-    color: lighten($nav-color, 10%);
-    fill: lighten($nav-color, 10%);
+    color: $nav-hover-color;
+    fill: $nav-hover-color;
   }
 
   &:global(.NavButton--active) {
