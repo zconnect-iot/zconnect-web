@@ -14,24 +14,23 @@ export default function Content({ title, subtitle, header, actionItems, children
         {(title || image) && <Row {...classes('header')}>
           <Col {...classes('headerCenter')} xs={12} lgOffset={1} lg={10}>
             <div {...classes('title')}>
-              { image ||
-                <div>
-                  <h4>{title}</h4>
-                  {subtitle && <h6>{subtitle}</h6>}
-                </div>
-              }
+              {image && image}
+              {title && <h4>{title}</h4>}
+              {subtitle && <h6>{subtitle}</h6>}
             </div>
             { header &&
-              <div {...classes('title')}>
+              <div {...classes('header')}>
                 <h4>{header}</h4>
               </div>
             }
-            {actionItems.map(item => (
-              <Button key={item.title || item.icon} hollow {...item} {...classes('button', null, item.className)}>
-                {item.icon && <Icon name={item.icon} size={24} />}
-                {item.title && <span>{item.title}</span>}
-              </Button>
-            ))}
+            <div {...classes('actions')}>
+              {actionItems.map(item => (
+                <Button key={item.title || item.icon} hollow {...item} {...classes('button', null, item.className)}>
+                  {item.icon && <Icon name={item.icon} size={24} />}
+                  {item.title && <span>{item.title}</span>}
+                </Button>
+              ))}
+            </div>
           </Col>
         </Row>}
         <Row {...classes('body')}>
