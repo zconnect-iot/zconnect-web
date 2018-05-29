@@ -22,7 +22,9 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Map' })
 
-export default function Map({ center, zoom, children, className, color, ...props }) {
+export default function Map({
+  center, zoom, children, className, color, ...props
+}) {
   return (
     <div {...classes(null, null, className)}>
       <GoogleMap

@@ -26,7 +26,9 @@ export default function withPaginationContentProps() {
       }
       togglePageSelector = () => this.setState({ pageSelectorOpen: !this.state.pageSelectorOpen })
       render() {
-        const { currentPage, pageSize, onNext, onPrevious, maxPages, onGetPage, ...props } = this.props
+        const {
+          currentPage, pageSize, onNext, onPrevious, maxPages, onGetPage, ...props
+        } = this.props
         const { pageSelectorOpen } = this.state
         const actionItems = []
         if (currentPage > 1) actionItems.push({ icon: 'ARROW_BACK', action: onPrevious })

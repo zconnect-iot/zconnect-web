@@ -53,16 +53,16 @@ export default compose(
     getInitialState,
     stateHandlers,
   ),
-  mapProps(
-    ({ onNext, onPrevious, onGetPage, onSort, onFilter, ...props }) => ({
-      ...props,
-      events: {
-        onNext,
-        onPrevious,
-        onGetPage,
-        onSort,
-        onFilter,
-      },
-    }),
-  ),
+  mapProps(({
+    onNext, onPrevious, onGetPage, onSort, onFilter, ...props
+  }) => ({
+    ...props,
+    events: {
+      onNext,
+      onPrevious,
+      onGetPage,
+      onSort,
+      onFilter,
+    },
+  })),
 )(AsyncList)

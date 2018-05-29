@@ -25,7 +25,9 @@ class Register extends React.Component {
     return this.props.register(payload)
   }
   render() {
-    const { api, errorMessage, t, email, className } = this.props
+    const {
+      api, errorMessage, t, email, className,
+    } = this.props
     return (
       <div {...classes(null, className)}>
         <div {...classes('form')}>

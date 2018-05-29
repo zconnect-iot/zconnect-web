@@ -8,7 +8,9 @@ import SpinButton from '../components/SpinButton'
 
 
 const RegisterForm = (props) => {
-  const { handleSubmit, pristine, pending, t } = props
+  const {
+    handleSubmit, pristine, pending, t,
+  } = props
   return (
     <form>
       <TextField name="first_name" label={t('firstname')} />

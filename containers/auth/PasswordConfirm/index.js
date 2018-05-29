@@ -25,7 +25,9 @@ class PasswordConfirm extends React.Component {
     return this.props.submit(payload)
   }
   render() {
-    const { api, errorMessage, t, className } = this.props
+    const {
+      api, errorMessage, t, className,
+    } = this.props
     return (
       <div {...classes(null, className)}>
         <div {...classes('form')}>
@@ -71,9 +73,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, { token, uid }) => ({
-  submit: payload => dispatch(
-    resetPasswordConfirm({ uid, token, ...payload }),
-  ),
+  submit: payload => dispatch(resetPasswordConfirm({ uid, token, ...payload })),
   registerError: e => dispatch(resetPasswordConfirmError({ response: { json: { code: e } } })),
 })
 

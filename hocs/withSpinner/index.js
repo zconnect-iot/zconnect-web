@@ -9,7 +9,9 @@ import { Spinner } from '../../components'
 
 export default function withSpinner() {
   return function withSpinnerEnhancer(WrappedComponent) {
-    function WithSpinner({ pending, children, spinnerSize, className, ...props }) {
+    function WithSpinner({
+      pending, children, spinnerSize, className, ...props
+    }) {
       return (<WrappedComponent {...props} className={classnames(className, pending && 'spinning')}>
         {pending ? <Spinner size={spinnerSize} /> : children }
       </WrappedComponent>)

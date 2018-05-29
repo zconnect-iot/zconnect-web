@@ -26,7 +26,9 @@ class Login extends React.Component {
   }
   handleForgotten = () => this.props.onForgotten(this.props.email)
   render() {
-    const { api, errorMessage, t, initialValues, className } = this.props
+    const {
+      api, errorMessage, t, initialValues, className,
+    } = this.props
     return (
       <div {...classes(null, className)}>
         <div {...classes('form')}>

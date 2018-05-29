@@ -68,7 +68,9 @@ export default class Drawer extends React.Component {
 
   render() {
     const { position, children } = this.props
-    const { open, innerClass, innerStyle, overlayClasses } = this.state
+    const {
+      open, innerClass, innerStyle, overlayClasses,
+    } = this.state
     return (
       <div {...classes(null, { [position]: true, open })}>
         {open && (

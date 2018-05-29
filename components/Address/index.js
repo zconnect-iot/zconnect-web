@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 
 export default function Address(props) {
-  const { street_address, locality, region, poboxno, postalcode, country, className } = props
+  const {
+    street_address, locality, region, poboxno, postalcode, country, className,
+  } = props
   return (<div className={className}>
     {street_address && <p>{street_address}</p>}
     {locality && <p>{locality}</p>}

@@ -8,13 +8,15 @@ import { Modal } from '../../views'
 import { SimpleLink } from '../../components'
 
 
-function ErrorHandler({ retry, logoutUser, loggedIn, error }) {
+function ErrorHandler({
+  retry, logoutUser, loggedIn, error,
+}) {
   return (
     <Modal title="Something went wrong" onClose={retry}>
       <p>
         Encountered an error. Click <SimpleLink action={retry}>here</SimpleLink> to try again.
       </p>
-      <p>{"If that doesn't work try reloading your browser."}</p>
+      <p>If that doesn't work try reloading your browser.</p>
       {loggedIn && <p>Alternatively, <SimpleLink action={logoutUser}>log out</SimpleLink> and try again.</p>}
       <br />
       <h5>Error details:</h5>

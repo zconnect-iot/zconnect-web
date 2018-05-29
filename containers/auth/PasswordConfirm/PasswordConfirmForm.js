@@ -8,7 +8,9 @@ import SpinButton from '../components/SpinButton'
 
 
 const PasswordConfirmForm = (props) => {
-  const { handleSubmit, pristine, pending, t } = props
+  const {
+    handleSubmit, pristine, pending, t,
+  } = props
   return (
     <form>
       <PasswordField name="new_password1" label={t('password')} />

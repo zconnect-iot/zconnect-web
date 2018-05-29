@@ -35,9 +35,8 @@ export default class Page extends React.Component {
     }
   }
   componentWillReceiveProps(next) {
-    if (next.location.pathname !== this.props.location.pathname) {
+    if (next.location.pathname !== this.props.location.pathname)
       Object.values(this.subscribers).forEach(s => s(next.location.pathname))
-    }
   }
   addSubscriber = (s) => {
     this.subscribers[this.subId += 1] = s
@@ -45,7 +44,9 @@ export default class Page extends React.Component {
   }
   removeSubscriber = s => delete this.subscribers[s]
   render() {
-    const { children, navItems, headerRightContent, className } = this.props
+    const {
+      children, navItems, headerRightContent, className,
+    } = this.props
     return (
       <Grid fluid className={classnames('Page', className)}>
         <Header rightContent={headerRightContent} />

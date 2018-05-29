@@ -34,7 +34,9 @@ const mapStateToProps = (state, props) => ({
   pageProperties: selectPageProperties(state, props),
 })
 
-const mapDispatchToProps = (dispatch, { endpoint, pageSize = 10, currentPage = 1, params = {} }) => ({
+const mapDispatchToProps = (dispatch, {
+  endpoint, pageSize = 10, currentPage = 1, params = {},
+}) => ({
   fetchResults: () => dispatch(apiRequest(
     endpoint,
     { page: currentPage, page_size: pageSize, ...params },
@@ -49,7 +51,9 @@ const mapDispatchToProps = (dispatch, { endpoint, pageSize = 10, currentPage = 1
 const mergeProps = (
   state,
   dispatch,
-  { currentPage, pageSize, storeKey, endpoint, ...props },
+  {
+    currentPage, pageSize, storeKey, endpoint, ...props
+  },
 ) => ({
   ...state,
   ...dispatch,

@@ -23,7 +23,9 @@ class Forgotten extends React.Component {
   }
 
   render() {
-    const { api, errorMessage, t, email, className } = this.props
+    const {
+      api, errorMessage, t, email, className,
+    } = this.props
     return (
       <div {...classes(null, className)}>
         <div {...classes('form')}>

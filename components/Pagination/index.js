@@ -14,7 +14,9 @@ import { NextButton, PreviousButton } from '../ZCGriddle/components'
 */
 
 export default function Pagination(props) {
-  const { className, currentPage, maxPages, onNext, onPrevious, onGetPage } = props
+  const {
+    className, currentPage, maxPages, onNext, onPrevious, onGetPage,
+  } = props
   return (
     <div className={classnames('List__pagination', className)}>
       <PreviousButton hasPrevious={currentPage > 1} onClick={onPrevious} />

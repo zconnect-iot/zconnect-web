@@ -10,16 +10,14 @@ const EnhancedLayout = OriginalComponent => compose(
   getContext({
     components: PropTypes.object,
   }),
-  connect(
-    state => ({
-      className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'Layout'),
-      style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'Layout'),
-      dataSize: plugins.LocalPlugin.selectors.filteredDataSelector(state).size,
-      title: state.get('title'),
-      hidePagination: state.get('hidePagination'),
-      hideFilter: state.get('hideFilter'),
-    }),
-  ),
+  connect(state => ({
+    className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'Layout'),
+    style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'Layout'),
+    dataSize: plugins.LocalPlugin.selectors.filteredDataSelector(state).size,
+    title: state.get('title'),
+    hidePagination: state.get('hidePagination'),
+    hideFilter: state.get('hideFilter'),
+  })),
   mapProps(props => ({
     Table: props.components.Table,
     Pagination: props.components.Pagination,

@@ -125,8 +125,7 @@ export const createFieldComponent = (
   renderWarning = genericWarning,
 ) => {
   const classes = new BEMHelper(blockname)
-  const renderInput = props => genericInner(
-    classes, props, renderError, renderWarning)
+  const renderInput = props => genericInner(classes, props, renderError, renderWarning)
   const component = props =>
     <Field type={type} component={renderInput} {...props} />
   return {

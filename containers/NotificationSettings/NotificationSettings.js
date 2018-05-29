@@ -37,7 +37,9 @@ export default class NotificationSettings extends React.Component {
     this.setState({ submitted: true })
   }
   render() {
-    const { categories, severities, types, isDirty, api, batchApi, errorMessage, hideSave } = this.props
+    const {
+      categories, severities, types, isDirty, api, batchApi, errorMessage, hideSave,
+    } = this.props
     const { submitted } = this.state
     if (api.pending || batchApi.pending) return <Spinner />
     if (!isDirty && api.error) return <h4 className="text-danger">{errorMessage}</h4>
