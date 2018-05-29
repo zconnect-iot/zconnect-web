@@ -16,7 +16,7 @@ const classes = new BEMHelper('Link')
   3. action - A callback function
 
   Default export wraps SimpleLink with getPageContext to provide the navigate
-  functionality. This means SimpleLink can only be used to call the action prop.
+  functionality. This means SimpleLink can only be used to call the action prop or href
 */
 
 export class SimpleLink extends React.Component {
@@ -27,12 +27,11 @@ export class SimpleLink extends React.Component {
     return route ? this.props.navigate(route) : action()
   }
   render() {
-    const { className, children, route, navigate, action, style } = this.props
+    const { className, children, href } = this.props
     return (
       <a
-        href={route}
+        href={href}
         onClick={this.onClick}
-        style={style}
         {...classes(null, null, className)}
       >
         {children}

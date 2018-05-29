@@ -2,9 +2,13 @@
   Takes react router location and history props to provide currentPage, pageSize,
   maxPages and events props for use by AsyncList.
   TODO: Add sorting and filtering when implemented on back end
+  Unfortunately Griddle blocks the updated callback props so pagination doesn't work when
+  passing these down inside events prop so an external component must be used to fire
+  these callbacks with hidePagination passed to hide the built in paginator
 */
+
 import { connect } from 'react-redux'
-import { compose, mapProps, withStateHandlers } from 'recompose'
+import { compose, mapProps } from 'recompose'
 import qs from 'query-string'
 
 import { selectMaxPages } from '../../containers/AsyncList/selectors'

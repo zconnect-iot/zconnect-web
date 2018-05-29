@@ -1,0 +1,34 @@
+:global(.ActivityStream) {
+  :global(.ActivityStream__Activity) {
+    :global(.ActivityStream__Icon) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      :global(.ActivityStream__IconSeverity) {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        margin-right: 16px;
+      }
+    }
+    :global(.Message__headerMiddle) {
+      h5 {
+        font-size: 1.4rem;
+        position: relative;
+
+        :global(.Tooltip) {
+          position: absolute;
+          top: -3px;
+          margin-left: 4px;
+        }
+      }
+      :global(.Message__subtitle) {
+
+      }
+      :global(.Message__time) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

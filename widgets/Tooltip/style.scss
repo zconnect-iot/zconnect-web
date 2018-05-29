@@ -23,6 +23,7 @@
     border: $tooltip-border-width solid $tooltip-border-color;
     opacity: 0;
     transition: visibility $transition-duration, opacity $transition-duration;
+    z-index: 100;
 
     &:after, &:before {
       bottom: 100%;

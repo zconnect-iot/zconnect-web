@@ -14,6 +14,7 @@ const EnhancedLayout = OriginalComponent => compose(
     state => ({
       className: plugins.LocalPlugin.selectors.classNamesForComponentSelector(state, 'Layout'),
       style: plugins.LocalPlugin.selectors.stylesForComponentSelector(state, 'Layout'),
+      dataSize: plugins.LocalPlugin.selectors.filteredDataSelector(state).size,
       title: state.get('title'),
       hidePagination: state.get('hidePagination'),
       hideFilter: state.get('hideFilter'),
@@ -28,7 +29,9 @@ const EnhancedLayout = OriginalComponent => compose(
     className: props.className,
     style: props.style,
     title: props.title,
-    hidePagination: props.hidePagination,
+    // Hide the paginator if no data to prevent user triggering fetches for next page whilst
+    // already loading
+    hidePagination: !props.dataSize || props.hidePagination,
     hideFilter: props.hideFilter,
   })),
 )(OriginalComponent)

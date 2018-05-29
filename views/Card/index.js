@@ -37,7 +37,7 @@ CardIcon.defaultProps = {
 const Card = (props) => {
   let title = null
   if (typeof props.title === 'string')
-    title = <h2 {...classes('title')}>{props.title}</h2>
+    title = <h4 {...classes('title')}>{props.title}</h4>
   else if (props.title)
     title = props.title
 

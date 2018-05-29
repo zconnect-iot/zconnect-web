@@ -27,6 +27,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
+    "deep-object-diff": "^1.1.0",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-zoetrope": "^2.0.0",
@@ -35,6 +36,7 @@
     "eslint-plugin-react": "^7.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
+    "immutable": "^3.8.2",
     "node-sass": "^4.5.3",
     "pre-commit": "^1.2.2",
     "query-string": "^6.1.0",
@@ -44,7 +46,8 @@
     "react-redux": "^5.0.6",
     "react-test-renderer": "^16.3.2",
     "recompose": "^0.27.0",
-    "redux-form": "^7.0.4"
+    "redux-form": "^7.0.4",
+    "reselect": "^3.0.1"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
@@ -62,6 +65,8 @@
   },
   "peerDependencies": {
     "react-flexbox-grid": ">= 1.x <3",
+    "deep-object-diff": "1.x",
+    "immutable": "> 2 < 4",
     "zc-core": "3.x",
     "prop-types": "15.x",
     "query-string": "5.x",
@@ -70,12 +75,17 @@
     "recompose": "0.x",
     "redux": "3.x",
     "redux-form": "7.x",
+    "reselect": "> 2 < 4",
     "xdate": "0.x"
   },
   "jest": {
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(gif|ttf|eot|svg)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
     },
     "moduleDirectories": [
       "node_modules"

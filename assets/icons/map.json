@@ -203,6 +203,14 @@
     "d": "M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 17H9v-2h2v2zm2.07-7.75l-.9.92C11.45 10.9 11 11.5 11 13H9v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H6c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z",
     "transform": "translate(2 2)"
   },
+  "HEART_BEAT": {
+    "d": "M.992 11.925h5.794l4.74-8.21 1.955 16.353 5.53-8.06h4.218",
+    "transform": "translate(2 2)",
+    "stroke": "currentColor",
+    "strokeWidth": "1.253",
+    "strokeLinejoin": "round",
+    "fill": "none"
+  },
   "HOME": {
     "d": "M8 17v-6h4v6h5V9h3L10 0 0 9h3v8h5z",
     "transform": "translate(2 3)"

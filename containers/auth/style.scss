@@ -23,19 +23,25 @@
     width: 100%;
 
     button {
-      margin: $padding auto;
+      margin: $padding auto 0 auto;
+
+      :global(.Spinner) {
+        color: white;
+      }
     }
   }
-}
 
-:global(.Auth__error) {
-  padding: 0 20px;
-  color: $brand-danger;
-  margin-top: $padding;
-}
+  :global(.Auth__error) {
+    color: $brand-danger;
+    margin-top: $padding;
+  }
 
-:global(.Auth__success) {
-  padding: 0 20px;
-  color: $brand-success;
-  margin-top: $padding;
+  :global(.Auth__success) {
+    color: $brand-success;
+    margin-top: $padding;
+  }
+
+  :global(.Link) {
+    margin-top: $padding;
+  }
 }

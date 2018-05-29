@@ -21,7 +21,7 @@ class Login extends React.Component {
   handleSubmit = (payload) => {
     const { email, password } = payload.toJS()
     if (!isValidEmail(email)) return this.props.registerError('emailinvalid')
-    if (password.length < 8) return this.props.registerError('passwordinvalid')
+    if (!password || password.length < 8) return this.props.registerError('passwordinvalid')
     return this.props.login(email, password)
   }
   handleForgotten = () => this.props.onForgotten(this.props.email)
@@ -32,6 +32,7 @@ class Login extends React.Component {
         <div {...classes('form')}>
           <Logo {...classes('logo')} large center />
           <LoginForm
+            api={api}
             onSubmit={this.handleSubmit}
             t={t}
             initialValues={initialValues}
