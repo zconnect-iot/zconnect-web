@@ -33,6 +33,7 @@ export default class ActivityStream extends React.PureComponent {
         {activities.map(activity => (<Activity key={activity.id} {...activity} />))}
         {moreAvailable && <SpinButton
           {...classes('More')}
+          disabled={api.pending}
           spinnerSize={24}
           pending={api.pending}
           color="success"
