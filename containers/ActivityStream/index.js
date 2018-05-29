@@ -2,8 +2,8 @@
   Required props:
     deviceId - the device id to fetch activities for
   Optional props:
-    start - start period for range UTC ISO string (default = 1 week ago)
-    end - end period for range (default = now)
+    start - start period for range UTC ISO string (ms since epoch used internally)
+    end - end period for range
 */
 
 import { connect } from 'react-redux'
