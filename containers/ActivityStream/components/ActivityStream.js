@@ -19,15 +19,12 @@ export default class ActivityStream extends React.PureComponent {
     this.props.fetchActivities()
   }
   componentWillReceiveProps(props) {
-    const { start, end, resetPage } = this.props
+    const { start, end } = this.props
     if (props.start !== start || props.end !== end) {
-      resetPage()
       props.fetchActivities()
     }
   }
-  getMore = () => {
-    this.props.fetchActivities()
-  }
+  getMore = () => this.props.fetchActivities()
   render() {
     const { api, activities, moreAvailable, errorMessage } = this.props
     if (api.error) return <span className="text-danger">{errorMessage}</span>
@@ -45,6 +42,11 @@ export default class ActivityStream extends React.PureComponent {
         </SpinButton>}
       </div>
     )
+    if (api.success) return (
+      <div {...classes()}>
+        No activities found for date range selected
+      </div>
+    )
     return <Spinner />
   }
 }
@@ -55,4 +57,6 @@ ActivityStream.propTypes = {
   fetchActivities: PropTypes.func.isRequired,
   moreAvailable: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  start: PropTypes.number.isRequired,
+  end: PropTypes.number.isRequired,
 }

@@ -20,18 +20,22 @@ const getColorForSeverity = (severity) => {
   return 'danger'
 }
 
-const renderIcon = ({ category, severity }) => (<div {...classes('Icon', null, `bg-${getColorForSeverity(severity)}`)}>
-  <Icon
-    name={categoryIconMap[category] || 'INFO'}
-    size={40}
-  />
-</div>)
+const renderIcon = ({ category, severity }) => (
+  <div {...classes('Icon', null, `bg-${getColorForSeverity(severity)}`)}>
+    <Icon
+      name={categoryIconMap[category] || 'INFO'}
+      size={40}
+    />
+  </div>
+)
 
 export default mapProps(props => ({
   ...props,
   title: (<span>
     {props.description}
-    {props.notify && <Tooltip icon="DONE_ALL" size={20} color="success">You should have been notified about this event</Tooltip>}
+    {props.notify && (<Tooltip icon="DONE_ALL" size={20} color="success">
+      You should have been notified about this event
+    </Tooltip>)}
   </span>),
   time: XDate(props.created_at, true),
   renderIcon,

@@ -36,6 +36,11 @@ export const selectCount = createSelector(
   data => data.get('count', 0),
 )
 
+export const selectNextPage = createSelector(
+  selectDataForDevice,
+  data => data.getIn(['params', 'page'], 0) + 1,
+)
+
 export const selectMoreAvailable = createSelector(
   selectResults,
   selectCount,
