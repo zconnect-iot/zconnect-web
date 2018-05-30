@@ -1,0 +1,66 @@
+@import "~theme/variables.scss";
+
+$content-bg: white !default;
+$content-color: $text-color !default;
+$content-header-bg: $off-white !default;
+$content-header-color: $text-color !default;
+
+
+:global(.Content) {
+  flex: 1;
+  background: $content-bg;
+  color: $content-color;
+
+  :global(.Content__header) {
+    background: $content-header-bg;
+    color: $content-header-color;
+    border-bottom: 1px solid darken($content-header-bg, 10%);
+    height: 54px;
+    padding: 0 $padding * 2;
+  }
+
+  :global(.Content__headerCenter) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    :global(.Content__title) {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img {
+        max-height: 46px;
+        max-width: 200px;
+        width: auto;
+        height: auto;
+      }
+    }
+
+    :global(.Content__header) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    :global(.Content__actions) {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      :global(.Content__button) {
+        margin: $padding 0 $padding $padding;
+      }
+    }
+  }
+
+
+
+  :global(.Content__body) {
+    padding: $padding * 2;
+  }
+}

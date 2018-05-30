@@ -2,12 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import BEMHelper from 'react-bem-helper'
-import { Button, Icon } from '../components'
+
+import { Button, Icon } from '../'
+
+import './style.scss'
 
 
 const classes = BEMHelper({ name: 'Content' })
 
-export default function Content({ title, subtitle, header, actionItems, children, className, image }) {
+export default function Content(props) {
+  const { title, subtitle, header, actionItems, children, className, image } = props
   return (
     <Row {...classes(null, null, className)}>
       <Col xs={12}>
@@ -49,7 +53,7 @@ Content.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
     PropTypes.string,
-  ]).isRequired,
+  ]),
   header: PropTypes.string,
   actionItems: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
