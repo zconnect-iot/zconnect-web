@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { mapProps } from 'recompose'
 import XDate from 'xdate'
 
@@ -29,15 +30,33 @@ const renderIcon = ({ category, severity }) => (
   </div>
 )
 
-export default mapProps(props => ({
+renderIcon.propTypes = {
+  category: PropTypes.string.isRequired,
+  severity: PropTypes.number.isRequired,
+}
+
+const renderTitle = ({ description, notify }) => (<span>
+  {description}
+  {notify && (<Tooltip icon="DONE_ALL" size={20} color="success">
+    You should have been notified about this event
+  </Tooltip>)}
+</span>)
+
+renderTitle.propTypes = {
+  description: PropTypes.string.isRequired,
+  notify: PropTypes.bool.isRequired,
+}
+
+const rewireProps = props => ({
   ...props,
-  title: (<span>
-    {props.description}
-    {props.notify && (<Tooltip icon="DONE_ALL" size={20} color="success">
-      You should have been notified about this event
-    </Tooltip>)}
-  </span>),
+  title: renderTitle(props),
   time: XDate(props.created_at, true),
   renderIcon,
   className: classes('Activity').className,
-}))(props => <div {...classes('ActivityWrapper')}><Message {...props} /></div>)
+})
+
+export default mapProps(rewireProps)(props => (
+  <div {...classes('ActivityWrapper')}>
+    <Message {...props} />
+  </div>
+))
