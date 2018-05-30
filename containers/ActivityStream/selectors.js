@@ -22,7 +22,9 @@ export const selectDataForDevice = createSelector(
   (activities, deviceId, start, end) => (
     activities.getIn(['params', 'deviceId']) === deviceId &&
     activities.getIn(['params', 'start']) === start &&
-    activities.getIn(['params', 'end']) === end ? activities : emptyMap
+    activities.getIn(['params', 'end']) === end
+      ? activities
+      : emptyMap
   ),
 )
 

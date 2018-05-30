@@ -14,8 +14,9 @@ export default {
     storeKey: 'activities',
     storeMethod: (last = Map(), next, params) => {
       if (params.page === 1 ||
-        params.start !== last.getIn(['params', 'start']) ||
-        params.end !== last.getIn(['params', 'end'])) return next.set('params', fromJS(params))
+          params.start !== last.getIn(['params', 'start']) ||
+          params.end !== last.getIn(['params', 'end']))
+        return next.set('params', fromJS(params))
       return last
         .set('results', last.get('results').concat(next.get('results')))
         .set('params', fromJS(params))
