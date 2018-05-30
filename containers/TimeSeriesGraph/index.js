@@ -27,17 +27,25 @@ class TimeSeriesGraph extends React.PureComponent {
 
   render() {
     console.log("timeseriesgraph props", this.props)
+    const multipleKeys = this.props.mode.keys && this.props.mode.keys.length > 1
+    const keys = this.props.mode.keys.map(
+      key => this.props.data.sensors.find(
+        sensor => sensor.startsWith(key.replace(/_/g, ' '))
+      )
+    )
+    console.log(this.props.data.sensors)
+    console.log("keys", keys)
+
     return (
       <ResponsiveBar
-        data={this.props.data}
+        data={this.props.data.data}
         indexBy="label"
-        // keys={this.props.mode.keys}
-        keys={this.props.mode.keys}
+        keys={keys}
         margin={{
-          "top": 20,
-          "right": 20,
+          "top": 25,
+          "right": multipleKeys ? 200 : 40,
           "bottom": 40,
-          "left": 20
+          "left": 40
         }}
         axisBottom={{
           "orient": "bottom",
@@ -49,6 +57,21 @@ class TimeSeriesGraph extends React.PureComponent {
           "legendOffset": 36
         }}
         groupMode="grouped"
+        animate={false}
+        enableLabel={false}
+        legends={multipleKeys
+          ? [{
+            "dataFrom": "keys",
+            "anchor": "bottom-right",
+            "direction": "column",
+            "translateX": 120,
+            "itemWidth": 100,
+            "itemHeight": 30,
+            "itemsSpacing": 2,
+            "symbolSize": 25
+          }]
+          : []
+        }
       />
     )
   }
@@ -58,7 +81,6 @@ const mapStateToProps = (state, props) => ({
   ...props,
   data: selectGraphData(state, props),
   resolution: selectResolutionForMode(state, props),
-  deviceId: selectDeviceIdFromProps(state, props),
   start: selectGraphStartParam(state, props),
   end: selectGraphEndParam(state, props),
 })

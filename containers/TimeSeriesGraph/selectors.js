@@ -21,10 +21,10 @@ const graphConfig = {
   },
 }
 
-export const selectGraphModeFromProps = (_, { location }) => 'week'
 
 // TODO: FIX!
-export const selectDeviceIdFromProps = (_, { match }) => 1
+export const selectGraphModeFromProps = (_, props) => 'week'
+export const selectDeviceIdFromProps = (_, props) => props.deviceId
 
 
 const selectTimeSeriesDataResponse = state => selectResponse(
@@ -138,17 +138,14 @@ export const selectGraphData = createSelector(
     // }
 
     if (data == undefined) return {}
-
     data = data.toJS()
-    console.log("selectGraphData", data)
 
     const outputObject = {}
     const outputArray = []
-
     const sensors = Object.keys(data)
 
 
-    sensors.map(sensor => {
+    const sensorNames = sensors.map(sensor => {
       let denominator = 1
       let sensorName = sensor
 
@@ -166,21 +163,29 @@ export const selectGraphData = createSelector(
         sensorName = sensor + " (" + unit + ")"
       }
 
+      sensorName = sensorName.replace(/_/g, ' ')
+
       data[sensor].map(reading => {
         outputObject[reading.ts.toUTCString()] = outputObject[reading.ts.toUTCString()] || {}
         outputObject[reading.ts.toUTCString()][sensorName] = (reading.value || 0)/denominator
       })
+
+      return sensorName
     })
 
     Object.keys(outputObject).map(timestamp => {
       const obj = outputObject[timestamp]
       obj.ts = new Date(timestamp)
-      obj.label = (mode.resolution === 3600 ? obj.ts.getHours() : obj.ts.getDate()).toString()
+      obj.label = (mode.resolution === 3600 
+        ? String(obj.ts.getHours()) + ":00"
+        : obj.ts.toLocaleString('en-GB', { month: 'long', day: 'numeric' })
+      ).toString()
       outputArray.push(obj)
     })
 
-    console.log("outputArray", outputArray)
-
-    return outputArray
+    return {
+      data: outputArray,
+      sensors: sensorNames
+    }
   },
 )

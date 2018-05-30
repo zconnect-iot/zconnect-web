@@ -31,24 +31,23 @@ export default class TimeSeriesGraphPanel extends React.Component {
     console.log("timeseriesgraphpanel props:", this.props)
     console.log(this.state)
     let activeMode
-    const modes = this.props.modes.map(mode => {
+    const modes = this.state.actions.map(mode => {
       mode.active = this.state.mode === mode.title
       if (mode.active) activeMode = mode
       return mode
     })
-    console.log(modes)
+    console.log("modes", modes)
     console.log("activeMode", activeMode)
+    console.log("deviceId:", this.props.deviceId)
     return (
       <Panel {...classes()}
         title={this.props.title || "Time Series Data"}
-        actions={this.state.actions}
+        actions={modes}
       >
         <TimeSeriesGraph {...classes('graph')}
           mode={activeMode}
+          deviceId={this.props.deviceId}
         />
-        {activeMode.title}
-        {this.state.mode}
-
       </Panel>
     )
   }

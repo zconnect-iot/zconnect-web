@@ -1,5 +1,37 @@
+@import "~theme/variables.scss";
+
 :global(.TimeSeriesGraphPanel) {
-    :global(.Panel__body) {
-        height: 400px;
+  :global(.Panel__body) {
+    height: 400px;
+  }
+
+  :global(.Panel__header) {
+    padding: 0 0 0 30px;
+    height: 64px;
+  }
+
+  :global(.Button) {
+    background: transparent;
+    border: none;
+    min-width: 88px;
+    color: $text-color-minor;
+    height: 100%;
+    border-radius: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &:global(.Button--active) {
+      color: $brand-success;
+      border-bottom: 2px solid $brand-success;
+      border-top: 2px solid rgba(255, 255, 255, 0); /* So the bottom border doesn't shift the text */
+
+      &::-moz-focus-inner, &:focus {
+        outline: none
+      }
     }
+
+    &:first-of-type {
+      margin-left: auto;
+    }
+  }
 }
