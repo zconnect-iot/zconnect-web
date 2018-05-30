@@ -60,6 +60,7 @@
     "react-bar-chart": "^0.1.2",
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^1.4.1",
+    "react-dates": "^16.7.0",
     "react-immutable-proptypes": "^2.1.0",
     "react-tabs-redux": "^3.0.2"
   },

@@ -205,7 +205,6 @@
   },
   "HEART_BEAT": {
     "d": "M.992 11.925h5.794l4.74-8.21 1.955 16.353 5.53-8.06h4.218",
-    "transform": "translate(2 2)",
     "stroke": "currentColor",
     "strokeWidth": "1.253",
     "strokeLinejoin": "round",
