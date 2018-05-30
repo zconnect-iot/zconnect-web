@@ -1,0 +1,11 @@
+@import "~theme/variables.scss";
+
+:global(.DateRangePicker) {
+  :global(.DateRangePicker_picker) {
+    position: inherit;
+  }
+
+  :global(.DateInput_fang) {
+    display: none;
+  }
+}

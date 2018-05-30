@@ -2,7 +2,7 @@ import React from 'react'
 import BEMHelper from 'react-bem-helper'
 import PropTypes from 'prop-types'
 
-import { activityShape, zcApiShapeJS } from 'zc-core/utils/propTypes'
+import { activityShape, zcApiShapeJS, nullType } from 'zc-core/utils/propTypes'
 
 import { withSpinner } from '../../../hocs'
 import { Button, Spinner } from '../../../components'
@@ -58,6 +58,11 @@ ActivityStream.propTypes = {
   fetchActivities: PropTypes.func.isRequired,
   moreAvailable: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
-  start: PropTypes.number.isRequired,
-  end: PropTypes.number.isRequired,
+  start: PropTypes.number,
+  end: PropTypes.number,
+}
+
+ActivityStream.defaultProps = {
+  start: 0,
+  end: 0,
 }
