@@ -47,6 +47,8 @@ export default class TimeSeriesGraphPanel extends React.Component {
         <TimeSeriesGraph {...classes('graph')}
           mode={activeMode}
           deviceId={this.props.deviceId}
+          startTime={this.props.startTime}
+          endTime={this.props.endTime}
         />
       </Panel>
     )
