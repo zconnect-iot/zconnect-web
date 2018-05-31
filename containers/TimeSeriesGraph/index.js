@@ -7,9 +7,6 @@ import { apiRequest } from 'zc-core/api/actions'
 
 import {
   selectGraphData,
-  selectResolutionForMode,
-  // selectGraphStartParam,
-  // selectGraphEndParam,
   selectDeviceIdFromProps,
   selectTimeConfigFromProps,
 } from './selectors'
@@ -82,10 +79,7 @@ const mapStateToProps = (state, props) => {
   return {
     ...props,
     data: selectGraphData(state, props),
-    resolution: selectResolutionForMode(state, props),
     timeConfig: selectTimeConfigFromProps(state, props),
-    // start: selectGraphStartParam(state, props),
-    // end: selectGraphEndParam(state, props),
   }
 }
 
