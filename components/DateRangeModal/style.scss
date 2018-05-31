@@ -1,0 +1,19 @@
+@import '~theme/variables.scss';
+
+:global(.DateRangeModal) {
+
+  :global(.Modal__content) {
+    width: 659px;
+    max-width: initial;
+    flex: initial;
+  }
+
+  :global(.DateRangeModal__footer) {
+    margin-top: $padding * 2;
+    display: flex;
+    flex-direction: row;
+    :global(.Button) {
+      width: 100%;
+    }
+  }
+}

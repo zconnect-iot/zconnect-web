@@ -1,0 +1,80 @@
+@import "~theme/variables.scss";
+
+:global(.ActivityStream__ActivityWrapper) {
+  position: relative;
+  margin-bottom: $padding * 4;
+
+  &::after {
+    content: '';
+    background: $message-bg;
+    height: 100%;
+    position: absolute;
+    top: 68px;
+    left: 34px;
+    width: 4px;
+  }
+
+  &:last-of-type::after {
+    content: none;
+  }
+}
+
+:global(.ActivityStream) {
+  :global(.ActivityStream__Activity) {
+    z-index: 100;
+    background: $message-bg;
+
+    :global(.ActivityStream__Icon) {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      margin-left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+
+      :global(.Icon) {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        fill: white;
+      }
+    }
+
+    :global(.Message__headerMiddle) {
+      h5 {
+        font-size: 1.4rem;
+        position: relative;
+
+        :global(.Tooltip) {
+          position: absolute;
+          top: -3px;
+          margin-left: 4px;
+        }
+      }
+      :global(.Message__subtitle) {
+
+      }
+      :global(.Message__time) {
+        font-size: 1.2rem;
+      }
+    }
+
+    :global(.Message__header) {
+      padding: $padding * 2;
+
+      h5 {
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  :global(.ActivityStream__More) {
+    :global(.Spinner) {
+      color: white;
+      fill: white;
+    }
+  }
+}
