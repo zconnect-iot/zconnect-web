@@ -22,7 +22,6 @@
 :global(.ActivityStream) {
   :global(.ActivityStream__Activity) {
     z-index: 100;
-    background: $message-bg;
 
     :global(.ActivityStream__Icon) {
       width: 36px;

@@ -19,8 +19,10 @@ export default function Content(props) {
           <Col {...classes('headerCenter')} xs={12} lgOffset={1} lg={10}>
             <div {...classes('title')}>
               {image && image}
-              {title && <h4>{title}</h4>}
-              {subtitle && <h6>{subtitle}</h6>}
+              <div {...classes('titleRight')}>
+                {title && <h4>{title}</h4>}
+                {subtitle && <h6>{subtitle}</h6>}
+              </div>
             </div>
             { header &&
               <div {...classes('header')}>

@@ -30,6 +30,12 @@ $content-header-color: $text-color !default;
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      :global(.Content__titleRight) {
+        display: flex;
+        flex-direction: column;
+      }
+      
       img {
         max-height: 46px;
         max-width: 200px;
