@@ -50,6 +50,7 @@
     "reselect": "^3.0.1"
   },
   "dependencies": {
+    "nivo-bar": "martinalexrolph/nivo-bar",
     "animate.css": "^3.5.2",
     "classnames": "^2.2.5",
     "google-map-react": "^1.0.0",

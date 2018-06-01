@@ -1,13 +1,12 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import { ResponsiveBar } from '@nivo/bar'
+import { ResponsiveBar } from 'nivo-bar'
 
 import { apiRequest } from 'zc-core/api/actions'
 
 import {
   selectGraphData,
-  selectDeviceIdFromProps,
   selectTimeConfigFromProps,
 } from './selectors'
 
@@ -40,33 +39,34 @@ class TimeSeriesGraph extends React.PureComponent {
         indexBy="label"
         keys={keys}
         margin={{
-          "top": 25,
-          "right": multipleKeys ? 200 : 40,
-          "bottom": 90,
-          "left": 40
+          top: 25,
+          right: multipleKeys ? 200 : 40,
+          bottom: 90,
+          left: 0,
         }}
         axisBottom={{
-          "orient": "bottom",
-          "tickSize": 5,
-          "tickPadding": 15,
-          "tickRotation": 45,
-          "legend": "time",
-          "legendPosition": "center",
-          "legendOffset": 80
+          orient: 'bottom',
+          tickSize: 5,
+          tickPadding: 15,
+          tickRotation: 45,
+          legend: 'time',
+          legendPosition: 'center',
+          legendOffset: 80,
         }}
         groupMode="grouped"
         animate={false}
         enableLabel={false}
+        enableGridY={false}
         legends={multipleKeys
           ? [{
-            "dataFrom": "keys",
-            "anchor": "bottom-right",
-            "direction": "column",
-            "translateX": 120,
-            "itemWidth": 100,
-            "itemHeight": 30,
-            "itemsSpacing": 2,
-            "symbolSize": 25
+            dataFrom: 'keys',
+            anchor: 'top-right',
+            direction: 'column',
+            translateX: 120,
+            itemWidth: 100,
+            itemHeight: 30,
+            itemsSpacing: 2,
+            symbolSize: 25,
           }]
           : []
         }
@@ -93,7 +93,7 @@ const mapDispatchToProps = dispatch => ({
       end,
     },
     undefined,
-    60 //AppSettings.pollingInterval,
+    60, // AppSettings.pollingInterval,
   )),
 })
 
