@@ -2,8 +2,7 @@ import { createSelector } from 'reselect'
 import { selectResponse, selectAPIState } from 'zc-core/api/selectors'
 
 import XDate from 'xdate'
-import { times } from 'lodash'
-import { Map, List } from 'immutable'
+import { Map } from 'immutable'
 
 
 // Select from props
@@ -19,36 +18,34 @@ const selectTimeConfigFromProps = (_, props) => {
 
   // The end time is the start of the given hour, unless that's in the future
   // or not provided in which case it's the start of the current hour
-  let end = props.endTime 
+  const end = props.endTime
     ? oclock(
-        new XDate(
-          Math.min(new XDate(props.endTime), new XDate())
-        ).addSeconds(1)
-      )
+      new XDate(
+        Math.min(new XDate(props.endTime), new XDate()),
+      ).addSeconds(1),
+    )
     : oclock(new XDate())
 
   // The start time is the start of the given hour, unless it's not provided in
   // which case it's 24 hours before the end time
-  let start = props.startTime
+  const start = props.startTime
     ? oclock(new XDate(props.startTime))
     : oclock(new XDate(end).addHours(-24))
 
-  if (start.diffHours(end) <= 48) {
-    // ...then each bar is an hour
+  if (start.diffHours(end) <= 48)
     return {
       start,
       end,
       resolution: 60 * 60,
-      bars: start.diffHours(end)
+      bars: start.diffHours(end),
     }
-  }
 
   // ...otherwise, each bar is a day
   return {
     start: start.setHours(24),
     end: end.setHours(24),
     resolution: 60 * 60 * 24,
-    bars: start.diffDays(end)
+    bars: start.diffDays(end),
   }
 }
 
@@ -64,9 +61,8 @@ const selectTSData = createSelector(
     const mapFn = d => d.set('ts', XDate(d.get('ts'), true).setUTCMode(false))
     const filterFn = d => timeConfig.start.diffSeconds(d.get('ts')) >= 0
                           && timeConfig.end.diffSeconds(d.get('ts')) <= 0
-    console.log("selectTSData")
-    return data.map(sensor => sensor.map(mapFn).filter(filterFn))
-  }
+    return data.map(sensor => sensor.map(mapFn).filter(filterFn)).toJS()
+  },
 )
 
 const selectGraphData = createSelector(
@@ -82,20 +78,19 @@ const selectGraphData = createSelector(
     //   ...
     // }
 
-    if (data == undefined) return { data: [], sensors: [] }
-    data = data.toJS()
+    if (data === undefined) return { data: [], sensors: [] }
 
     const outputObject = {}
     const outputArray = []
     const sensors = Object.keys(data)
 
-    const sensorNames = sensors.map(sensor => {
+    const sensorNames = sensors.map((sensor) => {
       let denominator = 1
       let sensorName = sensor
 
-      if (sensor.endsWith("_time")) {
+      if (sensor.endsWith('_time')) {
         const maxTime = Math.max(...data[sensor].map(d => d.value))
-        let unit = "seconds"
+        let unit = 'seconds'
         if (maxTime >= 60) {
           denominator = 60
           unit = 'minutes'
@@ -104,25 +99,25 @@ const selectGraphData = createSelector(
           denominator = 3600
           unit = 'hours'
         }
-        sensorName = sensor + " (" + unit + ")"
+        sensorName = `${sensor} (${unit})`
       }
 
       sensorName = sensorName.replace(/_/g, ' ')
 
-      data[sensor].map(reading => {
+      data[sensor].forEach((reading) => {
         const ts = reading.ts.toUTCString()
         outputObject[ts] = outputObject[ts] || {}
-        outputObject[ts][sensorName] = (reading.value || 0)/denominator
+        outputObject[ts][sensorName] = (reading.value || 0) / denominator
       })
 
       return sensorName
     })
 
-    Object.keys(outputObject).map(timestamp => {
+    Object.keys(outputObject).forEach((timestamp) => {
       const obj = outputObject[timestamp]
       obj.ts = new Date(timestamp)
       obj.label = (mode.resolution === 3600
-        ? obj.ts.toLocaleString('en-GB', { weekday: "short", hour: '2-digit', minute: '2-digit' })
+        ? obj.ts.toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' })
         : obj.ts.toLocaleString('en-GB', { month: 'long', day: 'numeric' })
       ).toString()
       outputArray.push(obj)
@@ -130,7 +125,7 @@ const selectGraphData = createSelector(
 
     return {
       data: outputArray,
-      sensors: sensorNames
+      sensors: sensorNames,
     }
   },
 )
