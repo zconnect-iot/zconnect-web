@@ -8,6 +8,7 @@ import { apiRequest } from 'zc-core/api/actions'
 import {
   selectGraphData,
   selectTimeConfigFromProps,
+  selectTSAPIState,
 } from './selectors'
 
 class TimeSeriesGraph extends React.PureComponent {
@@ -17,9 +18,6 @@ class TimeSeriesGraph extends React.PureComponent {
 
   componentWillReceiveProps(props) {
     // Check if anything has changed, if so re-fetch the data
-    console.log(props.timeConfig)
-    console.log(this.props.timeConfig)
-    console.log(props.timeConfig !== this.props.timeConfig)
     if (JSON.stringify(props.timeConfig) !== JSON.stringify(this.props.timeConfig)) {
       props.fetchGraphData()
     }
@@ -32,6 +30,20 @@ class TimeSeriesGraph extends React.PureComponent {
         sensor => sensor.startsWith(key.replace(/_/g, ' '))
       )
     )
+
+    if (this.props.data.data.length === 0 && !this.props.api.pending)
+      return <p>No data available in the chosen time range</p>
+
+    const legendConfig = [{
+      dataFrom: 'keys',
+      anchor: 'top-right',
+      direction: 'column',
+      translateX: 120,
+      itemWidth: 100,
+      itemHeight: 30,
+      itemsSpacing: 2,
+      symbolSize: 25,
+    }]
 
     return (
       <ResponsiveBar
@@ -57,19 +69,7 @@ class TimeSeriesGraph extends React.PureComponent {
         animate={false}
         enableLabel={false}
         enableGridY={false}
-        legends={multipleKeys
-          ? [{
-            dataFrom: 'keys',
-            anchor: 'top-right',
-            direction: 'column',
-            translateX: 120,
-            itemWidth: 100,
-            itemHeight: 30,
-            itemsSpacing: 2,
-            symbolSize: 25,
-          }]
-          : []
-        }
+        legends={multipleKeys ? legendConfig : []}
       />
     )
   }
@@ -78,6 +78,7 @@ class TimeSeriesGraph extends React.PureComponent {
 const mapStateToProps = (state, props) => {
   return {
     ...props,
+    api: selectTSAPIState(state).toJS(),
     data: selectGraphData(state, props),
     timeConfig: selectTimeConfigFromProps(state, props),
   }

@@ -16,4 +16,17 @@
       width: 100%;
     }
   }
+
+  :global(.DateRangeModal__buttons) {
+    display: flex;
+    margin-bottom: $padding*4;
+
+    :global(.Button) {
+      margin-right: $padding;
+    }
+  }
+
+  :global(.DateRangeModal__heading) {
+    margin-bottom: $padding*2;
+  }
 }
