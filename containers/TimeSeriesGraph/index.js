@@ -6,6 +6,8 @@ import { ResponsiveBar } from 'nivo-bar'
 
 import { apiRequest } from 'zc-core/api/actions'
 
+import colors from '../../theme/colors'
+
 import {
   selectGraphData,
   selectTimeConfigFromProps,
@@ -34,15 +36,18 @@ class TimeSeriesGraph extends React.PureComponent {
     if (this.props.data.data.length === 0 && !this.props.api.pending)
       return <p>No data available in the chosen time range</p>
 
+    const grey = '#464646'
+
     const legendConfig = [{
-      dataFrom: 'keys',
       anchor: 'top-right',
+      dataFrom: 'keys',
       direction: 'column',
-      translateX: 120,
-      itemWidth: 100,
       itemHeight: 30,
       itemsSpacing: 2,
+      itemWidth: 100,
       symbolSize: 25,
+      textColor: grey,
+      translateX: 120,
     }]
 
     return (
@@ -68,8 +73,24 @@ class TimeSeriesGraph extends React.PureComponent {
         groupMode="grouped"
         animate={false}
         enableLabel={false}
-        enableGridY={false}
         legends={multipleKeys ? legendConfig : []}
+        colors={[
+          colors.brandPrimary,
+          colors.brandSuccess,
+          colors.brandSecondary,
+        ]}
+        theme={{
+            tooltip: {
+                container: {
+                    fontSize: '13px',
+                },
+            },
+            axis: {
+                textColor: grey,
+                legendColor: grey,
+                tickColor: grey
+            },
+        }}
       />
     )
   }
