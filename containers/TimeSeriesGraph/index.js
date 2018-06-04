@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 import { ResponsiveBar } from 'nivo-bar'
@@ -18,17 +19,16 @@ class TimeSeriesGraph extends React.PureComponent {
 
   componentWillReceiveProps(props) {
     // Check if anything has changed, if so re-fetch the data
-    if (JSON.stringify(props.timeConfig) !== JSON.stringify(this.props.timeConfig)) {
+    if (JSON.stringify(props.timeConfig) !== JSON.stringify(this.props.timeConfig))
       props.fetchGraphData()
-    }
   }
 
   render() {
     const multipleKeys = this.props.mode.keys && this.props.mode.keys.length > 1
     const keys = this.props.mode.keys.map(
       key => this.props.data.sensors.find(
-        sensor => sensor.startsWith(key.replace(/_/g, ' '))
-      )
+        sensor => sensor.startsWith(key.replace(/_/g, ' ')),
+      ),
     )
 
     if (this.props.data.data.length === 0 && !this.props.api.pending)
@@ -75,14 +75,27 @@ class TimeSeriesGraph extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    ...props,
-    api: selectTSAPIState(state).toJS(),
-    data: selectGraphData(state, props),
-    timeConfig: selectTimeConfigFromProps(state, props),
-  }
+TimeSeriesGraph.propTypes = {
+  fetchGraphData: PropTypes.func.isRequired,
+  timeConfig: PropTypes.shape().isRequired,
+  mode: PropTypes.shape().isRequired,
+  data: PropTypes.shape({
+    sensors: PropTypes.array,
+    data: PropTypes.array,
+  }).isRequired,
+  api: PropTypes.shape({
+    pending: PropTypes.bool,
+    error: PropTypes.bool,
+    success: PropTypes.bool,
+  }).isRequired,
 }
+
+const mapStateToProps = (state, props) => ({
+  ...props,
+  api: selectTSAPIState(state).toJS(),
+  data: selectGraphData(state, props),
+  timeConfig: selectTimeConfigFromProps(state, props),
+})
 
 const mapDispatchToProps = dispatch => ({
   fetchGraphData: (deviceId, resolution, start, end) => dispatch(apiRequest(

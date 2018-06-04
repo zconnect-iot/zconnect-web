@@ -35,11 +35,11 @@ export default class DateRangeModal extends React.Component {
     this.props.closeModal()
   }
 
-  setLastX = (period) => () => {
+  setLastX = period => () => {
     const end = new XDate().toISOString()
     let start = new XDate().addHours(-24)
-    if (period === "week") start = new XDate().addDays(-7)
-    if (period === "month") start = new XDate().addMonths(-1)
+    if (period === 'week') start = new XDate().addDays(-7)
+    if (period === 'month') start = new XDate().addMonths(-1)
     start = start.toISOString()
 
     this.setState({ start, end })
@@ -63,27 +63,28 @@ export default class DateRangeModal extends React.Component {
     const { start, end } = this.state
     const { visible, className } = this.props
     return (
-      <ModalContainer {...classes(null, null, className)}
+      <ModalContainer
+        {...classes(null, null, className)}
         title="Set date range"
         visible={visible}
         onClose={this.onClose}
       >
-        <h3 {...classes("heading")}>
+        <h3 {...classes('heading')}>
           Quick settings
         </h3>
-        <div {...classes("buttons")}>
-          <Button color="success" action={this.setLastX("day")}>
+        <div {...classes('buttons')}>
+          <Button color="success" action={this.setLastX('day')}>
             Last 24 hours
           </Button>
-          <Button color="success" action={this.setLastX("week")}>
+          <Button color="success" action={this.setLastX('week')}>
             Last Week
           </Button>
-          <Button color="success" action={this.setLastX("month")}>
+          <Button color="success" action={this.setLastX('month')}>
             Last Month
           </Button>
         </div>
 
-        <h3 {...classes("heading")}>
+        <h3 {...classes('heading')}>
           Custom date range
         </h3>
         <DateRangePicker
