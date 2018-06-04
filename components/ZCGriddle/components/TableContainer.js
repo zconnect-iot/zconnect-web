@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const CustomTableComponent = OriginalComponent => class CustomTableComponent extends React.Component {
   static contextTypes = {
-    components: PropTypes.object
+    components: PropTypes.object,
   }
 
   render() {

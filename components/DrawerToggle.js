@@ -41,7 +41,7 @@ export default class DrawerToggle extends React.Component {
   }
 
   getChildContext() {
-    return { toggleDrawer : this.toggleDrawer }
+    return { toggleDrawer: this.toggleDrawer }
   }
 
   render() {

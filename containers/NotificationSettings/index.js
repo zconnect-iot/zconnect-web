@@ -99,9 +99,9 @@ const mergeProps = (state, dispatch, props) => {
         })
 
         // Delete unchecked notification types
-        if ((value === null || value === false) && typeof state.initialValues[field] === 'string') {
+        if ((value === null || value === false) && typeof state.initialValues[field] === 'string')
           requests[field] = dispatch.deleteSub(state.initialValues[field])
-        }
+
 
         // Edit any enabled notification types with the updated severity
         if (type === 'severity') Object.entries(currentValues)

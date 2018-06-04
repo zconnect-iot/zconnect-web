@@ -35,9 +35,8 @@ export default class Page extends React.Component {
     }
   }
   componentWillReceiveProps(next) {
-    if (next.location.pathname !== this.props.location.pathname) {
+    if (next.location.pathname !== this.props.location.pathname)
       Object.values(this.subscribers).forEach(s => s(next.location.pathname))
-    }
   }
   addSubscriber = (s) => {
     this.subscribers[this.subId += 1] = s
