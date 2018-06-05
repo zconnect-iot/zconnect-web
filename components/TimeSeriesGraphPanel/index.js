@@ -13,26 +13,24 @@ export default class TimeSeriesGraphPanel extends React.Component {
   constructor(props) {
     super(props)
 
-    const actions = props.modes.map((mode) => {
-      const action = () => this.setState(
-        prevState => Object.assign(prevState, { mode: mode.title }),
-      )
-      return Object.assign(mode, { action })
-    })
-
     this.state = {
-      actions,
       mode: props.modes[0].title,
     }
   }
 
   render() {
     let activeMode
-    const modes = this.state.actions.map((mode) => {
+
+    const modes = this.props.modes.map((mode) => {
       const active = this.state.mode === mode.title
       if (active) activeMode = mode
-      return Object.assign(mode, { active })
+      return {
+        ...mode,
+        active,
+        action: () => this.setState(prev => ({ ...prev, mode: mode.title })),
+      }
     })
+
     return (
       <Panel
         {...classes()}
@@ -58,5 +56,6 @@ TimeSeriesGraphPanel.propTypes = {
   endTime: PropTypes.string.isRequired,
   modes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
+    keys: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
 }

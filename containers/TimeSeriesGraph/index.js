@@ -15,7 +15,7 @@ import {
 } from './selectors'
 
 class TimeSeriesGraph extends React.PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchGraphData()
   }
 
@@ -39,16 +39,21 @@ class TimeSeriesGraph extends React.PureComponent {
     const grey = '#464646'
 
     const legendConfig = [{
-      anchor: 'top-right',
+      anchor: 'bottom-right',
       dataFrom: 'keys',
-      direction: 'column',
+      direction: 'row',
       itemHeight: 30,
       itemsSpacing: 2,
-      itemWidth: 100,
+      itemWidth: 150,
       symbolSize: 25,
       textColor: grey,
-      translateX: 120,
+      translateY: 105,
     }]
+
+    function tooltip(input) { // Shouldn't pass arrow functions in component props
+      const rounded = Math.round(parseFloat(input.value) * 100) / 100
+      return <span>{input.id}: {rounded}</span>
+    }
 
     return (
       <ResponsiveBar
@@ -56,23 +61,23 @@ class TimeSeriesGraph extends React.PureComponent {
         indexBy="label"
         keys={keys}
         margin={{
-          top: 25,
-          right: multipleKeys ? 200 : 40,
-          bottom: 90,
-          left: 0,
+          top: 20,
+          bottom: multipleKeys ? 105 : 80,
+          left: 40,
+          right: 20,
         }}
         axisBottom={{
           orient: 'bottom',
           tickSize: 5,
           tickPadding: 15,
           tickRotation: 45,
-          legend: 'time',
           legendPosition: 'center',
-          legendOffset: 80,
+          legendOffset: 70,
         }}
         groupMode="grouped"
         animate={false}
         enableLabel={false}
+        tooltip={tooltip}
         legends={multipleKeys ? legendConfig : []}
         colors={[
           colors.brandPrimary,
@@ -88,7 +93,7 @@ class TimeSeriesGraph extends React.PureComponent {
             axis: {
                 textColor: grey,
                 legendColor: grey,
-                tickColor: grey
+                tickColor: grey,
             },
         }}
       />
