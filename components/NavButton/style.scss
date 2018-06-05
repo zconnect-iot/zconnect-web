@@ -1,0 +1,25 @@
+@import "~theme/variables.scss";
+
+$nav-color: white !default;
+$nav-hover-color: lighten($nav-color, 10%) !default;
+$nav-active-color: $brand-primary !default;
+
+:global(.NavButton) {
+  background: transparent;
+  border: none;
+  color: $nav-color;
+  padding: $padding;
+  cursor: pointer;
+  fill: $nav-color;
+  transition: color $transition-duration, fill $transition-duration;
+
+  &:global(:hover) {
+    color: $nav-hover-color;
+    fill: $nav-hover-color;
+  }
+
+  &:global(.NavButton--active) {
+    color: $nav-active-color;
+    fill: $nav-active-color;
+  }
+}

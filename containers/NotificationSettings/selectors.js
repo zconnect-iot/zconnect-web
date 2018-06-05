@@ -1,5 +1,8 @@
 import { createSelector } from 'reselect'
-import { fromJS, Map } from 'immutable'
+import { Map } from 'immutable'
+import { getFormValues } from 'redux-form/immutable'
+import { diff } from 'deep-object-diff'
+import { startsWith } from 'lodash'
 
 import { emptyMap, emptyList } from 'zc-core/utils'
 import { selectUserId } from 'zc-core/auth/selectors'
@@ -69,6 +72,47 @@ export const selectInitialValues = createSelector(
     })
     return next
   }, {}),
+)
+
+export const selectCurrentValues = state => getFormValues(STORE_KEY)(state) || emptyMap
+
+export const selectChanges = createSelector(
+  selectInitialValues,
+  selectCurrentValues,
+  (initial, current) => diff(initial, current.toJS()),
+)
+
+// Changes to the severity dropdown where no corresponding types are checked
+// can be disregarded
+const notSeverityChangeWithNoCheckedTypes = (entry, currentValues) => {
+  const [key] = entry
+  const [category, type] = key.split('_')
+  return type !== 'severity' || Object
+    .entries(currentValues)
+    .filter(([change, checked]) =>
+      checked !== null && checked !== false && startsWith(change, category))
+    .length > 1
+}
+
+// This filters out checkboxes that have been toggled false -> true -> null.
+// See comment in components/ValueCheckbox.js for explanation
+const notFalseToNullChange = ([key, value], initialValues) =>
+  !(value === null && initialValues[key] === false)
+
+export const selectChangesRequiringAction = createSelector(
+  selectChanges,
+  selectCurrentValues,
+  selectInitialValues,
+  (changes, current, initial) => Object.entries(changes)
+    .filter(entry => (
+      notSeverityChangeWithNoCheckedTypes(entry, current.toJS()) &&
+      notFalseToNullChange(entry, initial)
+    )),
+)
+
+export const selectIsDirty = createSelector(
+  selectChangesRequiringAction,
+  changes => changes.length,
 )
 
 // The POST, PATCH and DELETE requests are all wrapped in a batch request

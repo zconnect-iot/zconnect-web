@@ -10,24 +10,30 @@
     userId - if not provided the current logged in users id will be used
 */
 import { connect } from 'react-redux'
-import { getFormValues, reduxForm } from 'redux-form/immutable'
-import { diff } from 'deep-object-diff'
+import { reduxForm } from 'redux-form/immutable'
 import { startsWith } from 'lodash'
 import { compose } from 'recompose'
 
 import { toJS } from 'zc-core/hocs'
-import { emptyMap } from 'zc-core/utils'
 import { apiRequest, apiBatchRequest } from 'zc-core/api/actions'
 import { selectErrorMessage } from 'zc-core/api/selectors'
 import { selectUserId } from 'zc-core/auth/selectors'
 
-import { selectInitialValues, selectBatchApiState, selectApiState, STORE_KEY } from './selectors'
+import {
+  selectInitialValues,
+  selectCurrentValues,
+  selectBatchApiState,
+  selectApiState,
+  STORE_KEY,
+  selectChangesRequiringAction,
+} from './selectors'
 import NotificationSettings from './NotificationSettings'
 
 
 const mapStateToProps = (state, props) => ({
   initialValues: selectInitialValues(state, props),
-  currentValues: getFormValues(STORE_KEY)(state) || emptyMap,
+  currentValues: selectCurrentValues(state),
+  changes: selectChangesRequiringAction(state, props),
   errorMessage: selectErrorMessage(state, { storeKey: STORE_KEY }),
   api: selectApiState(state),
   batchApi: selectBatchApiState(state),
@@ -66,26 +72,14 @@ const mapDispatchToProps = (dispatch, props) => ({
 
 const mergeProps = (state, dispatch, props) => {
   const currentValues = state.currentValues.toJS()
-  const changes = diff(state.initialValues, currentValues)
-  const requests = {}
   return {
     ...state,
     ...props,
-    // We need a custom dirty state selector here to ignore changes to severity
-    // dropdown if there are no checked notification types for that category
-    isDirty: Object.entries(changes)
-      .filter(([key]) => {
-        const [category, type] = key.split('_')
-        return type !== 'severity' || Object
-          .entries(currentValues)
-          .filter(([change, checked]) =>
-            checked !== null && checked !== false && startsWith(change, category))
-          .length > 1
-      })
-      .length > 0,
+    isDirty: !!state.changes.length,
     fetchSubs: dispatch.fetchSubs,
     submitForm: () => {
-      Object.entries(changes).forEach(([field, value]) => {
+      const requests = {}
+      state.changes.forEach(([field, value]) => {
         const [category, type] = field.split('_')
 
         // Create newly checked notification types
@@ -99,7 +93,7 @@ const mergeProps = (state, dispatch, props) => {
         })
 
         // Delete unchecked notification types
-        if ((value === null || value === false) && typeof state.initialValues[field] === 'string') {
+        if (value === null && typeof state.initialValues[field] === 'string') {
           requests[field] = dispatch.deleteSub(state.initialValues[field])
         }
 

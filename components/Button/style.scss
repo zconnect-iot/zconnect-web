@@ -1,0 +1,44 @@
+@import "~theme/variables.scss";
+
+
+:global(.Button) {
+  height: 36px;
+  min-width: 100px;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: $brand-grey;
+  border: 1px solid $brand-grey;
+  cursor: pointer;
+  color: $text-color;
+  fill: currentColor;
+  font-size: 14px;
+
+  &:global(.Button--primary) {
+    background: $brand-primary;
+    border: 1px solid $brand-primary;
+    color: white;
+  }
+
+  &:global(.Button--success) {
+    background: $brand-success;
+    border: 1px solid $brand-success;
+    color: white;
+  }
+
+  &:global(.Button--danger) {
+    background: $brand-danger;
+    border: 1px solid $brand-danger;
+    color: white;
+  }
+
+  &:global(.Button--hollow) {
+    background: transparent;
+  }
+
+  &:global(.Button--disabled) {
+    cursor: not-allowed;
+  }
+}

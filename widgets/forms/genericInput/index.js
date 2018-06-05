@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 import { Field } from 'redux-form/immutable'
-import uniqueId from 'lodash/uniqueId'
 
 import './style.scss'
 
@@ -38,7 +37,7 @@ const genericInner = (
   renderWarning = genericWarning,
 ) => {
   const { touched, error, warning } = props.meta
-  const inputId = uniqueId('FormField__input')
+  const inputId = `${props.meta.form}_${props.input.name}`
   return (<div {...classes()}>
     <label
       htmlFor={inputId}
