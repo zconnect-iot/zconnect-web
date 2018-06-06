@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Grid } from 'react-flexbox-grid'
 import classnames from 'classnames'
 
-import Navbar from '../containers/Navbar'
-import Header from './Header'
+import Navbar from '../../containers/Navbar'
+import Header from '../Header'
 
 import './style.scss'
 

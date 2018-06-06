@@ -1,5 +1,9 @@
 @import '~theme/variables.scss';
 
+$codeblock-bg: $bg-light !default;
+$codeblock-border: $border !default;
+$codeblock-color: $text-color !default;
+
 :global(.Codeblock) {
   background: $codeblock-bg;
   border: $codeblock-border;

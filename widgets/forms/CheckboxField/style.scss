@@ -1,5 +1,8 @@
 @import '~theme/variables';
-@import '~theme/mixins';
+@import '../mixins';
+
+$checked-image-url: url('zc-web/assets/icons/checkbox.svg') !default;
+$unchecked-image-url: url('zc-web/assets/icons/check_box_outline_blank.svg') !default;
 
 
 :global(.CheckboxField) {
@@ -25,7 +28,7 @@
     width: 16px;
     height: 16px;
     margin: 0 0.5em 0 164px;
-    background: url('zc-web/assets/icons/checkbox.svg') no-repeat 0 0;
+    background: $unchecked-image-url no-repeat 0 0;
 
     vertical-align: bottom;
     position: relative;
@@ -36,6 +39,7 @@
 
 :global(.CheckboxField__label--checked):after {
   background-position: -16px 0;
+  background: $checked-image-url no-repeat 0 0;
 }
 :global(.CheckboxField__label--disabled):after {
   background-position: -32px 0;

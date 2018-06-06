@@ -1,5 +1,7 @@
 @import '~theme/variables.scss';
 
+$NotificationSettings-color: $text-color;
+
 :global(.SubsSettings) {
 
   :global(.row) {

@@ -1,5 +1,12 @@
 @import "~theme/variables.scss";
 
+$tooltip-icon-color: $text-color !default;
+$tooltip-bg: $page-bg !default;
+$tooltip-color: $text-color !default;
+$tooltip-border-radius: $border-radius !default;
+$tooltip-border-width: $border-width !default;
+$tooltip-border-color: $text-color !default;
+
 :global(.Tooltip) {
   position: relative;
   top: 3px;
