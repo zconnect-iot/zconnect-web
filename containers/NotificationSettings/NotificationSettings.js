@@ -11,9 +11,7 @@ import { Button, Spinner } from '../../components'
 import CategoryRow from './components/CategoryRow'
 
 import './style.scss'
-import vars from '!!sass-vars-to-js-loader!./style.scss'
 
-console.log('Notification vars', vars);
 
 export const classes = BEMHelper({ name: 'SubsSettings' })
 
