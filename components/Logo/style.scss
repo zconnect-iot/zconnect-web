@@ -1,6 +1,6 @@
 @import "~theme/variables.scss";
 
-$logo-small: url('../../assets/logos/spanner.svg') !default;
+$logo-small: url('../../assets/icons/spanner.svg') !default;
 
 :global(.Logo) {
   background-image: $logo-small;
