@@ -78,6 +78,7 @@
     "redux": ">= 3.0 < 5.0",
     "redux-form": "7.x",
     "reselect": "> 2 < 4",
+    "sass-to-js-loader": "2.x",
     "xdate": "0.x"
   },
   "jest": {

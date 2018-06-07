@@ -1,5 +1,8 @@
 @import "~theme/variables.scss";
 
+$spinner-color: $brand-primary !default;
+$spinner-speed: 1s !default;
+
 :global(.Spinner) {
   display: flex;
   align-content: center;

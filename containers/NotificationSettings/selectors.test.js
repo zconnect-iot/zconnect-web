@@ -126,4 +126,60 @@ describe.only('selectors', () => {
       })
     })
   })
+
+  describe('selectChangesRequiringAction', () => {
+    test('it disregards false -> null changes', () => {
+      const changes = selectors.selectChangesRequiringAction(
+        state.setIn(
+          ['form', 'subscriptions', 'values'],
+          fromJS({
+            'business metrics_sms': 1,
+            'business metrics_email': 2,
+            'business metrics_smoke': null,
+            'business metrics_severity': 30,
+            maintenance_sms: false,
+            maintenance_email: false,
+            maintenance_smoke: 3,
+            maintenance_severity: 0,
+          }),
+        ),
+        {
+          userId: 'USER_ID',
+          organisationId: 'ORG_ID',
+          categories: ['business metrics', 'maintenance'],
+          types: [['SMS', 'sms'], ['E-mail', 'email'], ['Smoke signals', 'smoke']],
+          severities: [['Important', 30], ['Some', 20], ['All', 0]],
+        },
+      )
+      expect(changes).toEqual([])
+    })
+  })
+
+  test('it disregards severity changes where no checked notification types are present for category', () => {
+    const changes = selectors.selectChangesRequiringAction(
+      state
+        .deleteIn(['api', 'subscriptions', 'USER_ID', 2])
+        .setIn(
+          ['form', 'subscriptions', 'values'],
+          fromJS({
+            'business metrics_sms': 1,
+            'business metrics_email': 2,
+            'business metrics_smoke': null,
+            'business metrics_severity': 30,
+            maintenance_sms: null,
+            maintenance_email: null,
+            maintenance_smoke: 3,
+            maintenance_severity: 0,
+          }),
+        ),
+      {
+        userId: 'USER_ID',
+        organisationId: 'ORG_ID',
+        categories: ['business metrics', 'maintenance'],
+        types: [['SMS', 'sms'], ['E-mail', 'email'], ['Smoke signals', 'smoke']],
+        severities: [['Important', 30], ['Some', 20], ['All', 0]],
+      },
+    )
+    expect(changes).toEqual([])
+  })
 })

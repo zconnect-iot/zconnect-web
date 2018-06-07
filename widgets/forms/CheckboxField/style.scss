@@ -1,60 +1,49 @@
 @import '~theme/variables';
-@import '~theme/mixins';
+@import '../mixins';
+
+$checkbox-image-url: url('zc-web/assets/sprites/checkbox.svg') !default;
 
 
 :global(.CheckboxField) {
   @include form-control;
-}
 
-:global(.CheckboxField__input) {
-  @include form-input;
-  // Ensure the checkbox is out of sight, but still accessible to the user
-  // (i.e. no `display: none;`).
-  position: absolute;
-  left: -1000em;
-}
-
-
-:global(.CheckboxField__label) {
-  font-weight: bold;
-  display: inline-block;
-
-  &:after {
-    content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin: 0 0.5em 0 164px;
-    background: url('zc-web/assets/icons/checkbox.svg') no-repeat 0 0;
-
-    vertical-align: bottom;
-    position: relative;
-    bottom: 2px;
+  :global(.CheckboxField__input) {
+    display: none;
   }
-}
 
+  label {
+    @include form-label;
+    font-weight: bold;
+    display: inline-block;
+    span {
+      display: inline-block;
+      min-width: 120px;
+    }
 
-:global(.CheckboxField__label--checked):after {
-  background-position: -16px 0;
-}
-:global(.CheckboxField__label--disabled):after {
-  background-position: -32px 0;
-}
-:global(.CheckboxField__label--checked):global(.CheckboxField__label--disabled):after
-{
-  background-position: -48px 0;
-}
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: $checkbox-image-url no-repeat 0 0;
+      vertical-align: bottom;
+      position: relative;
+    }
+  }
 
+  &:global(.CheckboxField--checked) label:after {
+    background-position: -16px 0;
+  }
 
-:global(.CheckboxField__input:focus) + .CheckboxField__label:after {
-  outline: 1px dotted dark;
-}
+  &:global(.CheckboxField--disabled) label:after {
+    background-position: -32px 0;
+  }
 
+  :global(.CheckBoxField__error) {
+    @include form-error;
+  }
 
-:global(.CheckBoxField__error) {
-  @include form-error;
-}
-
-:global(.CheckBoxField__warning) {
-  @include form-warning;
+  :global(.CheckBoxField__warning) {
+    @include form-warning;
+  }
 }

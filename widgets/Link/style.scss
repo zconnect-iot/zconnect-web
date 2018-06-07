@@ -1,5 +1,6 @@
 @import '~theme/variables.scss';
 
+$link-color: $brand-primary !default;
 
 :global(.Link) {
   color: $link-color;

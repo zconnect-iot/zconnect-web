@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
+import './style.scss'
+
+
 const classes = BEMHelper({ name: 'Logo' })
 
 export default function Logo({ small, large, center }) {

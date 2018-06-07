@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
-import { withPageContext } from '../hocs'
+import { withPageContext } from '../../hocs'
 
-import Icon from './Icon'
+import { Icon } from '../'
+import './style.scss'
+
 
 const classes = new BEMHelper({
   name: 'NavButton',

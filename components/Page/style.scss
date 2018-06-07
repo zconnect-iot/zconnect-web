@@ -1,0 +1,12 @@
+@import "~theme/variables.scss";
+
+$page-bg: white !default;
+
+:global(.Page) {
+  background: $page-bg;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

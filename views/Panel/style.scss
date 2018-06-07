@@ -1,5 +1,8 @@
 @import '~theme/variables.scss';
 
+$panel-bg: $bg-light !default;
+$panel-color: $text-color !default;
+
 :global(.Panel) {
   border: $border;
   overflow: hidden;

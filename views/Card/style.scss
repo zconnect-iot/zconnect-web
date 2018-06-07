@@ -1,11 +1,16 @@
 @import '~theme/variables.scss';
 
+$card-bg: $bg-light !default;
+$card-header-bg: $off-white !default;
+$card-color: $text-color !default;
 
 $block-padding: 1.25rem;
 
 :global(.Card) {
   border: $border;
   overflow: hidden;
+  background: $card-bg;
+  color: $card-color;
 }
 
 :global(.Card__block) {
@@ -59,6 +64,6 @@ $block-padding: 1.25rem;
   :global(.Card__title) {
     text-align: inherit;
     padding: 20px;
-    background-color: $header-bg-light;
+    background-color: $card-header-bg;
   }
 }

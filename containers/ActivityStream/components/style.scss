@@ -1,12 +1,14 @@
 @import "~theme/variables.scss";
 
+$activity-bg: $off-white !default;
+
 :global(.ActivityStream__ActivityWrapper) {
   position: relative;
   margin-bottom: $padding * 4;
 
   &::after {
     content: '';
-    background: $message-bg;
+    background: $activity-bg;
     height: 100%;
     position: absolute;
     top: 68px;
@@ -22,7 +24,6 @@
 :global(.ActivityStream) {
   :global(.ActivityStream__Activity) {
     z-index: 100;
-    background: $message-bg;
 
     :global(.ActivityStream__Icon) {
       width: 36px;

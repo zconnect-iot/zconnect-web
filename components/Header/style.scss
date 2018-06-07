@@ -1,0 +1,18 @@
+@import "~theme/variables.scss";
+
+$header-bg: white !default;
+$header-color: $brand-primary !default;
+
+:global(.Header) {
+  background: $header-bg;
+  color: $header-color;
+  padding: $padding $padding * 2;
+
+  :global(.Header__Logo) {
+    background: transparent;
+    border: none;
+    height: auto;
+    width: auto;
+    padding: 0;
+  }
+}

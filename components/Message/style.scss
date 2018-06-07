@@ -1,8 +1,11 @@
 @import "~theme/variables.scss";
 
+$message-bg: $off-white !default;
+$message-color: $text-color !default;
+
 :global(.Message) {
+  background: $message-bg;
   color: $message-color;
-  fill: $message-color;
   border-radius: $border-radius;
 
   :global(.Message__header) {

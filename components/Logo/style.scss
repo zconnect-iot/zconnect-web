@@ -1,0 +1,24 @@
+@import "~theme/variables.scss";
+
+$logo-small: url('../../assets/icons/spanner.svg') !default;
+
+:global(.Logo) {
+  background-image: $logo-small;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50px;
+
+  &:global(.Logo--small) {
+    height: 30px;
+    min-width: 200px;
+  }
+
+  &:global(.Logo--large) {
+    height: 70px;
+    min-width: 240px;
+  }
+
+  &:global(.Logo--center) {
+    background-position: center;
+  }
+}

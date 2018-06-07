@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
-import { withPageContext } from '../hocs'
+import { withPageContext } from '../../hocs'
+
+import './style.scss'
+
 
 const classes = BEMHelper({ name: 'Button' })
 
