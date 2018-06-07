@@ -3,26 +3,34 @@ import PropTypes from 'prop-types'
 
 import { ResponsiveBar } from 'nivo-bar'
 
+import { Spinner } from '../../components'
+
 import colors from '../../theme/colors'
 
-class TimeSeriesGraph extends React.PureComponent {
+export default class TimeSeriesGraph extends React.PureComponent {
   componentDidMount() {
     this.props.fetchGraphData()
   }
 
   componentWillReceiveProps(props) {
     // Check if anything has changed, if so re-fetch the data
-    if (JSON.stringify(props.timeConfig) !== JSON.stringify(this.props.timeConfig))
+    const changed = p => JSON.stringify(props[p]) !== JSON.stringify(this.props[p])
+
+    if (changed('timeConfig') || props.data.data.length === 0)
       props.fetchGraphData()
   }
 
   render() {
+    console.log(styles)
     const multipleKeys = this.props.mode.keys && this.props.mode.keys.length > 1
     const keys = this.props.mode.keys.map(
       key => this.props.data.sensors.find(
         sensor => sensor.startsWith(key.replace(/_/g, ' ')),
       ),
     )
+
+    if (this.props.api.pending)
+      return <Spinner />
 
     if (this.props.data.data.length === 0 && !this.props.api.pending)
       return <p>No data available in the chosen time range</p>
@@ -76,16 +84,17 @@ class TimeSeriesGraph extends React.PureComponent {
           colors.brandSecondary,
         ]}
         theme={{
-            tooltip: {
-                container: {
-                    fontSize: '13px',
-                },
+          ...this.props.graphTheme,
+          tooltip: {
+            container: {
+              fontSize: '13px',
             },
-            axis: {
-                textColor: grey,
-                legendColor: grey,
-                tickColor: grey,
-            },
+          },
+          axis: {
+            textColor: grey,
+            legendColor: grey,
+            tickColor: grey,
+          },
         }}
       />
     )
@@ -94,8 +103,8 @@ class TimeSeriesGraph extends React.PureComponent {
 
 TimeSeriesGraph.propTypes = {
   fetchGraphData: PropTypes.func.isRequired,
-  timeConfig: PropTypes.shape().isRequired,
   mode: PropTypes.shape().isRequired,
+  graphTheme: PropTypes.shape(),
   data: PropTypes.shape({
     sensors: PropTypes.array,
     data: PropTypes.array,
@@ -105,4 +114,8 @@ TimeSeriesGraph.propTypes = {
     error: PropTypes.bool,
     success: PropTypes.bool,
   }).isRequired,
+}
+
+TimeSeriesGraph.defaultProps = {
+  graphTheme: {},
 }
