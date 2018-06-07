@@ -1,5 +1,7 @@
 @import "~theme/variables.scss";
 
+$statcard-bg: $bg-light-alternate !default;
+$statcard-color: $text-color-minor !default;
 
 :global(.StatCard) {
   display: flex;

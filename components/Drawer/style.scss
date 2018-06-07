@@ -1,8 +1,9 @@
 @import '~theme/variables.scss';
 
 
-$animation-duration: 0.6s;
-
+$drawer-animation-duration: $transition-duration !default;
+$drawer-alpha: 0.25 !default;
+$drawer-inner-z-index: 1000 !default;
 
 .hidden {
   visibility: hidden;
@@ -16,7 +17,7 @@ $animation-duration: 0.6s;
   width: 100%;
   height: 100%;
   background-color: rgba($brand-grey, $drawer-alpha);
-  animation-duration: $animation-duration;
+  animation-duration: $drawer-animation-duration;
 }
 
 :global(.Drawer__inner) {
@@ -24,10 +25,10 @@ $animation-duration: 0.6s;
   position: fixed;
   background-color: $bg-light;
   box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.5);
-  animation-duration: $animation-duration;
+  animation-duration: $drawer-animation-duration;
 }
 :global(.Drawer__inner--open) {
-  animation-duration: $animation-duration;
+  animation-duration: $drawer-animation-duration;
   visibility: visible;
 }
 

@@ -1,25 +1,6 @@
 @import "~theme/variables.scss";
 
-:global(.Page) {
-  padding: 0;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-:global(.Header) {
-  background: $header-bg;
-  padding: $padding $padding * 2;
-
-  :global(.Header__Logo) {
-    background: transparent;
-    border: none;
-    height: auto;
-    width: auto;
-    padding: 0;
-  }
-}
+$logo-small: url('../../assets/icons/spanner.svg') !default;
 
 :global(.Logo) {
   background-image: $logo-small;

@@ -1,5 +1,8 @@
 @import '~theme/variables.scss';
 
+$nav-bg: $light-gray !default;
+$nav-color: $off-white !default;
+
 :global(.Navbar) {
   background: $nav-bg;
   color: $nav-color;

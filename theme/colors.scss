@@ -6,9 +6,11 @@ $brand-danger: #d9534f;
 $brand-info: #5bc0de;
 $brand-grey: #829EAF;
 
+
 $black: #2C2C2C;
-$gray: #767676;
-$light-gray: #888888;
-$lighter-gray: #adadad;
-$pale-gray: #e0e0e0;
+$gray: lighten($black, 10%);
+$light-gray: lighten($gray, 10%);
+$lighter-gray: lighten($gray, 20%);
+
 $off-white: #f8f8f8;
+$pale-gray: darken($off-white, 10%);

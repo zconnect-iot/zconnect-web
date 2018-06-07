@@ -1,0 +1,36 @@
+@import '~theme/variables.scss';
+
+@mixin form-control {
+  padding: 20px;
+  border-bottom: 1px dashed $border-color;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@mixin form-label {
+  font-weight: bold;
+  display: inline-block;
+  min-width: 120px;
+}
+
+@mixin form-input {
+  border: $border;
+  border-radius: 3px;
+  padding: 5px;
+  flex: 1;
+  min-width: 200px;
+}
+
+@mixin form-error {
+  color: $brand-danger;
+  margin-left: $padding;
+}
+
+@mixin form-warning {
+  color: $brand-warning;
+}
