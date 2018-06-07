@@ -21,30 +21,26 @@ export const classes = new BEMHelper('CheckboxField')
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Advanced_styling_for_HTML_forms#Check_boxes_and_radio_buttons}
  */
-class Checkbox extends React.Component {
-  onChange = () => console.log('hello', this.props.input) || this.props.input.onChange(!!this.props.input.checked)
-  render() {
-    const { input, meta, placeholder, label } = this.props
-    const { touched, error, warning } = meta
-    const inputId = `${meta.form}_${input.name}`
-    console.log('Cheeky', input, input.checked);
-    return (<div
-      {...classes(null, { checked: input.checked, disabled: input.disabled })}
-    >
-      <label htmlFor={inputId}><span>{label}</span></label>
-      <input
-        id={inputId}
-        type="checkbox"
-        placeholder={placeholder || label}
-        {...classes('input')}
-        {...input}
-      />
-      {touched && (
-        (error && genericError(error)) ||
-        (warning && genericWarning(warning))
-      )}
-    </div>)
-  }
+function Checkbox(props) {
+  const { input, meta, placeholder, label } = props
+  const { touched, error, warning } = meta
+  const inputId = `${meta.form}_${input.name}`
+  return (<div
+    {...classes(null, { checked: input.checked, disabled: input.disabled })}
+  >
+    <label htmlFor={inputId}><span>{label}</span></label>
+    <input
+      id={inputId}
+      type="checkbox"
+      placeholder={placeholder || label}
+      {...classes('input')}
+      {...input}
+    />
+    {touched && (
+      (error && genericError(error)) ||
+      (warning && genericWarning(warning))
+    )}
+  </div>)
 }
 
 Checkbox.propTypes = innerPropTypes
