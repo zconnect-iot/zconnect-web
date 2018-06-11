@@ -20,7 +20,6 @@ export default class DateRangeModal extends React.Component {
   }
 
   onDatePicker = ({ start, end }) => {
-    console.log(start, end, typeof start, typeof end)
     this.setState({
       start,
       end,

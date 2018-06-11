@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose, setPropTypes } from 'recompose'
 
 import { apiRequest } from 'zc-core/api/actions'
 
-import TimeSeriesGraph from './TimeSeriesGraph'
+import { TimeSeriesGraph, propTypes } from './TimeSeriesGraph'
 
 import {
   selectGraphData,
@@ -36,28 +34,10 @@ const mergeProps = (state, dispatch) => ({
   ),
 })
 
-const propTypes = {
-  fetchGraphData: PropTypes.func.isRequired,
-  mode: PropTypes.shape().isRequired,
-  graphTheme: PropTypes.shape(),
-  data: PropTypes.shape({
-    sensors: PropTypes.array,
-    data: PropTypes.array,
-  }).isRequired,
-  api: PropTypes.shape({
-    pending: PropTypes.bool,
-    error: PropTypes.bool,
-    success: PropTypes.bool,
-  }).isRequired,
-}
-
-const ConnectedTimeSeriesGraph = compose(
-  setPropTypes(propTypes),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps,
-  ),
+const ConnectedTimeSeriesGraph = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps,
 )(TimeSeriesGraph)
 
 ConnectedTimeSeriesGraph.propTypes = propTypes

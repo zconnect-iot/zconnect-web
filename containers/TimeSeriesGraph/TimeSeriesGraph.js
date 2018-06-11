@@ -8,7 +8,7 @@ import vars from '!!sass-vars-to-js-loader!./style.scss'
 import { Spinner } from '../../components'
 
 
-export default class TimeSeriesGraph extends React.PureComponent {
+class TimeSeriesGraph extends React.PureComponent {
   componentDidMount() {
     this.props.fetchGraphData()
   }
@@ -53,6 +53,7 @@ export default class TimeSeriesGraph extends React.PureComponent {
 
     return (
       <ResponsiveBar
+        {...this.props.graphProps}
         data={this.props.data.data}
         indexBy="label"
         keys={keys}
@@ -98,10 +99,11 @@ export default class TimeSeriesGraph extends React.PureComponent {
   }
 }
 
-TimeSeriesGraph.propTypes = {
+const propTypes = {
   fetchGraphData: PropTypes.func.isRequired,
   mode: PropTypes.shape().isRequired,
   graphTheme: PropTypes.shape(),
+  graphProps: PropTypes.shape(),
   data: PropTypes.shape({
     sensors: PropTypes.array,
     data: PropTypes.array,
@@ -113,6 +115,11 @@ TimeSeriesGraph.propTypes = {
   }).isRequired,
 }
 
+TimeSeriesGraph.propTypes = propTypes
+
 TimeSeriesGraph.defaultProps = {
   graphTheme: {},
+  graphProps: {},
 }
+
+export { TimeSeriesGraph, propTypes }
