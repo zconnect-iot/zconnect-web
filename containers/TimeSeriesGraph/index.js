@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { apiRequest } from 'zc-core/api/actions'
 
-import { TimeSeriesGraph, propTypes } from './TimeSeriesGraph'
+import TimeSeriesGraph from './TimeSeriesGraph'
 
 import {
   selectGraphData,
@@ -40,9 +41,19 @@ const ConnectedTimeSeriesGraph = connect(
   mergeProps,
 )(TimeSeriesGraph)
 
-ConnectedTimeSeriesGraph.propTypes = propTypes
+ConnectedTimeSeriesGraph.propTypes = {
+  deviceId: PropTypes.string.isRequired,
+  mode: PropTypes.shape().isRequired,
+  startTime: PropTypes.string,
+  endTime: PropTypes.string,
+  graphTheme: PropTypes.shape(),
+  graphProps: PropTypes.shape(),
+}
+
 ConnectedTimeSeriesGraph.defaultProps = {
   graphTheme: {},
+  startTime: null,
+  endTime: null,
 }
 
 export default ConnectedTimeSeriesGraph

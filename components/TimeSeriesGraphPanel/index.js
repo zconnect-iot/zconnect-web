@@ -50,12 +50,18 @@ export default class TimeSeriesGraphPanel extends React.Component {
 }
 
 TimeSeriesGraphPanel.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   deviceId: PropTypes.string.isRequired,
-  startTime: PropTypes.string.isRequired,
-  endTime: PropTypes.string.isRequired,
+  startTime: PropTypes.string,
+  endTime: PropTypes.string,
   modes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     keys: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
+}
+
+TimeSeriesGraphPanel.defaultProps = {
+  title: 'Time Series Data',
+  startTime: null,
+  endTime: null,
 }
