@@ -20,9 +20,8 @@ export default class ActivityStream extends React.PureComponent {
   }
   componentWillReceiveProps(props) {
     const { start, end } = this.props
-    if (props.start !== start || props.end !== end) {
+    if (props.start !== start || props.end !== end)
       props.fetchActivities()
-    }
   }
   getMore = () => this.props.fetchActivities()
   render() {

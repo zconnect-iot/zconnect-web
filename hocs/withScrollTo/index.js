@@ -18,9 +18,7 @@ export default function withScrollTo({ behavior = 'smooth', inline = 'nearest', 
       setRef = (ref) => {
         this.ref = ref
       }
-      scrollToElement = () => {
-        return this.ref.scrollIntoView ? this.ref.scrollIntoView({ behavior, inline }) : null
-      }
+      scrollToElement = () => (this.ref.scrollIntoView ? this.ref.scrollIntoView({ behavior, inline }) : null)
       scrollToComponent = () => {
         if (delay) setTimeout(this.scrollToElement, delay)
         else this.scrollToElement()

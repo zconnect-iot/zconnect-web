@@ -13,7 +13,8 @@ export default class CheckboxItem extends React.Component {
   render() {
     const { checkbox, input } = this.props
     return (
-      <input type="checkbox"
+      <input
+        type="checkbox"
         name={checkbox}
         value={checkbox}
         checked={input.value.indexOf(checkbox) !== -1}

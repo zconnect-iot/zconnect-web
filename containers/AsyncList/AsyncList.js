@@ -13,9 +13,8 @@ export default class AsyncList extends React.Component {
     this.props.getRef(this)
   }
   componentWillReceiveProps(props) {
-    if (props.pageProperties.currentPage !== this.props.pageProperties.currentPage) {
+    if (props.pageProperties.currentPage !== this.props.pageProperties.currentPage)
       props.fetchResults()
-    }
   }
   render() {
     const { data, children, api, components, ...griddleProps } = this.props
