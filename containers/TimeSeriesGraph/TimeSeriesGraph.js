@@ -17,7 +17,7 @@ export default class TimeSeriesGraph extends React.PureComponent {
     // Check if anything has changed, if so re-fetch the data
     const changed = p => JSON.stringify(props[p]) !== JSON.stringify(this.props[p])
 
-    if (changed('timeConfig') || (changed('d') && props.data.data.length === 0))
+    if (changed('timeConfig') || (changed('data') && props.data.data.length === 0))
       props.fetchGraphData()
   }
 
