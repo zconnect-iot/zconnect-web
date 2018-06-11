@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 
 import { ResponsiveBar } from 'nivo-bar'
 
+import vars from '!!sass-vars-to-js-loader!./style.scss'
+
 import { Spinner } from '../../components'
 
-import colors from '../../theme/colors'
 
 export default class TimeSeriesGraph extends React.PureComponent {
   componentDidMount() {
@@ -16,27 +17,17 @@ export default class TimeSeriesGraph extends React.PureComponent {
     // Check if anything has changed, if so re-fetch the data
     const changed = p => JSON.stringify(props[p]) !== JSON.stringify(this.props[p])
 
-    if (changed('timeConfig') || props.data.data.length === 0)
+    if (changed('timeConfig') || (changed('d') && props.data.data.length === 0))
       props.fetchGraphData()
   }
 
   render() {
-    console.log(styles)
     const multipleKeys = this.props.mode.keys && this.props.mode.keys.length > 1
     const keys = this.props.mode.keys.map(
       key => this.props.data.sensors.find(
         sensor => sensor.startsWith(key.replace(/_/g, ' ')),
       ),
     )
-
-    if (this.props.api.pending)
-      return <Spinner />
-
-    if (this.props.data.data.length === 0 && !this.props.api.pending)
-      return <p>No data available in the chosen time range</p>
-
-    const grey = '#464646'
-
     const legendConfig = [{
       anchor: 'bottom-right',
       dataFrom: 'keys',
@@ -45,7 +36,7 @@ export default class TimeSeriesGraph extends React.PureComponent {
       itemsSpacing: 2,
       itemWidth: 150,
       symbolSize: 25,
-      textColor: grey,
+      textColor: vars.timeSeriesGraphTextColor.rgba,
       translateY: 105,
     }]
 
@@ -53,6 +44,12 @@ export default class TimeSeriesGraph extends React.PureComponent {
       const rounded = Math.round(parseFloat(input.value) * 100) / 100
       return <span>{input.id}: {rounded}</span>
     }
+
+    if (this.props.api.pending)
+      return <Spinner />
+
+    if (this.props.data.data.length === 0 && !this.props.api.pending)
+      return <p>No data available in the chosen time range</p>
 
     return (
       <ResponsiveBar
@@ -79,9 +76,9 @@ export default class TimeSeriesGraph extends React.PureComponent {
         tooltip={tooltip}
         legends={multipleKeys ? legendConfig : []}
         colors={[
-          colors.brandPrimary,
-          colors.brandSuccess,
-          colors.brandSecondary,
+          vars.timeSeriesGraphColor1.rgba,
+          vars.timeSeriesGraphColor2.rgba,
+          vars.timeSeriesGraphColor3.rgba,
         ]}
         theme={{
           ...this.props.graphTheme,
@@ -91,9 +88,9 @@ export default class TimeSeriesGraph extends React.PureComponent {
             },
           },
           axis: {
-            textColor: grey,
-            legendColor: grey,
-            tickColor: grey,
+            textColor: vars.timeSeriesGraphTextColor.rgba,
+            legendColor: vars.timeSeriesGraphTextColor.rgba,
+            tickColor: vars.timeSeriesGraphTextColor.rgba,
           },
         }}
       />
