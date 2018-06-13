@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
-import { Panel } from 'zc-web/views'
+import { Panel } from 'zc-web/components'
 import { TimeSeriesGraph } from 'zc-web/containers'
 
 import './style.scss'

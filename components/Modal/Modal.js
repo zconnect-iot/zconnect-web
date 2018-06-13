@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
 import { Icon } from '../../components'
-import { SimpleLink } from '../../widgets'
+import { SimpleLink } from '../../components'
 
 import './style.scss'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form/immutable'
 
-import { PasswordField } from '../../../widgets/forms'
+import { PasswordField } from '../../../components/forms'
 
 import SpinButton from '../components/SpinButton'
 

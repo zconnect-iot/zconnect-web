@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { logout } from 'zc-core/auth/actions'
 import { selectUserLoggedIn } from 'zc-core/auth/selectors'
-import { Modal } from '../../views'
+import { Modal } from '../../components'
 import { SimpleLink } from '../../components'
 
 

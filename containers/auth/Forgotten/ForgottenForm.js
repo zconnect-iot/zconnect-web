@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form/immutable'
 
-import { TextField } from '../../../widgets/forms'
+import { TextField } from '../../../components/forms'
 
 import SpinButton from '../components/SpinButton'
 

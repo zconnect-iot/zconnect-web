@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 
 import { range } from 'lodash'
 
-import { ModalContainer } from '../../views'
+import { ModalContainer } from '../../components'
 
 /*
   This could be used to wrap Content to convert the props provided by withPaginationProps

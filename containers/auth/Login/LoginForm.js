@@ -4,7 +4,7 @@ import { reduxForm } from 'redux-form/immutable'
 
 import { zcApiShapeJS } from 'zc-core/utils/propTypes'
 
-import { TextField, PasswordField } from '../../../widgets/forms'
+import { TextField, PasswordField } from '../../../components/forms'
 
 import SpinButton from '../components/SpinButton'
 

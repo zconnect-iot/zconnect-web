@@ -4,7 +4,7 @@ import BEMHelper from 'react-bem-helper'
 import XDate from 'xdate'
 
 import { Button, DateRangePicker } from '../'
-import { ModalContainer } from '../../views'
+import { ModalContainer } from '../../components'
 
 import './style.scss'
 
