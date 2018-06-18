@@ -1,18 +1,5 @@
-/*
-  AsyncListWithState maintains pageProperties for AsyncList in state and provides
-  the events prop to over ride the functions triggered when using the griddle to
-  change that state.
-
-  Required props:
-    endpoint - the name of the endpoint config which should use the storeMethod in utils
-    storeKey - the storeKey defined inside the endpoint config
-
-  All other props and children are passed down to ZCGriddle and into the underlying
-  Griddle which means it exports the same api as a standard Griddle
-
-  Filter and sort aren't implemneted on back or front end yet but are there as
-  placeholders
-*/
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import { compose, mapProps, withStateHandlers } from 'recompose'
 
@@ -66,3 +53,25 @@ export default compose(
     }),
   ),
 )(AsyncList)
+
+/**
+ * AsyncListWithState maintains pageProperties for AsyncList in state and provides
+ * the events prop to over ride the functions triggered when using the griddle to
+ * change that state.
+ *
+ * All other props and children are passed down to ZCGriddle and into the underlying
+ * Griddle which means it exports the same api as a standard Griddle
+ *
+ * Filter and sort aren't implemented on back or front end yet but are there as
+ * placeholders
+*/
+// export default function AsyncListWithState({ ...props }) {
+//   return <Composed {...props} />
+// }
+
+// AsyncListWithState.propTypes = {
+//   * The name of the endpoint config which should use the storeMethod in utils 
+//   endpoint: PropTypes.string.isRequired,
+//   /** the storeKey defined inside the endpoint config */
+//   storeKey: PropTypes.string.isRequired
+// }
