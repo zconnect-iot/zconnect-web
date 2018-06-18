@@ -10,7 +10,7 @@ export { default as StatCard } from './StatCard'
 export { default as Tooltip } from './Tooltip'
 export { default as Link, SimpleLink } from './Link'
 export { default as ProgressChart, ProgressBar } from './ProgressChart/index'
-export { default as Map } from './Map'
+export { default as GoogleMap } from './GoogleMap'
 export { default as Address } from './Address'
 
 // Non redux-form forms
