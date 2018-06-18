@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import GoogleMap from 'google-map-react'
+import { GoogleMap as GMap } from 'google-map-react'
 import BEMHelper from 'react-bem-helper'
 
 import Marker from './Marker'
@@ -20,12 +20,13 @@ import './style.scss'
   </Map>
 */
 
-const classes = BEMHelper({ name: 'Map' })
+const classes = BEMHelper({ name: 'GoogleMap' })
 
-export default function Map({ center, zoom, children, className, color, ...props }) {
+export default function GoogleMap({ center, zoom, children, className, color, ...props }) {
+  // Note: can't call this component 'Map' because react-styleguidist breaks
   return (
     <div {...classes(null, null, className)}>
-      <GoogleMap
+      <GMap
         resetBoundsOnResize
         bootstrapURLKeys={{
           key: 'AIzaSyDLynB-9IZEJM0DF6Q6HED17a4UHmeAMqs',
@@ -35,12 +36,12 @@ export default function Map({ center, zoom, children, className, color, ...props
         {...props}
       >
         {children || <Marker {...center} color={color} />}
-      </GoogleMap>
+      </GMap>
     </div>
   )
 }
 
-Map.propTypes = {
+GoogleMap.propTypes = {
   center: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
@@ -54,7 +55,7 @@ Map.propTypes = {
   color: PropTypes.string,
 }
 
-Map.defaultProps = {
+GoogleMap.defaultProps = {
   zoom: 12,
   children: null,
   className: '',
