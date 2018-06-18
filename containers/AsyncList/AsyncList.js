@@ -7,7 +7,7 @@ import ZCGriddle from '../../components/ZCGriddle'
 import { NoResults, NoResultsContainer } from '../../components/ZCGriddle/components'
 import { styleConfig } from '../../components/List'
 
-export default class AsyncList extends React.Component {
+class AsyncList extends React.Component {
   componentDidMount() {
     this.props.fetchResults()
     this.props.getRef(this)
@@ -56,3 +56,5 @@ AsyncList.defaultProps = {
   children: [],
   getRef: noop,
 }
+
+export { AsyncList }

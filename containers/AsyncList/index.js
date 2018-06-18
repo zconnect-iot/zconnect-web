@@ -17,6 +17,7 @@
   component and handle pagination, sorting and filtering outside of Griddle
 */
 
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { toJS } from 'zc-core/hocs'
@@ -25,7 +26,7 @@ import { selectAPIState } from 'zc-core/api/selectors'
 
 import { selectResults, selectPageProperties, selectErrorMessage } from './selectors'
 
-import AsyncList from './AsyncList'
+import { AsyncList as Unconnected } from './AsyncList'
 
 const mapStateToProps = (state, props) => ({
   data: selectResults(state, props),
@@ -34,7 +35,10 @@ const mapStateToProps = (state, props) => ({
   pageProperties: selectPageProperties(state, props),
 })
 
-const mapDispatchToProps = (dispatch, { endpoint, pageSize = 10, currentPage = 1, params = {} }) => ({
+const mapDispatchToProps = (
+  dispatch,
+  { endpoint, pageSize = 10, currentPage = 1, params = {} },
+) => ({
   fetchResults: () => dispatch(apiRequest(
     endpoint,
     { page: currentPage, page_size: pageSize, ...params },
@@ -56,8 +60,12 @@ const mergeProps = (
   ...props,
 })
 
-export default connect(
+const Connected = connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps,
-)(toJS(AsyncList))
+)(toJS(Unconnected))
+
+export default function AsyncList({ ...props }) {
+  return <Connected {...props} />
+}
