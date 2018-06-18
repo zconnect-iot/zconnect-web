@@ -1,8 +1,10 @@
+import React from 'react'
 import 'react-dates/initialize'
-import { DateRangePicker } from 'react-dates'
+import { DateRangePicker as ReactDatesPicker } from 'react-dates'
 import { START_DATE, END_DATE } from 'react-dates/constants'
 import 'react-dates/lib/css/_datepicker.css'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 import { mapProps, compose, withStateHandlers } from 'recompose'
 
 import './style.scss'
@@ -14,7 +16,7 @@ moment.locale('en-gb')
 // it to handle ISO date strings which play better with the immutable redux store
 // It also handles the focused input state and prevents the calendar hiding by
 // ensuring focusedInput is never null
-export default compose(
+const Composed = compose(
   mapProps(({ start, end, onChange, isOutsideRange, ...props }) => ({
     startDate: start ? moment(start).startOf('day') : null,
     startDateId: START_DATE, // No idea why this is needed but it is..
@@ -37,4 +39,24 @@ export default compose(
       }),
     },
   ),
-)(DateRangePicker)
+)(ReactDatesPicker)
+
+
+/**
+ * General component description in JSDoc format. Markdown is *supported*.
+ */
+export default function DateRangePicker({ ...props }) {
+  return <Composed {...props} />
+}
+
+DateRangePicker.propTypes = {
+  /** Start date in ISO string format */
+  start: PropTypes.string,
+  /** End date in ISO string format */
+  end: PropTypes.string,
+}
+
+DateRangePicker.defaultProps = {
+  start: null,
+  end: null,
+}
