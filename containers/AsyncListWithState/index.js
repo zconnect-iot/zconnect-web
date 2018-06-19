@@ -68,10 +68,10 @@ export default compose(
 // export default function AsyncListWithState({ ...props }) {
 //   return <Composed {...props} />
 // }
-
+// 
 // AsyncListWithState.propTypes = {
-//   * The name of the endpoint config which should use the storeMethod in utils 
+//   /** The name of the endpoint config which should use the storeMethod in utils */
 //   endpoint: PropTypes.string.isRequired,
 //   /** the storeKey defined inside the endpoint config */
-//   storeKey: PropTypes.string.isRequired
+//   storeKey: PropTypes.string.isRequired,
 // }

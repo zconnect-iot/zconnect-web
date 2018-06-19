@@ -14,7 +14,7 @@ const SpinButton = withSpinner()(Button)
 
 export const classes = BEMHelper({ name: 'ActivityStream' })
 
-export default class ActivityStream extends React.PureComponent {
+class ActivityStream extends React.PureComponent {
   componentDidMount() {
     this.props.fetchActivities()
   }
@@ -65,3 +65,5 @@ ActivityStream.defaultProps = {
   start: 0,
   end: 0,
 }
+
+export { ActivityStream }
