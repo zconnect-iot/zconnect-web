@@ -9,6 +9,7 @@
   Optional props:
     userId - if not provided the current logged in users id will be used
 */
+import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form/immutable'
 import { startsWith } from 'lodash'
@@ -27,7 +28,7 @@ import {
   STORE_KEY,
   selectChangesRequiringAction,
 } from './selectors'
-import NotificationSettings from './NotificationSettings'
+import { NotificationSettings as Uncomposed } from './NotificationSettings'
 
 
 const mapStateToProps = (state, props) => ({
@@ -115,7 +116,7 @@ const mergeProps = (state, dispatch, props) => {
   }
 }
 
-export default compose(
+const Composed = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps,
@@ -126,4 +127,8 @@ export default compose(
     enableReinitialize: true,
   }),
   toJS,
-)(NotificationSettings)
+)(Uncomposed)
+
+export default function NotificationSettings({ ...props }) {
+  return <Composed {...props} />
+}

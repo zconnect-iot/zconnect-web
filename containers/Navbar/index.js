@@ -11,7 +11,7 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Navbar' })
 
-class Navbar extends React.Component {
+class NavbarUnconnected extends React.Component {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -45,7 +45,11 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
 })
 
-export default connect(
+const Connected = connect(
   null,
   mapDispatchToProps,
-)(Navbar)
+)(NavbarUnconnected)
+
+export default function Navbar({ ...props }) {
+  return <Connected {...props} />
+}

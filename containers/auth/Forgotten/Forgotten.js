@@ -8,7 +8,7 @@ import { Logo } from '../../../components'
 
 const classes = BEMHelper({ name: 'Auth' })
 
-export default class Forgotten extends React.Component {
+class Forgotten extends React.Component {
   handleSubmit = (payload) => {
     const { email } = payload.toJS()
     if (!isValidEmail(email)) return this.props.registerError('emailinvalid')
@@ -57,3 +57,5 @@ Forgotten.defaultProps = {
   email: '',
   className: '',
 }
+
+export { Forgotten }

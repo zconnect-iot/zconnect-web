@@ -15,7 +15,7 @@ import './style.scss'
 
 export const classes = BEMHelper({ name: 'SubsSettings' })
 
-export default class NotificationSettings extends React.Component {
+class NotificationSettings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -90,3 +90,5 @@ NotificationSettings.defaultProps = {
   onChange: noop,
   hideSave: false,
 }
+
+export { NotificationSettings }

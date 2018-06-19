@@ -32,4 +32,4 @@ export default function Forgotten({ ...props }) {
   return <Composed {...props} />
 }
 
-Forgotten.propTypes = {}
+// Forgotten.propTypes = {}

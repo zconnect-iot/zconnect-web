@@ -35,7 +35,7 @@ const stateHandlers = {
   }),
 }
 
-export default compose(
+const Composed = compose(
   withStateHandlers(
     getInitialState,
     stateHandlers,
@@ -65,13 +65,13 @@ export default compose(
  * Filter and sort aren't implemented on back or front end yet but are there as
  * placeholders
 */
-// export default function AsyncListWithState({ ...props }) {
-//   return <Composed {...props} />
-// }
-// 
-// AsyncListWithState.propTypes = {
-//   /** The name of the endpoint config which should use the storeMethod in utils */
-//   endpoint: PropTypes.string.isRequired,
-//   /** the storeKey defined inside the endpoint config */
-//   storeKey: PropTypes.string.isRequired,
-// }
+export default function AsyncListWithState({ ...props }) {
+  return <Composed {...props} />
+}
+
+AsyncListWithState.propTypes = {
+  /** The name of the endpoint config which should use the storeMethod in utils */
+  endpoint: PropTypes.string.isRequired,
+  /** the storeKey defined inside the endpoint config */
+  storeKey: PropTypes.string.isRequired,
+}

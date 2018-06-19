@@ -7,8 +7,7 @@ import vars from '!!sass-vars-to-js-loader!./style.scss'
 
 import { Spinner } from '../../components'
 
-
-export default class TimeSeriesGraph extends React.PureComponent {
+class TimeSeriesGraph extends React.PureComponent {
   componentDidMount() {
     this.props.fetchGraphData()
   }
@@ -119,3 +118,5 @@ TimeSeriesGraph.defaultProps = {
   graphTheme: {},
   graphProps: {},
 }
+
+export { TimeSeriesGraph }
