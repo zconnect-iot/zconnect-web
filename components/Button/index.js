@@ -9,12 +9,12 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Button' })
 
-/*
-  This button uses the navigate function passed to the <Page/> via react context
-  to dispatch navigation actions if a route is supplied otherwise it simply calls
-  the action function
-*/
-
+/**
+ * This button uses the navigate function passed to the <Page/> via React
+ * context to dispatch navigation actions if a route is supplied otherwise it
+ * simply calls the action function. This means it has to be placed inside a
+ * `<Page/>` component.
+ */
 export class Button extends React.Component {
   navigate = () => this.props.navigate(this.props.route)
   render() {
@@ -34,14 +34,19 @@ export class Button extends React.Component {
 
 
 Button.propTypes = {
+  /** `primary`, `success` or `danger` */
   color: PropTypes.string,
+  /** If set to true the button has no background, just a border */
   hollow: PropTypes.bool,
+  /** When clicked, call this function  */
   action: PropTypes.func,
+  /** When clicked, go to this route */
   route: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  /** CSS class to apply to the element */
   className: PropTypes.string,
   active: PropTypes.bool,
   navigate: PropTypes.func,

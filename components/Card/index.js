@@ -24,15 +24,9 @@ CardIcon.defaultProps = {
 }
 
 /**
- * Card component.
+ * A card component with title, subtitle, image, icon and content
  *
- * @param {string} [props.title] a title to be displayed in a title bar.
- * @param {string} [props.subtitle] a subtitle to display below title & image.
- * @param {Object} [props.image] the `src` and `alt` for an image.
- * @param {string} [props.icon] an optional icon to display by the image.
- * @param {node|node[]} [props.children] content to show inside this Card.
- * @param {string} [props.className] an additional class name to show.
- * @param {boolean} [props.panel=false] whether to display as a bold panel.
+ * @example ./example.md
  */
 const Card = (props) => {
   let title = null
@@ -67,18 +61,25 @@ const Card = (props) => {
 }
 
 Card.propTypes = {
+  /** A title to be displayed in a title bar */
   title: PropTypes.string,
+  /** A subtitle to display below title & image */
   subtitle: PropTypes.string,
+  /** The `src` and `alt` for an image.= */
   image: PropTypes.shape({
     src: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
   }),
+  /** An optional icon to display by the image */
   icon: PropTypes.string,
+  /** Content to show inside this Card */
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /** An additional class name to show */
   className: PropTypes.string,
+  /** Whether to display as a bold panel */
   panel: PropTypes.bool,
 }
 
