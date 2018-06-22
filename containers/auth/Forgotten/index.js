@@ -28,8 +28,21 @@ const Composed = compose(
   withTranslator,
 )(Uncomposed)
 
+/**
+  Form to trigger forgoten password request on zconnect api
+*/
+
 export default function Forgotten({ ...props }) {
   return <Composed {...props} />
 }
 
-// Forgotten.propTypes = {}
+Forgotten.propTypes = {
+  className: PropTypes.string,
+  /** Will pre populate form if passed */
+  email: PropTypes.string,
+}
+
+Forgotten.defaultProps = {
+  email: '',
+  className: '',
+}

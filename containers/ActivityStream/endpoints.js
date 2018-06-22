@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable'
+import { fromJS, Map } from 'immutable'
 
 /*
   Only stores a single list of activities with a reference to the params used in the
@@ -16,7 +16,9 @@ export default {
       if (params.page === 1 ||
           params.start !== last.getIn(['params', 'start']) ||
           params.end !== last.getIn(['params', 'end']))
-        return next.set('params', fromJS(params))
+        return last
+          .set('params', fromJS(params))
+          .set('results', next.get('results'))
       return last
         .set('results', last.get('results').concat(next.get('results')))
         .set('params', fromJS(params))

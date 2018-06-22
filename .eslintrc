@@ -18,8 +18,14 @@
   },
 
   "rules": {
+    # Unclear why but if following rule not included linter complains about missing
+    # extensions on statements like import { toJS } from 'zc-core/hocs'
+    "import/extensions": ["error", "never", { "packages": "always" }],
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true,
+      "devDependencies": [
+        ".storybook/**",
+        "stories/**"
+      ],
       "peerDependencies": true
     }],
     "import/no-unresolved": [2, {

@@ -5,7 +5,7 @@ jest.mock('zc-core/auth/selectors', () => ({
   selectUserId: jest.fn().mockReturnValue('CURRENT_USER'),
 }))
 
-const state = fromJS({
+export const state = fromJS({
   api: {
     subscriptions: {
       response: {

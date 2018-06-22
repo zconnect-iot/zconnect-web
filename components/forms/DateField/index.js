@@ -20,7 +20,7 @@ import './style.scss'
 
 export const classes = new BEMHelper('DateField')
 
-export class DatePicker extends React.Component {
+class DatePicker extends React.Component {
   onChange = value => this.props.input.onChange(XDate(value.toISOString()))
   noop = () => {}
   render() {
@@ -82,8 +82,8 @@ DatePicker.defaultProps = Object.assign({
   placeholderText: 'Date',
 }, defaultProps)
 
-const component = props => <Field component={DatePicker} {...props} />
-component.propTypes = propTypes
-component.defaultProp = defaultProps
+const DateField = props => <Field component={DatePicker} {...props} />
+DateField.propTypes = propTypes
+DateField.defaultProp = defaultProps
 
-export default component
+export default DateField

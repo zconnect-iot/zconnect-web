@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
  * Pass as much or as little of the address as required. For example, it's not
  * always necessary to specify the locality or the country.
  *
- * @example ./example.md
  */
 export default function Address(props) {
   const { street_address, locality, region, poboxno, postalcode, country, className } = props

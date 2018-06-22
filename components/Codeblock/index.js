@@ -4,7 +4,10 @@ import classnames from 'classnames'
 
 import './styles.scss'
 
-
+/**
+  Renders children as monospaced code block.
+  Can be passed an object as `dictionary` prop which will be stringified
+**/
 export default function Codeblock({ dictionary, children, className }) {
   const codeString = children || JSON.stringify(dictionary, null, '  ')
   return (

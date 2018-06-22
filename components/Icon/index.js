@@ -1,10 +1,20 @@
 import React from 'react'
+import { noop } from 'lodash'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
-import ICONS from '../../assets/icons/map.json'
+
+import { themeColors } from '../../utils/propTypes'
+import ICONS from '../../assets/icons/map'
 
 const classes = BEMHelper({ name: 'Icon' })
 
+/**
+  Renders an SVG with the path attributes defined in `assets/icons/map.json`
+
+  You can test out the different name, size, color combos in the storybook
+
+  Inspired by [this post](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792)
+*/
 export default function Icon({ name, color, size, className, onClick }) {
   const pathAttrs = ICONS[name]
   const fill = color ? `text-${color}` : null
@@ -22,17 +32,19 @@ export default function Icon({ name, color, size, className, onClick }) {
   )
 }
 
+const themeColorsOrNone = [...themeColors, '']
+
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  color: PropTypes.string,
+  name: PropTypes.oneOf(Object.keys(ICONS)).isRequired,
+  color: PropTypes.oneOf(themeColorsOrNone),
   size: PropTypes.number,
   className: PropTypes.string,
   onClick: PropTypes.func,
 }
 
 Icon.defaultProps = {
-  size: null,
+  size: 0,
   color: '',
   className: '',
-  onClick: () => {},
+  onClick: noop,
 }

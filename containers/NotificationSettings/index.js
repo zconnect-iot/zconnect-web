@@ -1,15 +1,5 @@
-/*
-  Required props:
-    organisationId
-    categories - list of available categories
-    severities - list of label:min_severity tuples (in order displayed in dropdown)
-      [['Important', 30], ['Some', 20]]
-    types - list of possible notification type label:key tuples (in order of columns)
-      [['SMS', 'sms'], ['E-mail', 'email']]
-  Optional props:
-    userId - if not provided the current logged in users id will be used
-*/
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form/immutable'
 import { startsWith } from 'lodash'
@@ -129,6 +119,39 @@ const Composed = compose(
   toJS,
 )(Uncomposed)
 
+/**
+  Provides a zconnect api connected dynamic form component for updating a users'
+  subscription settings.
+
+  - Fetches the subscriptions for the user and organisation id provided and stores
+  the response by user id.
+  - Renders a redux controlled form based off the categories, types and severities
+  props.
+  - Converts the fetched list of subscriptions into the initial state for the form
+  - Shows the save button if the settings are changed which dispatches the appropriate
+  POST, PATCH and DELETE requests for the changes made when clicked
+*/
+
 export default function NotificationSettings({ ...props }) {
   return <Composed {...props} />
+}
+
+NotificationSettings.propTypes = {
+  organisationId: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  severities: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    ),
+  ),
+  types: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.string),
+  ),
+  userId: PropTypes.string,
+}
+
+NotificationSettings.defaultProps = {
+  severities: [['Important', 30], ['Some', 20], ['All', 0]],
+  types: [['SMS', 'sms'], ['E-mail', 'email']],
+  userId: '',
 }

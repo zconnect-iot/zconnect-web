@@ -8,13 +8,15 @@ import Header from '../Header'
 
 import './style.scss'
 
-/*
-  To allow the <Navbar /> to be used with any routing tech (or none at all), <Page/>
-  needs the navItems, current location path and navigate function to pass down to the buttons
+/**
+  To allow the nested `<Link />`'s and `<Button/>`'s to be used with any routing tech, `<Page/>`
+  needs the navItems, current location path and a navigate function to pass down to the buttons
   so that they can show active state if their route matches the current one.
+
   The subscribe/unsubscribe ensures that changes to the location prop aren't blocked by any
   component in between that implements shouldComponentUpdate (like connect) so that the
   withPageContext HOC always updates when the Page location prop changes
+
   If a NavBar component is passed it will render this instead of the built in NavBar
 */
 
@@ -30,13 +32,13 @@ export default class Page extends React.Component {
         navigate: this.props.navigate,
         subscribe: this.addSubscriber,
         unsubscribe: this.removeSubscriber,
-        location: this.props.location.pathname,
+        location: this.props.location,
       },
     }
   }
   componentWillReceiveProps(next) {
-    if (next.location.pathname !== this.props.location.pathname)
-      Object.values(this.subscribers).forEach(s => s(next.location.pathname))
+    if (next.location !== this.props.location)
+      Object.values(this.subscribers).forEach(s => s(next.location))
   }
   addSubscriber = (s) => {
     this.subscribers[this.subId += 1] = s
@@ -71,14 +73,11 @@ Page.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
+  location: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 
 Page.defaultProps = {
-  subtitle: '',
   headerRightContent: null,
   NavBar: null,
   navItems: [],

@@ -7,6 +7,10 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Tooltip' })
 
+/**
+  Render a simple css tooltip which shows the children passed in on hover over
+  the user selected Icon
+*/
 export default function Tooltip({ children, size, icon, color, className }) {
   return (
     <span {...classes(null, null, className)}>

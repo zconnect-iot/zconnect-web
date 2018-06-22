@@ -1,7 +1,7 @@
 @import '~theme/variables';
 @import '../mixins';
 
-$checkbox-image-url: url('zc-web/assets/sprites/checkbox.svg') !default;
+$checkbox-image-url: url('../../../assets/sprites/checkbox.svg') !default;
 
 
 :global(.CheckboxField) {

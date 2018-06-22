@@ -10,6 +10,11 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Content' })
 
+/**
+  Structural / presentational component for passing as child of `<Page />`
+
+  Provides a header with optional action items
+*/
 export default function Content(props) {
   const { title, subtitle, header, actionItems, children, className, image } = props
   return (

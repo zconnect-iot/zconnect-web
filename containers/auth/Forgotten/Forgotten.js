@@ -3,8 +3,13 @@ import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
 import { isValidEmail } from 'zc-core/auth/utils'
-import ForgottenForm from './ForgottenForm'
+
 import { Logo } from '../../../components'
+
+import '../style.scss'
+
+import ForgottenForm from './ForgottenForm'
+
 
 const classes = BEMHelper({ name: 'Auth' })
 
@@ -19,20 +24,18 @@ class Forgotten extends React.Component {
     const { api, errorMessage, t, email, className } = this.props
     return (
       <div {...classes(null, className)}>
-        <div {...classes('form')}>
-          <Logo {...classes('logo')} large />
-          <ForgottenForm
-            onSubmit={this.handleSubmit}
-            initialValues={{ email }}
-            t={t}
-            pending={api.pending}
-          />
-          {api.error && <div {...classes('error')}>{errorMessage}</div>}
-          {api.success && <div {...classes('success')}>
-            <p>{t('success')}</p>
-            <p>{t('emailsent')}</p>
-          </div>}
-        </div>
+        <Logo {...classes('logo')} large />
+        <ForgottenForm
+          onSubmit={this.handleSubmit}
+          initialValues={{ email }}
+          t={t}
+          pending={api.pending}
+        />
+        {api.error && <div {...classes('error')}>{errorMessage}</div>}
+        {api.success && <div {...classes('success')}>
+          <p>{t('success')}</p>
+          <p>{t('emailsent')}</p>
+        </div>}
       </div>
     )
   }

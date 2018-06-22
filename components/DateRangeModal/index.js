@@ -10,6 +10,11 @@ import './style.scss'
 
 const classes = BEMHelper('DateRangeModal')
 
+/**
+  A date range picker wrapped in a ModalContainer that maintains the
+  dates selected in state until the Save button is clicked at which point the
+  `onChangeDates` callback is invoked with the new date range
+*/
 export default class DateRangeModal extends React.Component {
   constructor(props) {
     super(props)

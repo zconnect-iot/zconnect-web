@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../Icon'
+import { Icon } from '../../'
+
+/**
+  Styled map marker using the LOCATION_ON icon
+*/
 
 export default function Marker({ color }) {
   return (<div className="Map__Marker">

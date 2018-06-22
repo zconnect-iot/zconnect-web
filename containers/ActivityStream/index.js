@@ -50,7 +50,11 @@ const Composed = compose(
 )(UnconnectedAS)
 
 /**
- * Display a 'news feed' style log of all activity on a given device.
+ Display a 'news feed' style log of all activity on a given device.
+
+ Handles fetching data for the id, start and end props provided showing 10
+ results at a time and appending the next 10 results when the More button is clicked
+ until no more results are available on server
  */
 export default function ActivityStream({ ...props }) {
   return <Composed {...props} />

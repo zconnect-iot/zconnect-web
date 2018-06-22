@@ -1,23 +1,5 @@
-/*
-  AsyncList interfaces with zconnect v2 django paginated results endpoints. This is
-  a controlled component so will just fetch and display the currentPage at the pageSize
-  specified in props.
-
-  You need to maintain the state manually via redux or url search params or use
-  AsyncListWithState makes the component stateful and provides an events object used by
-  the griddle with functions that update that state
-
-  Required props:
-    endpoint - the name of the endpoint config which should use the storeMethod in utils
-    storeKey - the storeKey defined inside the endpoint config
-    pageSize - number - defaults to 10
-    currentPage - number - defaults to 1
-
-  Passing hidePagination and hideFilter props it's possible to make this a controlled
-  component and handle pagination, sorting and filtering outside of Griddle
-*/
-
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { toJS } from 'zc-core/hocs'
@@ -26,7 +8,7 @@ import { selectAPIState } from 'zc-core/api/selectors'
 
 import { selectResults, selectPageProperties, selectErrorMessage } from './selectors'
 
-import { AsyncList as Unconnected } from './AsyncList'
+import { AsyncList as AsyncListComponent } from './AsyncList'
 
 const mapStateToProps = (state, props) => ({
   data: selectResults(state, props),
@@ -37,7 +19,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (
   dispatch,
-  { endpoint, pageSize = 10, currentPage = 1, params = {} },
+  { endpoint, pageSize, currentPage, params = {} },
 ) => ({
   fetchResults: () => dispatch(apiRequest(
     endpoint,
@@ -64,8 +46,36 @@ const Connected = connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps,
-)(toJS(Unconnected))
+)(toJS(AsyncListComponent))
 
+/**
+  AsyncList interfaces with zconnect v2 django paginated results endpoints using zc-core.
+  This is a controlled component so will just fetch and display the currentPage at the pageSize
+  specified in props.
+
+  You need to handle the page state manually via redux or url search params or use
+  AsyncListWithState which makes the component stateful and provides an events object used by
+  the griddle with functions that update that state
+
+  The storeMethod exported from utils must be used when defining the endpoint so
+  that the data is stored in the expected way
+*/
 export default function AsyncList({ ...props }) {
   return <Connected {...props} />
+}
+
+AsyncList.propTypes = {
+  /** The endpoint key to use for fetch as defined in the endpoints passed to zc-core */
+  endpoint: PropTypes.string.isRequired,
+  /** The storeKey defined in the endpoint config */
+  storeKey: PropTypes.string.isRequired,
+  /** The number of results to fetch and display per page */
+  pageSize: PropTypes.number,
+  /** The page number to fetch */
+  currentPage: PropTypes.number,
+}
+
+AsyncList.defaultProps = {
+  currentPage: 1,
+  pageSize: 10,
 }

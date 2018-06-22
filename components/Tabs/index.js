@@ -11,24 +11,6 @@ import './style.scss'
  * This module provides simple wrappers to the `react-tabs-redux` tab
  * components for ease of styling. Default styles are in {@link ./style.scss}.
  *
- * @example
- * <Tabs>
- *   <TabLinkList>
- *     <TabLink to="atRisk"><span>At risk</span></TabLink>
- *     <TabLink to="needsData"><span>Needs data</span></TabLink>
- *   </TabLinkList>
- *
- *   <TabContent for="atRisk">
- *     <h2>At risk content</h2>
- *     <p>These buildings are at risk.</p>
- *   </TabContent>
- *
- *   <TabContent for="needsData">
- *     <h2>Needs data collection content</h2>
- *     <p>These buildings need data collection.</p>
- *   </TabContent>
- * </Tabs>
- *
  * Alternatively the components from `react-tabs-redux` can be used in place of
  * any here. @see {@link https://github.com/patrik-piskay/react-tabs-redux}.
  */

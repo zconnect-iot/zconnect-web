@@ -9,7 +9,7 @@ $tooltip-border-color: $text-color !default;
 
 :global(.Tooltip) {
   position: relative;
-  top: 3px;
+  // top: 3px;
 
   :global(.Tooltip__icon) {
     cursor: pointer;
@@ -19,8 +19,8 @@ $tooltip-border-color: $text-color !default;
   :global(.Tooltip__message) {
     visibility: hidden;
     position: absolute;
-    left: -78px;
-    top: 22px;
+    left: -80px;
+    top: 6px;
     padding: 12px 10px;
     text-align: center;
     width: 180px;
@@ -31,6 +31,7 @@ $tooltip-border-color: $text-color !default;
     opacity: 0;
     transition: visibility $transition-duration, opacity $transition-duration;
     z-index: 100;
+    box-sizing: border-box;
 
     &:after, &:before {
       bottom: 100%;

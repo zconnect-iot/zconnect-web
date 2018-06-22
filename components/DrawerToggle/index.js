@@ -1,17 +1,17 @@
 import React from 'react'
+import { noop } from 'lodash'
 import PropTypes from 'prop-types'
 import BEMHelper from 'react-bem-helper'
 
-import Drawer from './Drawer'
-import Icon from './Icon'
+import { Drawer, Icon } from '../'
+
 
 const classes = BEMHelper('DrawerToggle')
 
 /**
- * Component which can toggle a <Drawer /> on and off.
- *
- * Passes children, position and open/close handlers through to the Drawer.
- */
+ Component which can toggle a `<Drawer />` open and closed.
+ Passes children, position and open/close handlers through to the Drawer.
+*/
 export default class DrawerToggle extends React.Component {
   constructor(props) {
     super(props)
@@ -23,7 +23,9 @@ export default class DrawerToggle extends React.Component {
     this.onDrawerOpened = () => this.onDrawerToggled(true)
     this.onDrawerClosed = () => this.onDrawerToggled(false)
   }
-
+  getChildContext() {
+    return { toggleDrawer: this.toggleDrawer }
+  }
   onDrawerToggled(isOpen) {
     if (this.state.open !== isOpen) {
       this.setState({ open: isOpen })
@@ -35,15 +37,9 @@ export default class DrawerToggle extends React.Component {
         this.props.onClose()
     }
   }
-
   toggleDrawer = () => {
     this.setState({ open: !this.state.open })
   }
-
-  getChildContext() {
-    return { toggleDrawer: this.toggleDrawer }
-  }
-
   render() {
     return (
       <div {...classes(null, null, this.props.className)}>
@@ -52,7 +48,7 @@ export default class DrawerToggle extends React.Component {
           onClick={this.toggleDrawer}
           {...classes('button', null, { open: this.state.open })}
         >
-          <Icon name={this.props.iconName} />
+          <Icon name={this.props.iconName} size={20} />
         </button>
 
         <Drawer
@@ -73,7 +69,7 @@ DrawerToggle.childContextTypes = {
 }
 
 DrawerToggle.propTypes = {
-  iconName: PropTypes.string.isRequired,
+  iconName: PropTypes.string,
   position: PropTypes.string,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
@@ -85,9 +81,10 @@ DrawerToggle.propTypes = {
 }
 
 DrawerToggle.defaultProps = {
+  iconName: 'MENU',
   position: 'right',
-  onOpen: null,
-  onClose: null,
+  onOpen: noop,
+  onClose: noop,
   className: '',
-  children: null,
+  children: [],
 }

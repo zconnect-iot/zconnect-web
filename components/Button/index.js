@@ -10,7 +10,7 @@ import './style.scss'
 const classes = BEMHelper({ name: 'Button' })
 
 /**
- * This button uses the navigate function passed to the <Page/> via React
+ * This button uses the navigate function passed to `<Page/>` via React
  * context to dispatch navigation actions if a route is supplied otherwise it
  * simply calls the action function. This means it has to be placed inside a
  * `<Page/>` component.

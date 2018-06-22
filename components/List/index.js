@@ -5,11 +5,11 @@ import BEMHelper from 'react-bem-helper'
 
 import { ZCGriddle } from '../../components'
 
-import { camelToTitleCase } from '../../util/string'
+import { camelToTitleCase } from '../../utils/string'
 
 import listPlugin from './GriddlePlugin'
 
-export const defineColumn = (col) => {
+const defineColumn = (col) => {
   if (typeof col !== 'string')
     return col
   return (
@@ -47,14 +47,16 @@ export const styleConfig = {
 }
 
 /**
- * List view.
- *
- * @param {(string|node)[]} props.columns a list of column IDs or definitions.
- * @param {Object} props.components a dict of components (see Griddle docs).
- *
- * Uses the Griddle plugin defined at {@link ./GriddlePlugin.js} to define
- * components.
- */
+  Convenience wrapper arount Griddle that maps a list of column names to the
+  ColumnDefinition components and adds BEM classnames. All other props are
+  passed through to the griddle.
+
+ @param {(string|node)[]} props.columns a list of column IDs or definitions.
+ @param {Object} props.components a dict of components (see Griddle docs).
+
+ Uses the Griddle plugin defined at {@link ./GriddlePlugin.js} to define
+ components.
+*/
 const List = ({ columns, ...props }) => (
   <ZCGriddle plugins={[listPlugin]} {...props}>
     {columns && (

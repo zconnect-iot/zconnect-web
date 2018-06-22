@@ -8,6 +8,10 @@ import './style.scss'
 
 const classes = new BEMHelper('Panel')
 
+/**
+  Panel provides a bordered header and with an optional collapsible body and
+  action items
+*/
 export default class Panel extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -58,6 +62,7 @@ export default class Panel extends React.PureComponent {
 
 Panel.propTypes = {
   title: PropTypes.string,
+  subtitle: PropTypes.string,
   renderIcon: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -73,19 +78,18 @@ Panel.propTypes = {
   })),
   renderStatic: PropTypes.func,
   onClickLabel: PropTypes.string,
-  subtitle: PropTypes.string,
 }
 
 Panel.defaultProps = {
-  title: undefined,
+  title: '',
+  subtitle: '',
   children: null,
   className: '',
   collapsible: false,
-  collapsed: undefined,
+  collapsed: false,
   onClick: null,
   actions: [],
   renderStatic: undefined,
   renderIcon: undefined,
   onClickLabel: '',
-  subtitle: '',
 }

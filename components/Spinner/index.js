@@ -6,6 +6,11 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'Spinner' })
 
+/**
+  A simple loading spinner with customisable size and colour (via css)
+
+  Also optional full screen overlay mode with `full` prop
+*/
 export default function Spinner(props) {
   const { className, full, children } = props
   const size = full ? 100 : props.size

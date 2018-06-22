@@ -31,12 +31,12 @@ $statcard-color: $text-color-minor !default;
 :global(.StatCard__figure) {
   color: $brand-primary;
   padding: 4px 0;
-  font-size: 30px;
+  font-size: 3rem;
   white-space: nowrap;
   font-weight: bold;
 }
 :global(.StatCard__figure--inline) {
-  font-size: $font-size-base;
+  font-size: 2rem;
 }
 :global(.StatCard__figure--danger) {
   color: $brand-danger;
@@ -44,11 +44,12 @@ $statcard-color: $text-color-minor !default;
 
 // Description (usually text below the figure).
 :global(.StatCard__description) {
+  font-size: 1.6rem;
   font-weight: bold;
   color: $statcard-color;
 }
 :global(.StatCard__description--inline) {
-  font-size: $font-size-small;
+  font-size: 1rem;
   font-weight: normal;
 }
 
@@ -71,7 +72,7 @@ $statcard-color: $text-color-minor !default;
 
 // Delta. Defaults to a green caret-up.
 :global(.StatCard__delta) {
-  font-size: 12px;
+  font-size: 1.2rem;
   margin-left: 8px;
   vertical-align: middle;
 

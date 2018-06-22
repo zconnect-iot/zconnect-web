@@ -25,8 +25,6 @@ CardIcon.defaultProps = {
 
 /**
  * A card component with title, subtitle, image, icon and content
- *
- * @example ./example.md
  */
 const Card = (props) => {
   let title = null

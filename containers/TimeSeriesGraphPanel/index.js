@@ -9,6 +9,11 @@ import './style.scss'
 
 const classes = BEMHelper({ name: 'TimeSeriesGraphPanel' })
 
+/**
+Renders a time series data graph with choice of sensors to view data for.
+Handles fetching the data for device id and range selected and showing api
+pending state etc.
+*/
 export default class TimeSeriesGraphPanel extends React.Component {
   constructor(props) {
     super(props)

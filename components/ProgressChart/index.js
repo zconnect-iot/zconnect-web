@@ -19,7 +19,7 @@ const classes = new BEMHelper('ProgressChart')
  * @param {string} [props.textColor] the text colour.
  * @param {string} [props.text] optional text to render over the bar.
  */
-export const ProgressBar = ({
+export default function ProgressChart({
   value,
   maximum,
   foregroundColor,
@@ -27,7 +27,7 @@ export const ProgressBar = ({
   textColor,
   text,
   units,
-}) => {
+}) {
   if (!value)
     return null
 
@@ -55,21 +55,23 @@ export const ProgressBar = ({
 
   const content = text || `${value}${units}`
   return (
-    <div
-      {...classes('bar-background', null, backgroundClass)}
-      style={backgroundStyle}
-    >
+    <div {...classes()}>
       <div
-        {...classes('bar-foreground', null, foregroundClasses)}
-        style={foregroundStyle}
+        {...classes('bar-background', null, backgroundClass)}
+        style={backgroundStyle}
       >
-        {content}
+        <div
+          {...classes('bar-foreground', null, foregroundClasses)}
+          style={foregroundStyle}
+        >
+          {content}
+        </div>
       </div>
     </div>
   )
 }
 
-ProgressBar.propTypes = {
+ProgressChart.propTypes = {
   value: PropTypes.number.isRequired,
   maximum: PropTypes.number,
   foregroundColor: PropTypes.string,
@@ -79,7 +81,7 @@ ProgressBar.propTypes = {
   units: PropTypes.string,
 }
 
-ProgressBar.defaultProps = {
+ProgressChart.defaultProps = {
   maximum: 0,
   foregroundColor: 'success',
   backgroundColor: '',
@@ -87,13 +89,3 @@ ProgressBar.defaultProps = {
   text: '',
   units: '%',
 }
-
-/**
-* Progress bar chart.
-*/
-const ProgressChart = props => <div {...classes()}>{props.children}</div>
-ProgressChart.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
-}
-
-export default ProgressChart
