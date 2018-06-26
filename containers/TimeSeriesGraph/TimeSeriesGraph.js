@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { noop } from 'lodash'
 
 import { ResponsiveBar } from 'nivo-bar'
 
@@ -10,6 +11,7 @@ import { Spinner } from '../../components'
 class TimeSeriesGraph extends React.PureComponent {
   componentDidMount() {
     this.props.fetchGraphData()
+    this.props.getRef(this)
   }
 
   componentWillReceiveProps(props) {
@@ -112,11 +114,13 @@ TimeSeriesGraph.propTypes = {
     error: PropTypes.bool,
     success: PropTypes.bool,
   }).isRequired,
+  getRef: PropTypes.func,
 }
 
 TimeSeriesGraph.defaultProps = {
   graphTheme: {},
   graphProps: {},
+  getRef: noop,
 }
 
 export { TimeSeriesGraph }

@@ -23,6 +23,9 @@ class ActivityStream extends React.PureComponent {
     if (props.start !== start || props.end !== end)
       props.fetchActivities()
   }
+  componentWillUnmount() {
+    this.props.wipeApi()
+  }
   getMore = () => this.props.fetchActivities()
   render() {
     const { api, activities, moreAvailable, errorMessage } = this.props

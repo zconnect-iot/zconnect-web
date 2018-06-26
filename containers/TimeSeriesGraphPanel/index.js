@@ -25,8 +25,8 @@ export default class TimeSeriesGraphPanel extends React.Component {
 
   render() {
     let activeMode
-
-    const modes = this.props.modes.map((mode) => {
+    const { modes, deviceId, startTime, endTime, ...props } = this.props
+    const actions = modes.map((mode) => {
       const active = this.state.mode === mode.title
       if (active) activeMode = mode
       return {
@@ -40,14 +40,15 @@ export default class TimeSeriesGraphPanel extends React.Component {
       <Panel
         {...classes()}
         title={this.props.title || 'Time Series Data'}
-        actions={modes}
+        actions={actions}
       >
         <TimeSeriesGraph
           {...classes('graph')}
           mode={activeMode}
-          deviceId={this.props.deviceId}
-          startTime={this.props.startTime}
-          endTime={this.props.endTime}
+          deviceId={deviceId}
+          startTime={startTime}
+          endTime={endTime}
+          {...props}
         />
       </Panel>
     )

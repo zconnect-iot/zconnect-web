@@ -9,11 +9,13 @@ Library of React web components for zconnect front end
 
 ## Usage
 
-The library has a few peerDependencies including zconnect-js, react, redux etc.
+The library has a few peerDependencies including [zconnect-js](https://github.com/zconnect-iot/zconnect-js), react, redux etc.
 
 It also requires `~theme/variables.scss` to resolve a scss file in which the scss globals defined [here](theme/globals.scss) are available. This can be done with webpack alias. More details in Styling section.
 
-For example usage see `zconnect-web-template`
+Finally in order for `sass-vars-to-js` loader to work so that the components can import sass vars as js, the `NODE_PATH` env var must be set to the project root directory e.g. `NODE_PATH=$PWD webpack-dev-server`
+
+For example usage see [zconnect-web-template](https://github.com/zconnect-iot/zconnect-web-template)
 
 ## Page context
 
