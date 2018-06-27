@@ -15,7 +15,7 @@ import './style.scss'
 
 export const classes = BEMHelper({ name: 'SubsSettings' })
 
-class NotificationSettings extends React.Component {
+export default class NotificationSettingsComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -70,7 +70,7 @@ class NotificationSettings extends React.Component {
   }
 }
 
-NotificationSettings.propTypes = {
+NotificationSettingsComponent.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   severities: PropTypes.arrayOf(PropTypes.array).isRequired,
   types: PropTypes.arrayOf(PropTypes.array).isRequired,
@@ -85,10 +85,8 @@ NotificationSettings.propTypes = {
   batchApi: zcApiShapeJS.isRequired,
 }
 
-NotificationSettings.defaultProps = {
+NotificationSettingsComponent.defaultProps = {
   getRef: noop,
   onChange: noop,
   hideSave: false,
 }
-
-export { NotificationSettings }

@@ -14,8 +14,8 @@ const DEVICE_ID = 'DEVICE_ID'
 
 const makeApiState = ({
   deviceId = DEVICE_ID,
-  start,
-  end,
+  start = null,
+  end = null,
   page = 1,
   count = 10,
 }) => fromJS({
@@ -44,26 +44,26 @@ describe('ActivityStream', () => {
       const state = createState({ page: 2 })
       const store = configureStore()(state)
       const wrapper = mount(<Provider store={store}>
-        <Page navigate={noop} location={{ pathname: '/' }}>
+        <Page navigate={noop} location="/">
           <ActivityStream
             deviceId={DEVICE_ID}
           />
         </Page>
       </Provider>)
-      const props = wrapper.find('ActivityStream').props()
+      const props = wrapper.find('ActivityStreamComponent').props()
       expect(props.activities).toEqual(state.toJS().api.activities.response.results)
     })
     test('no activities are returned if stored results do not match params', () => {
       const state = createState({ page: 2 })
       const store = configureStore()(state)
       const wrapper = mount(<Provider store={store}>
-        <Page navigate={noop} location={{ pathname: '/' }}>
+        <Page navigate={noop} location="/">
           <ActivityStream
             deviceId="SOME_OTHER_DEVICE_ID"
           />
         </Page>
       </Provider>)
-      const props = wrapper.find('ActivityStream').props()
+      const props = wrapper.find('ActivityStreamComponent').props()
       expect(props.activities).toEqual([])
     })
   })
@@ -74,7 +74,7 @@ describe('ActivityStream', () => {
         const end = null
         const store = configureStore()(mockState) // No received activities data
         mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <ActivityStream
               deviceId={DEVICE_ID}
               start={start}
@@ -103,7 +103,7 @@ describe('ActivityStream', () => {
         const end = null
         const store = configureStore()(createState({ page: 2, start, end })) // 2 pages of data already fetched
         const wrapper = mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <ActivityStream
               deviceId={DEVICE_ID}
               start={start}

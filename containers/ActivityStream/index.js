@@ -10,7 +10,7 @@ import { selectAPIState, selectErrorMessage } from 'zc-core/api/selectors'
 
 import { selectResults, selectMoreAvailable, selectNextPage, storeKey } from './selectors'
 
-import { ActivityStream as UnconnectedAS } from './components/ActivityStream'
+import ActivityStreamComponent from './components/ActivityStream'
 
 
 const mapStateToProps = (state, props) => ({
@@ -49,7 +49,7 @@ const Composed = compose(
     mergeProps,
   ),
   toJS,
-)(UnconnectedAS)
+)(ActivityStreamComponent)
 
 /**
  Display a 'news feed' style log of all activity on a given device.
