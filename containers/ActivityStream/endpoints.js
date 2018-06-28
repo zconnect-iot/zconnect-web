@@ -16,9 +16,8 @@ export default {
       if (params.page === 1 ||
           params.start !== last.getIn(['params', 'start']) ||
           params.end !== last.getIn(['params', 'end']))
-        return last
+        return next
           .set('params', fromJS(params))
-          .set('results', next.get('results'))
       return last
         .set('results', last.get('results').concat(next.get('results')))
         .set('params', fromJS(params))

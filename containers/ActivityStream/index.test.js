@@ -12,12 +12,13 @@ import ActivityStream from './'
 
 const DEVICE_ID = 'DEVICE_ID'
 
-const makeApiState = ({
+const makeResponseState = ({
   deviceId = DEVICE_ID,
   start = null,
   end = null,
   page = 1,
   count = 10,
+  results = makeResults(count),
 }) => fromJS({
   params: {
     deviceId,
@@ -25,7 +26,8 @@ const makeApiState = ({
     end,
     page,
   },
-  results: makeResults(count),
+  results,
+  count,
 })
 
 const createState = ({
@@ -33,9 +35,10 @@ const createState = ({
   start,
   end,
   page = 1,
+  responseState = makeResponseState({ deviceId, start, end, page, count: page * 10 }),
 }) => mockState.setIn(
   ['api', 'activities', 'response'],
-  makeApiState({ deviceId, start, end, page, count: page * 10 }),
+  responseState,
 )
 
 describe('ActivityStream', () => {
@@ -65,6 +68,36 @@ describe('ActivityStream', () => {
       </Provider>)
       const props = wrapper.find('ActivityStreamComponent').props()
       expect(props.activities).toEqual([])
+    })
+    test('shows more available if count is greater than results', () => {
+      const state = createState({
+        responseState: makeResponseState({ page: 2, count: 25, results: makeResults(20) }),
+      })
+      const store = configureStore()(state)
+      const wrapper = mount(<Provider store={store}>
+        <Page navigate={noop} location="/">
+          <ActivityStream
+            deviceId={DEVICE_ID}
+          />
+        </Page>
+      </Provider>)
+      const props = wrapper.find('ActivityStreamComponent').props()
+      expect(props.moreAvailable).toEqual(true)
+    })
+    test("doesn't show more available button if count is equal to results", () => {
+      const state = createState({
+        responseState: makeResponseState({ page: 2, count: 20, results: makeResults(20) }),
+      })
+      const store = configureStore()(state)
+      const wrapper = mount(<Provider store={store}>
+        <Page navigate={noop} location="/">
+          <ActivityStream
+            deviceId={DEVICE_ID}
+          />
+        </Page>
+      </Provider>)
+      const props = wrapper.find('ActivityStreamComponent').props()
+      expect(props.moreAvailable).toEqual(false)
     })
   })
   describe('mergeProps', () => {
