@@ -32,7 +32,7 @@ export default class ModalContainer extends React.PureComponent {
     return (
       <CSSTransition
         classNames="modal"
-        timeout={vars.modalTransitionDuration || 300}
+        timeout={vars.modalTransitionDuration || 200}
         in={this.state.visible}
         mountOnEnter
         unmountOnExit
