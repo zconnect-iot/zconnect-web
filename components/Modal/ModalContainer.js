@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransition } from 'react-transition-group'
+import { noop } from 'lodash'
 
 import Modal from './Modal'
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/first
+import vars from '!!sass-vars-to-js-loader!./style.scss'
 
 /*
   ModalContainer maintains the visibility of the Modal in state and
@@ -27,14 +30,15 @@ export default class ModalContainer extends React.PureComponent {
   render() {
     const { visible, ...modalProps } = this.props
     return (
-      <ReactCSSTransitionGroup
-        transitionName="modal"
-        transitionEnterTimeout={200}
-        transitionLeave
-        transitionLeaveTimeout={200}
+      <CSSTransition
+        classNames="modal"
+        timeout={vars.modalTransitionDuration || 300}
+        in={this.state.visible}
+        mountOnEnter
+        unmountOnExit
       >
-        {this.state.visible && <Modal {...modalProps} onClose={this.closeModal} />}
-      </ReactCSSTransitionGroup>
+        {() => <Modal {...modalProps} onClose={this.closeModal} />}
+      </CSSTransition>
     )
   }
 }
@@ -50,7 +54,6 @@ ModalContainer.propTypes = {
 }
 
 ModalContainer.defaultProps = {
-  title: '',
   visible: true,
-  onClose: () => {},
+  onClose: noop,
 }

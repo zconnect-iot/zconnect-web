@@ -1,5 +1,7 @@
 @import '~theme/variables.scss';
 
+$modal-transition-duration: $transition-duration !default;
+
 :global(.Modal) {
   position: fixed;
   height: 100%;
@@ -17,16 +19,16 @@
 
     &:global(.modal-enter-active) {
       opacity: 1;
-      transition: opacity $transition-duration ease-in;
+      transition: opacity $modal-transition-duration ease-in;
     }
   }
 
-  &:global(.modal-leave) {
+  &:global(.modal-exit) {
     opacity: 1;
 
-    &:global(.modal-leave-active) {
+    &:global(.modal-exit-active) {
       opacity: 0.01;
-      transition: opacity $transition-duration ease-in;
+      transition: opacity $modal-transition-duration ease-in;
     }
   }
 
