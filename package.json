@@ -17,7 +17,11 @@
   ],
   "keywords": [],
   "author": "Zoetrope Labs",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zconnect-iot/zconnect-web.git"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
     "@storybook/addon-knobs": "^3.4.7",
@@ -70,13 +74,12 @@
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
     "nivo-bar": "git+https://github.com/ZoetropeLabs/nivo-bar.git",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-bar-chart": "^0.1.2",
     "react-bem-helper": "^1.4.1",
     "react-datepicker": "^1.4.1",
     "react-dates": "^16.7.0",
     "react-immutable-proptypes": "^2.1.0",
-    "react-tabs-redux": "^3.0.2"
+    "react-tabs-redux": "^3.0.2",
+    "react-transition-group": "^2.4.0"
   },
   "peerDependencies": {
     "react-flexbox-grid": ">= 1.x <3",
