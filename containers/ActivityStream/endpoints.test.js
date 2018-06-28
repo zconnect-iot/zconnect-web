@@ -6,7 +6,7 @@ import endpoints from './endpoints'
 const { storeMethod } = endpoints.getActivities
 
 export const makeResults = (count = 3) => times(count, i => ({
-  id: i,
+  id: `${i}`,
   category: 'system',
   created_at: '2018-06-07T08:05:34.245412',
   description: 'Open time was less than 5%',

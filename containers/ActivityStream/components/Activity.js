@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { mapProps } from 'recompose'
 import XDate from 'xdate'
 
-import { Message, Icon } from '../../../components'
-import { Tooltip } from '../../../components'
+import { Message, Icon, Tooltip } from '../../../components'
 
 import { classes } from './ActivityStream'
 

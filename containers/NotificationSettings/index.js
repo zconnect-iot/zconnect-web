@@ -18,7 +18,7 @@ import {
   STORE_KEY,
   selectChangesRequiringAction,
 } from './selectors'
-import { NotificationSettings as Uncomposed } from './NotificationSettings'
+import NotificationSettingsComponent from './NotificationSettings'
 
 
 const mapStateToProps = (state, props) => ({
@@ -117,7 +117,7 @@ const Composed = compose(
     enableReinitialize: true,
   }),
   toJS,
-)(Uncomposed)
+)(NotificationSettingsComponent)
 
 /**
   Provides a zconnect api connected dynamic form component for updating a users'

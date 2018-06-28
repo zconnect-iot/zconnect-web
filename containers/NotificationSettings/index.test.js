@@ -81,7 +81,7 @@ describe('NotificationSettings', () => {
       // This duplicates the selector test but is more of an integration test
       const store = configureStore()(createState())
       const wrapper = mount(<Provider store={store}>
-        <Page navigate={noop} location={{ pathname: '/' }}>
+        <Page navigate={noop} location="/">
           <NotificationSettings
             organisationId="ORG_ID"
             categories={categories}
@@ -90,7 +90,7 @@ describe('NotificationSettings', () => {
           />
         </Page>
       </Provider>)
-      const props = wrapper.find('NotificationSettings').props()
+      const props = wrapper.find('NotificationSettingsComponent').props()
       expect(props.initialValues).toEqual({
         'business metrics_sms': '1',
         'business metrics_email': '2',
@@ -116,7 +116,7 @@ describe('NotificationSettings', () => {
           }),
         ))
         const wrapper = mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <NotificationSettings
               userId="USER_ID"
               organisationId="ORG_ID"
@@ -126,7 +126,7 @@ describe('NotificationSettings', () => {
             />
           </Page>
         </Provider>)
-        const props = wrapper.find('NotificationSettings').props()
+        const props = wrapper.find('NotificationSettingsComponent').props()
         props.submitForm()
         const batchRequestAction = store.getActions().find(action => action.type === 'core/api/BATCH_REQUEST')
         expect(batchRequestAction).toBeTruthy()
@@ -159,7 +159,7 @@ describe('NotificationSettings', () => {
           }),
         ))
         const wrapper = mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <NotificationSettings
               userId="USER_ID"
               organisationId="ORG_ID"
@@ -169,7 +169,7 @@ describe('NotificationSettings', () => {
             />
           </Page>
         </Provider>)
-        const props = wrapper.find('NotificationSettings').props()
+        const props = wrapper.find('NotificationSettingsComponent').props()
         props.submitForm()
         const batchRequestAction = store.getActions().find(action => action.type === 'core/api/BATCH_REQUEST')
         expect(batchRequestAction).toBeTruthy()
@@ -208,7 +208,7 @@ describe('NotificationSettings', () => {
           }),
         ))
         const wrapper = mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <NotificationSettings
               userId="USER_ID"
               organisationId="ORG_ID"
@@ -218,7 +218,7 @@ describe('NotificationSettings', () => {
             />
           </Page>
         </Provider>)
-        const props = wrapper.find('NotificationSettings').props()
+        const props = wrapper.find('NotificationSettingsComponent').props()
         props.submitForm()
         const batchRequestAction = store.getActions().find(action => action.type === 'core/api/BATCH_REQUEST')
         expect(batchRequestAction).toBeTruthy()
@@ -253,7 +253,7 @@ describe('NotificationSettings', () => {
           }),
         ))
         const wrapper = mount(<Provider store={store}>
-          <Page navigate={noop} location={{ pathname: '/' }}>
+          <Page navigate={noop} location="/">
             <NotificationSettings
               userId="USER_ID"
               organisationId="ORG_ID"
@@ -263,7 +263,7 @@ describe('NotificationSettings', () => {
             />
           </Page>
         </Provider>)
-        const props = wrapper.find('NotificationSettings').props()
+        const props = wrapper.find('NotificationSettingsComponent').props()
         props.submitForm()
         const batchRequestAction = store.getActions().find(action => action.type === 'core/api/BATCH_REQUEST')
         expect(batchRequestAction).toBeTruthy()

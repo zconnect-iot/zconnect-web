@@ -5,12 +5,12 @@ import { compose, mapProps } from 'recompose'
 import XDate from 'xdate'
 
 import { toJS } from 'zc-core/hocs'
-import { apiRequest } from 'zc-core/api/actions'
+import { apiRequest, apiWipe } from 'zc-core/api/actions'
 import { selectAPIState, selectErrorMessage } from 'zc-core/api/selectors'
 
 import { selectResults, selectMoreAvailable, selectNextPage, storeKey } from './selectors'
 
-import { ActivityStream as UnconnectedAS } from './components/ActivityStream'
+import ActivityStreamComponent from './components/ActivityStream'
 
 
 const mapStateToProps = (state, props) => ({
@@ -26,11 +26,13 @@ const mapDispatchToProps = (dispatch, { deviceId, start, end }) => ({
     'getActivities',
     { deviceId, start, end, page, page_size: 10 },
   )),
+  wipeApi: () => dispatch(apiWipe(null, null, storeKey)),
 })
 
 const mergeProps = (state, dispatch, props) => ({
   ...state,
   ...props,
+  ...dispatch,
   fetchActivities: () => dispatch.fetchActivities(state.nextPage),
 })
 
@@ -47,7 +49,7 @@ const Composed = compose(
     mergeProps,
   ),
   toJS,
-)(UnconnectedAS)
+)(ActivityStreamComponent)
 
 /**
  Display a 'news feed' style log of all activity on a given device.
