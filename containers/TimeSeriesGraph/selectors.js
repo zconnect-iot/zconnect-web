@@ -16,21 +16,15 @@ const selectTSAPIState = state => selectAPIState(state, { storeKey: 'tsData' })
 const selectTimeConfigFromProps = (_, props) => {
   const oclock = xdate => xdate.setMinutes(0).setSeconds(0).setMilliseconds(0)
 
-  // The end time is the start of the given hour, unless that's in the future
-  // or not provided in which case it's the start of the current hour
-  const end = props.endTime
-    ? oclock(
-      new XDate(
-        Math.min(new XDate(props.endTime), new XDate()),
-      ).addSeconds(1),
-    )
-    : oclock(new XDate())
+  // The end time is the end of the given hour, unless that's not provided in
+  // which case it's the end of the current hour
+  const end = oclock(XDate(props.endTime)).addHours(1)
 
   // The start time is the start of the given hour, unless it's not provided in
-  // which case it's 24 hours before the end time
+  // which case it's the start of the hour 24 before the end time
   const start = props.startTime
-    ? oclock(new XDate(props.startTime))
-    : oclock(new XDate(end).addHours(-24))
+    ? oclock(XDate(props.startTime))
+    : XDate(end).addHours(-24)
 
   if (start.diffHours(end) <= 48)
     return {
