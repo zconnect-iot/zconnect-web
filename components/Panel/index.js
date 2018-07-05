@@ -26,6 +26,7 @@ export default class Panel extends React.PureComponent {
   }
   toggleCollapsed = () => this.setState({ collapsed: !this.state.collapsed })
   renderActions = actions => actions.map(action => (<Button key={action.title} {...action}>
+    {action.icon && <Icon name={action.icon} size={24} />}
     {action.title}
   </Button>))
   render() {
