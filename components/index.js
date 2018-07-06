@@ -12,6 +12,8 @@ export { default as Link, SimpleLink } from './Link'
 export { default as ProgressChart, ProgressBar } from './ProgressChart/index'
 export { default as GoogleMap } from './GoogleMap'
 export { default as Address } from './Address'
+export { default as PieChart } from './PieChart'
+export { default as MeterPanel } from './MeterPanel'
 
 // Non redux-form forms
 export { default as DateRangeModal } from './DateRangeModal'

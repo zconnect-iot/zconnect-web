@@ -1,0 +1,30 @@
+@import '~theme/variables.scss';
+
+$meter-panel-color-1: $brand-success;
+$meter-panel-color-2: $brand-danger;
+
+
+:global(.MeterPanel) {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  background: $bg-light-alternate;
+  padding: $padding;
+
+  h3 {
+    text-align: center;
+    padding: $padding;
+    font-size: 1.4rem;
+  }
+
+  :global(.PieChart) {
+    padding: $padding;
+    height: 174px + ($padding * 2);
+  }
+
+  h4 {
+    position: absolute;
+    align-self: center;
+    bottom: 76px;
+  }
+}
