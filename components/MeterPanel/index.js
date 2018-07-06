@@ -5,6 +5,7 @@ import classnames from 'classnames'
 
 import PieChart from '../PieChart'
 
+import vars from '!!sass-vars-to-js-loader!./style.scss'
 import './style.scss'
 
 
@@ -16,8 +17,10 @@ const OpenPieChart = defaultProps({
 })(PieChart)
 
 /**
-  To simplify usage, you can just pass an array of numbers to be mapped to the
-  expected data shape for the underlying PieChart
+  This is really just a PieChart with start and end angles set.
+
+  To simplify usage, you can just pass an array of numbers (and optionally colours)
+  which are mapped to the expected data shape for the underlying PieChart
 */
 
 export default function MeterPanel({ data, title, label, className, colors, ...props }) {
@@ -54,7 +57,7 @@ MeterPanel.defaultProps = {
   label: '',
   className: '',
   colors: [
-    '#5cb85c',
-    '#d9534f',
+    vars.meterPanelColor1.rgba,
+    vars.meterPanelColor2.rgba,
   ],
 }

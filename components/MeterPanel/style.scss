@@ -1,5 +1,9 @@
 @import '~theme/variables.scss';
 
+$meter-panel-color-1: $brand-success;
+$meter-panel-color-2: $brand-danger;
+
+
 :global(.MeterPanel) {
   display: inline-flex;
   flex-direction: column;

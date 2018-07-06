@@ -8,6 +8,8 @@ import './style.scss'
 /**
   d3 PieChart component. Can be customised by including a `color` in the `data` array.
   Otherwise will just use default d3 category10 scheme
+
+  Sorts by highest value clockwise from 12'o'clock but this can be over-ridden
 */
 
 class PieChart extends React.PureComponent {
